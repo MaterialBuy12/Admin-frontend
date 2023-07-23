@@ -32,6 +32,7 @@ function Weightrange() {
   useEffect(() => {
     (async () => {
       const dat = await Weightget();
+      console.log(dat)
     
 
       setposts(dat[0]);

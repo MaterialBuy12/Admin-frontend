@@ -49,6 +49,7 @@ import Recom from "./Offer andbanner/Recom";
 import UpdateCAtegory from "./Professional/UpdateCAtegory";
 import Prefabform from "./Prefab houses/Prefabform";
 import Sellerfrequencyupdate from "./Logistic/Sellerfrequencyupdate";
+import CSSDeals from "./Offer andbanner/CSSDeals";
 /* eslint-disable */
 function Sidebar() {
   return (
@@ -114,6 +115,7 @@ function Sidebar() {
             element={<ProfileUpates />}
           ></Route>
           <Route exact path="/orders" element={<Orders />}></Route>
+          <Route exact path="/cssdeals" element={<CSSDeals />}></Route>
           <Route exact path="/porstatus" element={<Status />}></Route>
           <Route exact path="/porrequest" element={<Request />}></Route>
           <Route exact path="/profecat" element={<ProCategory />}></Route>
@@ -364,6 +366,11 @@ function Sidebar() {
                     <li>
                       <Link to="/deals">
                         <i className="fas fa-list"></i> &ensp; Deals
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/cssdeals">
+                        <i className="fas fa-list"></i> &ensp; CSS Deals
                       </Link>
                     </li>
                     <li>

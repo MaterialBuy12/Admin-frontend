@@ -1,12 +1,26 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import TextField from '../categories/TextField';
 import * as yup from "yup";
+import { getsellerfre, sellerlevelupdate } from '../../services/api';
+import { useNavigate, useParams } from 'react-router-dom';
 function Sellerfrequencyupdate() {
+  const { id } = useParams();
+  var [head, sethead] = useState([]);
   const validate = yup.object({
     pin: yup.string().required("Required"),
     level: yup.string().required("Required"),
   });
+  let navigate=useNavigate()
+  // eslint-disable-next-line
+  useEffect(() => {
+    async function data() {
+       // eslint-disable-next-line
+      let dat = await getsellerfre(id);
+      sethead(dat);
+    }
+    data();
+  }, []);
   return (
     <div className="content-page">
     <div className="content">
@@ -34,25 +48,28 @@ function Sellerfrequencyupdate() {
 
                 <div className="table-responsive">
                   <Formik
+                  enableReinitialize
                     initialValues={{
-                      pin: "",
-                      level: "",
+                      id:id,
+                      pin: head.pin,
+                      level: head.level,
                     }}
                     validationSchema={validate}
                     onSubmit={async (values, action) => {
-                      // try {
-                      //   let dat = await sellerfre(values);
+                      try {
+                        let dat = await sellerlevelupdate(values);
 
-                      //   if (dat.status) {
-                      //     alert(dat.data);
-                      //     alert("SUCCESSFUL");
-                      //     window.location.reload();
-                      //   } else {
-                      //     alert("Something went wrong");
-                      //   }
-                      // } catch (error) {
-                      //   console.log(error);
-                      // }
+                        if (dat.status) {
+                      
+                          alert("SUCCESSFUL");
+                          navigate('/sellerfrequency')
+                          window.location.reload();
+                        } else {
+                          alert("Something went wrong");
+                        }
+                      } catch (error) {
+                        console.log(error);
+                      }
                       action.resetForm();
                     }}
                   >

@@ -412,6 +412,24 @@ export const sellerfreq = async (values) => {
     console.log(error);
   }
 };
+export const getsellerfre = async (id) => {
+  try {
+    let response = await axios.get(`${host1}/api/sellerdata?id=${id}`);
+    
+    return response.data;
+  } catch (error) {
+    console.log("error in getsellerlevel", error);
+  }
+};
+export const sellerlevelupdate = async (values) => {
+  try {
+    let response = await axios.put(`${host1}/api/sellerdata`, values);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // buy level
 export const buyerleve = async (values) => {
   try {
@@ -424,10 +442,11 @@ export const buyerleve = async (values) => {
 
 export const getbuyerlevel = async (id) => {
   try {
-    let response = await axios.get(`${host1}/api/buyerdadta/${id}`);
+    let response = await axios.get(`${host1}/api/buyerdata?id=${id}`);
+    
     return response.data;
   } catch (error) {
-    console.log("error in getcategory", error);
+    console.log("error in getbuyerlevel", error);
   }
 };
 export const buyerlevelupdate = async (values) => {

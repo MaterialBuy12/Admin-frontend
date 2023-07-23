@@ -3,7 +3,7 @@ import React from "react";
 import TextField from "../categories/TextField";
 import * as yup from "yup";
 import { buyerlevelupdate, getbuyerlevel } from "../../services/api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Buyerlevelupdate() {
@@ -13,11 +13,13 @@ function Buyerlevelupdate() {
     pin: yup.string().required("Required"),
     level: yup.string().required("Required"),
   });
+  let navigate=useNavigate()
   // eslint-disable-next-line
   useEffect(() => {
     async function data() {
       let dat = await getbuyerlevel(id);
-      console.log(dat, "hello");
+    
+      
       sethead(dat);
     }
     data();
@@ -49,9 +51,11 @@ function Buyerlevelupdate() {
 
                   <div className="table-responsive">
                     <Formik
+                    enableReinitialize
                       initialValues={{
-                        pin: "",
-                        level: "",
+                        id:id,
+                        pin: head.pin,
+                        level: head.level,
                       }}
                       validationSchema={validate}
                       onSubmit={async (values, action) => {
@@ -60,7 +64,10 @@ function Buyerlevelupdate() {
 
                           if (dat.status) {
                             alert("SUCCESSFULLY ", dat.data);
+                            navigate('/buyerlevel')
+                            
                             window.location.reload();
+                            
                           } else {
                             alert("Something went wrong");
                           }

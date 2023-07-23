@@ -1000,7 +1000,10 @@ function ProductForm() {
                         </div>
                       </div>
 
-                      {/* 8. category is incomplete 17B,17C,17D */}
+                     
+
+
+                     
                       {/* 9. row */}
                       <div className="row mt-2">
                         <div className="col-12 col-lg-3  mt-2">
