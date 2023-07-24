@@ -2,7 +2,9 @@ import React from "react";
 import Footer from "../footer/Footer";
 import { Formik, Form, ErrorMessage,Field } from "formik";
 import TextField from "../categories/TextField";
+
 import * as yup from "yup";
+import { PORVENDOR } from "../../services/api";
 function Request() {
   const validate = yup.object({
     frieghtrate: yup.string().required("Required"),
@@ -16,8 +18,8 @@ function Request() {
     quantity: yup.string().required("Required"),
     adminprice: yup.string().required("Required"),
     vendorprice: yup.string().required("Required"),
-    prqu: yup.string().required("Required"),
-    prqush: yup.string().required("Required"),
+    pxquantity: yup.string().required("Required"),
+    pxquantityshipping: yup.string().required("Required"),
     
     
 
@@ -143,13 +145,27 @@ function Request() {
                             quantity: "",
                             adminprice:"",
                             vendorprice:"",
-                            prqu:"",
-                            prqush:""
+                            pxquantity:"",
+                            pxquantityshipping:""
                           }}
                           validationSchema={validate1}
                           onSubmit={async (values, actions) => {
-                            console.log("submitted values", values);
-
+                            
+                            try {
+                              let dat = await PORVENDOR(values);
+                              
+      
+                              if (dat.status) {
+                            
+                                alert("SUCCESSFUL");
+                              
+                                window.location.reload();
+                              } else {
+                                alert("Something went wrong");
+                              }
+                            } catch (error) {
+                              console.log(error);
+                            }
                             actions.resetForm();
                           }}
                         >
@@ -167,8 +183,8 @@ function Request() {
                                 <div class="col-6 mt-3"><TextField name="vendorprice"label="Vendor's Price"/></div>
                               </div>
                               <div class="row justify-content-evenly">
-                                <div class="col-6 mt-3"><TextField name="prqu" label="Price X (Quantity)"/></div>
-                                <div class="col-6 mt-3"><TextField name="prqush"label="(Price XQuantity)+Shipping " placeholder="Charge"/></div>
+                                <div class="col-6 mt-3"><TextField name="pxquantity" label="Price X (Quantity)"/></div>
+                                <div class="col-6 mt-3"><TextField name="pxquantityshipping"label="(Price XQuantity)+Shipping " placeholder="Charge"/></div>
                               </div>
                               <input
                                 type="Submit"

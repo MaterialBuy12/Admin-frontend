@@ -920,3 +920,37 @@ export const deletedfilter = async (id) => {
     return response;
   } catch (error) {}
 };
+
+
+// POr
+export const PORVENDOR = async (data) => {
+  try {
+    let response = await axios.post(`${host}/api/pors`, data);
+    console.log("hello",response)
+
+    return response;
+  } catch (error) {
+    alert("Something went wrong");
+  }
+};
+
+export const DEALSPOST = async (data) => {
+  try {
+    let response = await axios.post(`${host}/api/css`, data);
+    
+    
+    return response;
+  } catch (error) {
+    alert("Something went wrong");
+  }
+};
+export const DEALSGET = async (data) => {
+  try {
+    let response = await axios.post(`${host}/api/css`);
+    console.log("hii")
+    
+    return response;
+  } catch (error) {
+    alert("Something went wrong");
+  }
+};

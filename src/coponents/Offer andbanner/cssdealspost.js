@@ -1,17 +1,15 @@
-import React from "react";
+import React from 'react'
 
-import { promocodeupdate } from "../../services/api";
-
-function Promocodeposts({ posts }) {
-  const confirm = async (i) => {
-  
-    let dat = await promocodeupdate(i._id, i.data);
-    window.location.reload();
-  
-  };
+function cssdealspost({posts}) {
+    const remove = async (i) => {
+    
+        let dat = await promocodeupdate(i._id, i.data);
+        window.location.reload();
+      
+      };
   return (
     <>
-      {posts &&
+        {posts &&
         posts.map((i,index) => (
           <tr key={i._id}>
             <td>
@@ -52,7 +50,7 @@ function Promocodeposts({ posts }) {
               <button
                 className="btn btn-dark btn-lg"
                 onClick={(e) => {
-                  confirm(i);
+                  remove(i);
                 }}
               >
                 <i className="fa-solid fa-toggle-on"></i>
@@ -61,7 +59,7 @@ function Promocodeposts({ posts }) {
           </tr>
         ))}
     </>
-  );
+  )
 }
 
-export default Promocodeposts;
+export default cssdealspost

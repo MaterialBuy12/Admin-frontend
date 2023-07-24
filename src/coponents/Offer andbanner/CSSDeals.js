@@ -1,23 +1,40 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React,{useState,useEffect} from 'react'
-import { SubSubgetCategory, getAllCategory, getAllSubCategory } from '../../services/api';
+import { DEALSGET, DEALSPOST, SubSubgetCategory, getAllCategory, getAllSubCategory } from '../../services/api';
 import * as yup from "yup";
 import TextField from '../categories/TextField';
 function CSSDeals() {
   const validate = yup.object({
-   options:yup.string().required("Required"),
+   category:yup.string().required("Required"),
    percentage:yup.number().required("Required")
   });
   const [state, setstate] = useState([]);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
+   //   const navigate = useNavigate();
+   const [posts, setposts] = useState([]);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [postsPerPage] = useState(25);
+ 
+   // // total no of pages
+   const Totalpages = Math.ceil(posts.length / postsPerPage);
+   const pages = [...Array(Totalpages + 1).keys()].slice(1);
+ 
+   // // Get current posts
+   const indexOfLastPost = currentPage * postsPerPage;
+   const indexOfFirstPost = indexOfLastPost - postsPerPage;
+   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+ 
+   // // Change page
+   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   useEffect(() => {
     async function data() {
       let dat = await getAllCategory();
 
       let response = await getAllSubCategory();
       let resp = await SubSubgetCategory();
-      
+      let data=await DEALSGET()
+      console.log(data)
       setstate2(resp);
 
       setstate1(response);
@@ -55,25 +72,25 @@ function CSSDeals() {
                     <div className="table-responsive">
                       <Formik
                         initialValues={{
-                          categoryid:"",
+                          category:"",
                           subcategory:"",
                           subsubcategory:"",
                           percentage:""
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, action) => {
-                          // try {
-                          //   let dat = await buyerleve(values);
+                          try {
+                            let dat = await DEALSPOST(values);
                           
-                          //   if (dat.status) {
-                          //     alert("SUCCESSFULLY ", dat.data);
-                          //     window.location.reload()
-                          //   } else {
-                          //     alert("Something went wrong");
-                          //   }
-                          // } catch (error) {
-                          //   console.log(error);
-                          // }
+                            if (dat.status) {
+                              alert("SUCCESSFULLY ", dat.data);
+                              window.location.reload()
+                            } else {
+                              alert("Something went wrong");
+                            }
+                          } catch (error) {
+                            console.log(error);
+                          }
                           action.resetForm();
                         }}
                       >
@@ -85,11 +102,11 @@ function CSSDeals() {
                           <Field
                             as="select"
                             className={`form-control shadow-none ${
-                              formik.touched.categoryid &&
-                              formik.errors.categoryid &&
+                              formik.touched.category &&
+                              formik.errors.category &&
                               "is-invalid"
                             }`}
-                            name="categoryid"
+                            name="category"
                           >
                             <option defaultValue="">Select Category</option>
                             {state &&
@@ -99,7 +116,7 @@ function CSSDeals() {
                           </Field>
                           <ErrorMessage
                             component="div"
-                            name="categoryid"
+                            name="category"
                             className="error"
                           />
                         </div>
@@ -118,7 +135,7 @@ function CSSDeals() {
                             <option defaultValue="">Select Category</option>
                             {state1 &&
                               state1.map((i, index) => {
-                                if (formik.values.categoryid === i.categoryname)
+                                if (formik.values.category === i.categoryname)
                                   return (
                                     <option
                                       key={index}
@@ -151,7 +168,7 @@ function CSSDeals() {
                             <option defaultValue="">Select Category</option>
                             {state2 &&
                               state2.map((i, index) => {
-                                if (formik.values.categoryid === i.categoryname)
+                                if (formik.values.category === i.categoryname)
                                   return (
                                     <option value={i.subsubcategory}>
                                       {i.subsubcategory}
