@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TextField from "../categories/TextField";
-import { buyerleve, buyerlevel } from "../../services/api";
+import { buyerleve, buyerlevel, buyerlevel1 } from "../../services/api";
 import Pagination from "../categories/categories/Pagination";
 import Buyerlevelpost from "./Buyerlevelpost";
 function Buyerlevel() {
+  const [searchedvalue, setsearchedvalue] = useState("");
   const validate = yup.object({
     pin: yup.string().required("Required"),
     level: yup.string().required("Required"),
@@ -133,8 +134,14 @@ function Buyerlevel() {
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Buller Level</h4>
                     <form class="d-flex w-10" role="search">
-      <input class="form-control w-5 mx-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-dark btn-dark text-white" type="submit">Search</button>
+      <input class="form-control w-5 mx-2" type="search" placeholder="Search" onChange={(e)=>{
+        setsearchedvalue(e.target.value)
+      }} aria-label="Search"/>
+      <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
+        e.preventDefault()
+           let dat = await buyerlevel1(searchedvalue);
+           setposts(dat.data);
+      }}>Search</button>
     </form>
 
                     <div className="table-responsive">

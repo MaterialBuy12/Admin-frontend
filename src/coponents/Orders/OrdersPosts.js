@@ -41,7 +41,7 @@ function OrdersPosts({ posts }) {
       const shipping1 = posts[index].user_docs.map((p) => p.shippingaddress);
       const billing1 = posts[index].user_docs.map((p) => p.billingaddress);
       setemails(email);
-      setDetails(productName);
+      setDetails(productName,);
       setcate(category);
       setsubcate(subcategory);
       setsubsubcate(subsubcategory);
@@ -135,7 +135,7 @@ function OrdersPosts({ posts }) {
                       ></button>
                     </div>
                     <div class="modal-body">
-                      <label>Category: {cate}</label>
+                      <label>Category: {cate }</label>
                       <br />
                       <label>Sub Category: {subcate}</label>
                       <br />

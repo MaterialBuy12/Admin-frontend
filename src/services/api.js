@@ -472,6 +472,14 @@ export const buyerlevel = async (values) => {
     console.log(error);
   }
 };
+export const buyerlevel1 = async (values) => {
+  try {
+    let response = await axios.get(`${host1}/api/buyerdata?pin=${values}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 // seller range
 export const sellerrange = async (values) => {
   try {
