@@ -114,6 +114,12 @@ export const deletedsubsubcate = async (id) => {
     return response;
   } catch (error) {}
 };
+export const cssdealsdelete = async (id) => {
+  try {
+    let response = await axios.delete(`${host}/api/css/${id}`);
+    return response;
+  } catch (error) {}
+};
 export const deletedsubcate = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/subcategories/${id}`);
@@ -946,7 +952,7 @@ export const DEALSPOST = async (data) => {
 };
 export const DEALSGET = async (data) => {
   try {
-    let response = await axios.post(`${host}/api/css`);
+    let response = await axios.get(`${host}/api/css`);
     console.log("hii")
     
     return response;

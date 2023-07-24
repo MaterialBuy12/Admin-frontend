@@ -23,6 +23,7 @@ function OrdersPosts({ posts }) {
   };
 
   const showDetails = (index) => {
+    console.log(posts[index])
     if (index > 0) {
       const productName = posts[index].products_docs.map((p) => p.productname1);
       const category = posts[index].products_docs.map((p) => p.categoryid);

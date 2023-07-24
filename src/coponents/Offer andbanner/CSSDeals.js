@@ -3,6 +3,8 @@ import React,{useState,useEffect} from 'react'
 import { DEALSGET, DEALSPOST, SubSubgetCategory, getAllCategory, getAllSubCategory } from '../../services/api';
 import * as yup from "yup";
 import TextField from '../categories/TextField';
+import Pagination from '../categories/categories/Pagination';
+import CSSDealsposts from './CSSDealsposts';
 function CSSDeals() {
   const validate = yup.object({
    category:yup.string().required("Required"),
@@ -30,11 +32,10 @@ function CSSDeals() {
   useEffect(() => {
     async function data() {
       let dat = await getAllCategory();
-
       let response = await getAllSubCategory();
       let resp = await SubSubgetCategory();
       let data=await DEALSGET()
-      console.log(data)
+      setposts(data.data)
       setstate2(resp);
 
       setstate1(response);
@@ -194,7 +195,7 @@ function CSSDeals() {
                               type="Submit"
                               className="btn mt-2 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark"
                               value="Submit"
-                              onChange={() => {}}
+                              
                             />
                           </Form>
                         )}
@@ -222,15 +223,22 @@ function CSSDeals() {
                             <th scope="col"> category </th>
                             <th scope="col"> sub category </th>
                             <th scope="col">sub sub category</th>
+                            <th scope="col">Percentage</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                        
+                        <CSSDealsposts posts={currentPosts}/>
                         </tbody>
                       </table>
                     </div>
-                   
+                    <Pagination
+                      postsPerPage={postsPerPage}
+                      totalPosts={Totalpages}
+                      paginate={paginate}
+                      currentPage={currentPage}
+                      pageNumbers={pages}
+                    />
                   </div>
                 </div>
               </div>
