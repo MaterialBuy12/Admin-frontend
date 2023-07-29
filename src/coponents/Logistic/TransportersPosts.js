@@ -26,7 +26,7 @@ function TransportersPosts({posts}) {
               <td><span>{i.emailid}</span></td>
               <td><span>{i.gst}</span></td>
               <td><span>{i.address}</span></td>
-              <td><span>{i.rate}</span></td>
+              <td><span>{i.rate.replace(/<[^>]+>/g, '')}</span></td>
               <td> <button className='btn btn-danger m-2' onClick={(e) => {
                                 remove(i)
                             }}>Remove</button></td>

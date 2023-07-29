@@ -20,7 +20,7 @@ function Serposts({ posts }) {
           <tr key={i._id}>
             <th> {index+1}</th>
             <th> {i.service}</th>
-            <th> {i.descr}</th>
+            <th> {i.descr.replace(/<[^>]+>/g, '')}</th>
 
             <th>
               {" "}

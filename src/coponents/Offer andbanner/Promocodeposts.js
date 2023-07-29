@@ -5,7 +5,7 @@ import { promocodeupdate } from "../../services/api";
 function Promocodeposts({ posts }) {
   const confirm = async (i) => {
   
-    let dat = await promocodeupdate(i._id, i.data);
+    await promocodeupdate(i._id, i.data);
     window.location.reload();
   
   };

@@ -50,8 +50,8 @@ function Request() {
                   <div className="card-body">
                     <h3 className="mt-0 header-title mb-4">POR Request</h3>
 
-                    <div class="row justify-content-start">
-                      <div class="col-5 ">
+                    <div className="row justify-content-start">
+                      <div className="col-5 ">
                         <h4>Get Frieght Rate</h4>
                         <Formik
                           initialValues={{
@@ -68,8 +68,8 @@ function Request() {
                         >
                           {(formik) => (
                             <Form>
-                               <div class="row justify-content-evenly">
-                                <div class="col-6 mt-3"> 
+                               <div className="row justify-content-evenly">
+                                <div className="col-6 mt-3"> 
                                 <label>Vendor Selection</label>
                       <Field
                         as="select"
@@ -96,7 +96,7 @@ function Request() {
                         className="error"
                       />
 </div>
-                                <div class="col-6 mt-3"> <label>Ware House Selection</label>
+                                <div className="col-6 mt-3"> <label>Ware House Selection</label>
                       <Field
                         as="select"
                         className={`form-control shadow-none  ${
@@ -123,9 +123,9 @@ function Request() {
                       /></div>
                               </div>
                               
-                              <div class="row justify-content-evenly">
-                                <div class="col-6 mt-3"><TextField name="frieghtrate"label="Frieght Rate"/></div>
-                                <div class="col-6 mt-3"><TextField name="userscharge"label="User's Shipping Charge"/></div>
+                              <div className="row justify-content-evenly">
+                                <div className="col-6 mt-3"><TextField name="frieghtrate"label="Frieght Rate"/></div>
+                                <div className="col-6 mt-3"><TextField name="userscharge"label="User's Shipping Charge"/></div>
                               </div>
                               <input
                                 type="Submit"
@@ -137,7 +137,7 @@ function Request() {
                         </Formik>
                       </div>
                       <div className="col-2"></div>
-                      <div class="col-5">
+                      <div className="col-5">
                         <h4>Send POR To Vendor</h4>
                         <Formik
                           initialValues={{
@@ -171,20 +171,20 @@ function Request() {
                         >
                           {(formik) => (
                             <Form>
-                               <div class="row justify-content-evenly">
-                               <div class="col-6 mt-3"><TextField name="productname"label="Product Name"/></div>
-                               <div class="col-6 mt-3"><TextField name="quantity"label="Quantity"/></div>
+                               <div className="row justify-content-evenly">
+                               <div className="col-6 mt-3"><TextField name="productname"label="Product Name"/></div>
+                               <div className="col-6 mt-3"><TextField name="quantity"label="Quantity"/></div>
 
                                
                               </div>
                               
-                              <div class="row justify-content-evenly">
-                                <div class="col-6 mt-3"><TextField name="adminprice"label="Admin's Price"/></div>
-                                <div class="col-6 mt-3"><TextField name="vendorprice"label="Vendor's Price"/></div>
+                              <div className="row justify-content-evenly">
+                                <div className="col-6 mt-3"><TextField name="adminprice"label="Admin's Price"/></div>
+                                <div className="col-6 mt-3"><TextField name="vendorprice"label="Vendor's Price"/></div>
                               </div>
-                              <div class="row justify-content-evenly">
-                                <div class="col-6 mt-3"><TextField name="pxquantity" label="Price X (Quantity)"/></div>
-                                <div class="col-6 mt-3"><TextField name="pxquantityshipping"label="(Price XQuantity)+Shipping " placeholder="Charge"/></div>
+                              <div className="row justify-content-evenly">
+                                <div className="col-6 mt-3"><TextField name="pxquantity" label="Price X (Quantity)"/></div>
+                                <div className="col-6 mt-3"><TextField name="pxquantityshipping"label="(Price XQuantity)+Shipping " placeholder="Charge"/></div>
                               </div>
                               <input
                                 type="Submit"

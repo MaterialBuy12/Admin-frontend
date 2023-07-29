@@ -16,7 +16,7 @@ function Buyerlevel() {
   const [postsPerPage] = useState(25);
 
   // total no of pages
-  const Totalpages = Math.ceil(posts.length / postsPerPage);
+  const Totalpages = Math.ceil(posts.length / postsPerPage) ;
   const pages = [...Array(Totalpages + 1).keys()].slice(1);
 
   // Get current posts
@@ -29,8 +29,7 @@ function Buyerlevel() {
   useEffect(() => {
     async function data() {
       let dat = await buyerlevel();
-
-      setposts(dat.data);
+          setposts(dat.data);
     }
     data();
   }, []);
@@ -133,15 +132,26 @@ function Buyerlevel() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Buller Level</h4>
-                    <form class="d-flex w-10" role="search">
-      <input class="form-control w-5 mx-2" type="search" placeholder="Search" onChange={(e)=>{
+                    <form class="d-flex mb-2 " style={{width:"30%"}} role="search">
+                      
+      <div className="btn-group">
+      <input class="form-control  mx-2  btn-close" type="search" placeholder="Search" onChange={(e)=>{
         setsearchedvalue(e.target.value)
-      }} aria-label="Search"/>
+      }} aria-label="Search" />
+       
       <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
         e.preventDefault()
-           let dat = await buyerlevel1(searchedvalue);
-           setposts(dat.data);
+       if(searchedvalue){
+        let dat = await buyerlevel1(searchedvalue);
+    
+           
+        setposts(dat.data.data);
+       }else{
+        let dat = await buyerlevel();
+        setposts(dat.data);
+       }
       }}>Search</button>
+      </div>
     </form>
 
                     <div className="table-responsive">

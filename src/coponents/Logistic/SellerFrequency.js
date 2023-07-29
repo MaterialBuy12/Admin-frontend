@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TextField from "../categories/TextField";
-import { sellerfre, sellerfreq } from "../../services/api";
+import { seller1, sellerfre, sellerfreq } from "../../services/api";
 import Pagination from "../categories/categories/Pagination";
 import SellerFrequencyposts from "./SellerFrequencyposts";
 function SellerFrequency() {
@@ -13,6 +13,7 @@ function SellerFrequency() {
   const [posts, setposts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(25);
+  const [searchedvalue,setsearchedvalue]=useState("")
 
   // total no of pages
   const Totalpages = Math.ceil(posts.length / postsPerPage);
@@ -133,11 +134,21 @@ function SellerFrequency() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Seller Frequency</h4>
-                    <form class="d-flex w-10" role="search">
-      <input class="form-control w-5 mx-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-dark btn-dark text-white" type="submit">Search</button>
+                    <form class="d-flex mb-2 " style={{width:"30%"}} role="search">
+      <input class="form-control  mx-2" type="search" placeholder="Search" onChange={(e)=>{
+        setsearchedvalue(e.target.value)
+      }} aria-label="Search"/>
+      <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
+        e.preventDefault()
+          if(searchedvalue){
+            let dat = await seller1(searchedvalue);      
+            setposts(dat.data.data);
+          }else{
+            let dat = await sellerfreq();
+            setposts(dat.data);
+          }
+      }}>Search</button>
     </form>
-
                     <div className="table-responsive">
                       <table className="table table-hover">
                         <thead>

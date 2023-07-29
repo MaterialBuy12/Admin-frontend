@@ -1,14 +1,14 @@
 import { React, useEffect, useState, useRef } from "react";
 import { Formik, Form, ErrorMessage, Field } from "formik";
-import TextField from "../categories/TextField";
+
 import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
 import * as yup from "yup";
-import FormControl from "@mui/material/FormControl";
-import { InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
-import Chip from "@mui/material/Chip";
-import { Box } from "@mui/system";
+import { TextField, Autocomplete } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+import { MenuItem } from "@mui/material";
 
+import Inputfielded from "../Offer andbanner/Inputfielded";
 import {
   getAllCategory,
   getAllSubCategory,
@@ -97,8 +97,8 @@ function ProductForm() {
     heightunit8C: yup.string().required("Required"),
     manufacturer9: yup.string().required("Required"),
     madein10: yup.string().required("Required"),
-    minord11A: yup.string().required("Required"),
-    maxord11B: yup.string().required("Required"),
+    minord11A: yup.number().required("Required"),
+    maxord11B: yup.number().required("Required") ,
 
     description12: yup.string().required("Required"),
     description123: yup.string().required("Required"),
@@ -575,45 +575,45 @@ function ProductForm() {
                       {/* 1st row  */}
                       <div className="row mt-2">
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField
+                          <Inputfielded
                             label="1. Product Name"
                             name="productname1"
                           />
                         </div>
 
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField label="2A. Price(Rs)" name="price2A" />
+                          <Inputfielded label="2A. Price(Rs)" name="price2A" />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField
+                          <Inputfielded
                             label="2B. Discounted Price(Rs)"
                             name="discountprice2B"
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField label="3. Tax(%)" name="taxpercent3" />
+                          <Inputfielded label="3. Tax(%)" name="taxpercent3" />
                         </div>
                       </div>
                       {/* 2nd row */}
                       <div className="row mt-2">
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField
+                          <Inputfielded
                             label="4A. Part Price(Rs)"
                             name="partprice4A"
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField
+                          <Inputfielded
                             label="4B. Sell In"
                             name="sell4B"
                             placeholder="e.g. liter or sqft or bag"
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField label="5. SKU ID" name="skuid5" />
+                          <Inputfielded label="5. SKU ID" name="skuid5" />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField label="6. Stock" name="stock6" />
+                          <Inputfielded label="6. Stock" name="stock6" />
                         </div>
                       </div>
                       {/* 3rd row */}
@@ -623,7 +623,7 @@ function ProductForm() {
                           {/* inner row */}
                           <div className="row">
                             <div className="col-12 col-lg-8 mt-2 ">
-                              <TextField label="7A. Weight" name="weight7A" />
+                              <Inputfielded label="7A. Weight" name="weight7A" />
                             </div>
                             <div className="col-12 col-lg-4 mt-2">
                               <label>Unit</label>
@@ -654,7 +654,7 @@ function ProductForm() {
                         <div className="col-6  mt-2">
                           <div className="row">
                             <div className="col-12 col-lg-8 mt-2 ">
-                              <TextField
+                              <Inputfielded
                                 label=" 7B. Vol Weight"
                                 name="volumetricweight7B"
                               />
@@ -692,7 +692,7 @@ function ProductForm() {
                           {/* inner row */}
                           <div className="row">
                             <div className="col-12 col-lg-8 mt-2 ">
-                              <TextField label="8A. Length" name="len8A" />
+                              <Inputfielded label="8A. Length" name="len8A" />
                             </div>
                             <div className="col-12 col-lg-4 mt-2">
                               <label>Unit</label>
@@ -728,7 +728,7 @@ function ProductForm() {
                           {/* inner row */}
                           <div className="row">
                             <div className="col-12 col-lg-8 mt-2 ">
-                              <TextField label="8B. Width" name="width8B" />
+                              <Inputfielded label="8B. Width" name="width8B" />
                             </div>
                             <div className="col-12 col-lg-4 mt-2">
                               <label>Unit</label>
@@ -765,7 +765,7 @@ function ProductForm() {
                           {/* inner row */}
                           <div className="row">
                             <div className="col-12 col-lg-8 mt-2 ">
-                              <TextField label="8C. Height" name="height8C" />
+                              <Inputfielded label="8C. Height" name="height8C" />
                             </div>
                             <div className="col-12 col-lg-4 mt-2">
                               <label>Unit</label>
@@ -801,19 +801,19 @@ function ProductForm() {
                       {/* 5th row */}
                       <div className="row mt-2">
                         <div className="col-12 col-lg-3  mt-2">
-                          <TextField
+                          <Inputfielded
                             label="9. Manufacturer"
                             name="manufacturer9"
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField label="10. Made in " name="madein10" />
+                          <Inputfielded label="10. Made in " name="madein10" />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField label="11A. Min Order" name="minord11A" />
+                          <Inputfielded label="11A. Min Order" name="minord11A" />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField label="11B. Max Order " name="maxord11B" />
+                          <Inputfielded label="11B. Max Order " name="maxord11B" />
                         </div>
                       </div>
                       {/* 6 row */}
@@ -869,23 +869,23 @@ function ProductForm() {
                           />
                         </div>
                         <div className="col-lg-3  mt-2">
-                          <TextField
+                          <Inputfielded
                             label="13B. Material Calculator Value"
                             name="calculator"
                           />
                         </div>
                         <div className="col-12 col-lg-3  mt-2">
-                          <TextField
+                          <Inputfielded
                             label="13C. Material Unit"
                             name="calculatorunit"
                           />
                         </div>
                         <div className="col-12 col-lg-3  mt-2">
-                          <TextField label="14. Tags" name="tags" />
+                          <Inputfielded label="14. Tags" name="tags" />
                         </div>
 
-                        <div className="col-lg-3 mt-2">
-                          <FormControl
+                        <div className="col-lg-6 mt-2">
+                          {/* <FormControl
                             sx={{
                               mt: 2,
                               width: 450,
@@ -950,7 +950,50 @@ function ProductForm() {
                                 </MenuItem>
                               ))}
                             </Select>
-                          </FormControl>
+                          </FormControl> */}
+                          <label>   15. Frequently Bought Together Products </label>
+                            <Autocomplete
+                                onChange={(event, value) => formik.setFieldValue("vari",value)} 
+                                  sx={{ m: 1, width: 500 }}
+                                  multiple
+                                  style={{ backgroundColor: 'white'  }}
+                                                                
+                                  options={posts1}
+                                  getOptionLabel={(option) => option}
+                                  disableCloseOnSelect
+                          
+                                  renderInput={(params) => (
+                                    <TextField  
+                                      {...params}
+                                      name="vari"
+                                      value={formik.values.vari}
+                                      onChange={formik.handleChange}  
+                                      variant="outlined"
+                                      color="info"
+                                      label="Product Name"
+                                      placeholder="Product Name"
+                                    />
+                                  )}
+                                  renderOption={(
+                                    props,
+                                    option,
+                                    { selected }
+                                  ) => (
+                                    
+                                    <MenuItem
+                                      {...props}
+                                      key={option}
+                                      value={option}
+                                      sx={{ justifyContent: "space-between" }}
+                                    >
+                                      {option}
+                                      {selected ? (
+                                        <CheckIcon color="info" />
+                                      ) : null}
+                                    </MenuItem>
+                                  )}
+                                />
+
 
                           <ErrorMessage
                             name="vari"
@@ -1016,7 +1059,7 @@ function ProductForm() {
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField label="16F. Charges" name="charges" />
+                          <Inputfielded label="16F. Charges" name="charges" />
                         </div>
                       </div>
                       <div className="row mt-2">
@@ -1108,25 +1151,25 @@ function ProductForm() {
                       {/* new row */}
                       <div className="row mt-2">
                         <div className="col-12 col-lg-3  mt-2">
-                          <TextField
+                          <Inputfielded
                             label="18A. Unit/Box Type 1"
                             name="unit18A"
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField
+                          <Inputfielded
                             label="18B. Unit/Box Type 2"
                             name="unit18B"
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField
+                          <Inputfielded
                             label="18C. Unit/Box Type 3"
                             name="unit18C"
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField
+                          <Inputfielded
                             label="18D. Unit/Box Type 4"
                             name="unit18D"
                           />
@@ -1136,25 +1179,25 @@ function ProductForm() {
                       {/* new row */}
                       <div className="row mt-2">
                         <div className="col-12 col-lg-3  mt-2">
-                          <TextField
+                          <Inputfielded
                             label="18E. Box Type 1 Vol. Wt."
                             name="vol18E"
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField
+                          <Inputfielded
                             label="18F. Box Type 2 Vol. Wt."
                             name="vol18F"
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField
+                          <Inputfielded
                             label="18G. Box Type 3 Vol. Wt."
                             name="vol18G"
                           />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <TextField
+                          <Inputfielded
                             label="18H. Box Type 4 Vol. Wt."
                             name="vol18H"
                           />
@@ -1164,25 +1207,25 @@ function ProductForm() {
                       {/* variation Name */}
                       <div className="row mt-2">
                         <div className="col-3  mt-2">
-                          <TextField
+                          <Inputfielded
                             label="19A. Variation 1 Name"
                             name="vari1"
                           />
                         </div>
                         <div className="col-3  mt-2">
-                          <TextField
+                          <Inputfielded
                             label="19B. Variation 2 Name"
                             name="vari2"
                           />
                         </div>
                         <div className="col-3  mt-2">
-                          <TextField
+                          <Inputfielded
                             label="19C. Variation 3 Name"
                             name="vari3"
                           />
                         </div>
                         <div className="col-3  mt-2">
-                          <TextField
+                          <Inputfielded
                             label="19D. Variation 4 Name"
                             name="vari4"
                           />
@@ -1197,42 +1240,42 @@ function ProductForm() {
                               return (
                                 <div key={index} className="row mt-2">
                                   <div className="col-2 mt-2">
-                                    <TextField
+                                    <Inputfielded
                                       name={`variations[${index}].var12`}
                                       value={p.var12}
                                     />
                                   </div>
 
                                   <div className="col-2 mt-2">
-                                    <TextField
+                                    <Inputfielded
                                       name={`variations[${index}].var13`}
                                       value={p.var13}
                                     />
                                   </div>
 
                                   <div className="col-2 mt-2">
-                                    <TextField
+                                    <Inputfielded
                                       name={`variations[${index}].var14`}
                                       value={p.var14}
                                     />
                                   </div>
 
                                   <div className="col-2 mt-2">
-                                    <TextField
+                                    <Inputfielded
                                       name={`variations[${index}].var15`}
                                       value={p.var15}
                                     />
                                   </div>
 
                                   <div className="col-2 mt-2">
-                                    <TextField
+                                    <Inputfielded
                                       name={`variations[${index}].var16`}
                                       value={p.var16}
                                     />
                                   </div>
 
                                   <div className="col-2 mt-2">
-                                    <TextField
+                                    <Inputfielded
                                       name={`variations[${index}].var17`}
                                       value={p.var17}
                                     />
@@ -1286,81 +1329,81 @@ function ProductForm() {
                       <label className="mt-2">20. Rate Chart</label>
                       <div className="row mt-2">
                         <div className="col-1 mt-2">
-                          <TextField label="Min 1" name="minimum1" />
+                          <Inputfielded label="Min 1" name="minimum1" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Max 1" name="maximum1" />
+                          <Inputfielded label="Max 1" name="maximum1" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Price 1" name="price1" />
+                          <Inputfielded label="Price 1" name="price1" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Free 1" name="free1" />
+                          <Inputfielded label="Free 1" name="free1" />
                         </div>
 
                         <div className="col-1  mt-2">
-                          <TextField label="Min 2" name="minimum2" />
+                          <Inputfielded label="Min 2" name="minimum2" />
                         </div>
                         <div className="col-1  mt-2">
-                          <TextField label="Max 2" name="maximum2" />
+                          <Inputfielded label="Max 2" name="maximum2" />
                         </div>
                         <div className="col-1  mt-2">
-                          <TextField label="Price 2" name="price2" />
+                          <Inputfielded label="Price 2" name="price2" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Free 2" name="free2" />
+                          <Inputfielded label="Free 2" name="free2" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Min 3" name="minimum3" />
+                          <Inputfielded label="Min 3" name="minimum3" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Max 3" name="maximum3" />
+                          <Inputfielded label="Max 3" name="maximum3" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Price 3" name="price3" />
+                          <Inputfielded label="Price 3" name="price3" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Free 3" name="free3" />
+                          <Inputfielded label="Free 3" name="free3" />
                         </div>
                       </div>
                       <div className="row mt-2"></div>
                       <div className="row mt-2">
                         <div className="col-1  mt-2">
-                          <TextField label="Min4" name="minimum4" />
+                          <Inputfielded label="Min4" name="minimum4" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Max 4" name="maximum4" />
+                          <Inputfielded label="Max 4" name="maximum4" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Price 4" name="price4" />
+                          <Inputfielded label="Price 4" name="price4" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Free 4" name="free4" />
+                          <Inputfielded label="Free 4" name="free4" />
                         </div>
 
                         <div className="col-1  mt-2">
-                          <TextField label="Min 5" name="minimum5" />
+                          <Inputfielded label="Min 5" name="minimum5" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Max 5" name="maximum5" />
+                          <Inputfielded label="Max 5" name="maximum5" />
                         </div>
                         <div className="col-1  mt-2">
-                          <TextField label="Price 5" name="price5" />
+                          <Inputfielded label="Price 5" name="price5" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Free 5" name="free5" />
+                          <Inputfielded label="Free 5" name="free5" />
                         </div>
                         <div className="col-1  mt-2">
-                          <TextField label="Min 6" name="minimum6" />
+                          <Inputfielded label="Min 6" name="minimum6" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Max 6" name="maximum6" />
+                          <Inputfielded label="Max 6" name="maximum6" />
                         </div>
                         <div className="col-1  mt-2">
-                          <TextField label="Price 6" name="price6" />
+                          <Inputfielded label="Price 6" name="price6" />
                         </div>
                         <div className="col-1 mt-2">
-                          <TextField label="Free 6" name="free6" />
+                          <Inputfielded label="Free 6" name="free6" />
                         </div>
                       </div>
 

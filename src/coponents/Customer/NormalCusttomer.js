@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Footer from "../footer/Footer";
 import Pagination from "../categories/categories/Pagination";
 
-import { normalusers } from "../../services/api";
+import { normalfilter, normalusers } from "../../services/api";
 import NormalPost from "./NormalPost";
 function NormalCusttomer() {
   const [posts, setposts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(25);
-
+const [searchedvalue,setsearchedvalue]=useState("")
   // total no of pages
   const Totalpages = Math.ceil(posts.length / postsPerPage);
   const pages = [...Array(Totalpages + 1).keys()].slice(1);
@@ -45,7 +45,44 @@ function NormalCusttomer() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Normal User List</h4>
+                    <form
+                          class="d-flex mb-2 "
+                          style={{ width: "30%" }}
+                          role="search"
+                        >
+                          <div className="btn-group">
+                            <input
+                              class="form-control  mx-2  btn-close"
+                              type="search"
+                              placeholder="Search"
+                              onChange={(e) => {
+                                setsearchedvalue(e.target.value);
+                              }}
+                              aria-label="Search"
+                            />
 
+                            <button
+                              class="btn btn-outline-dark btn-dark text-white"
+                              type="submit"
+                              onClick={async (e) => {
+                                e.preventDefault();
+                                if (searchedvalue) {
+                                  let dat = await normalfilter(
+                                    searchedvalue
+                                  );
+                                  console.log(dat.data.data);
+
+                                  setposts(dat.data.data);
+                                } else {
+                                  let dat = await normalusers();
+                                  setposts(dat.data);
+                                }
+                              }}
+                            >
+                              Search
+                            </button>
+                          </div>
+                        </form>
                     <div className="table-responsive">
                       <table className="table table-hover">
                         <thead>

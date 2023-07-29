@@ -1,7 +1,7 @@
 import React from 'react';
 import { ErrorMessage, useField } from 'formik';
 
-export const TextField = ({ label, ...props }) => {
+export const Inputfielded = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   
   return (
@@ -17,4 +17,4 @@ export const TextField = ({ label, ...props }) => {
   )
 }
 
-export default TextField
+export default Inputfielded 

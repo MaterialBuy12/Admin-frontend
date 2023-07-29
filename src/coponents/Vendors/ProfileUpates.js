@@ -1,18 +1,18 @@
 import { React, useState, useEffect } from "react";
-import { vandorapproved} from "../../services/api";
+import { confirmvendor, vandorapproved} from "../../services/api";
 import Footer from "../footer/Footer";
 // import { useNavigate } from "react-router-dom";
 import Vendorsconfirmedposts from "./Vendorsconfirmedposts";
 import Pagination from "../categories/categories/Pagination";
 function ProfileUpates() {
   // const navigate = useNavigate();
-
+  const [searchedvalue, setsearchedvalue] = useState("");
   const [posts, setposts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(25);
 
   // total no of pages
-  const Totalpages = Math.ceil(posts.length / postsPerPage);
+  const Totalpages = Math.ceil(posts?.length / postsPerPage);
   const pages = [...Array(Totalpages + 1).keys()].slice(1);
 
   // Get current posts
@@ -27,7 +27,7 @@ function ProfileUpates() {
    
     async function data() {
       let dat = await vandorapproved();
-
+      console.log("vendors",dat)
       setposts(dat);
     }
     data();
@@ -53,10 +53,42 @@ function ProfileUpates() {
                   
                       Confirmed Vendor List
                     </h4>
-                    <form class="d-flex w-10" role="search">
-      <input class="form-control w-5 mx-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-dark btn-dark text-white" type="submit">Search</button>
-    </form>  
+                    <form
+                      class="d-flex mb-2 "
+                      style={{ width: "30%" }}
+                      role="search"
+                    >
+                      <div className="btn-group">
+                        <input
+                          class="form-control  mx-2  btn-close"
+                          type="search"
+                          placeholder="Search"
+                          onChange={(e) => {
+                            setsearchedvalue(e.target.value);
+                          }}
+                          aria-label="Search"
+                        />
+
+                        <button
+                          class="btn btn-outline-dark btn-dark text-white"
+                          type="submit"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            if (searchedvalue) {
+                              let dat = await confirmvendor(searchedvalue);
+                              console.log(dat.data,"confirm")
+                              
+                              setposts(dat.data);
+                            } else{
+                            let dat = await vandorapproved ();
+                            setposts(dat.data);
+                            }
+                          }}
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </form>
 
                     <div className="table-responsive">
                       <table className="table table-hover">

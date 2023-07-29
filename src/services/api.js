@@ -480,6 +480,56 @@ export const buyerlevel1 = async (values) => {
     console.log(error);
   }
 };
+export const requestvendor = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/vendors?email=${values}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const warehousefilter = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/warehouses?email=${values}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const corporatefilter = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/users/corporateusers?email=${values}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const normalfilter = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/users/normalusers?email=${values}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const confirmvendor = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/vendors/approvedvendors?email=${values}`);
+  
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const seller1 = async (values) => {
+  try {
+    let response = await axios.get(`${host1}/api/sellerdata?pin=${values}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 // seller range
 export const sellerrange = async (values) => {
   try {

@@ -134,7 +134,7 @@ function OrdersPosts({ posts }) {
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <label>Category: {cate }</label>
                       <br />
                       <label>Sub Category: {subcate}</label>

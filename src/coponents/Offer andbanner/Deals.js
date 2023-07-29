@@ -3,28 +3,20 @@ import Footer from "../footer/Footer";
 import * as yup from "yup";
 
 import { Formik, Form, ErrorMessage } from "formik";
-import Select from "@mui/material/Select";
-import Chip from "@mui/material/Chip";
+
 import { Dealget, Dealsput, Productname } from "../../services/api";
-import FormControl from '@mui/material/FormControl';
-import { InputLabel, MenuItem, OutlinedInput } from "@mui/material";
-import TextField from "../categories/TextField";
-import { Box } from "@mui/system";
+
+import {  MenuItem} from "@mui/material";
+import { TextField, Autocomplete } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+
 import DealsPosts from "./DealsPosts";
 import Pagination from "../categories/categories/Pagination";
+import Inputfielded from "./Inputfielded";
 
 function Deals() {
   
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 400,
-      },
-    },
-  };
+
   const [posts, setposts] = useState([]);    
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(25);
@@ -123,89 +115,65 @@ function Deals() {
                             <div className="row mx-1 ">
                              
 
-                              {/* <div className="col-6">
-                                <label>Discount Type</label>
-                                <Field
-                                  as="select"
-                                  className={`form-control shadow-none ${
-                                    formik.touched.type &&
-                                    formik.errors.type &&
-                                    "is-invalid"
-                                  }`}
-                                  id="title"
-                                  name="type"
-                                >
-                                  <option defaultValue="Percentage">
-                                    Percentage
-                                  </option>
-                                  <option value="Amount">Amount</option>
-                                </Field>
-
-                                <ErrorMessage
-                                  name="title"
-                                  component="div"
-                                  className="error"
-                                /> */}
-                              {/* </div> */}
+                           
                             </div>
 
 
 
                             <div className=" row mx-1">
                             
-                              <div className="col-4">
-                               
-                                <FormControl sx={{ mt: 2,width:250 }}>
-                                  <InputLabel  style={{color:"rgb(165, 166, 173)"}} id="demo-multiple-chip-label">
-                                    Product Name
-                                  </InputLabel>
-                                  <Select style={{color:"rgb(165, 166, 173)"}}
-                                    labelId="demo-multiple-chip-label"
-                                    id="demo-multiple-chip"
-                                    multiple
-                                    name="vari"
-                                    value={formik.values.vari}
-                                    onChange={formik.handleChange}
-                                    input={
-                                      <OutlinedInput style={{color:"rgb(165, 166, 173)"}}
-                                        id="select-multiple-chip"
-                                        label="Product Name"
-                                      />
-                                    }
-                                    renderValue={(selected) => (
-                                      <Box style={{color:"rgb(165, 166, 173)"}}
-                                        sx={{
-                                          display: "flex",
-                                          flexWrap: "wrap",
-                                          gap: 0.5,
-                                        }}
-                                      >
-                                        {selected.map((value) => (
-                                          <Chip key={value} label={value} style={{color:"rgb(165, 166, 173)"}} />
-                                        ))}
-                                      </Box>
-                                    )}
-                                    MenuProps={MenuProps}
-                                  >
-                                    {posts1[0]?.map((i) => (
-                                      <MenuItem
-                                        key={i._id}
-                                        value={i.productname1}
-                                       
-                                      >
-                                        {i.productname1}
-                                      </MenuItem>
-                                    ))}
-                                  </Select>
-                                </FormControl>
+                              <div className="col">
+                              <Autocomplete
+                                onChange={(event, value) => formik.setFieldValue("vari",value)} 
+                                  sx={{ m: 1, width: 500 }}
+                                  multiple
+                                  style={{ backgroundColor: 'white'  }}
+                                                                
+                                  options={posts1}
+                                  getOptionLabel={(option) => option}
+                                  disableCloseOnSelect
+                          
+                                  renderInput={(params) => (
+                                    <TextField  
+                                      {...params}
+                                      name="vari"
+                                      value={formik.values.vari}
+                                      onChange={formik.handleChange}  
+                                      variant="outlined"
+                                      color="info"
+                                      label="Product Name"
+                                      placeholder="Product Name"
+                                    />
+                                  )}
+                                  renderOption={(
+                                    props,
+                                    option,
+                                    { selected }
+                                  ) => (
+                                    
+                                    <MenuItem
+                                      {...props}
+                                      key={option}
+                                      value={option}
+                                      sx={{ justifyContent: "space-between" }}
+                                    >
+                                      {option}
+                                      {selected ? (
+                                        <CheckIcon color="info" />
+                                      ) : null}
+                                    </MenuItem>
+                                  )}
+                                />
+
+                            
                                 <ErrorMessage
                                   name="vari"
                                   component="div"
                                   className="error"
                                 />
                               </div>
-                              <div className="col-3 ">
-                                <TextField label="Discount(%)" name="discount" />
+                              <div className="col">
+                                <Inputfielded label="Discount(%)" name="discount" />
                               </div>
                             </div>
 

@@ -116,7 +116,7 @@ function Transporters() {
                                 <TextField label="Address" name="address" />
                               </div>
                               <div className="col-sm-4 col-md-6">
-                                {/* <TextField label="Rate" name="rate" /> */}
+                                <label>Rate</label>
                                 <JoditEditor
                                   ref={editor}
                                   value={formik.values.rate}

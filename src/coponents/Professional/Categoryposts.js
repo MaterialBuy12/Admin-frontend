@@ -21,7 +21,7 @@ function Categoryposts({posts}) {
           <tr key={i._id}>
             <th> {index+1}</th>
             <th> {i.catprof}</th>
-            <th> {i.descr}</th>
+            <th> {i.descr.replace(/<[^>]+>/g, '')}</th>
 
           
           

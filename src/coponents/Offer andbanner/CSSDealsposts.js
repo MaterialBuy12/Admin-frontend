@@ -13,6 +13,7 @@ function CSSDealsposts({posts}) {
           window.location.reload();
         }
       };
+      console.log(posts)
   return (
     <>{posts &&
         posts.map((i,index) => (

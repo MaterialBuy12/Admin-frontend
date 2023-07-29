@@ -47,9 +47,9 @@ function Orders() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Order List</h4>
-                    <form class="d-flex w-10" role="search">
-      <input class="form-control w-5 mx-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-dark btn-dark text-white" type="submit">Search</button>
+                    <form className="d-flex w-10" role="search">
+      <input className="form-control w-5 mx-2" type="search" placeholder="Search" aria-label="Search"/>
+      <button className="btn btn-outline-dark btn-dark text-white" type="submit">Search</button>
     </form>
 
                     <div className="table-responsive">
