@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { orderput } from "../../services/api";
-
+import useState from 'react-usestateref';
 function OrdersPosts({ posts }) {
   const [sta, setsta] = useState("PENDING");
   const [details, setDetails] = useState([]);
-  const [cate, setcate] = useState([]);
+  const [cate, setcate,refe] = useState([]);
   const [subcate, setsubcate] = useState([]);
   const [subsubcate, setsubsubcate] = useState([]);
   const [skuid, setskuid] = useState([]);
@@ -23,10 +23,11 @@ function OrdersPosts({ posts }) {
   };
 
   const showDetails = (index) => {
-    console.log(posts[index])
-    if (index > 0) {
+    console.log(posts[index],"orde")
+  
       const productName = posts[index].products_docs.map((p) => p.productname1);
       const category = posts[index].products_docs.map((p) => p.categoryid);
+      console.log(category,"vh")
       const subcategory = posts[index].products_docs.map((p) => p.subcategory);
       const subsubcategory = posts[index].products_docs.map(
         (p) => p.subsubcategory
@@ -50,7 +51,7 @@ function OrdersPosts({ posts }) {
       setmobile(mobilep);
       setshipping(shipping1);
       setbilling(billing1);
-    }
+    
   };
 
   return (
@@ -135,7 +136,8 @@ function OrdersPosts({ posts }) {
                       ></button>
                     </div>
                     <div className="modal-body">
-                      <label>Category: {cate }</label>
+                      {console.log("cat",cate)}
+                      <label>Category: {refe.current }</label>
                       <br />
                       <label>Sub Category: {subcate}</label>
                       <br />
