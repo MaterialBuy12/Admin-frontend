@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Orderget } from "../../services/api";
+import { Orderget, orderfilter } from "../../services/api";
 import Pagination from "../categories/categories/Pagination";
 import Footer from "../footer/Footer";
 import OrdersPosts from "./OrdersPosts";
@@ -8,6 +8,7 @@ function Orders() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(25);
+  const [searchedvalue,setsearchedvalue]=useState("")
 
   // total no of pages
   const Totalpages = Math.ceil(ord.length / postsPerPage);
@@ -47,10 +48,28 @@ function Orders() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Order List</h4>
-                    <form className="d-flex w-10" role="search">
-      <input className="form-control w-5 mx-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button className="btn btn-outline-dark btn-dark text-white" type="submit">Search</button>
-    </form>
+                    <form class="d-flex mb-2 " style={{width:"30%"}} role="search">
+                      
+                      <div className="btn-group">
+                      <input class="form-control  mx-2  btn-close" type="search" placeholder="Search" onChange={(e)=>{
+                        setsearchedvalue(e.target.value)
+                      }} aria-label="Search" />
+                       
+                      <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
+                        e.preventDefault()
+                       if(searchedvalue){
+                        let dat = await orderfilter(searchedvalue);
+                        console.log(dat.data.data.orders,"orders")
+                           
+                        setord(dat.data.data.orders);
+                       }else{
+                        let dat = await Orderget();
+                        setord(dat.data.data.orders);
+                       }
+                      }}>Search</button>
+                      </div>
+                    </form>
+                
 
                     <div className="table-responsive">
                       <table className="table table-hover">

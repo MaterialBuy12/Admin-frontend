@@ -480,6 +480,14 @@ export const buyerlevel1 = async (values) => {
     console.log(error);
   }
 };
+export const orderfilter = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/orders/get/admin?username=${values}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const requestvendor = async (values) => {
   try {
     let response = await axios.get(`${host}/api/vendors?email=${values}`);
