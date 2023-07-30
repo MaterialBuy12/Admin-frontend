@@ -13,7 +13,7 @@ function OrdersPosts({ posts }) {
   const [mobile, setmobile] = useState([]);
   const [shipping, setshipping] = useState([]);
   const [billing, setbilling] = useState([]);
-  console.log(posts);
+  
   const handleSubmit = async (i) => {
     let data = await orderput(i, { status: sta });
     if (data.status === 200) {
@@ -23,11 +23,11 @@ function OrdersPosts({ posts }) {
   };
 
   const showDetails = (index) => {
-    console.log(posts[index],"orde")
+    
   
       const productName = posts[index].products_docs.map((p) => p.productname1);
       const category = posts[index].products_docs.map((p) => p.categoryid);
-      console.log(category,"vh")
+      
       const subcategory = posts[index].products_docs.map((p) => p.subcategory);
       const subsubcategory = posts[index].products_docs.map(
         (p) => p.subsubcategory
@@ -35,7 +35,6 @@ function OrdersPosts({ posts }) {
       const discountedprice2b = posts[index].products_docs.map(
         (p) => p.discountprice2B
       );
-
       const skuid1 = posts[index].products_docs.map((p) => p.skuid5);
       const email = posts[index].user_docs.map((p) => p.email);
       const mobilep = posts[index].user_docs.map((p) => p.phoneno);
@@ -136,7 +135,8 @@ function OrdersPosts({ posts }) {
                       ></button>
                     </div>
                     <div className="modal-body">
-                      {console.log("cat",cate)}
+                    
+
                       <label>Category: {refe.current }</label>
                       <br />
                       <label>Sub Category: {subcate}</label>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Orderget, orderfilter } from "../../services/api";
+import { Orderget, orderFilter, orderfilter } from "../../services/api";
 import Pagination from "../categories/categories/Pagination";
 import Footer from "../footer/Footer";
 import OrdersPosts from "./OrdersPosts";
@@ -47,20 +47,50 @@ function Orders() {
               <div className="col-xl-12">
                 <div className="card m-b-30">
                   <div className="card-body">
-                    <h4 className="mt-0 header-title mb-4">Order List</h4>
-                    <form class="d-flex mb-2 " style={{width:"30%"}} role="search">
+                    <h4 className="mt-0 header-title w-25 mb-4">Order List  
+                    
+                    
+                     </h4>
+                     <div className="row">
+                      <div className="col-4 mb-2">
+                        <label>Filter</label>
+                      <select
+                onChange={async (i) => {
+                  
+                  if(i.target.value==='ALL'){
+                    let dat = await Orderget();
+                    setord(dat.data.data.orders);
+                  }
+                  else{
+                    let dat = await orderFilter(i.target.value);                  
+                    setord(dat.data.data.orders);
+                  }
+                }}
+                className={`form-control  shadow-none mx-1`}
+                name="statu"
+              >
+                <option value="">Select Filter</option>
+                <option value="ALL">ALL</option>
+                <option value="PENDING">PENDING</option>
+                <option value="DELIVERED">DELIVERED</option>
+                <option value="RETURN">RETURN</option>
+                <option value="IN TRANSIT">IN TRANSIT</option>
+                <option value="REFUND">REFUND</option>
+                <option value="CANCELLED">CANCELLED</option>
+              </select>
+                      </div>
+                      <div className="col-8 mt-4">
+                      <form class="d-flex mb-2 "  role="search">
                       
                       <div className="btn-group">
-                      <input class="form-control  mx-2  btn-close" type="search" placeholder="Search" onChange={(e)=>{
+                      <input class="form-control  mx-2  " type="search" placeholder="Search" onChange={(e)=>{
                         setsearchedvalue(e.target.value)
                       }} aria-label="Search" />
                        
                       <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
                         e.preventDefault()
                        if(searchedvalue){
-                        let dat = await orderfilter(searchedvalue);
-                        console.log(dat.data.data.orders,"orders")
-                           
+                        let dat = await orderfilter(searchedvalue);                      
                         setord(dat.data.data.orders);
                        }else{
                         let dat = await Orderget();
@@ -70,6 +100,9 @@ function Orders() {
                       </div>
                     </form>
                 
+                      </div>
+                     </div>
+                   
 
                     <div className="table-responsive">
                       <table className="table table-hover">

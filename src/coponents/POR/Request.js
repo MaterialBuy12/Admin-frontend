@@ -1,11 +1,17 @@
 import React from "react";
 import Footer from "../footer/Footer";
-import { Formik, Form, ErrorMessage,Field } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import TextField from "../categories/TextField";
-
+import Select from 'react-select';
 import * as yup from "yup";
-import { PORVENDOR } from "../../services/api";
+import { PORVENDOR, vandorapprovedget, warehouseget } from "../../services/api";
+import { useState ,useEffect } from "react";
 function Request() {
+  const [posts,setposts]=useState([])
+  const [posts1,setposts1]=useState([])
+  const [value,setvalue]=useState(null)
+  const [value1,setvalue1]=useState(null)
+  
   const validate = yup.object({
     frieghtrate: yup.string().required("Required"),
     vendorsel: yup.string().required("Required"),
@@ -13,6 +19,18 @@ function Request() {
     
 
   });
+  
+  useEffect(() => {
+   
+    async function data() {
+      let dat = await vandorapprovedget();
+      console.log("vendors12",dat)
+      setposts(dat);
+    }
+    data();
+  }, []);
+
+
   const validate1 = yup.object({
     productname: yup.string().required("Required"),
     quantity: yup.string().required("Required"),
@@ -57,11 +75,12 @@ function Request() {
                           initialValues={{
                             frieghtrate: "",
                             vendorsel: "",
-                            userscharge:""
+                            userscharge:"",
+                            warehousesel:""
                           }}
                           validationSchema={validate}
                           onSubmit={async (values, actions) => {
-                            console.log("submitted values", values);
+                            console.log("submitted values", values,value);
 
                             actions.resetForm();
                           }}
@@ -71,24 +90,26 @@ function Request() {
                                <div className="row justify-content-evenly">
                                 <div className="col-6 mt-3"> 
                                 <label>Vendor Selection</label>
-                      <Field
-                        as="select"
-                        className={`form-control shadow-none  ${
-                          formik.touched.vendorsel &&
-                          formik.errors.vendorsel &&
-                          "is-invalid"
-                        }`}
-                        id="title"
-                        name="categoryid"
-                      >
-                        <option defaultValue="">Select Vendor</option>
-                        {/* {state &&
-                          state.map((i, index) => (
-                            <option key={index} value={i._id}>
-                              {i.title}
-                            </option>
-                          ))} */}
-                      </Field>
+                      
+                      <Select
+                      isSearchable
+                      noOptionsMessage={()=>"No Option "}
+                      
+        value={value}
+        onChange={async (option) => {
+          formik.setFieldValue('vendorsel', option.value);
+          setvalue()
+          let dat = await warehouseget(option.value);
+          
+    
+      setposts1(dat)
+          
+          
+      }}
+        options={posts}
+        name="vendorsel"
+        defaultValue={formik.values.vendorsel}
+      />
 
                       <ErrorMessage
                         name="vendorsel"
@@ -97,24 +118,25 @@ function Request() {
                       />
 </div>
                                 <div className="col-6 mt-3"> <label>Ware House Selection</label>
-                      <Field
-                        as="select"
-                        className={`form-control shadow-none  ${
-                          formik.touched.warehousesel &&
-                          formik.errors.warehousesel &&
-                          "is-invalid"
-                        }`}
-                        id="title"
-                        name="categoryid"
-                      >
-                        <option defaultValue="">Select Warehouse</option>
-                        {/* {state &&
-                          state.map((i, index) => (
-                            <option key={index} value={i._id}>
-                              {i.title}
-                            </option>
-                          ))} */}
-                      </Field>
+                                <Select
+                      isSearchable
+                      noOptionsMessage={()=>"No Option "}
+                      
+        value={value1}
+        onChange={async (option) => {
+          formik.setFieldValue('warehousesel', option.value);
+          setvalue1()
+         
+          
+    
+    
+          
+          
+      }}
+        options={posts1}
+        name="warehousesel"
+        defaultValue={formik.values.warehousesel}
+      />
 
                       <ErrorMessage
                         name="warehousesel"

@@ -105,8 +105,7 @@ function Recom() {
                                 onChange={(event, value) => formik.setFieldValue("vari",value)} 
                                   sx={{ m: 1, width: 500 }}
                                   multiple
-                                  style={{ backgroundColor: 'white'  }}
-                                                                
+                                  style={{ backgroundColor: 'white'  }}                                                                
                                   options={posts1}
                                   getOptionLabel={(option) => option}
                                   disableCloseOnSelect

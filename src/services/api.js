@@ -488,6 +488,14 @@ export const orderfilter = async (values) => {
     console.log(error);
   }
 };
+export const orderFilter = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/orders/get/admin/filter?status=${values}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const requestvendor = async (values) => {
   try {
     let response = await axios.get(`${host}/api/vendors?email=${values}`);
@@ -568,6 +576,22 @@ export const sellergetrange = async () => {
 export const vandorapproved = async () => {
   try {
     let response = await axios.get(`${host}/api/vendors/approvedvendors`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const vandorapprovedget = async () => {
+  try {
+    let response = await axios.get(`${host}/api/vendors/get/getselect`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const warehouseget = async (id) => {
+  try {
+    let response = await axios.get(`${host}/api/warehouses/vendor/${id}`);
     return response.data;
   } catch (error) {
     console.log(error);
