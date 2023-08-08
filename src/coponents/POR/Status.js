@@ -45,8 +45,19 @@ function Status() {
 
                     <div className="table-responsive">
                       <table className="table table-hover">
-                        <thead>
-
+                      <thead>
+                          <tr>
+                            <th scope="col">Sr no</th>
+                            <th>Product Name</th>
+                            <th scope="col">Vendor Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone Number</th>                      
+                            <th scope="col" >
+                              Quantity
+                            </th>
+                            <th> Total Price</th>
+                            <th scope="col">Request Status</th>
+                          </tr>
                         </thead>
                         <tbody>
 

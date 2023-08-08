@@ -67,6 +67,7 @@ function OrdersPosts({ posts }) {
                 </span>
               ))}
             </th>
+            
 
             <th scope="col">
               {i.user_docs.map((k) => (
@@ -78,6 +79,8 @@ function OrdersPosts({ posts }) {
             <th>
               <button className="btn btn-success">{i.status}</button>
             </th>
+            
+          
 
             <th colSpan="5">
               <select
@@ -137,7 +140,7 @@ function OrdersPosts({ posts }) {
                     <div className="modal-body">
                     
 
-                      <label>Category: {refe.current }</label>
+                      <label>Category: {cate }</label>
                       <br />
                       <label>Sub Category: {subcate}</label>
                       <br />

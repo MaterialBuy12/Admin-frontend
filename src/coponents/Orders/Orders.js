@@ -115,6 +115,7 @@ function Orders() {
 
                             <th scope="col">Amount</th>
                             <th scope="col">Status</th>
+                          
 
                             <th scope="col" colSpan="5">
                               Action
