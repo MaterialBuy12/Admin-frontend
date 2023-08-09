@@ -4,7 +4,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import TextField from "../categories/TextField";
 import Select from 'react-select';
 import * as yup from "yup";
-import { PORVENDOR, vandorapprovedget, warehouseget } from "../../services/api";
+import { PORVENDOR, frieghtrate, vandorapprovedget, warehouseget } from "../../services/api";
 import { useState ,useEffect } from "react";
 function Request() {
   const [posts,setposts]=useState([])
@@ -80,7 +80,17 @@ function Request() {
                           }}
                           validationSchema={validate}
                           onSubmit={async (values, actions) => {
-                            
+                            try {
+                              let data=await frieghtrate(values);
+                        
+                            if(data.status==="200"){
+                              window.location.reload()
+                            }else{
+                              alert("something went wrong")
+                            }
+                            } catch (error) {
+                             alert("Something went wrong",error) 
+                            }
 
                             actions.resetForm();
                           }}

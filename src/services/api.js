@@ -1050,3 +1050,12 @@ export const DEALSGET = async (data) => {
     alert("Something went wrong");
   }
 };
+
+export const frieghtrate = async (values) => {
+  try {
+    let response = await axios.post(`${host}/api/frs`, values);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
