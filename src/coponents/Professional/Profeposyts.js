@@ -13,7 +13,7 @@ function Profeposyts({ posts }) {
     }
   };
   const remove = async (i) => {
-    console.log("deletd id", i._id);
+
     let dat = await professionaldeleted(i._id);
     if (dat.status) {
       alert("PROFESSIONAL DELETED", dat.data);

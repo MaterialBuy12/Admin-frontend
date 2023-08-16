@@ -57,13 +57,20 @@ function Corporate() {
                             <input
                               class="form-control  mx-2  btn-close"
                               type="search"
-                              placeholder="Search"
+                              value={searchedvalue}
+                              placeholder="Search email"
                               onChange={(e) => {
                                 setsearchedvalue(e.target.value);
                               }}
                               aria-label="Search"
                             />
-
+  <button type="button" class="btn bg-transparent" style={{left:"-43px"}}  onClick={async()=>{
+                                setsearchedvalue("")                         
+                                let dat = await corporateusers();
+                                setposts(dat.data);
+                       }}>
+      <i class="fa fa-times" style={{color:"white"}}></i>
+    </button>
                             <button
                               class="btn btn-outline-dark btn-dark text-white"
                               type="submit"
@@ -73,7 +80,7 @@ function Corporate() {
                                   let dat = await corporatefilter(
                                     searchedvalue
                                   );
-                                  console.log(dat.data.data);
+                                  
 
                                   setposts(dat.data.data);
                                 } else {

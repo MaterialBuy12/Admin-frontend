@@ -42,7 +42,7 @@ function Signup() {
                 onSubmit={async (values, actions) => {
                   try {
                     let dat = await Register(values);
-                    console.log("signup", dat);
+                 
                     if (dat.status === 200) {
                       alert("SUCCESSFULLY CREATED ");
                       navigate("/");

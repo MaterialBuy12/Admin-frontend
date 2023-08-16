@@ -54,7 +54,7 @@ function AddSubCategoryform() {
                     subcategoryimg: "",
                   }}
                   onSubmit={async (values, actions) => {
-                    console.log("submitted values", values.categoryid);
+                   
                     try {
                       if (values.subcategoryimg) {
                         const data = new FormData();
@@ -65,7 +65,7 @@ function AddSubCategoryform() {
                         values.subcategoryimg = subimg.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                      alert(error);
                     }
                     try {
                       let response = await SubCategory(values);

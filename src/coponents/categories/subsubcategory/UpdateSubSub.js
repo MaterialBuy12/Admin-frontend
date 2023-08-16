@@ -32,7 +32,7 @@ function UpdateSubSub() {
  
   async function data() {
     let dat = await SubSubgetACategory(id);
-    console.log("sub sub sub",dat)
+  
   
     sethead(dat);
   }
@@ -75,7 +75,7 @@ function UpdateSubSub() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                          console.log("inital value", values);
+                        
                           if (values.edit) {
                             try {
                               if (values.subsubcategoryimg) {
@@ -87,7 +87,7 @@ function UpdateSubSub() {
                                 values.subsubcategoryimg = subimg.data;
                               }
                             } catch (error) {
-                              console.log(error);
+                            alert(error)
                             }
                             try {
                               let response = await SubSubUpdateCategory(
@@ -113,7 +113,7 @@ function UpdateSubSub() {
                                 values.id,
                                 values
                               );
-                              console.log("resp", response);
+                            
                               if (response.status) {
                                 alert("UPDATED SUCCESSFULLY");
                                 navigate("/subcategory");
@@ -124,7 +124,7 @@ function UpdateSubSub() {
                                 alert("Something went wrong");
                               }
                             } catch (error) {
-                              console.log(error);
+                            alert(error)
                             }
                           }
                         }}

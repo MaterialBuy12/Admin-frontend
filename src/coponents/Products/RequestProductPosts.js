@@ -5,7 +5,7 @@ function RequestProductPosts({posts}) {
     const remove = async (i) => {
 
         let dat = await ProductRequest21(i._id)
-        console.log("succes",dat)
+   
         if (dat.status) {
           alert(dat.data)
           window.location.reload()

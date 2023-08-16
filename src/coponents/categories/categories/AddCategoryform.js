@@ -39,7 +39,7 @@ function AddCategoryform() {
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
-                    console.log("submitted values", values);
+                 
                     try {
                       if (values.img) {
                         const data = new FormData();
@@ -50,7 +50,7 @@ function AddCategoryform() {
                         values.img = image.data;
                       }
                     } catch (error) {
-                      console.log(
+                      alert(
                         "error in upload file in add form cat",
                         error
                       );

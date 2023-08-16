@@ -4,7 +4,7 @@ import Footer from '../footer/Footer';
 
 import ProductForm from './productform';
 function AddProduct() {
-  console.log("hii")
+
   return (
     <>
       <div className="content-page">

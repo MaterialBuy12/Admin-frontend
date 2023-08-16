@@ -24,7 +24,7 @@ const [searchedvalue,setsearchedvalue]=useState("")
   useEffect(() => {
     async function data() {
       let dat = await normalusers();
-      console.log("normal user",dat)
+     
 
       setposts(dat.data);
     }
@@ -54,12 +54,21 @@ const [searchedvalue,setsearchedvalue]=useState("")
                             <input
                               class="form-control  mx-2  btn-close"
                               type="search"
-                              placeholder="Search"
+                              placeholder="Search eamil"
+                              value={searchedvalue}
                               onChange={(e) => {
                                 setsearchedvalue(e.target.value);
                               }}
                               aria-label="Search"
                             />
+                              <button type="button" class="btn bg-transparent" style={{left:"-43px"}}  onClick={async()=>{
+                                setsearchedvalue("")                         
+                                let dat = await normalusers();
+                                setposts(dat.data);
+                       }}>
+      <i class="fa fa-times" style={{color:"white"}}></i>
+    </button>
+
 
                             <button
                               class="btn btn-outline-dark btn-dark text-white"
@@ -70,7 +79,7 @@ const [searchedvalue,setsearchedvalue]=useState("")
                                   let dat = await normalfilter(
                                     searchedvalue
                                   );
-                                  console.log(dat.data.data);
+                                 
 
                                   setposts(dat.data.data);
                                 } else {

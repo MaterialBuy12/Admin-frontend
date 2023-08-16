@@ -27,7 +27,7 @@ function ProfileUpates() {
    
     async function data() {
       let dat = await vandorapproved();
-      console.log("vendors",dat)
+   
       setposts(dat);
     }
     data();
@@ -62,26 +62,38 @@ function ProfileUpates() {
                         <input
                           class="form-control  mx-2  btn-close"
                           type="search"
-                          placeholder="Search"
+                          placeholder="Search email"
+                          value={searchedvalue}
                           onChange={(e) => {
                             setsearchedvalue(e.target.value);
                           }}
                           aria-label="Search"
                         />
+                          <button type="button" class="btn bg-transparent border-none" style={{left:"-43px"}}  onClick={async()=>{
+                           setsearchedvalue("")
+                           let dat = await vandorapproved ();
+                           setposts(dat);
+                           
+                       }}>
+      <i class="fa fa-times" style={{color:"white"}}></i>
+    </button>
+
 
                         <button
                           class="btn btn-outline-dark btn-dark text-white"
                           type="submit"
                           onClick={async (e) => {
                             e.preventDefault();
+                       
                             if (searchedvalue) {
+                           
                               let dat = await confirmvendor(searchedvalue);
-                              console.log(dat.data,"confirm")
-                              
+                                                         
                               setposts(dat.data);
                             } else{
+                            
                             let dat = await vandorapproved ();
-                            setposts(dat.data);
+                            setposts(dat);
                             }
                           }}
                         >

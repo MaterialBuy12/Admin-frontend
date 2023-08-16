@@ -83,10 +83,18 @@ function Orders() {
                       <form class="d-flex mb-2 "  role="search">
                       
                       <div className="btn-group">
-                      <input class="form-control  mx-2  " type="search" placeholder="Search" onChange={(e)=>{
+                      <input class="form-control  mx-2  " type="search" value={searchedvalue} placeholder="Search username" onChange={(e)=>{
                         setsearchedvalue(e.target.value)
                       }} aria-label="Search" />
-                       
+                        <button type="button" class="btn bg-transparent border-none" style={{left:"-43px"}}  onClick={async()=>{
+                           setsearchedvalue("")
+                           let dat = await Orderget();
+                           setord(dat.data.data.orders);
+                           
+                       }}>
+      <i class="fa fa-times" style={{color:"white"}}></i>
+    </button>
+
                       <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
                         e.preventDefault()
                        if(searchedvalue){

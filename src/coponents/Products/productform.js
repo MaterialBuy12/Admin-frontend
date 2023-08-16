@@ -441,7 +441,7 @@ function ProductForm() {
                         values.imgs1 = img.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       if (values.imgs2) {
@@ -453,7 +453,7 @@ function ProductForm() {
                         values.imgs2 = img.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       if (values.imgs3) {
@@ -465,7 +465,7 @@ function ProductForm() {
                         values.imgs3 = img.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       if (values.imgs4) {
@@ -477,7 +477,7 @@ function ProductForm() {
                         values.imgs4 = img.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       if (values.file1) {
@@ -489,7 +489,7 @@ function ProductForm() {
                         values.file1 = img.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       if (values.file1) {
@@ -501,7 +501,7 @@ function ProductForm() {
                         values.file1 = img.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       if (values.file1) {
@@ -513,7 +513,7 @@ function ProductForm() {
                         values.file1 = img.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       if (values.file2) {
@@ -525,7 +525,7 @@ function ProductForm() {
                         values.file2 = img.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       if (values.file3) {
@@ -537,7 +537,7 @@ function ProductForm() {
                         values.file3 = img.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       if (values.file4) {
@@ -549,11 +549,11 @@ function ProductForm() {
                         values.file4 = img.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       let response = await Product(values);
-                      console.log(response);
+                   
                       if (response.status) {
                         alert(response.data.message);
 
@@ -562,9 +562,9 @@ function ProductForm() {
                         alert("something went wrong");
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
-                    console.log("actions", values.actions1);
+                    
                     if (values.actions1) {
                       actions.resetForm();
                     }

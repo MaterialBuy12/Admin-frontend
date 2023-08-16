@@ -24,7 +24,7 @@ function Request() {
    
     async function data() {
       let dat = await vandorapprovedget();
-      console.log("vendors12",dat)
+  
       setposts(dat);
     }
     data();
@@ -196,7 +196,7 @@ function Request() {
                                 alert("Something went wrong");
                               }
                             } catch (error) {
-                              console.log(error);
+                            alert(error)
                             }
                             actions.resetForm();
                           }}

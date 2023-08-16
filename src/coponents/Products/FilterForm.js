@@ -37,7 +37,7 @@ function FilterForm() {
                         window.location.reload();
                       }
                     } catch (error) {
-                      console.log("error ", error);
+                      alert("error ", error);
                     }
 
                     actions.resetForm();

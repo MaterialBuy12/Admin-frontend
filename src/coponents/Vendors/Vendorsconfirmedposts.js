@@ -2,7 +2,7 @@ import React from 'react';
 import { vendordeleted } from '../../services/api';
 function Vendorsconfirmedposts({ posts }) {
     const remove = async (i) => {
-        console.log("deletd id", i._id)
+    
         let dat = await vendordeleted(i._id)
         if (dat.status) {
             alert("DELETED", dat.data)

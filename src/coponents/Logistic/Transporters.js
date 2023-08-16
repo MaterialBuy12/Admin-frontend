@@ -71,7 +71,7 @@ function Transporters() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                          console.log("values in trans", values);
+                      
 
                           try {
                             let data = await Transporter(values);
@@ -82,7 +82,7 @@ function Transporters() {
                               alert("something went wrong");
                             }
                           } catch (error) {
-                            console.log(error);
+                          alert(error)
                           }
 
                           actions.resetForm();

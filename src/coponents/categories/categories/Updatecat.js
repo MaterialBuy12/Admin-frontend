@@ -80,7 +80,7 @@ function Updatecat() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                          console.log("inital value", values);
+                        
                           if (values.edit) {
                             try {
                               if (values.img) {
@@ -88,11 +88,11 @@ function Updatecat() {
                                 data.append("name", values.img.name);
                                 data.append("file", values.img);
                                 let subimg = await UploadFile(data);
-                                console.log("images sub", subimg);
+                             
                                 values.img = subimg.data;
                               }
                             } catch (error) {
-                              console.log(error);
+                              alert(error);
                             }
                             try {
                               let response = await updatepercategory(
@@ -127,7 +127,7 @@ function Updatecat() {
                                 alert("Something went wrong");
                               }
                             } catch (error) {
-                              console.log(error);
+                              alert(error);
                             }
                           }
                         }}

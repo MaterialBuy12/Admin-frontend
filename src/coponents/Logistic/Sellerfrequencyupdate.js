@@ -68,7 +68,7 @@ function Sellerfrequencyupdate() {
                           alert("Something went wrong");
                         }
                       } catch (error) {
-                        console.log(error);
+                      alert(error)
                       }
                       action.resetForm();
                     }}

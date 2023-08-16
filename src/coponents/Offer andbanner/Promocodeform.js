@@ -76,11 +76,11 @@ function Promocodeform() {
                                             
                                         } catch (error) {
                                             
-                                            console.log("error in promo",error)
+                                            alert("error in promo",error)
                                         }
 
                                         actions.resetForm()
-                                        console.log("after", values)
+                                   
 
 
                                     }}

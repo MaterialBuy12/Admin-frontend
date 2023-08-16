@@ -63,7 +63,6 @@ function Ratecharts() {
 
                         onSubmit={async (values, actions) => {
 
-                          console.log("submitted values", values)
                           Papa.parse(values.csv, {
                             complete: async (result) =>{
                               try {
@@ -79,25 +78,12 @@ function Ratecharts() {
                                   alert("something went wrong")
                                 }
                               } catch (error) {
-                                console.log(error);
+                              alert(error)
                               }
                           }
                         })
                       
-                          // try {
-                          //   if (values.csv) {
-                          //     const data = new FormData()
-                          //     data.append("name", values.csv.name)
-                          //     data.append("file", values.csv)
-                          //     let csv1 = await UploadFile(data)
-                          //     console.log("url", csv1)
-
-                          //     values.url = csv1.data
-
-                          //   }
-                          // } catch (error) {
-                          //   console.log(error);
-                          // }
+                        
                           
                           actions.resetForm()
 

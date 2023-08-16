@@ -90,7 +90,7 @@ function CSSDeals() {
                               alert("Something went wrong");
                             }
                           } catch (error) {
-                            console.log(error);
+                          alert(error)
                           }
                           action.resetForm();
                         }}

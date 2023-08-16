@@ -91,7 +91,7 @@ function Deals() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                          console.log("deasls of the day", values);
+                        
                             try {
                               let data = await Dealsput(values);
                               if (data.status) {
@@ -101,7 +101,7 @@ function Deals() {
                                 alert("something went wrong");
                               }
                             } catch (error) {
-                              console.log("error in promo", error);
+                              alert("error in promo", error);
                             }
 
                             actions.resetForm();

@@ -38,7 +38,7 @@ function AddProfe() {
     }
     async function data1() {
       let dat = await profget();
-      console.log("hello", dat);
+     
       setposts(dat);
     }
     data();
@@ -112,7 +112,7 @@ function AddProfe() {
                               values.img = image.data;
                             }
                           } catch (error) {
-                            console.log(
+                            alert(
                               "error in upload file in add form cat",
                               error
                             );
@@ -129,7 +129,7 @@ function AddProfe() {
                               values.img2 = image.data;
                             }
                           } catch (error) {
-                            console.log(
+                            alert(
                               "error in upload file in add form cat",
                               error
                             );
@@ -142,13 +142,13 @@ function AddProfe() {
                               const data = new FormData();
                               data.append("name", values.img3.name);
                               data.append("file", values.img3);
-                              console.log("images", data);
+                        
                               const image = await UploadFile(data);
 
                               values.img3 = image.data;
                             }
                           } catch (error) {
-                            console.log(
+                            alert(
                               "error in upload file in add form cat",
                               error
                             );
@@ -160,13 +160,12 @@ function AddProfe() {
                               const data = new FormData();
                               data.append("name", values.img4.name);
                               data.append("file", values.img4);
-                              console.log("images", data);
                               const image = await UploadFile(data);
 
                               values.img4 = image.data;
                             }
                           } catch (error) {
-                            console.log(
+                            alert(
                               "error in upload file in add form cat",
                               error
                             );
@@ -188,7 +187,7 @@ function AddProfe() {
                               alert("something went wrong");
                             }
                           } catch (error) {
-                            console.log(error);
+                          alert(error)
                           }
 
                           actions.resetForm();

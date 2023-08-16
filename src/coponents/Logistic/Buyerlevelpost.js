@@ -3,9 +3,9 @@ import { buydeleted } from "../../services/api";
 import { Link } from "react-router-dom";
 
 function Buyerlevelpost({ posts }) {
-  console.log(posts)
+ 
   const remove = async (i) => {
-    console.log("deletd id",i._id['$oid']);
+  
     let dat = await buydeleted({"id":i._id['$oid']});
     if (dat.status) {
       alert("DELETED", dat.data);

@@ -4,7 +4,7 @@ import { cssdealsdelete } from '../../services/api';
 function CSSDealsposts({posts}) {
     const remove = async (i) => {
         let dat = await cssdealsdelete(i._id);
-        console.log("hii123")
+  
         if (dat.status) {
           alert("DELETED", dat.data);
           window.location.reload();
@@ -13,7 +13,7 @@ function CSSDealsposts({posts}) {
           window.location.reload();
         }
       };
-      console.log(posts)
+    
   return (
     <>{posts &&
         posts.map((i,index) => (

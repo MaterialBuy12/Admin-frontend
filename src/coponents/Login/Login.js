@@ -29,7 +29,7 @@ function Login() {
               onSubmit={async (values, actions) => {
                 try {
                   let response = await Loging(values);
-                  console.log("login respo", response);
+               
                   if (response.data) {
                     localStorage.setItem("token", response.data.authtoken);
 

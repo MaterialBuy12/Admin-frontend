@@ -32,7 +32,7 @@ function Weightrange() {
   useEffect(() => {
     (async () => {
       const dat = await Weightget();
-      console.log(dat)
+   
     
 
       setposts(dat[0]);
@@ -86,10 +86,10 @@ function Weightrange() {
                       enableReinitialize
                       onSubmit={async (values, actions) => {
                         try {
-                          console.log(values);
+                      
 
                           let dataresponse = await Weightgetrange(values);
-                          console.log("deep",values)
+                       
 
                           if (!dataresponse.status) {
                             alert("Something went wrong", dataresponse);
@@ -98,7 +98,7 @@ function Weightrange() {
                             window.location.reload();
                           }
                         } catch (error) {
-                          console.log("error", error);
+                          alert("error", error);
                         }
 
                         actions.resetForm();

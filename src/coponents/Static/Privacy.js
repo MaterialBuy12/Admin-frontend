@@ -32,7 +32,7 @@ function Privacy() {
                           privacypolicy: content,
                         }}
                         onSubmit={async (values, actions) => {
-                          console.log("privacy policy ", content);
+                        
                           values = content;
                           try {
                             let data = await privacypolicy({
@@ -44,7 +44,7 @@ function Privacy() {
                               alert("Something went wrong");
                             }
                           } catch (error) {
-                            console.log("error in procat", error);
+                            alert("error in procat", error);
                           }
 
                           actions.resetForm();

@@ -27,7 +27,7 @@ function AddSubSubcategoryform() {
       
   
       let response = await getAllSubCategory();
-      console.log("category",response)
+    
   
       setstate1(response);
 
@@ -52,7 +52,7 @@ function AddSubSubcategoryform() {
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
-                    console.log("submitted values", values);
+                   
 
                     try {
                       if (values.subsubcategoryimg) {
@@ -60,15 +60,15 @@ function AddSubSubcategoryform() {
                         data.append("name", values.subsubcategoryimg.name);
                         data.append("file", values.subsubcategoryimg);
                         let subimg = await UploadFile(data);
-                        console.log("images sub", subimg);
+                     
                         values.subsubcategoryimg = subimg.data;
                       }
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                     try {
                       let response = await SubSubCategory(values);
-                      console.log("sub sub", response.status);
+                   
                       if (response.status) {
                         alert("SUCCESSFULLY CREATED ");
                       } else {
@@ -76,7 +76,7 @@ function AddSubSubcategoryform() {
                       }
                       actions.resetForm();
                     } catch (error) {
-                      console.log(error);
+                    alert(error)
                     }
                   }}
                 >

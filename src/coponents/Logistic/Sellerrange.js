@@ -71,7 +71,6 @@ function Logistic() {
                       onSubmit={async (values, actions) => {
                         try {
 
-                            console.log("initial",values)
                             let dataresponse = await sellerrange(values);
 
 
@@ -85,7 +84,7 @@ function Logistic() {
 
 
                         } catch (error) {
-                          console.log("error", error)
+                          alert("error", error)
                         }
 
                         actions.resetForm()

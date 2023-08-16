@@ -39,8 +39,7 @@ function Updatesub() {
   useEffect(() => {
     async function data() {
       let dat = await getASubCategory(id);
-      console.log("sub sub ", dat);
-
+     
       sethead(dat);
     }
     data();
@@ -79,7 +78,7 @@ function Updatesub() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                          console.log("inital value", values);
+                         
                           if (values.edit) {
                             try {
                               if (values.subcategoryimg) {
@@ -91,7 +90,7 @@ function Updatesub() {
                                 values.subcategoryimg = subimg.data;
                               }
                             } catch (error) {
-                              console.log(error);
+                              alert(error);
                             }
                             try {
                               let response = await UpdateASubCategory(
@@ -116,7 +115,7 @@ function Updatesub() {
                                 values.id,
                                 values
                               );
-                              console.log("resp", response);
+                            
                               if (response.status) {
                                 alert("UPDATED SUCCESSFULLY");
                                 navigate("/subcategory");
@@ -127,7 +126,7 @@ function Updatesub() {
                                 alert("Something went wrong");
                               }
                             } catch (error) {
-                              console.log(error);
+                              alert(error);
                             }
                           }
                         }}

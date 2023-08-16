@@ -12,7 +12,7 @@ function Wareposts({posts}) {
     }
 }
 const remove=async(i) =>{
-    console.log("deletd id",i._id)
+
     let dat=await warehousedeleted(i._id)
     if(dat.status){
         alert("WAREHOUSE  DELETED",dat.data)

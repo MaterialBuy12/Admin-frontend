@@ -94,7 +94,7 @@ function Services() {
                             values.img = image.data;
                           }
                         } catch (error) {
-                          console.log("error in upload file", error);
+                          alert("error in upload file", error);
                         }
                         try {
                           if (values.img1) {
@@ -106,7 +106,7 @@ function Services() {
                             values.img1 = image.data;
                           }
                         } catch (error) {
-                          console.log("error in upload file", error);
+                          alert("error in upload file", error);
                         }
                         try {
                           if (values.img2) {
@@ -118,7 +118,7 @@ function Services() {
                             values.img2 = image.data;
                           }
                         } catch (error) {
-                          console.log("error in upload file", error);
+                          alert("error in upload file", error);
                         }
                         try {
                           if (values.img3) {
@@ -168,7 +168,7 @@ function Services() {
                             alert("TRY AGAIN ");
                           }
                         } catch (error) {
-                          console.log(error);
+                        alert(error)
                         }
                         action.resetForm();
                       }}

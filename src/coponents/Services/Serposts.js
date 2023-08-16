@@ -3,7 +3,7 @@ import { servicesdeleted } from "../../services/api";
 
 function Serposts({ posts }) {
   const remove = async (i) => {
-    console.log("deletd id", i._id);
+
     let dat = await servicesdeleted(i._id);
     if (dat.status) {
       alert("SERVICES DELETED", dat.data);

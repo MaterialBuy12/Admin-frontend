@@ -3,7 +3,7 @@ import { Transporterdelete } from '../../services/api';
 
 function TransportersPosts({posts}) {
     const remove=async(i) =>{
-        console.log("remove",i)
+
         let dat=await Transporterdelete({"name":i.name})
         if(dat.status){
             alert("DELETED")

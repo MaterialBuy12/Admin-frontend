@@ -43,11 +43,11 @@ function BannerForm() {
 
 
                     } catch (error) {
-                        console.log("error in upload file in add form cat", error)
+                        alert("error in upload file in add form cat", error)
                     }
 
 
-                    console.log("inital value", values)
+                   
                     try {
 
 
@@ -64,11 +64,11 @@ function BannerForm() {
 
 
                     } catch (error) {
-                        console.log("error in add category form", error)
+                        alert("error in add category form", error)
                     }
 
                     actions.resetForm()
-                    console.log("after", values)
+                  
 
                 }}
 

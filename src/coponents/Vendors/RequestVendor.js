@@ -54,19 +54,28 @@ function RequestVendor() {
 
                     <form
                       class="d-flex mb-2 "
-                      style={{ width: "30%" }}
+                      style={{ width: "100%" }}
                       role="search"
                     >
                       <div className="btn-group">
                         <input
                           class="form-control  mx-2  btn-close"
                           type="search"
-                          placeholder="Search"
+                          placeholder="Search email"
+                          value={searchedvalue}
                           onChange={(e) => {
                             setsearchedvalue(e.target.value);
                           }}
                           aria-label="Search"
+                          aria-describedby="button-addon2"
                         />
+                       <button type="button" class="btn bg-transparent" style={{left:"-43px"}}  onClick={async()=>{
+                          let dat = await vandorfalse();     
+                          setsearchedvalue("")                         
+                          setposts(dat);
+                       }}>
+      <i class="fa fa-times" style={{color:"white"}}></i>
+    </button>
 
                         <button
                           class="btn btn-outline-dark btn-dark text-white"
@@ -75,13 +84,13 @@ function RequestVendor() {
                             e.preventDefault();
                             if (searchedvalue) {
                               let dat = await requestvendor(searchedvalue);
-                              console.log("bh",dat.data)                          
+                                                
 
                               setposts(dat.data);
                             }
                               let dat = await vandorfalse();
                               
-                              setposts(dat.data);
+                              setposts(dat);
                             
                           }}
                         >

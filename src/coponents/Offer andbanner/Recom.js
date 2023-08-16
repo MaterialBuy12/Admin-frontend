@@ -39,7 +39,7 @@ function Recom() {
   useEffect(() => {
     async function data() {
       let dat = await Productname();
-      console.log(dat[0])
+   
       let resp = await Recomget();
 
       setposts(resp.data);
@@ -79,7 +79,7 @@ function Recom() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                          console.log("Product erecommened", values);
+                       
                           try {
                             let data = await Recomput(values);
                             if (data.status) {
@@ -89,16 +89,16 @@ function Recom() {
                               alert("something went wrong");
                             }
                           } catch (error) {
-                            console.log("error in promo", error);
+                            alert("error in promo", error);
                           }
 
                           actions.resetForm();
-                          console.log("after", values);
+                       
                         }}
                       >
                         {(formik) => (
                           <Form>
-                            {console.log(formik.values)}
+                         
                             <div className=" row mx-1">
                               <div className="col-12">
                                 <Autocomplete
