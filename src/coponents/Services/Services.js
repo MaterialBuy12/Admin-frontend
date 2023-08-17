@@ -130,7 +130,7 @@ function Services() {
                             values.img3 = image.data;
                           }
                         } catch (error) {
-                          console.log("error in upload file", error);
+                          alert("error in upload file", error);
                         }
                         try {
                           if (values.img4) {
@@ -142,7 +142,7 @@ function Services() {
                             values.img4 = image.data;
                           }
                         } catch (error) {
-                          console.log("error in upload file", error);
+                          alert("error in upload file", error);
                         }
                         try {
                           if (values.img5) {
@@ -154,7 +154,7 @@ function Services() {
                             values.img5 = image.data;
                           }
                         } catch (error) {
-                          console.log("error in upload file", error);
+                          alert("error in upload file", error);
                         }
                         try {
                           let data = await sercepost(values);

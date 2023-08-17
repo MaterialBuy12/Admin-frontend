@@ -118,18 +118,16 @@ function Orders() {
                           <tr>
                             <th scope="col">Sr no</th>
                             <th>Products</th>
-
                             <th scope="col">User Name</th>
-
                             <th scope="col">Amount</th>
-                            <th scope="col">Status</th>
-                          
-
+                            <th scope="col">Status</th>                       
                             <th scope="col" colSpan="5">
                               Action
                             </th>
                             <th></th>
                             <th scope="col">Details</th>
+                            <th scope="col"> Date CreatedAt  </th>
+                            <th scope="col">Time strap</th>
                           </tr>
                         </thead>
                         <tbody>

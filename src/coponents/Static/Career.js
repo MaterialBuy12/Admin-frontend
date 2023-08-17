@@ -44,7 +44,7 @@ function Career() {
                             alert("Something went wrong");
                           }
                         } catch (error) {
-                          console.log("error in procat", error);
+                          alert("error in procat", error);
                         }
 
                         actions.resetForm();

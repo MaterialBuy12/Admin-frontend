@@ -1,10 +1,11 @@
 import React from "react";
 import { orderput } from "../../services/api";
 import useState from 'react-usestateref';
+import moment from 'moment'
 function OrdersPosts({ posts }) {
   const [sta, setsta] = useState("PENDING");
   const [details, setDetails] = useState([]);
-  const [cate, setcate,refe] = useState([]);
+  const [cate, setcate] = useState([]);
   const [subcate, setsubcate] = useState([]);
   const [subsubcate, setsubsubcate] = useState([]);
   const [skuid, setskuid] = useState([]);
@@ -179,6 +180,9 @@ function OrdersPosts({ posts }) {
                 </div>
               </div>
             </th>
+            <th scope="col">{moment(`${i.createdAt}`).format(' Do MMMM YYYY')}</th>
+            <th scope="col">{moment(`${i.createdAt}`).format("LTS")}</th>
+          
           </tr>
         ))}
     </>

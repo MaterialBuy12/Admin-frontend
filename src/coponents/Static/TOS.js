@@ -51,7 +51,7 @@ function TOS() {
                                     
                                 } catch (error) {
                                     
-                                    console.log("error in procat",error)
+                                    alert("error in procat",error)
                                 }
 
                                 actions.resetForm()
