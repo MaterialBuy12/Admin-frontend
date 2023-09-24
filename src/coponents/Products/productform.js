@@ -1,15 +1,17 @@
 import { React, useEffect, useState, useRef } from "react";
 import { Formik, Form, ErrorMessage, Field } from "formik";
-
 import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
 import * as yup from "yup";
+import uniqBy from "lodash.uniqby";
 import { TextField, Autocomplete } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { MenuItem } from "@mui/material";
-
+import Multiselect from 'multiselect-react-dropdown';
 import Inputfielded from "../Offer andbanner/Inputfielded";
+import '../../App.css'
 import {
+  Filterget,
   getAllCategory,
   getAllSubCategory,
   Product,
@@ -30,17 +32,22 @@ function ProductForm() {
       },
     },
   };
+ 
   const editor = useRef(null);
   const [state, setstate] = useState([]);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
+  const [filters, setfilters] = useState([]);
   useEffect(() => {
+
     async function data() {
       let dat = await getAllCategory();
 
       let response = await getAllSubCategory();
       let resp = await SubSubgetCategory();
       let datq = await Productname();
+      let filtername = await Filterget();
+      setfilters(uniqBy(filtername.data,'name'));
       setstate2(resp);
 
       setstate1(response);
@@ -881,7 +888,15 @@ function ProductForm() {
                           />
                         </div>
                         <div className="col-12 col-lg-3  mt-2">
-                          <Inputfielded label="14. Tags" name="tags" />
+                          <label>14. Tags</label>
+                          {/* <Inputfielded label="14. Tags" name="tags" /> */}
+
+                          <Multiselect
+options={filters} // Options to display in the dropdown
+name="tags"
+style={{border:"1px solid #353957"}}
+displayValue="name" // Property name to display in the dropdown options
+/>
                         </div>
 
                         <div className="col-lg-6 mt-2">

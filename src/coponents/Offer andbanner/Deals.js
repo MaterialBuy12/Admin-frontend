@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { Formik, Form, ErrorMessage } from "formik";
 
 import { Dealget, Dealsput, Productname } from "../../services/api";
-
+import Multiselect from 'multiselect-react-dropdown';
 import {  MenuItem} from "@mui/material";
 import { TextField, Autocomplete } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
@@ -48,6 +48,7 @@ function Deals() {
     async function data() {
       let dat = await Productname();
       let resp=await Dealget()
+    
       
       setposts(resp.data)
     
@@ -127,7 +128,7 @@ function Deals() {
                                 onChange={(event, value) => formik.setFieldValue("vari",value)} 
                                   sx={{ m: 1, width: 500 }}
                                   multiple
-                                  style={{ backgroundColor: 'white'  }}
+                                  style={{ backgroundColor: 'white'     }}
                                                                 
                                   options={posts1}
                                   getOptionLabel={(option) => option}
