@@ -7,9 +7,9 @@ import uniqBy from "lodash.uniqby";
 import { TextField, Autocomplete } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { MenuItem } from "@mui/material";
-import Multiselect from 'multiselect-react-dropdown';
+import Multiselect from "multiselect-react-dropdown";
 import Inputfielded from "../Offer andbanner/Inputfielded";
-import '../../App.css'
+import "../../App.css";
 import {
   Filterget,
   getAllCategory,
@@ -32,14 +32,15 @@ function ProductForm() {
       },
     },
   };
- 
+
   const editor = useRef(null);
   const [state, setstate] = useState([]);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
   const [filters, setfilters] = useState([]);
-  useEffect(() => {
+  const [tags2, settags2] = useState([]);
 
+  useEffect(() => {
     async function data() {
       let dat = await getAllCategory();
 
@@ -47,7 +48,7 @@ function ProductForm() {
       let resp = await SubSubgetCategory();
       let datq = await Productname();
       let filtername = await Filterget();
-      setfilters(uniqBy(filtername.data,'name'));
+      setfilters(uniqBy(filtername.data, "name"));
       setstate2(resp);
 
       setstate1(response);
@@ -58,9 +59,7 @@ function ProductForm() {
   }, []);
 
   const validate = yup.object({
-    productname1: yup
-      .string()
-      .required("Required"),
+    productname1: yup.string().required("Required"),
     price2A: yup
       .string()
 
@@ -105,7 +104,7 @@ function ProductForm() {
     manufacturer9: yup.string().required("Required"),
     madein10: yup.string().required("Required"),
     minord11A: yup.number().required("Required"),
-    maxord11B: yup.number().required("Required") ,
+    maxord11B: yup.number().required("Required"),
 
     description12: yup.string().required("Required"),
     description123: yup.string().required("Required"),
@@ -412,20 +411,8 @@ function ProductForm() {
                     calculatorunit: "",
                     subsubcategory: "",
                     calculator: "",
-                    tags: "",
+                    tags: [{}],
                     vari: [],
-                    // remove part form the form
-                    // variations: [
-                    //   {
-                    //     var12: "",
-                    //     var13: "",
-                    //     var14: "",
-                    //     var15: "",
-                    //     var16: "",
-                    //     var17: "",
-                    //   },
-                    // ],
-                    // new field add
                     description123: "",
                     charges: "",
                     free6: "",
@@ -438,143 +425,149 @@ function ProductForm() {
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
-                    try {
-                      if (values.imgs1) {
-                        const data = new FormData();
-                        data.append("name", values.imgs1.name);
-                        data.append("file", values.imgs1);
-                        let img = await UploadFile(data);
-
-                        values.imgs1 = img.data;
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
-                    try {
-                      if (values.imgs2) {
-                        const data = new FormData();
-                        data.append("name", values.imgs2.name);
-                        data.append("file", values.imgs2);
-                        let img = await UploadFile(data);
-
-                        values.imgs2 = img.data;
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
-                    try {
-                      if (values.imgs3) {
-                        const data = new FormData();
-                        data.append("name", values.imgs3.name);
-                        data.append("file", values.imgs3);
-                        let img = await UploadFile(data);
-
-                        values.imgs3 = img.data;
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
-                    try {
-                      if (values.imgs4) {
-                        const data = new FormData();
-                        data.append("name", values.imgs4.name);
-                        data.append("file", values.imgs4);
-                        let img = await UploadFile(data);
-
-                        values.imgs4 = img.data;
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
-                    try {
-                      if (values.file1) {
-                        const data = new FormData();
-                        data.append("name", values.file1.name);
-                        data.append("file", values.file1);
-                        let img = await UploadFile(data);
-
-                        values.file1 = img.data;
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
-                    try {
-                      if (values.file1) {
-                        const data = new FormData();
-                        data.append("name", values.file1.name);
-                        data.append("file", values.file1);
-                        let img = await UploadFile(data);
-
-                        values.file1 = img.data;
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
-                    try {
-                      if (values.file1) {
-                        const data = new FormData();
-                        data.append("name", values.file1.name);
-                        data.append("file", values.file1);
-                        let img = await UploadFile(data);
-
-                        values.file1 = img.data;
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
-                    try {
-                      if (values.file2) {
-                        const data = new FormData();
-                        data.append("name", values.file2.name);
-                        data.append("file", values.file2);
-                        let img = await UploadFile(data);
-
-                        values.file2 = img.data;
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
-                    try {
-                      if (values.file3) {
-                        const data = new FormData();
-                        data.append("name", values.file3.name);
-                        data.append("file", values.file3);
-                        let img = await UploadFile(data);
-
-                        values.file3 = img.data;
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
-                    try {
-                      if (values.file4) {
-                        const data = new FormData();
-                        data.append("name", values.file4.name);
-                        data.append("file", values.file4);
-                        let img = await UploadFile(data);
-
-                        values.file4 = img.data;
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
-                    try {
-                      let response = await Product(values);
                    
-                      if (response.status) {
-                        alert(response.data.message);
-
-                        // window.location.reload();
-                      } else {
-                        alert("something went wrong");
-                      }
-                    } catch (error) {
-                    alert(error)
-                    }
+                    tags2.map((element,index)=>{
+                      values.tags[index]=element.name
+                      
+                    })
                     
-                    if (values.actions1) {
-                      actions.resetForm();
-                    }
+                      try {
+                        if (values.imgs1) {
+                          const data = new FormData();
+                          data.append("name", values.imgs1.name);
+                          data.append("file", values.imgs1);
+                          let img = await UploadFile(data);
+
+                          values.imgs1 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.imgs2) {
+                          const data = new FormData();
+                          data.append("name", values.imgs2.name);
+                          data.append("file", values.imgs2);
+                          let img = await UploadFile(data);
+
+                          values.imgs2 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.imgs3) {
+                          const data = new FormData();
+                          data.append("name", values.imgs3.name);
+                          data.append("file", values.imgs3);
+                          let img = await UploadFile(data);
+
+                          values.imgs3 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.imgs4) {
+                          const data = new FormData();
+                          data.append("name", values.imgs4.name);
+                          data.append("file", values.imgs4);
+                          let img = await UploadFile(data);
+
+                          values.imgs4 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.file1) {
+                          const data = new FormData();
+                          data.append("name", values.file1.name);
+                          data.append("file", values.file1);
+                          let img = await UploadFile(data);
+
+                          values.file1 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.file1) {
+                          const data = new FormData();
+                          data.append("name", values.file1.name);
+                          data.append("file", values.file1);
+                          let img = await UploadFile(data);
+
+                          values.file1 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.file1) {
+                          const data = new FormData();
+                          data.append("name", values.file1.name);
+                          data.append("file", values.file1);
+                          let img = await UploadFile(data);
+
+                          values.file1 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.file2) {
+                          const data = new FormData();
+                          data.append("name", values.file2.name);
+                          data.append("file", values.file2);
+                          let img = await UploadFile(data);
+
+                          values.file2 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.file3) {
+                          const data = new FormData();
+                          data.append("name", values.file3.name);
+                          data.append("file", values.file3);
+                          let img = await UploadFile(data);
+
+                          values.file3 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.file4) {
+                          const data = new FormData();
+                          data.append("name", values.file4.name);
+                          data.append("file", values.file4);
+                          let img = await UploadFile(data);
+
+                          values.file4 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        let response = await Product(values);
+
+                        if (response.status) {
+                          alert(response.data.message);
+
+                          // window.location.reload();
+                        } else {
+                          alert("something went wrong");
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+
+                      if (values.actions1) {
+                        actions.resetForm();
+                      }
                   }}
                 >
                   {(formik) => (
@@ -630,7 +623,10 @@ function ProductForm() {
                           {/* inner row */}
                           <div className="row">
                             <div className="col-12 col-lg-8 mt-2 ">
-                              <Inputfielded label="7A. Weight" name="weight7A" />
+                              <Inputfielded
+                                label="7A. Weight"
+                                name="weight7A"
+                              />
                             </div>
                             <div className="col-12 col-lg-4 mt-2">
                               <label>Unit</label>
@@ -772,7 +768,10 @@ function ProductForm() {
                           {/* inner row */}
                           <div className="row">
                             <div className="col-12 col-lg-8 mt-2 ">
-                              <Inputfielded label="8C. Height" name="height8C" />
+                              <Inputfielded
+                                label="8C. Height"
+                                name="height8C"
+                              />
                             </div>
                             <div className="col-12 col-lg-4 mt-2">
                               <label>Unit</label>
@@ -817,10 +816,16 @@ function ProductForm() {
                           <Inputfielded label="10. Made in " name="madein10" />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <Inputfielded label="11A. Min Order" name="minord11A" />
+                          <Inputfielded
+                            label="11A. Min Order"
+                            name="minord11A"
+                          />
                         </div>
                         <div className="col-12 col-lg-3 mt-2">
-                          <Inputfielded label="11B. Max Order " name="maxord11B" />
+                          <Inputfielded
+                            label="11B. Max Order "
+                            name="maxord11B"
+                          />
                         </div>
                       </div>
                       {/* 6 row */}
@@ -892,123 +897,59 @@ function ProductForm() {
                           {/* <Inputfielded label="14. Tags" name="tags" /> */}
 
                           <Multiselect
-options={filters} // Options to display in the dropdown
-name="tags"
-style={{border:"1px solid #353957"}}
-displayValue="name" // Property name to display in the dropdown options
-/>
+                            options={filters} // Options to display in the dropdown
+                            name="tags"
+                            onSelect={(selectedList, selectedItem) => {
+                              settags2(selectedList);
+                            }}
+                            onRemove={(selectedList, removedItem) => {
+                              settags2(selectedList);
+                            }}
+                            style={{ border: "1px solid #353957" }}
+                            displayValue="name" // Property name to display in the dropdown options
+                          />
                         </div>
 
                         <div className="col-lg-6 mt-2">
-                          {/* <FormControl
-                            sx={{
-                              mt: 2,
-                              width: 450,
-                              borderColor: "#fffff",
-                              color: "#ffffff",
-                            }}
-                          >
-                            <InputLabel
-                              style={{ color: "rgb(165, 166, 173)" }}
-                              id="demo-multiple-chip-label"
-                            >
-                              15. Frequently Bought Together Products
-                            </InputLabel>
-
-                            <Select
-                              style={{
-                                color: "rgb(165, 166, 173)",
-                                border: "2px solid #353957",
-                              }}
-                              labelId="demo-multiple-chip-label"
-                              id="demo-multiple-chip"
-                              multiple
-                              name="vari"
-                              value={formik.values.vari}
-                              onChange={formik.handleChange}
-                              input={
-                                <OutlinedInput
-                                  style={{ color: "rgb(165,166,173)" }}
-                                  id="select-multiple-chip"
-                                  label="Product Name"
-                                />
-                              }
-                              renderValue={(selected) => (
-                                <Box
-                                  style={{ color: "rgb(165, 166, 173)" }}
-                                  sx={{
-                                    display: "flex",
-                                    flexWrap: "wrap",
-                                    gap: 0.5,
-                                  }}
-                                >
-                                  {selected.map((value) => {
-                                    const option = posts1[0].find(
-                                      (o) => String(o._id) === value
-                                    );
-
-                                    return (
-                                      <Chip
-                                        key={value}
-                                        label={option.productname1}
-                                        style={{ color: "rgb(165, 166, 173)" }}
-                                      />
-                                    );
-                                  })}
-                                </Box>
-                              )}
-                              MenuProps={MenuProps}
-                            >
-                              {posts1[0]?.map((i) => (
-                                <MenuItem key={i._id} value={i._id}>
-                                  {i.productname1}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          </FormControl> */}
-                          <label>   15. Frequently Bought Together Products </label>
-                            <Autocomplete
-                                onChange={(event, value) => formik.setFieldValue("vari",value)} 
-                                  sx={{ m: 1, width: 500 }}
-                                  multiple
-                                  style={{ backgroundColor: 'white'  }}
-                                                                
-                                  options={posts1}
-                                  getOptionLabel={(option) => option}
-                                  disableCloseOnSelect
-                          
-                                  renderInput={(params) => (
-                                    <TextField  
-                                      {...params}
-                                      name="vari"
-                                      value={formik.values.vari}
-                                      onChange={formik.handleChange}  
-                                      variant="outlined"
-                                      color="info"
-                                      label="Product Name"
-                                      placeholder="Product Name"
-                                    />
-                                  )}
-                                  renderOption={(
-                                    props,
-                                    option,
-                                    { selected }
-                                  ) => (
-                                    
-                                    <MenuItem
-                                      {...props}
-                                      key={option}
-                                      value={option}
-                                      sx={{ justifyContent: "space-between" }}
-                                    >
-                                      {option}
-                                      {selected ? (
-                                        <CheckIcon color="info" />
-                                      ) : null}
-                                    </MenuItem>
-                                  )}
-                                />
-
+                         
+                          <label>
+                            {" "}
+                            15. Frequently Bought Together Products{" "}
+                          </label>
+                          <Autocomplete
+                            onChange={(event, value) =>
+                              formik.setFieldValue("vari", value)
+                            }
+                            sx={{ m: 1, width: 500 }}
+                            multiple
+                            style={{ backgroundColor: "white" }}
+                            options={posts1}
+                            getOptionLabel={(option) => option}
+                            disableCloseOnSelect
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                name="vari"
+                                value={formik.values.vari}
+                                onChange={formik.handleChange}
+                                variant="outlined"
+                                color="info"
+                                label="Product Name"
+                                placeholder="Product Name"
+                              />
+                            )}
+                            renderOption={(props, option, { selected }) => (
+                              <MenuItem
+                                {...props}
+                                key={option}
+                                value={option}
+                                sx={{ justifyContent: "space-between" }}
+                              >
+                                {option}
+                                {selected ? <CheckIcon color="info" /> : null}
+                              </MenuItem>
+                            )}
+                          />
 
                           <ErrorMessage
                             name="vari"
@@ -1058,10 +999,6 @@ displayValue="name" // Property name to display in the dropdown options
                         </div>
                       </div>
 
-                     
-
-
-                     
                       {/* 9. row */}
                       <div className="row mt-2">
                         <div className="col-12 col-lg-3  mt-2">

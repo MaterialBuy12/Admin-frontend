@@ -146,6 +146,7 @@ function CSSDeals() {
                                       {i.subcategory}
                                     </option>
                                   );
+                                return null
                               })}
                           </Field>
                           <ErrorMessage
@@ -175,6 +176,7 @@ function CSSDeals() {
                                       {i.subsubcategory}
                                     </option>
                                   );
+                                return null
                               })}
                           </Field>
                           <ErrorMessage

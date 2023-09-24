@@ -4,16 +4,13 @@ import * as yup from "yup";
 
 import { Formik, Form, ErrorMessage } from "formik";
 
-import { Dealget, Dealsput, Productname } from "../../services/api";
-import Multiselect from 'multiselect-react-dropdown';
-import {  MenuItem} from "@mui/material";
-import { TextField, Autocomplete } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
+import { Dealget, Dealsput, Productget } from "../../services/api";
+import '../../App.css'
 
 import DealsPosts from "./DealsPosts";
 import Pagination from "../categories/categories/Pagination";
 import Inputfielded from "./Inputfielded";
-
+import Multiselect from "multiselect-react-dropdown";
 function Deals() {
   
 
@@ -41,19 +38,21 @@ function Deals() {
     vari: yup.array().min(1,"Atleast one Product").required("Required"),
    
   });
-  const [posts1, setposts1] = useState({});
-
+ 
+  const [filters,setfilters] = useState([])
+  const [tags2, settags2] = useState([]);
 
   useEffect(() => {
     async function data() {
-      let dat = await Productname();
+    
       let resp=await Dealget()
-    
+      let data1=await Productget()
+      console.log(data1.data[2].productname1)
+      setfilters(data1.data)
       
-      setposts(resp.data)
-    
+      setposts(resp.data)  
 
-      setposts1(dat);
+   
     }
     data();
     data();
@@ -92,7 +91,11 @@ function Deals() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                        
+                          tags2.map((element,index)=>{
+                            values.vari[index]=element.name
+                            return null
+                            
+                          })
                             try {
                               let data = await Dealsput(values);
                               if (data.status) {
@@ -121,50 +124,26 @@ function Deals() {
 
 
 
-                            <div className=" row mx-1">
-                            
-                              <div className="col">
-                              <Autocomplete
-                                onChange={(event, value) => formik.setFieldValue("vari",value)} 
-                                  sx={{ m: 1, width: 500 }}
-                                  multiple
-                                  style={{ backgroundColor: 'white'     }}
-                                                                
-                                  options={posts1}
-                                  getOptionLabel={(option) => option}
-                                  disableCloseOnSelect
-                          
-                                  renderInput={(params) => (
-                                    <TextField  
-                                      {...params}
-                                      name="vari"
-                                      value={formik.values.vari}
-                                      onChange={formik.handleChange}  
-                                      variant="outlined"
-                                      color="info"
-                                      label="Product Name"
-                                      placeholder="Product Name"
-                                    />
-                                  )}
-                                  renderOption={(
-                                    props,
-                                    option,
-                                    { selected }
-                                  ) => (
-                                    
-                                    <MenuItem
-                                      {...props}
-                                      key={option}
-                                      value={option}
-                                      sx={{ justifyContent: "space-between" }}
-                                    >
-                                      {option}
-                                      {selected ? (
-                                        <CheckIcon color="info" />
-                                      ) : null}
-                                    </MenuItem>
-                                  )}
-                                />
+                              <div className=" row mx-1">
+                              
+                              <div className="col-12">
+                                <label>Product Name</label>
+                              <Multiselect
+                             placeholder="Product Name" 
+                            options={filters} // Options to display in the dropdown
+                            name="vari"
+                            onSelect={(selectedList, selectedItem) => {
+                              settags2(selectedList);
+                            }}
+                            onRemove={(selectedList, removedItem) => {
+                              settags2(selectedList);
+                            }}
+                            style={{ border: "1px solid #353957" , color:"white" ,overflow:"none"}}
+                            displayValue="productname1" // Property name to display in the dropdown options
+                          />
+                              </div>
+                              
+                                 
 
                             
                                 <ErrorMessage
@@ -173,6 +152,9 @@ function Deals() {
                                   className="error"
                                 />
                               </div>
+                            <div className=" row mx-1 mt-3">
+                            
+                                
                               <div className="col">
                                 <Inputfielded label="Discount(%)" name="discount" />
                               </div>

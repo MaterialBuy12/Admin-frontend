@@ -4,4 +4,14 @@
     min-height: 22px;
     padding: 5px;
     position: relative;
+    background: #2e304a;
+}
+
+
+
+.multiSelectContainer input {
+    color: #a5a6ad;
+    background: transparent;
+    border: none;
+    margin-top: 3px;
 }

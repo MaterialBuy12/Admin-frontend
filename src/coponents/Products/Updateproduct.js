@@ -3,9 +3,11 @@ import { Formik, Form, ErrorMessage, Field  } from "formik";
 import TextField from "../categories/TextField";
 import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
+import uniqBy from "lodash.uniqby";
 import * as yup from "yup";
-
+import Multiselect from "multiselect-react-dropdown";
 import {
+  Filterget,
   getAllCategory,
   getAllSubCategory,
   ProductAget,
@@ -26,13 +28,16 @@ function Updateproduct() {
  
   const { id } = useParams();
   const [state, setstate] = useState([]);
+  const [filters, setfilters] = useState([]);
+  const [tags2, settags2] = useState([]);
   let navigate=useNavigate()
   
   const editor = useRef(null);
   useEffect(() => {
     async function data() {
       let datas = await ProductAget(id);
-     
+      let filtername = await Filterget();
+      setfilters(uniqBy(filtername.data, "name"));
 
       setstate(datas.data);
     }
@@ -211,7 +216,10 @@ function Updateproduct() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                        
+                          tags2.map((element,index)=>{
+                            values.tags[index]=element.name
+                            
+                          })
                           try {
                             let response = await ProductAUpdate(id,values);
                             if (response.status) {
@@ -543,7 +551,23 @@ function Updateproduct() {
                               />
                             </div>
                             <div className="col-12 col-lg-3  mt-2">
-                              <TextField label="14. Tags" name="tags" />
+                            <label>14. Tags</label>
+                          {/* <Inputfielded label="14. Tags" name="tags" /> */}
+
+                          <Multiselect
+                            defaultValue={formik.values.tags}
+                            options={filters} // Options to display in the dropdown
+                            name="tags"
+                            onSelect={(selectedList, selectedItem) => {
+                              settags2(selectedList);
+                            }}
+                            onRemove={(selectedList, removedItem) => {
+                              settags2(selectedList);
+                            }}
+                            style={{ border: "1px solid #353957" }}
+                            displayValue="name" // Property name to display in the dropdown options
+                          />
+                          {formik.values.tags?<p>Selected values : {formik.values.tags}</p>:""}
                             </div>
                             
     
