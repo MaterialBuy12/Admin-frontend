@@ -3,7 +3,6 @@ import { Formik, Form, ErrorMessage, Field  } from "formik";
 import TextField from "../categories/TextField";
 import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
-import uniqBy from "lodash.uniqby";
 import * as yup from "yup";
 import Multiselect from "multiselect-react-dropdown";
 import {
@@ -12,7 +11,6 @@ import {
   getAllSubCategory,
   ProductAget,
   ProductAUpdate,
-  
   SubSubgetCategory,
   
 } from "../../services/api";
@@ -37,7 +35,12 @@ function Updateproduct() {
     async function data() {
       let datas = await ProductAget(id);
       let filtername = await Filterget();
-      setfilters(uniqBy(filtername.data, "name"));
+      let optionsvalue=[]
+      filtername.data.map((i)=>{
+        let valueds=i.name+"="+i.att
+        optionsvalue.push({"name" : valueds})
+      })
+      setfilters(optionsvalue);
 
       setstate(datas.data);
     }

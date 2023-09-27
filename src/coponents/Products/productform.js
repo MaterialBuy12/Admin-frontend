@@ -3,7 +3,6 @@ import { Formik, Form, ErrorMessage, Field } from "formik";
 import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
 import * as yup from "yup";
-import uniqBy from "lodash.uniqby";
 import Multiselect from "multiselect-react-dropdown";
 import Inputfielded from "../Offer andbanner/Inputfielded";
 import "../../App.css";
@@ -54,7 +53,6 @@ function ProductForm() {
         let valueds=i.name+"="+i.att
         optionsvalue.push({"name" : valueds})
       })
-      console.log("vuio",optionsvalue)
       setfilters(optionsvalue);
       setstate2(resp);
 
