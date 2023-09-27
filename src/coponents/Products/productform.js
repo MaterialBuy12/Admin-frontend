@@ -4,9 +4,6 @@ import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
 import * as yup from "yup";
 import uniqBy from "lodash.uniqby";
-import { TextField, Autocomplete } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
-import { MenuItem } from "@mui/material";
 import Multiselect from "multiselect-react-dropdown";
 import Inputfielded from "../Offer andbanner/Inputfielded";
 import "../../App.css";
@@ -15,6 +12,7 @@ import {
   getAllCategory,
   getAllSubCategory,
   Product,
+  Productget,
   Productname,
   SubSubgetCategory,
   UploadFile,
@@ -38,17 +36,26 @@ function ProductForm() {
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
   const [filters, setfilters] = useState([]);
+  const [filters1, setfilters1] = useState([]);
   const [tags2, settags2] = useState([]);
+  const [tags23, settags23] = useState([]);
 
   useEffect(() => {
     async function data() {
       let dat = await getAllCategory();
-
       let response = await getAllSubCategory();
       let resp = await SubSubgetCategory();
       let datq = await Productname();
       let filtername = await Filterget();
-      setfilters(uniqBy(filtername.data, "name"));
+      let data1=await Productget()
+      setfilters1(data1.data)
+      let optionsvalue=[]
+      filtername.data.map((i)=>{
+        let valueds=i.name+"="+i.att
+        optionsvalue.push({"name" : valueds})
+      })
+      console.log("vuio",optionsvalue)
+      setfilters(optionsvalue);
       setstate2(resp);
 
       setstate1(response);
@@ -900,55 +907,37 @@ function ProductForm() {
                             options={filters} // Options to display in the dropdown
                             name="tags"
                             onSelect={(selectedList, selectedItem) => {
+                              console.log(selectedList)
                               settags2(selectedList);
                             }}
                             onRemove={(selectedList, removedItem) => {
                               settags2(selectedList);
                             }}
                             style={{ border: "1px solid #353957" }}
-                            displayValue="name" // Property name to display in the dropdown options
+                            displayValue="name"  // Property name to display in the dropdown options
+                            
+                            
                           />
                         </div>
 
                         <div className="col-lg-6 mt-2">
                          
                           <label>
-                            {" "}
+                            
                             15. Frequently Bought Together Products{" "}
                           </label>
-                          <Autocomplete
-                            onChange={(event, value) =>
-                              formik.setFieldValue("vari", value)
-                            }
-                            sx={{ m: 1, width: 500 }}
-                            multiple
-                            style={{ backgroundColor: "white" }}
-                            options={posts1}
-                            getOptionLabel={(option) => option}
-                            disableCloseOnSelect
-                            renderInput={(params) => (
-                              <TextField
-                                {...params}
-                                name="vari"
-                                value={formik.values.vari}
-                                onChange={formik.handleChange}
-                                variant="outlined"
-                                color="info"
-                                label="Product Name"
-                                placeholder="Product Name"
-                              />
-                            )}
-                            renderOption={(props, option, { selected }) => (
-                              <MenuItem
-                                {...props}
-                                key={option}
-                                value={option}
-                                sx={{ justifyContent: "space-between" }}
-                              >
-                                {option}
-                                {selected ? <CheckIcon color="info" /> : null}
-                              </MenuItem>
-                            )}
+                          <Multiselect
+                             placeholder="Product Name" 
+                            options={filters1} // Options to display in the dropdown
+                            name="vari"
+                            onSelect={(selectedList, selectedItem) => {
+                              settags23(selectedList);
+                            }}
+                            onRemove={(selectedList, removedItem) => {
+                              settags23(selectedList);
+                            }}
+                            style={{ border: "1px solid #353957" , color:"white" ,overflow:"none"}}
+                            displayValue="productname1" // Property name to display in the dropdown options
                           />
 
                           <ErrorMessage
