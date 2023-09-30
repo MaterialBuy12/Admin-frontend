@@ -25,6 +25,7 @@ function CorporatePosts({posts}) {
                             <td><span>{i.phoneno}</span></td>
                             <td><span>{i.email}</span></td>
                             <td><span>{i.gst}</span></td>
+                            <td><span>{i.role}</span></td>
                             <td><span>{i.billingaddress}</span></td>
                             <td><span>{i.shippingaddress}</span></td>
                             <td><span><button className='btn btn-success rounded '  onClick={(e) => {
