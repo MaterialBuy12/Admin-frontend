@@ -428,7 +428,10 @@ function ProductForm() {
                       values.tags[index]=element.name
                       
                     })
-                    
+                    tags23.map((element,index)=>{
+                      values.vari[index]=element.name
+                      
+                    })
                       try {
                         if (values.imgs1) {
                           const data = new FormData();

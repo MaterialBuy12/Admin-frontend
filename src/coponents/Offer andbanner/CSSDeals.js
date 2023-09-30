@@ -5,6 +5,7 @@ import * as yup from "yup";
 import TextField from '../categories/TextField';
 import Pagination from '../categories/categories/Pagination';
 import CSSDealsposts from './CSSDealsposts';
+import '../../App.css'
 function CSSDeals() {
   const validate = yup.object({
    category:yup.string().required("Required"),
@@ -133,7 +134,7 @@ function CSSDeals() {
                             name="subcategory"
                           >
                             
-                            <option defaultValue="">Select Category</option>
+                            <option>Select Category</option>
                             {state1 &&
                               state1.map((i, index) => {
                                 if (formik.values.category === i.categoryname)
@@ -167,7 +168,7 @@ function CSSDeals() {
                             }`}
                             name="subsubcategory"
                           >
-                            <option defaultValue="">Select Category</option>
+                            <option defaultValue="" hidden className='invisible'>Select Category</option>
                             {state2 &&
                               state2.map((i, index) => {
                                 if (formik.values.category === i.categoryname)
