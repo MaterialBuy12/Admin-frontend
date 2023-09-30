@@ -28,11 +28,7 @@ function Updatesub() {
       .when("edit", {
         is: true,
         then: yup.string().required("Required"),
-        // .test(
-        //     "FILE_FORMAT",
-        //     "Uploaded file has unsupported format",
-        //     (value) => !value || SUPPORTED_FORMATS.includes(value?.type)
-        // ),
+      
       }),
   });
 

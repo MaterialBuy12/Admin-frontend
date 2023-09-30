@@ -5,7 +5,6 @@ import * as yup from "yup";
 
 import { Category, UploadFile } from "../../../services/api";
 function AddCategoryform() {
-  const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
   const validate = yup.object({
     title: yup.string().required("Required"),
@@ -18,11 +17,7 @@ function AddCategoryform() {
         "uploaded file is too big",
         (value) => !value || (value && value.size <= 1024 * 1024 * 1024 * 8)
       )
-      .test(
-        "FILE_FORMAT",
-        "Uploaded file has unsupported format",
-        (value) => !value || SUPPORTED_FORMATS.includes(value?.type)
-      ),
+      
   });
   return (
     <>

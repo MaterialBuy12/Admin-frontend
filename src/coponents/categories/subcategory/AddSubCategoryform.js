@@ -18,16 +18,8 @@ function AddSubCategoryform() {
       .mixed()
       .nullable()
       .required("!Required")
-      // .test(
-      //     "FILE_SIZE",
-      //     "uploaded file is too big",
-      //     (value) => !value || (value && value.size <= 1024 * 1024 * 8)
-      // )
-      .test(
-        "FILE_FORMAT",
-        "Uploaded file has unsupported format",
-        (value) => !value || SUPPORTED_FORMATS.includes(value?.type)
-      ),
+     
+     
   });
   const [state, setstate] = useState([]);
   useEffect(() => {
