@@ -46,13 +46,10 @@ function Deals() {
     async function data() {
     
       let resp=await Dealget()
+      console.log("dela",resp)
       let data1=await Productget()
-      console.log(data1.data[2].productname1)
-      setfilters(data1.data)
-      
-      setposts(resp.data)  
-
-   
+      setfilters(data1.data)    
+      setposts(resp.data)     
     }
     data();
     data();
@@ -98,6 +95,7 @@ function Deals() {
                           })
                             try {
                               let data = await Dealsput(values);
+                              
                               if (data.status) {
                                 alert("SUCCESSFULL");
                                 window.location.reload()
@@ -107,7 +105,6 @@ function Deals() {
                             } catch (error) {
                               alert("error in promo", error);
                             }
-
                             actions.resetForm();
                       
                           }}
@@ -188,6 +185,7 @@ function Deals() {
                           <tr>
                             <th scope="col"> Sr No.</th>
                             <th scope="col"> Product Name</th>
+                            <th scope="col"> Discount</th>
                                                
                             <th scope="col">Action</th>
                           </tr>

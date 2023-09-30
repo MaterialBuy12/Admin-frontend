@@ -47,8 +47,6 @@ function AddProfe() {
   // const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
   const validate = yup.object({
     name: yup.string().required("Required"),
-    age: yup.number().typeError("Only Number").required("Required"),
-
     cat: yup.string().required("Required"),
     city: yup.string().required("Required!"),
     expr: yup.number().typeError("Only Number").required("Required"),
@@ -58,16 +56,7 @@ function AddProfe() {
     img2: yup.mixed().nullable(),
     img3: yup.mixed().nullable(),
     img4: yup.mixed().nullable()
-    // .test(
-    //     "FILE_SIZE",
-    //     "uploaded file is too big",
-    //     (value) => !value || (value && value.size <= 1024 * 1024*1024 * 8)
-    // )
-    // .test(
-    //     "FILE_FORMAT",
-    //     "Uploaded file has unsupported format",
-    //     (value) => !value || SUPPORTED_FORMATS.includes(value?.type)
-    // ),
+   
   });
   return (
     <>
@@ -88,7 +77,6 @@ function AddProfe() {
                       <Formik
                         initialValues={{
                           name: "",
-                          age: "",
                           cat: "",
                           phone: "",
                           city: "",
@@ -101,6 +89,7 @@ function AddProfe() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
+                          console.log("profe",values)
                           try {
                             if (values.img) {
                               const data = new FormData();
@@ -135,8 +124,6 @@ function AddProfe() {
                             );
                           }
 
-
-
                           try {
                             if (values.img3) {
                               const data = new FormData();
@@ -154,7 +141,6 @@ function AddProfe() {
                             );
                           }
 
-
                           try {
                             if (values.img) {
                               const data = new FormData();
@@ -170,14 +156,6 @@ function AddProfe() {
                               error
                             );
                           }
-
-
-
-
-
-
-
-
                           try {
                             let data = await profaddpost(values);
                             if (data.status) {
@@ -196,7 +174,7 @@ function AddProfe() {
                         {(formik) => (
                           <Form>
                             {/* 1st row  */}
-
+                            {console.log(formik.errors,"formik")}
                             <TextField label="Name" name="name" />
 
                             <div className="row mt-2">
@@ -224,7 +202,7 @@ function AddProfe() {
                                 </Field>
 
                                 <ErrorMessage
-                                  name="title"
+                                  name="cat"
                                   component="div"
                                   className="error"
                                 />
@@ -328,19 +306,6 @@ function AddProfe() {
                               name="img4"
                               className="error"
                             />
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <input
                               type="submit"
                               className="btn mt-2 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark"

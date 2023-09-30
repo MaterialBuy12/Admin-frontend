@@ -2,6 +2,7 @@ import React from "react";
 import { Dealdelete } from "../../services/api";
 
 function Dealsposts({ posts }) {
+  console.log(posts,"=>")
   const remove = async (i) => {
     let dat = await Dealdelete(i.productname1);
     if (dat.status) {
@@ -24,6 +25,9 @@ function Dealsposts({ posts }) {
               </td>
               <td>
                 <span>{i.productname1}</span>
+              </td>
+              <td>
+                <span>{i.discount}</span>
               </td>
               
               <th scope="col">
