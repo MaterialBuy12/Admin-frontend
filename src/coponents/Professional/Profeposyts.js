@@ -45,6 +45,36 @@ function Profeposyts({ posts }) {
                 src={i.img}
               ></img>
             </th>
+            <th>
+        
+              <img
+                target="_blank"
+                alt="..."
+                height="80px"
+                width="80px"
+                src={i.img2}
+              ></img>
+            </th>
+            <th>
+        
+              <img
+                target="_blank"
+                alt="..."
+                height="80px"
+                width="80px"
+                src={i.img3}
+              ></img>
+            </th>
+            <th>
+        
+              <img
+                target="_blank"
+                alt="..."
+                height="80px"
+                width="80px"
+                src={i.img4}
+              ></img>
+            </th>
 
             <th>{i.email} </th>
             <th>

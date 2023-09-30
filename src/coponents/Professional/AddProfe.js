@@ -375,6 +375,9 @@ function AddProfe() {
                             <th scope="col">Experience</th>
 
                             <th scope="col">Image</th>
+                            <th scope="col">Image </th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Email</th>
                             <th scope="col">Status</th>
                             <th >Action</th>

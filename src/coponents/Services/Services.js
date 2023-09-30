@@ -40,8 +40,7 @@ function Services() {
     descr: yup.string().required("Required"),
     img: yup
       .mixed()
-      .nullable()
-     
+      .nullable()     
   });
 
   return (
