@@ -41,16 +41,7 @@ function Services() {
     img: yup
       .mixed()
       .nullable()
-      .test(
-        "FILE_SIZE",
-        "uploaded file is too big",
-        (value) => !value || (value && value.size <= 1024 * 1024 * 1024 * 8)
-      )
-      .test(
-        "FILE_FORMAT",
-        "Uploaded file has unsupported format",
-        (value) => !value || SUPPORTED_FORMATS.includes(value?.type)
-      ),
+     
   });
 
   return (
