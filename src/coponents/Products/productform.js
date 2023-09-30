@@ -101,8 +101,14 @@ function ProductForm() {
     heightunit8C: yup.string().required("Required"),
     manufacturer9: yup.string().required("Required"),
     madein10: yup.string().required("Required"),
-    minord11A: yup.number().required("Required"),
-    maxord11B: yup.number().required("Required"),
+    minord11A: yup.string().required("Required") .matches(
+      /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
+      "Only Digits"
+    ),
+    maxord11B: yup.string().required("Required") .matches(
+      /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
+      "Only Digits"
+    ),
 
     description12: yup.string().required("Required"),
     description123: yup.string().required("Required"),
@@ -423,15 +429,16 @@ function ProductForm() {
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
-                   
-                    tags2.map((element,index)=>{
-                      values.tags[index]=element.name
-                      
+                    let arr2=[]
+                    tags2?.map((element,index)=>{
+                      let hs=element.name.split("=")
+                      let temp={"variant":hs[0],"value":hs[1]}
+                      arr2.push(temp)                      
                     })
-                    tags23.map((element,index)=>{
-                      values.vari[index]=element.name
-                      
-                    })
+                    values.tags=arr2
+                    values.vari=tags23
+                    console.log("final",values)
+                
                       try {
                         if (values.imgs1) {
                           const data = new FormData();

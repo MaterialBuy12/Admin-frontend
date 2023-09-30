@@ -49,8 +49,7 @@ function Updateproduct() {
   const validate = yup.object({
     productname1: yup
       .string()
-      .required("Required")
-      .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed"),
+      .required("Required"),
     price2A: yup
       .string()
 
