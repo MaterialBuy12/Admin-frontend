@@ -4,8 +4,10 @@ import { Recomdelete } from '../../services/api';
 function RecomPosts({posts}) {
     const remove=async(i) =>{
         
-        let dat=await Recomdelete(i.productname1)
+        let dat=await Recomdelete(i._id)
+        console.log("dat",i._id,dat.status)
         if(dat.status){
+
             alert("DELETED",dat.data)
             window.location.reload()
         }else{

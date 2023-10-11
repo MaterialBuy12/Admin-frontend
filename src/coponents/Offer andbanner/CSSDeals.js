@@ -38,9 +38,7 @@ function CSSDeals() {
       let data=await DEALSGET()
       setposts(data.data)
       setstate2(resp);
-
-      setstate1(response);
-      
+      setstate1(response);      
       setstate(dat);
     }
     data();

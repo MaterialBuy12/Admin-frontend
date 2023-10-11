@@ -101,7 +101,6 @@ const [searchedvalue,setsearchedvalue]=useState("")
                             <th scope="col">Mobile no</th>
                             <th scope="col">Email</th>
                             <th scope="col">GST</th>
-                            <th scope="col">Role</th>
                             <th scope="col">Billing Address</th>
                             <th scope="col">Shipping Address</th>
 

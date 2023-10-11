@@ -5,22 +5,17 @@ import { TextField, Autocomplete } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { Formik, Form, ErrorMessage } from "formik";
 
-import { Productname, Recomget, Recomput } from "../../services/api";
+import { Productget, Productname, Recomget, Recomput } from "../../services/api";
 
 import {  MenuItem } from "@mui/material";
 import RecomPosts from "./RecomPosts";
 import Pagination from "../categories/categories/Pagination";
+import Multiselect from "multiselect-react-dropdown";
 
 function Recom() {
-
-
-
-
-  const validate = yup.object({
-    vari: yup.array().min(1, "Atleast one Product").required("Required"),
-  });
   const [posts1, setposts1] = useState([]);
-
+  const [filters,setfilters] = useState([])
+  const [tags2, settags2] = useState([]);
   const [posts, setposts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(25);
@@ -38,13 +33,12 @@ function Recom() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   useEffect(() => {
     async function data() {
-      let dat = await Productname();
-   
+      let dat = await Productname();   
       let resp = await Recomget();
-
       setposts(resp.data);
-
       setposts1(dat[0]);
+      let data1=await Productget()
+      setfilters(data1.data)   
     }
     data();
     data();
@@ -77,21 +71,29 @@ function Recom() {
                         initialValues={{
                           vari: [],
                         }}
-                        validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                       
+                         if(tags2.length != 0 ){
+                          tags2.map((element,index)=>{
+                            values.vari.push(element)
+                            
+                          })                       
+                        if(tags2.length != 0 ){
+                          console.log("tags",tags2,values)
                           try {
-                            let data = await Recomput(values);
-                            if (data.status) {
+                            let data = await Recomput(values);                          
+                            if (data.status === "200") {
                               alert("SUCCESSFULL");
                               window.location.reload();
                             } else {
-                              alert("something went wrong");
+                              alert("please select proper value");
                             }
                           } catch (error) {
                             alert("error in promo", error);
                           }
-
+                        }
+                         }else{
+                          alert(" product field cannot be empty")
+                         }
                           actions.resetForm();
                        
                         }}
@@ -99,48 +101,22 @@ function Recom() {
                         {(formik) => (
                           <Form>
                          
-                            <div className=" row mx-1">
+                            <div className=" row mx-1 " style={{height: "200px" }}>
                               <div className="col-12">
-                                <Autocomplete
-                                onChange={(event, value) => formik.setFieldValue("vari",value)} 
-                                  sx={{ m: 1, width: 500 }}
-                                  multiple
-                                  style={{ backgroundColor: 'white'  }}                                                                
-                                  options={posts1}
-                                  getOptionLabel={(option) => option}
-                                  disableCloseOnSelect
-                          
-                                  renderInput={(params) => (
-                                    <TextField  
-                                      {...params}
-                                      name="vari"
-                                      value={formik.values.vari}
-                                      onChange={formik.handleChange}  
-                                      variant="outlined"
-                                      color="info"
-                                      label="Product Name"
-                                      placeholder="Product Name"
-                                    />
-                                  )}
-                                  renderOption={(
-                                    props,
-                                    option,
-                                    { selected }
-                                  ) => (
-                                    
-                                    <MenuItem
-                                      {...props}
-                                      key={option}
-                                      value={option}
-                                      sx={{ justifyContent: "space-between" }}
-                                    >
-                                      {option}
-                                      {selected ? (
-                                        <CheckIcon color="info" />
-                                      ) : null}
-                                    </MenuItem>
-                                  )}
-                                />
+                                <label>Product Name</label>
+                              <Multiselect
+                             placeholder="Product Name" 
+                            options={filters} // Options to display in the dropdown
+                            name="vari"
+                            onSelect={(selectedList, selectedItem) => {
+                              settags2(selectedList);
+                            }}
+                            onRemove={(selectedList, removedItem) => {
+                              settags2(selectedList);
+                            }}
+                            style={{ border: "1px solid #353957" , color:"white" }}
+                            displayValue="productname1" // Property name to display in the dropdown options
+                          />
 
                                 <ErrorMessage
                                   name="vari"
@@ -148,13 +124,15 @@ function Recom() {
                                   className="error"
                                 />
                               </div>
-                            </div>
-
-                            <input
+                          <div className="col-6 mx-0">
+                          <input
                               type="submit"
-                              className="btn mt-2 mx-4 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark"
+                              className="btn  mt-3 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark"
                               value="Submit"
                             />
+                            </div>
+                            </div>
+
                           </Form>
                         )}
                       </Formik>

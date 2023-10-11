@@ -35,7 +35,7 @@ function Deals() {
   const validate = yup.object({
     discount: yup.number().typeError("Only number").required("Required"),
     // type: yup.string().required("Required"),
-    vari: yup.array().min(1,"Atleast one Product").required("Required"),
+    vari: yup.array().required("Required"),
    
   });
  
@@ -93,10 +93,12 @@ function Deals() {
                             return null
                             
                           })
+                          if(tags2.length != 0 ){
                             try {
                               let data = await Dealsput(values);
+                              console.log(data)
                               
-                              if (data.status) {
+                              if (data.status == "200") {
                                 alert("SUCCESSFULL");
                                 window.location.reload()
                               } else {
@@ -105,6 +107,9 @@ function Deals() {
                             } catch (error) {
                               alert("error in promo", error);
                             }
+                          }else{
+                            alert("please select proper values")
+                          }
                             actions.resetForm();
                       
                           }}
@@ -112,15 +117,6 @@ function Deals() {
                       >
                         {(formik) => (
                           <Form>
-                           
-                            <div className="row mx-1 ">
-                             
-
-                           
-                            </div>
-
-
-
                               <div className=" row mx-1">
                               
                               <div className="col-12">

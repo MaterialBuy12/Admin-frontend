@@ -42,8 +42,6 @@ function Ratecharts() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Chart
-
-
                     </h4>
 
 
@@ -53,16 +51,10 @@ function Ratecharts() {
                     <div className="table-responsive">
                       <Formik
                         initialValues={{
-
                           csv: "",
                           url: ""
-
                         }}
-
-
-
                         onSubmit={async (values, actions) => {
-
                           Papa.parse(values.csv, {
                             complete: async (result) =>{
                               try {
@@ -81,38 +73,22 @@ function Ratecharts() {
                               alert(error)
                               }
                           }
-                        })
-                      
-                        
-                          
-                          actions.resetForm()
-
-
-
+                        })                  
+                        actions.resetForm()
                         }}
                         validationSchema={validate}
                       >
-
                         {formik => (
 
                           <Form onSubmit={formik.handleSubmit}>
-
-
-
-
                             <label>CSV Upload</label>
                             <input type="file" accept=".csv" onChange={(e) =>
                               formik.setFieldValue("csv", e.target.files[0])
                             } className={`form-control shadow-none mb-2 ${formik.touched.csv && formik.errors.csv && 'is-invalid'}`} name='csv' placeholder='Image' />
                             <ErrorMessage name='csv' className='error' component='div' />
-
                             <br />
-
-
-
                             <input type="submit" className='btn mt-2 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark' value="Upload" />
-
-
+                            <input type="submit" className='btn mt-2 rounded-3 w-20 mx-3 btn-lg btn-outline-secondary btn-dark' value="Download" />
                           </Form>
                         )}
                       </Formik>
