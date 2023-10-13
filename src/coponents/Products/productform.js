@@ -1,5 +1,5 @@
 import { React, useEffect, useState, useRef } from "react";
-import { Formik, Form, ErrorMessage, Field } from "formik";
+import { Formik, Form, ErrorMessage, Field, FieldArray } from "formik";
 import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
 import * as yup from "yup";
@@ -426,6 +426,16 @@ function ProductForm() {
                     free2: "",
                     free1: "",
                     actions1: false,
+                    variations:[
+                        {
+                          var12: "",
+                          var13: "",
+                          var14: "",
+                          var15: "",
+                          var16: "",
+                          var17: "",
+                        }
+                    ]
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
@@ -435,8 +445,6 @@ function ProductForm() {
                       let temp={"variant":hs[0],"value":hs[1]}
                       arr2.push(temp)                      
                     })
-                    values.tags=arr2
-                    values.vari=tags23
                     console.log("final",values)
                 
                       try {
@@ -573,9 +581,9 @@ function ProductForm() {
                       alert(error)
                       }
 
-                      if (values.actions1) {
+                      
                         actions.resetForm();
-                      }
+                      
                   }}
                 >
                   {(formik) => (
@@ -1173,100 +1181,7 @@ function ProductForm() {
                           />
                         </div>
                       </div>
-
-                      {/* variation type */}
-                      {/* <FieldArray name="variations">
-                        {({ push, pop }) => (
-                          <>
-                            {formik.values.variations?.map((p, index) => {
-                              return (
-                                <div key={index} className="row mt-2">
-                                  <div className="col-2 mt-2">
-                                    <Inputfielded
-                                      name={`variations[${index}].var12`}
-                                      value={p.var12}
-                                    />
-                                  </div>
-
-                                  <div className="col-2 mt-2">
-                                    <Inputfielded
-                                      name={`variations[${index}].var13`}
-                                      value={p.var13}
-                                    />
-                                  </div>
-
-                                  <div className="col-2 mt-2">
-                                    <Inputfielded
-                                      name={`variations[${index}].var14`}
-                                      value={p.var14}
-                                    />
-                                  </div>
-
-                                  <div className="col-2 mt-2">
-                                    <Inputfielded
-                                      name={`variations[${index}].var15`}
-                                      value={p.var15}
-                                    />
-                                  </div>
-
-                                  <div className="col-2 mt-2">
-                                    <Inputfielded
-                                      name={`variations[${index}].var16`}
-                                      value={p.var16}
-                                    />
-                                  </div>
-
-                                  <div className="col-2 mt-2">
-                                    <Inputfielded
-                                      name={`variations[${index}].var17`}
-                                      value={p.var17}
-                                    />
-                                  </div>
-                                </div>
-                              );
-                            })}
-                            <div className="d-grid gap-2 col-6 mx-auto text-center">
-                              <button
-                                type="button"
-                                className="btn btn-dark text-white border border-info  rounded m-3 btn-lg"
-                                onClick={() =>
-                                  push({
-                                    var12: "",
-                                    var13: "",
-                                    var14: "",
-                                    var15: "",
-                                    var16: "",
-                                    var17: "",
-                                  })
-                                }
-                              >
-                                +
-                              </button>
-
-                              {formik.values.variations.length > 1 ? (
-                                <button
-                                  type="button"
-                                  className="btn-dark text-white border border-info rounded m-3 btn-lg"
-                                  onClick={() =>
-                                    pop({
-                                      var12: "",
-                                      var13: "",
-                                      var14: "",
-                                      var15: "",
-                                      var16: "",
-                                      var17: "",
-                                    })
-                                  }
-                                >
-                                  -
-                                </button>
-                              ) : (
-                                <></>
-                              )}
-                            </div>
-                          </>
-                        )}
-                      </FieldArray> */}
+                     
 
                       <label className="mt-2">20. Rate Chart</label>
                       <div className="row mt-2">
@@ -1531,18 +1446,139 @@ function ProductForm() {
                           />
                         </div>
                       </div>
+                      {
+                        formik.values.actions1?
+                  
+                        <FieldArray name="variations">
+                        {({ push, pop }) => (
+                          <>
+                            {formik.values.variations?.map((p, index) => {
+                              return (
+                                <div key={index} className="row mt-2">
+                                  <div className="col-2 mt-2">
+                                    <Inputfielded
+                                      name={`variations[${index}].var12`}
+                                      value={p.var12}
+                                    />
+                                  </div>
+
+                                  <div className="col-2 mt-2">
+                                    <Inputfielded
+                                      name={`variations[${index}].var13`}
+                                      value={p.var13}
+                                    />
+                                  </div>
+
+                                  <div className="col-2 mt-2">
+                                    <Inputfielded
+                                      name={`variations[${index}].var14`}
+                                      value={p.var14}
+                                    />
+                                  </div>
+
+                                  <div className="col-2 mt-2">
+                                    <Inputfielded
+                                      name={`variations[${index}].var15`}
+                                      value={p.var15}
+                                    />
+                                  </div>
+
+                                  <div className="col-2 mt-2">
+                                    <Inputfielded
+                                      name={`variations[${index}].var16`}
+                                      value={p.var16}
+                                    />
+                                  </div>
+
+                                  <div className="col-2 mt-2">
+                                    <Inputfielded
+                                      name={`variations[${index}].var17`}
+                                      value={p.var17}
+                                    />
+                                  </div>
+                                </div>
+                              );
+                            })}
+                            <div className="d-grid gap-2 col-6 mx-auto text-center">
+                              <button
+                                type="button"
+                                className="btn btn-dark text-white border border-info  rounded m-3 btn-lg"
+                                onClick={() =>
+                                  push({
+                                    var12: "",
+                                    var13: "",
+                                    var14: "",
+                                    var15: "",
+                                    var16: "",
+                                    var17: "",
+                                  })
+                                }
+                              >
+                                +
+                              </button>
+
+                              {formik.values.variations.length > 1 ? (
+                                <button
+                                  type="button"
+                                  className="btn-dark text-white border border-info rounded m-3 btn-lg"
+                                  onClick={() =>
+                                    pop({
+                                      var12: "",
+                                      var13: "",
+                                      var14: "",
+                                      var15: "",
+                                      var16: "",
+                                      var17: "",
+                                    })
+                                  }
+                                >
+                                  -
+                                </button>
+                              ) : (
+                                <>
+                                 {/* <input
+                              type="button"
+                              // onClick={() =>
+                              //   {pop({
+                              //     var12: "",
+                              //     var13: "",
+                              //     var14: "",
+                              //     var15: "",
+                              //     var16: "",
+                              //     var17: "",
+                              //   })
+                              //   formik.setFieldValue("actions1", "false")}
+                              // }
+                              className="btn mt-0 rounded-3 w-20 mx-3 btn-lg btn-outline-secondary btn-dark"
+                              value="Cancel"
+                            /> */}
+                                
+                                </>
+                              )}
+                            </div>
+                          </>
+                        )}
+                      </FieldArray> 
+                        
+                        
+                        :<></>
+                      }
                       <div className="row">
+                        {
+                          formik.values.actions1?<></>:
+                          <input
+                              type="button"
+                              onClick={() =>
+                                formik.setFieldValue("actions1", "true")
+                              }
+                              className="btn mt-4 rounded-3 w-20 mx-3 btn-lg btn-outline-secondary btn-dark"
+                              value="create Variations"
+                            />
+                        }
+
                         <input
                           type="submit"
-                          className="btn mt-4 rounded-3 w-20 mx-3 btn-lg btn-outline-secondary btn-dark"
-                          value="Create variant"
-                        />
-                        <input
-                          type="submit"
-                          onClick={() =>
-                            formik.setFieldValue("actions1", "true")
-                          }
-                          className="btn mt-4 rounded-3 w-20 mx-3 btn-lg btn-outline-secondary btn-dark"
+                          className="btn mt-4 rounded-3 w-20 mx-5 btn-lg btn-outline-secondary btn-dark"
                           value="Submit"
                         />
                       </div>

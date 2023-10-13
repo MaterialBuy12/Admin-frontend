@@ -93,12 +93,12 @@ function Deals() {
                             return null
                             
                           })
-                          if(tags2.length != 0 ){
+                          if(tags2.length !== 0 ){
                             try {
                               let data = await Dealsput(values);
                               console.log(data)
                               
-                              if (data.status == "200") {
+                              if (data.status === "200") {
                                 alert("SUCCESSFULL");
                                 window.location.reload()
                               } else {

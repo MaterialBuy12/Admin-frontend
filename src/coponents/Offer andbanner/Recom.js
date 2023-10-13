@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../footer/Footer";
-import * as yup from "yup";
-import { TextField, Autocomplete } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
 import { Formik, Form, ErrorMessage } from "formik";
 
-import { Productget, Productname, Recomget, Recomput } from "../../services/api";
+import { Productget,  Recomget, Recomput } from "../../services/api";
 
-import {  MenuItem } from "@mui/material";
 import RecomPosts from "./RecomPosts";
 import Pagination from "../categories/categories/Pagination";
 import Multiselect from "multiselect-react-dropdown";
 
 function Recom() {
-  const [posts1, setposts1] = useState([]);
   const [filters,setfilters] = useState([])
   const [tags2, settags2] = useState([]);
   const [posts, setposts] = useState([]);
@@ -32,11 +27,9 @@ function Recom() {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   useEffect(() => {
-    async function data() {
-      let dat = await Productname();   
+    async function data() {  
       let resp = await Recomget();
       setposts(resp.data);
-      setposts1(dat[0]);
       let data1=await Productget()
       setfilters(data1.data)   
     }
@@ -72,12 +65,12 @@ function Recom() {
                           vari: [],
                         }}
                         onSubmit={async (values, actions) => {
-                         if(tags2.length != 0 ){
+                         if(tags2.length !== 0 ){
                           tags2.map((element,index)=>{
                             values.vari.push(element)
                             
                           })                       
-                        if(tags2.length != 0 ){
+                        if(tags2.length !== 0 ){
                           console.log("tags",tags2,values)
                           try {
                             let data = await Recomput(values);                          
