@@ -50,6 +50,8 @@ import UpdateCAtegory from "./Professional/UpdateCAtegory";
 import Prefabform from "./Prefab houses/Prefabform";
 import Sellerfrequencyupdate from "./Logistic/Sellerfrequencyupdate";
 import CSSDeals from "./Offer andbanner/CSSDeals";
+import AddVariants from "./Products/AddVariants";
+import Addvariantform from "./Products/Addvariantform";
 /* eslint-disable */
 function Sidebar() {
   return (
@@ -84,6 +86,7 @@ function Sidebar() {
           ></Route>
           <Route exact path="/update/cat/:id" element={<Updatecat />}></Route>
           <Route exact path="/update/sub/:id" element={<Updatesub />}></Route>
+          <Route exact path="/update/addvariant/:id" element={<Addvariantform />}></Route>
           <Route
             exact
             path="/update/pro/:id"
@@ -150,7 +153,7 @@ function Sidebar() {
           <Route exact path="/deals" element={<Deals />}></Route>
           <Route exact path="/recom" element={<Recom />}></Route>
           <Route exact path="/UI" element={<Prefabform />}></Route>
-          {/* <Route exact path="/addvariant" element={<Addvariation />}></Route> */}
+          <Route exact path="/addvariant" element={<AddVariants />}></Route>
           <Route
             exact
             path="/manageproduct"
@@ -282,6 +285,12 @@ function Sidebar() {
                       {" "}
                       <Link to="/filter" className="waves-effect">
                         <i className="fa-solid fa-filter"></i> &ensp; Filters
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link to="/addvariant" className="waves-effect">
+                        <i className="fa-solid fa-filter"></i> &ensp; Add Variants
                       </Link>
                     </li>
                   </ul>

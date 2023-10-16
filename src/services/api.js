@@ -214,6 +214,14 @@ export const Productname = async () => {
   alert(error)
   }
 };
+export const Productvariants = async (id,values ) => {
+  try {
+    let response = await axios.post(`${host}/api/products/addvariation/${id}`,values);
+    return response.data;
+  } catch (error) {
+  alert(error)
+  }
+};
 export const Productcount = async () => {
   try {
     let response = await axios.get(`${host}/api/products/count/productcount`);
