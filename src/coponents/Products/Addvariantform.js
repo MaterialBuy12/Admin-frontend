@@ -230,6 +230,7 @@ function Addvariantform() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
+                          console.log(id)
                           
                       try {
                         if (values.imgs1) {

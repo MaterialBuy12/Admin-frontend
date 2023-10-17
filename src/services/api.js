@@ -217,7 +217,7 @@ export const Productname = async () => {
 export const Productvariants = async (id,values ) => {
   try {
     let response = await axios.post(`${host}/api/products/addvariation/${id}`,values);
-    return response.data;
+    return response;
   } catch (error) {
   alert(error)
   }
