@@ -180,7 +180,6 @@ function Addvariantform() {
                         
                           subcategory: state.subcategory,
                           categoryid: state.categoryid,
-                          vari: [state.vari],
                           calculatorunit:state.calculatorunit,
                           tags:state.tags,
                         
@@ -212,8 +211,6 @@ function Addvariantform() {
                           vari12:'',
                           vari13:'',
                           vari14:'',
-
-                          variations:state.variations,
                           // new values 
                           description123: state.description123,
                     charges:state.charges,

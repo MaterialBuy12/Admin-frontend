@@ -932,9 +932,10 @@ export const Orderget = async () => {
   alert(error)
   }
 };
-export const orderput = async (id, values) => {
+export const orderput = async (user, id, values) => {
+  console.log(user,"api")
   try {
-    let reposnse = await axios.patch(`${host}/api/orders/${id}`, values);
+    let reposnse = await axios.patch(`${host}/api/orders/${user}/${id}`, values);
     return reposnse;
   } catch (error) {
   alert(error)
