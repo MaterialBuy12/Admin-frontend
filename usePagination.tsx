@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import { useMemo } from "react";
 
 const range = (start: number, end: number) => {
   let length = end - start + 1
