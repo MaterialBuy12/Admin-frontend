@@ -71,7 +71,7 @@ function Recom() {
                             
                           })                       
                         if(tags2.length !== 0 ){
-                          console.log("tags",tags2,values)
+                          console.log("tags",values)
                           try {
                             let data = await Recomput(values);                          
                             if (data.status === "200") {
@@ -84,8 +84,6 @@ function Recom() {
                             alert("error in promo", error);
                           }
                         }
-                         }else{
-                          alert(" product field cannot be empty")
                          }
                           actions.resetForm();
                        
@@ -95,7 +93,7 @@ function Recom() {
                           <Form>
                          
                             <div className=" row mx-1 " style={{height: "200px" }}>
-                              <div className="col-12">
+                              <div className="col">
                                 <label>Product Name</label>
                               <Multiselect
                              placeholder="Product Name" 
@@ -117,14 +115,13 @@ function Recom() {
                                   className="error"
                                 />
                               </div>
-                          <div className="col-6 mx-0">
+                         
+                            </div>
                           <input
                               type="submit"
-                              className="btn  mt-3 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark"
+                              className="btnrounded-3 w-20  btn-lg btn-outline-secondary btn-dark"
                               value="Submit"
                             />
-                            </div>
-                            </div>
 
                           </Form>
                         )}

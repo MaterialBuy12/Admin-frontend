@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Productdelete } from "../../services/api";
+
 function Addvariantsposts({ posts }) {
   return (
     <>

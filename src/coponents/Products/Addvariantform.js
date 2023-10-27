@@ -4,13 +4,12 @@ import TextField from "../categories/TextField";
 import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
 import * as yup from "yup";
-import Multiselect from "multiselect-react-dropdown";
+
 import {
   Filterget,
   getAllCategory,
   getAllSubCategory,
   ProductAget,
-  ProductAUpdate,
   Productvariants,
   SubSubgetCategory,
   

@@ -63,7 +63,7 @@ function Orders() {
                     setord(dat.data.data.orders);
                   }
                   else{
-                    let dat = await orderFilter(i.target.value);                  
+                    let dat = await orderFilter(i.target.value);              
                     setord(dat.data.data.orders);
                   }
                 }}

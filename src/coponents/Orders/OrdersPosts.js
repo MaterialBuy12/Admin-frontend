@@ -1,19 +1,10 @@
 import React from "react";
-import { normalusers, orderput } from "../../services/api";
+import { orderput } from "../../services/api";
 import useState from 'react-usestateref';
 import moment from 'moment'
 function OrdersPosts({ posts }) {
   const [sta, setsta] = useState("PENDING");
   const [details, setDetails] = useState([]);
-  const [cate, setcate] = useState([]);
-  const [subcate, setsubcate] = useState([]);
-  const [subsubcate, setsubsubcate] = useState([]);
-  const [skuid, setskuid] = useState([]);
-  const [discounted, setdiscounted] = useState([]);
-  const [emails, setemails] = useState([]);
-  const [mobile, setmobile] = useState([]);
-  const [shipping, setshipping] = useState([]);
-  const [billing, setbilling] = useState([]);
   const [orderDetails, setOrderDetails] = useState({});
   
   const handleSubmit = async (orders, productid) => {

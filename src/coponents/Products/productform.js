@@ -1,5 +1,5 @@
 import { React, useEffect, useState, useRef } from "react";
-import { Formik, Form, ErrorMessage, Field, FieldArray } from "formik";
+import { Formik, Form, ErrorMessage, Field } from "formik";
 import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
 import * as yup from "yup";
@@ -1074,7 +1074,7 @@ function ProductForm() {
                             <option defaultValue="">Select Category</option>
                             {state2 &&
                               state2.map((i, index) => {
-                                if (formik.values.categoryid === i.categoryname)
+                                if (formik.values.categoryid === i.categoryname && formik.values.subcategory === i.subsubcategory)
                                   return (
                                     <option value={i.subsubcategory}>
                                       {i.subsubcategory}
