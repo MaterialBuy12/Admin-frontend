@@ -169,7 +169,7 @@ function CSSDeals() {
                             <option defaultValue="" hidden className='invisible'>Select Category</option>
                             {state2 &&
                               state2.map((i, index) => {
-                                if (formik.values.category === i.categoryname)
+                                if (formik.values.category === i.categoryname  && formik.values.subcategory === i.subsubcategory)
                                   return (
                                     <option value={i.subsubcategory}>
                                       {i.subsubcategory}

@@ -1,12 +1,23 @@
 import React from 'react';
-import { deletefabs } from '../../services/api';
+import { closeenquiry, deleteenquiry, deletefabs } from '../../services/api';
 
 function Fabspots({ posts }) {
     const remove=async(i) =>{
         
-        let dat=await deletefabs(i._id)
+        let dat=await closeenquiry(i._id)
         if(dat.status){
-            alert(" DELETED",dat.data)
+            alert("Closed ",dat.data)
+            window.location.reload()
+        }else{
+            alert("Something went wrong")
+            window.location.reload()
+        }
+    }
+    const remove1 = async(i) =>{
+        
+        let dat=await deleteenquiry(i._id)
+        if(dat.status){
+            alert("DELETED ",dat.data)
             window.location.reload()
         }else{
             alert("Something went wrong")
@@ -22,11 +33,19 @@ function Fabspots({ posts }) {
 
                             <td><span>{index+1}</span></td>
                             <td><span>{i.name}</span></td>
-                            <td><span>{i.phoneno}</span></td>
+                            <td><span>{i.number}</span></td>
                             <td><span>{i.email}</span></td>
-                            <th> <button className='btn btn-danger m-2' onClick={(e) => {
+                            <th> { i.isOpen? <button className='btn btn-success m-2' onClick={(e) => {
                                 remove(i)
-                            }}>Remove</button></th>
+                            }}>Open</button>: <button className='btn btn-success m-2'>Close</button>
+
+                                }
+                                 <button className='btn btn-danger m-2' onClick={(e) => {
+                                remove1(i)
+                            }}>Delete</button>
+                           
+                            
+                            </th>
 
 
 

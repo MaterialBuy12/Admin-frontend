@@ -436,7 +436,7 @@ function ProductForm() {
                       let temp={"variant":hs[0],"value":hs[1]}
                       arr2.push(temp)                      
                     })
-                    console.log("final",values)
+
                 
                       try {
                         if (values.imgs1) {

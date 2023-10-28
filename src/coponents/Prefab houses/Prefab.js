@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getfabs } from "../../services/api";
+import { prefabbenquiry } from "../../services/api";
 import Footer from "../footer/Footer";
 // import { useNavigate } from "react-router-dom";
 import Fabspots from "./Fabspots";
@@ -25,7 +25,8 @@ function Prefab() {
   // eslint-disable-next-line
   useEffect(() => {
     async function data() {
-      let dat = await getfabs();
+      let dat = await prefabbenquiry();
+      console.log("dat",dat)
 
       setposts(dat.data);
     }

@@ -89,16 +89,14 @@ function Deals() {
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
                           tags2.map((element,index)=>{
-                            values.vari[index]=element.name
-                            return null
-                            
+                            values.vari[index]=element.productname1                            
                           })
                           if(tags2.length !== 0 ){
                             try {
                               let data = await Dealsput(values);
                               console.log(data)
                               
-                              if (data.status === "200") {
+                              if (data.status) {
                                 alert("SUCCESSFULL");
                                 window.location.reload()
                               } else {

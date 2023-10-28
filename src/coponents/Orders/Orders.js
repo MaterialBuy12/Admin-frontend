@@ -120,6 +120,7 @@ function Orders() {
                             <th scope="col">Sr no</th>
                             <th>Products</th>
                             <th scope="col">User Name</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Status</th>                       
                             <th scope="col" colSpan="5">

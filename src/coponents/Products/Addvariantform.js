@@ -12,6 +12,7 @@ import {
   ProductAget,
   Productvariants,
   SubSubgetCategory,
+  UploadFile,
   
 } from "../../services/api";
 import Footer from "../footer/Footer";
@@ -210,6 +211,11 @@ function Addvariantform() {
                           vari12:'',
                           vari13:'',
                           vari14:'',
+                          file1:"",
+                          file2:"",
+                          file3:"",
+                          file4:"",
+
                           // new values 
                           description123: state.description123,
                     charges:state.charges,
@@ -276,6 +282,69 @@ function Addvariantform() {
                       } catch (error) {
                       alert(error)
                       }
+
+                      try {
+                        if (values.file1) {
+                          const data = new FormData();
+                          data.append("name", values.file1.name);
+                          data.append("file", values.file1);
+                          let img = await UploadFile(data);
+
+                          values.file1 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.file1) {
+                          const data = new FormData();
+                          data.append("name", values.file1.name);
+                          data.append("file", values.file1);
+                          let img = await UploadFile(data);
+
+                          values.file1 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.file2) {
+                          const data = new FormData();
+                          data.append("name", values.file2.name);
+                          data.append("file", values.file2);
+                          let img = await UploadFile(data);
+
+                          values.file2 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.file3) {
+                          const data = new FormData();
+                          data.append("name", values.file3.name);
+                          data.append("file", values.file3);
+                          let img = await UploadFile(data);
+
+                          values.file3 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+                      try {
+                        if (values.file4) {
+                          const data = new FormData();
+                          data.append("name", values.file4.name);
+                          data.append("file", values.file4);
+                          let img = await UploadFile(data);
+
+                          values.file4 = img.data;
+                        }
+                      } catch (error) {
+                      alert(error)
+                      }
+
+
                           try {
                             let response = await Productvariants(id,values);
                             console.log(response)
@@ -840,24 +909,27 @@ function Addvariantform() {
                             name="vari11"
                           />
                         </div>
-                        <div className="col-3  mt-2">
+                        {formik.values.vari2?<div className="col-3  mt-2">
                           <TextField
                             label={formik.values.vari2 }
                             name="vari12"
                           />
-                        </div>
-                        <div className="col-3  mt-2">
+                        </div>:''}
+                        {
+                          formik.values.vari3? <div className="col-3  mt-2">
                           <TextField
                             label={formik.values.vari3 }
                             name="vari13"
                           />
-                        </div>
-                        <div className="col-3  mt-2">
+                        </div>:""
+                        }
+                       {formik.values.vari4?   <div className="col-3  mt-2">
                           <TextField
                             label={formik.values.vari4}
                             name="vari14"
                           />
-                        </div>
+                        </div>:''}
+                     
                       </div>     
 
                       
@@ -1035,7 +1107,98 @@ function Addvariantform() {
                             className="error"
                           />
                         </div>
-                      </div>     
+                      </div> 
+                         {/* file upload  */}
+                         <div className="row mt-3">
+                        <div className="col-3">
+                          <label>22A. File</label>
+                          <input
+                            type="file"
+                            accept=".pdf"
+                            className={`form-control shadow-none ${
+                              formik.touched.file1 &&
+                              formik.errors.file1 &&
+                              "is-invalid"
+                            }`}
+                            name="file1"
+                            placeholder="Image"
+                            onChange={(e) =>
+                              formik.setFieldValue("file1", e.target.files[0])
+                            }
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="file1"
+                            className="error"
+                          />
+                        </div>
+                        <div className="col-3 ">
+                          <label>22B. File</label>
+                          <input
+                            type="file"
+                            accept=".pdf"
+                            className={`form-control shadow-none ${
+                              formik.touched.file2 &&
+                              formik.errors.file2 &&
+                              "is-invalid"
+                            }`}
+                            name="file2"
+                            placeholder="Image"
+                            onChange={(e) =>
+                              formik.setFieldValue("file2", e.target.files[0])
+                            }
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="file2"
+                            className="error"
+                          />
+                        </div>
+                        <div className="col-3 ">
+                          <label>22C. File</label>
+                          <input
+                            type="file"
+                            accept=".pdf"
+                            className={`form-control shadow-none ${
+                              formik.touched.file3 &&
+                              formik.errors.file3 &&
+                              "is-invalid"
+                            }`}
+                            name="img"
+                            placeholder="Image"
+                            onChange={(e) =>
+                              formik.setFieldValue("file3", e.target.files[0])
+                            }
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="file3"
+                            className="error"
+                          />
+                        </div>
+                        <div className="col-3 ">
+                          <label>22D. File</label>
+                          <input
+                            type="file"
+                            accept="/.pdf"
+                            className={`form-control shadow-none ${
+                              formik.touched.file4 &&
+                              formik.errors.file4 &&
+                              "is-invalid"
+                            }`}
+                            name="img"
+                            placeholder="Image"
+                            onChange={(e) =>
+                              formik.setFieldValue("file4", e.target.files[0])
+                            }
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="file4"
+                            className="error"
+                          />
+                        </div>
+                      </div>    
     
                       <input
                             type="submit"

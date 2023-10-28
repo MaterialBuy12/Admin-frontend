@@ -521,6 +521,30 @@ export const warehousefilter = async (values) => {
   alert(error)
   }
 };
+export const subcategoryfilter = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/subcategories?subcategory=${values}`);
+    return response;
+  } catch (error) {
+  alert(error)
+  }
+};
+export const categoryfilter = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/categories?category=${values}`);
+    return response;
+  } catch (error) {
+  alert(error)
+  }
+};
+export const subsubcategoryfilter = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/subsubcategories?subsubcategory=${values}`);
+    return response;
+  } catch (error) {
+  alert(error)
+  }
+};
 export const corporatefilter = async (values) => {
   try {
     let response = await axios.get(`${host}/api/users/corporateusers?email=${values}`);
@@ -627,6 +651,12 @@ export const vendorupdated = async (id, values) => {
 export const vendordeleted = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/vendors/${id}`);
+    return response;
+  } catch (error) {}
+};
+export const vendorget = async (id) => {
+  try {
+    let response = await axios.get(`${host}/api/vendors/651e852ec38d000033c86b02`);
     return response;
   } catch (error) {}
 };
@@ -863,6 +893,22 @@ export const deletefabs = async (id) => {
   alert(error)
   }
 };
+export const closeenquiry = async (id) => {
+  try {
+    let reposnse = await axios.put(`${host}/api/prefabbenquiry/${id}`);
+    return reposnse;
+  } catch (error) {
+  alert(error)
+  }
+};
+export const deleteenquiry = async (id) => {
+  try {
+    let reposnse = await axios.delete(`${host}/api/prefabbenquiry/${id}`);
+    return reposnse;
+  } catch (error) {
+  alert(error)
+  }
+};
 
 // product Page
 // Quatation
@@ -1067,4 +1113,21 @@ export const frieghtrate = async (values) => {
   } catch (error) {
   alert(error)
   }
+};
+export const prefabbenquiry = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/prefabbenquiry/`);
+    return response;
+  } catch (error) {
+  alert(error)
+  }
+};
+export const downloadget = async () => {
+  const response = await fetch(`${host1}/api/ratechart`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'text/csv', // Set the content type to CSV
+    },
+  });
+  return response
 };

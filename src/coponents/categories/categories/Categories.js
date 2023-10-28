@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllCategory } from "../../../services/api";
+import { categoryfilter, getAllCategory } from "../../../services/api";
 import Footer from "../../footer/Footer";
 import Catepost from "./catepost";
 import Pagination from "./Pagination";
@@ -21,7 +21,7 @@ function Categories() {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  const [searchedvalue,setsearchedvalue]=useState("")
   // eslint-disable-next-line
   useEffect(() => {
     async function data() {
@@ -73,6 +73,34 @@ function Categories() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Category</h4>
+                    <form class="d-flex mb-2 " style={{width:"30%"}} role="search">
+                      
+                      <div className="btn-group">
+                      <input class="form-control  mx-2  btn-close" type="search" value={searchedvalue} placeholder="Search category" onChange={(e)=>{
+                        setsearchedvalue(e.target.value)
+                      }} aria-label="Search Email" />
+                         <button type="button" class="btn bg-transparent" style={{left:"-43px"}}  onClick={async()=>{
+                         let dat = await getAllCategory();
+                         setposts(dat);   
+                          setsearchedvalue("")                         
+                        
+                       }}>
+                        <i class="fa fa-times" style={{color:"white"}}></i>
+                       </button>
+                      <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
+                        e.preventDefault()
+                       if(searchedvalue){
+                        let dat = await categoryfilter(searchedvalue);   
+                        console.log(dat,"category")     
+                           
+                        setposts(dat.data);
+                       }else{
+                        let dat = await getAllCategory();
+                        setposts(dat);
+                       }
+                      }}>Search</button>
+                      </div>
+                    </form>
 
                     <div className="table-responsive">
                       <table className="table table-hover">

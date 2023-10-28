@@ -4,7 +4,6 @@ import useState from 'react-usestateref';
 import moment from 'moment'
 function OrdersPosts({ posts }) {
   const [sta, setsta] = useState("PENDING");
-  const [details, setDetails] = useState([]);
   const [orderDetails, setOrderDetails] = useState({});
   
   const handleSubmit = async (orders, productid) => {
@@ -16,8 +15,6 @@ function OrdersPosts({ posts }) {
   };
 
   const detailsChangeHanlder =  (p, i) => {
-    console.log(p, "P");
-    console.log(i, "i");
     setOrderDetails({
       category: p.categoryid,
       scategory: p.subcategory,
@@ -31,7 +28,7 @@ function OrdersPosts({ posts }) {
       shippingaddress: i.order.address,
     });
   }
-
+console.log(posts)
   return (
     <>
       {posts &&
@@ -55,6 +52,25 @@ function OrdersPosts({ posts }) {
                     });
 
                     return userName;
+                  })()}
+                </th>
+                <th>
+                {(() => {
+                    let quantity;
+                    const status = i.order.products.map((prod) => {
+                      if (prod.vairanceid) {
+                        if (prod.vairanceid === p._id) {
+                          quantity = prod.quantity;
+                        }
+                      }
+                      if (prod.productid === p._id) {
+                        quantity = prod.quantity;
+                      }
+                    });
+
+              
+
+                    return quantity;
                   })()}
                 </th>
                 <th>
@@ -108,7 +124,8 @@ function OrdersPosts({ posts }) {
 
                 <th>
                   <button className="btn btn-success">
-                    {(() => {
+                    {
+                    (() => {
                       let newstatus;
                       const status = i.order.products.map((prod) => {
                         if (prod.vairanceid) {
@@ -124,7 +141,8 @@ function OrdersPosts({ posts }) {
                       });
                       // console.log(newstatus, "gh");
                       return newstatus;
-                    })()}
+                    })()
+                    }
                   </button>
                 </th>
 
@@ -174,7 +192,7 @@ function OrdersPosts({ posts }) {
                     <div className="modal-dialog">
                       <div className="modal-content">
                         <div className="modal-header">
-                          <h5>{details}</h5>
+                          <h5>{p.productname1}</h5>
 
                           <button
                             type="button"
@@ -198,17 +216,6 @@ function OrdersPosts({ posts }) {
                           <br />
                           <label>
                             Email :
-                            {/* {(() => {
-                              let email;
-                              const user = i.order.user;
-                              i.user.map((usernames) => {
-                                if (user === usernames._id) {
-                                  email = usernames.email;
-                                  return;
-                                }
-                              });
-                              return email;
-                            })()} */}
                             {orderDetails.emailid}
                           </label>
                           <br />

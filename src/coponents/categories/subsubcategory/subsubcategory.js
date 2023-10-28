@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react";
 import Pagination from "../categories/Pagination";
 import { Link } from "react-router-dom";
-import {  SubSubgetCategory } from "../../../services/api";
+import {  SubSubgetCategory, subsubcategoryfilter } from "../../../services/api";
 import Footer from "../../footer/Footer";
 import Subsubposts from "./Subsubposts";
 function SubSubCategory() {
@@ -20,7 +20,7 @@ function SubSubCategory() {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  const [searchedvalue,setsearchedvalue]=useState("")
   useEffect(() => {
     async function data() {
       let dat=await SubSubgetCategory()
@@ -72,6 +72,33 @@ function SubSubCategory() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Sub sub Category</h4>
+                    <form class="d-flex mb-2 " style={{width:"30%"}} role="search">
+                      
+                      <div className="btn-group">
+                      <input class="form-control  mx-2  btn-close" type="search" value={searchedvalue} placeholder="Search sub sub category" onChange={(e)=>{
+                        setsearchedvalue(e.target.value)
+                      }} aria-label="Search Email" />
+                         <button type="button" class="btn bg-transparent" style={{left:"-43px"}}  onClick={async()=>{
+                         let dat = await SubSubgetCategory();
+                         setposts(dat);   
+                          setsearchedvalue("")                         
+                        
+                       }}>
+                        <i class="fa fa-times" style={{color:"white"}}></i>
+                       </button>
+                      <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
+                        e.preventDefault()
+                       if(searchedvalue){
+                        let dat = await subsubcategoryfilter(searchedvalue);        
+                           
+                        setposts(dat.data);
+                       }else{
+                        let dat = await SubSubgetCategory();
+                        setposts(dat);
+                       }
+                      }}>Search</button>
+                      </div>
+                    </form>
                     <div className="table-responsive">
                       <table className="table table-hover">
                         <thead>

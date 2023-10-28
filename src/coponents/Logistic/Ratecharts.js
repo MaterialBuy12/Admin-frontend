@@ -2,10 +2,28 @@ import React from 'react';
 import Footer from '../footer/Footer';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { Rate } from '../../services/api';
+import { Rate, downloadget } from '../../services/api';
 import   Papa from 'papaparse'
 function Ratecharts() {
-
+ const download = async () =>{
+  console.log("hii")
+  try{ const response = await downloadget(); // Replace with your server's API endpoint
+  if (response.ok) {
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'data.csv';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  } else {
+    console.error('Failed to download CSV');
+  }
+} catch (error) {
+  console.error('Error:', error);
+}
+ }
   const validate = yup.object({
 
     csv: yup
@@ -88,14 +106,15 @@ function Ratecharts() {
                             <ErrorMessage name='csv' className='error' component='div' />
                             <br />
                             <input type="submit" className='btn mt-2 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark' value="Upload" />
-                            <input type="submit" className='btn mt-2 rounded-3 w-20 mx-3 btn-lg btn-outline-secondary btn-dark' value="Download" />
                           </Form>
                         )}
                       </Formik>
+                        <button type="button"  className='btn mt-2 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark' onClick={download} >Download</button>
 
                     </div>
 
                   </div>
+                     
                 </div>
               </div>
             </div>

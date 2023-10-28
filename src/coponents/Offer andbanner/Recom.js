@@ -67,14 +67,14 @@ function Recom() {
                         onSubmit={async (values, actions) => {
                          if(tags2.length !== 0 ){
                           tags2.map((element,index)=>{
-                            values.vari.push(element)
+                            values.vari.push(element.productname1)
                             
                           })                       
                         if(tags2.length !== 0 ){
                           console.log("tags",values)
                           try {
                             let data = await Recomput(values);                          
-                            if (data.status === "200") {
+                            if (data.status) {
                               alert("SUCCESSFULL");
                               window.location.reload();
                             } else {
