@@ -38,7 +38,7 @@ function Transporters() {
 
   const validate = yup.object({
     name: yup.string().required("Required"),
-    gst: yup.number().required("Required"),
+    gst: yup.string().required("Required"),
     mobileno: yup.string().required("Required").phone("INDIA", true),
     emailid: yup.string().required("required").email("Invalid Email"),
 

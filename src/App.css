@@ -7,7 +7,9 @@
     background: #2e304a;
 }
 
-
+.modal-body__content{
+    width: 100%;
+}
 
 .multiSelectContainer input {
     color: #a5a6ad;

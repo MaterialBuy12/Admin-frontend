@@ -64,7 +64,7 @@ function TransportersPosts({posts}) {
                           ></button>
                         </div>
                         <div className="modal-body">
-                          <label> {transport.rate}</label>
+                          <label className='modal-body__content'> {transport.rate}</label>
                           <br />
                      
                         </div>

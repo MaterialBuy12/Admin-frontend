@@ -1,5 +1,5 @@
 import React from 'react';
-import { closeenquiry, deleteenquiry, deletefabs } from '../../services/api';
+import { closeenquiry, deleteenquiry } from '../../services/api';
 
 function Fabspots({ posts }) {
     const remove=async(i) =>{
