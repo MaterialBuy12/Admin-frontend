@@ -24,16 +24,15 @@ function Requestvendorposts({ posts }) {
 
   return (
     <>
-      
       {posts &&
-        posts.map((i,index) => {
+        posts.map((i, index) => {
           if (i.approved) {
             return 0;
           }
           return (
             <tr key={i._id}>
               <td>
-                <span>{index+1}</span>
+                <span>{index + 1}</span>
               </td>
               <td>
                 <span>{i.name}</span>
@@ -43,6 +42,9 @@ function Requestvendorposts({ posts }) {
               </td>
               <td>
                 <span>{i.mobileno}</span>
+              </td>
+              <td>
+                <span>{i.pincode}</span>
               </td>
               <td>
                 <span>{i.gst}</span>

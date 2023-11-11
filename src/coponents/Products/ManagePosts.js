@@ -2,17 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Productdelete } from "../../services/api";
 function ManagePosts({ posts }) {
-  const remove=async(i) =>{
-        
-    let dat=await Productdelete(i._id)
-    if(dat.status){
-        alert(" DELETED",dat.data)
-        window.location.reload()
-    }else{
-        alert("Something went wrong")
-        window.location.reload()
+  const remove = async (i) => {
+    let dat = await Productdelete(i._id);
+    if (dat.status) {
+      alert(" DELETED", dat.data);
+      window.location.reload();
+    } else {
+      alert("Something went wrong");
+      window.location.reload();
     }
-}
+  };
   return (
     <>
       {posts &&

@@ -25,8 +25,7 @@ function Filter() {
   useEffect(() => {
     async function data() {
       let dat = await Filterget();
-    
-    
+
       setposts(dat.data);
     }
     data();
@@ -52,7 +51,7 @@ function Filter() {
             <div className="col-xl-12">
               <div className="card m-b-30">
                 <div className="card-body">
-                  <h4 className="mt-0 header-title mb-4">Filter  List</h4>
+                  <h4 className="mt-0 header-title mb-4">Filter List</h4>
 
                   <div className="table-responsive">
                     <table className="table table-hover">

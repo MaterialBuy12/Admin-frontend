@@ -38,7 +38,7 @@ function AddProfe() {
     }
     async function data1() {
       let dat = await profget();
-     
+
       setposts(dat);
     }
     data();
@@ -55,8 +55,7 @@ function AddProfe() {
     img: yup.mixed().nullable().required("Required"),
     img2: yup.mixed().nullable(),
     img3: yup.mixed().nullable(),
-    img4: yup.mixed().nullable()
-   
+    img4: yup.mixed().nullable(),
   });
   return (
     <>
@@ -89,13 +88,12 @@ function AddProfe() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                          console.log("profe",values)
                           try {
                             if (values.img) {
                               const data = new FormData();
                               data.append("name", values.img.name);
                               data.append("file", values.img);
-                            
+
                               const image = await UploadFile(data);
 
                               values.img = image.data;
@@ -112,7 +110,7 @@ function AddProfe() {
                               const data = new FormData();
                               data.append("name", values.img2.name);
                               data.append("file", values.img2);
-                        
+
                               const image = await UploadFile(data);
 
                               values.img2 = image.data;
@@ -129,7 +127,7 @@ function AddProfe() {
                               const data = new FormData();
                               data.append("name", values.img3.name);
                               data.append("file", values.img3);
-                        
+
                               const image = await UploadFile(data);
 
                               values.img3 = image.data;
@@ -165,7 +163,7 @@ function AddProfe() {
                               alert("something went wrong");
                             }
                           } catch (error) {
-                          alert(error)
+                            alert(error);
                           }
 
                           actions.resetForm();
@@ -174,7 +172,6 @@ function AddProfe() {
                         {(formik) => (
                           <Form>
                             {/* 1st row  */}
-                            {console.log(formik.errors,"formik")}
                             <TextField label="Name" name="name" />
 
                             <div className="row mt-2">
@@ -243,10 +240,7 @@ function AddProfe() {
                               className="error"
                             />
 
-
-
-
-<input
+                            <input
                               type="file"
                               accept="image/*"
                               className={`form-control mt-3 shadow-none ${
@@ -266,8 +260,7 @@ function AddProfe() {
                               className="error"
                             />
 
-
-<input
+                            <input
                               type="file"
                               accept="image/*"
                               className={`form-control mt-3 shadow-none ${
@@ -287,7 +280,7 @@ function AddProfe() {
                               className="error"
                             />
 
-<input
+                            <input
                               type="file"
                               accept="image/*"
                               className={`form-control mt-3 shadow-none ${
@@ -345,7 +338,7 @@ function AddProfe() {
                             <th scope="col">Image</th>
                             <th scope="col">Email</th>
                             <th scope="col">Status</th>
-                            <th >Action</th>
+                            <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>

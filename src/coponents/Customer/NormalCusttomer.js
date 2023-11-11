@@ -8,7 +8,7 @@ function NormalCusttomer() {
   const [posts, setposts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(25);
-const [searchedvalue,setsearchedvalue]=useState("")
+  const [searchedvalue, setsearchedvalue] = useState("");
   // total no of pages
   const Totalpages = Math.ceil(posts.length / postsPerPage);
   const pages = [...Array(Totalpages + 1).keys()].slice(1);
@@ -24,7 +24,6 @@ const [searchedvalue,setsearchedvalue]=useState("")
   useEffect(() => {
     async function data() {
       let dat = await normalusers();
-     
 
       setposts(dat.data);
     }
@@ -33,19 +32,24 @@ const [searchedvalue,setsearchedvalue]=useState("")
   }, []);
   return (
     <>
-    {localStorage.getItem("token")?<>  <div className="content-page">
-        <div className="content">
-          <div className="container-fluid">
-            <div className="page-title-box">
-              <div className="row align-items-center"></div>
-            </div>
+      {localStorage.getItem("token") ? (
+        <>
+          {" "}
+          <div className="content-page">
+            <div className="content">
+              <div className="container-fluid">
+                <div className="page-title-box">
+                  <div className="row align-items-center"></div>
+                </div>
 
-            <div className="row">
-              <div className="col-xl-12">
-                <div className="card m-b-30">
-                  <div className="card-body">
-                    <h4 className="mt-0 header-title mb-4">Normal User List</h4>
-                    <form
+                <div className="row">
+                  <div className="col-xl-12">
+                    <div className="card m-b-30">
+                      <div className="card-body">
+                        <h4 className="mt-0 header-title mb-4">
+                          Normal User List
+                        </h4>
+                        <form
                           class="d-flex mb-2 "
                           style={{ width: "30%" }}
                           role="search"
@@ -61,14 +65,21 @@ const [searchedvalue,setsearchedvalue]=useState("")
                               }}
                               aria-label="Search"
                             />
-                              <button type="button" class="btn bg-transparent" style={{left:"-43px"}}  onClick={async()=>{
-                                setsearchedvalue("")                         
+                            <button
+                              type="button"
+                              class="btn bg-transparent"
+                              style={{ left: "-43px" }}
+                              onClick={async () => {
+                                setsearchedvalue("");
                                 let dat = await normalusers();
                                 setposts(dat.data);
-                       }}>
-      <i class="fa fa-times" style={{color:"white"}}></i>
-    </button>
-
+                              }}
+                            >
+                              <i
+                                class="fa fa-times"
+                                style={{ color: "white" }}
+                              ></i>
+                            </button>
 
                             <button
                               class="btn btn-outline-dark btn-dark text-white"
@@ -76,10 +87,7 @@ const [searchedvalue,setsearchedvalue]=useState("")
                               onClick={async (e) => {
                                 e.preventDefault();
                                 if (searchedvalue) {
-                                  let dat = await normalfilter(
-                                    searchedvalue
-                                  );
-                                 
+                                  let dat = await normalfilter(searchedvalue);
 
                                   setposts(dat.data.data);
                                 } else {
@@ -92,41 +100,45 @@ const [searchedvalue,setsearchedvalue]=useState("")
                             </button>
                           </div>
                         </form>
-                    <div className="table-responsive">
-                      <table className="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">Sr No.</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Mobile no</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">GST</th>
-                            <th scope="col">Billing Address</th>
-                            <th scope="col">Shipping Address</th>
+                        <div className="table-responsive">
+                          <table className="table table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">Sr No.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Mobile no</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">GST</th>
+                                <th scope="col">Billing Address</th>
+                                <th scope="col">Shipping Address</th>
 
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <NormalPost posts={currentPosts} />
-                        </tbody>
-                      </table>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <NormalPost posts={currentPosts} />
+                            </tbody>
+                          </table>
+                        </div>
+                        <Pagination
+                          postsPerPage={postsPerPage}
+                          totalPosts={Totalpages}
+                          paginate={paginate}
+                          currentPage={currentPage}
+                          pageNumbers={pages}
+                        />
+                      </div>
                     </div>
-                    <Pagination
-                      postsPerPage={postsPerPage}
-                      totalPosts={Totalpages}
-                      paginate={paginate}
-                      currentPage={currentPage}
-                      pageNumbers={pages}
-                    />
                   </div>
                 </div>
               </div>
             </div>
+            <Footer />
           </div>
-        </div>
-        <Footer />
-      </div></>:window.location.href="/"}
+        </>
+      ) : (
+        (window.location.href = "/")
+      )}
     </>
   );
 }

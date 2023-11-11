@@ -2,24 +2,14 @@ import { React, useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import TextField from "../TextField";
 import * as yup from "yup";
-import {
-  getAllCategory,
-  SubCategory,
-  
-  UploadFile,
-} from "../../../services/api";
+import { getAllCategory, SubCategory, UploadFile } from "../../../services/api";
 /* eslint-disable */
 function AddSubCategoryform() {
   const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
   const validate = yup.object({
     categoryid: yup.string().required("Required"),
     subcategory: yup.string().required("Required"),
-    subcategoryimg: yup
-      .mixed()
-      .nullable()
-      .required("!Required")
-     
-     
+    subcategoryimg: yup.mixed().nullable().required("!Required"),
   });
   const [state, setstate] = useState([]);
   useEffect(() => {
@@ -46,7 +36,6 @@ function AddSubCategoryform() {
                     subcategoryimg: "",
                   }}
                   onSubmit={async (values, actions) => {
-                   
                     try {
                       if (values.subcategoryimg) {
                         const data = new FormData();

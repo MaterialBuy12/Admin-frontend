@@ -13,7 +13,6 @@ function Profeposyts({ posts }) {
     }
   };
   const remove = async (i) => {
-
     let dat = await professionaldeleted(i._id);
     if (dat.status) {
       alert("PROFESSIONAL DELETED", dat.data);
@@ -26,17 +25,16 @@ function Profeposyts({ posts }) {
   return (
     <>
       {posts &&
-        posts?.map((i,index) => (
+        posts?.map((i, index) => (
           <tr key={i._id}>
-            <th> {index+1}</th>
+            <th> {index + 1}</th>
             <th> {i.name}</th>
-            
+
             <th> {i.cat}</th>
             <th> {i.city}</th>
             <th> {i.phone}</th>
             <th> {i.expr}</th>
             <th>
-        
               <img
                 target="_blank"
                 alt="..."
@@ -46,7 +44,6 @@ function Profeposyts({ posts }) {
               ></img>
             </th>
             <th>
-        
               <img
                 target="_blank"
                 alt="..."
@@ -56,7 +53,6 @@ function Profeposyts({ posts }) {
               ></img>
             </th>
             <th>
-        
               <img
                 target="_blank"
                 alt="..."
@@ -66,7 +62,6 @@ function Profeposyts({ posts }) {
               ></img>
             </th>
             <th>
-        
               <img
                 target="_blank"
                 alt="..."

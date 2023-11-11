@@ -24,11 +24,8 @@ function FilterForm() {
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
-                
                     try {
                       let dataresponse = await FilterPost(values);
-                    
-                      
 
                       if (!dataresponse.status) {
                         alert("something went wrong", dataresponse);

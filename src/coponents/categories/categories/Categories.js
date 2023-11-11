@@ -21,7 +21,7 @@ function Categories() {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const [searchedvalue,setsearchedvalue]=useState("")
+  const [searchedvalue, setsearchedvalue] = useState("");
   // eslint-disable-next-line
   useEffect(() => {
     async function data() {
@@ -34,105 +34,133 @@ function Categories() {
 
   return (
     <>
-   {localStorage.getItem("token")?<>   <div className="content-page">
-        <div className="content">
-          <div className="container-fluid">
-            <div className="page-title-box">
-              <div className="row align-items-center">
-                <div className="col-sm-6">
-                  <h4 className="page-title">Categories</h4>
-                </div>
-                <div className="col-sm-6">
-                  <ol className="breadcrumb float-right">
-                    <li className="breadcrumb-item">
-                      <Link to="/">materialbuy</Link>
-                    </li>
-                    <li className="breadcrumb-item active">
-                      <Link to="/categories">Categories</Link>
-                    </li>
-                  </ol>
-                </div>
-              </div>
-            </div>
-
-            <div className="row d-md-flex justify-content-md-end ">
-              <div className="col-sm-6">
-                <h4 className="page-title">Categories</h4>
-              </div>
-              <div className="col-sm-6 d-md-flex justify-content-md-end">
-                <Link to="/addcategories">
-                  <button className="btn btn-secondary rounded-pill mb-3">
-                    Add Categories
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-xl-12">
-                <div className="card m-b-30">
-                  <div className="card-body">
-                    <h4 className="mt-0 header-title mb-4">Category</h4>
-                    <form class="d-flex mb-2 " style={{width:"30%"}} role="search">
-                      
-                      <div className="btn-group">
-                      <input class="form-control  mx-2  btn-close" type="search" value={searchedvalue} placeholder="Search category" onChange={(e)=>{
-                        setsearchedvalue(e.target.value)
-                      }} aria-label="Search Email" />
-                         <button type="button" class="btn bg-transparent" style={{left:"-43px"}}  onClick={async()=>{
-                         let dat = await getAllCategory();
-                         setposts(dat);   
-                          setsearchedvalue("")                         
-                        
-                       }}>
-                        <i class="fa fa-times" style={{color:"white"}}></i>
-                       </button>
-                      <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
-                        e.preventDefault()
-                       if(searchedvalue){
-                        let dat = await categoryfilter(searchedvalue);   
-                        console.log(dat,"category")     
-                           
-                        setposts(dat.data);
-                       }else{
-                        let dat = await getAllCategory();
-                        setposts(dat);
-                       }
-                      }}>Search</button>
-                      </div>
-                    </form>
-
-                    <div className="table-responsive">
-                      <table className="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">Category Name</th>
-                            <th scope="col">Image</th>
-
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <Catepost posts={currentPosts} />
-                        </tbody>
-                      </table>
+      {localStorage.getItem("token") ? (
+        <>
+          {" "}
+          <div className="content-page">
+            <div className="content">
+              <div className="container-fluid">
+                <div className="page-title-box">
+                  <div className="row align-items-center">
+                    <div className="col-sm-6">
+                      <h4 className="page-title">Categories</h4>
                     </div>
-                    <Pagination
-                      postsPerPage={postsPerPage}
-                      totalPosts={Totalpages}
-                      paginate={paginate}
-                      currentPage={currentPage}
-                      pageNumbers={pages}
-                    />
+                    <div className="col-sm-6">
+                      <ol className="breadcrumb float-right">
+                        <li className="breadcrumb-item">
+                          <Link to="/">materialbuy</Link>
+                        </li>
+                        <li className="breadcrumb-item active">
+                          <Link to="/categories">Categories</Link>
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row d-md-flex justify-content-md-end ">
+                  <div className="col-sm-6">
+                    <h4 className="page-title">Categories</h4>
+                  </div>
+                  <div className="col-sm-6 d-md-flex justify-content-md-end">
+                    <Link to="/addcategories">
+                      <button className="btn btn-secondary rounded-pill mb-3">
+                        Add Categories
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-xl-12">
+                    <div className="card m-b-30">
+                      <div className="card-body">
+                        <h4 className="mt-0 header-title mb-4">Category</h4>
+                        <form
+                          class="d-flex mb-2 "
+                          style={{ width: "30%" }}
+                          role="search"
+                        >
+                          <div className="btn-group">
+                            <input
+                              class="form-control  mx-2  btn-close"
+                              type="search"
+                              value={searchedvalue}
+                              placeholder="Search category"
+                              onChange={(e) => {
+                                setsearchedvalue(e.target.value);
+                              }}
+                              aria-label="Search Email"
+                            />
+                            <button
+                              type="button"
+                              class="btn bg-transparent"
+                              style={{ left: "-43px" }}
+                              onClick={async () => {
+                                let dat = await getAllCategory();
+                                setposts(dat);
+                                setsearchedvalue("");
+                              }}
+                            >
+                              <i
+                                class="fa fa-times"
+                                style={{ color: "white" }}
+                              ></i>
+                            </button>
+                            <button
+                              class="btn btn-outline-dark btn-dark text-white"
+                              type="submit"
+                              onClick={async (e) => {
+                                e.preventDefault();
+                                if (searchedvalue) {
+                                  let dat = await categoryfilter(searchedvalue);
+                                  setposts(dat.data);
+                                } else {
+                                  let dat = await getAllCategory();
+                                  setposts(dat);
+                                }
+                              }}
+                            >
+                              Search
+                            </button>
+                          </div>
+                        </form>
+
+                        <div className="table-responsive">
+                          <table className="table table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">Category Name</th>
+                                <th scope="col">Image</th>
+
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <Catepost posts={currentPosts} />
+                            </tbody>
+                          </table>
+                        </div>
+                        <Pagination
+                          postsPerPage={postsPerPage}
+                          totalPosts={Totalpages}
+                          paginate={paginate}
+                          currentPage={currentPage}
+                          pageNumbers={pages}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <Footer />
-      </div></>:window.location.href="/"}
+            <Footer />
+          </div>
+        </>
+      ) : (
+        (window.location.href = "/")
+      )}
     </>
   );
 }

@@ -6,7 +6,6 @@ import { Rate, downloadget } from '../../services/api';
 import   Papa from 'papaparse'
 function Ratecharts() {
  const download = async () =>{
-  console.log("hii")
   try{ const response = await downloadget(); // Replace with your server's API endpoint
   if (response.ok) {
     const blob = await response.blob();

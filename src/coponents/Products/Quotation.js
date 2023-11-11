@@ -8,13 +8,9 @@ function Quotation() {
     const [posts, setposts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(25);
-
     // total no of pages
     const Totalpages = Math.ceil(posts.length / postsPerPage)
     const pages = [...Array(Totalpages + 1).keys()].slice(1);
-
-
-
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -29,12 +25,8 @@ function Quotation() {
     useEffect(() => {
        
     async function data(){
-        let dat=await Quotationpage()
-    
-    
-     
-        setposts(dat.data)
-      
+        let dat=await Quotationpage()  
+        setposts(dat.data);  
     }
     data()
  
@@ -55,22 +47,12 @@ function Quotation() {
                             </div>
                         </div>
 
-
-
-
                         <div className="row">
                             <div className="col-xl-12">
                                 <div className="card m-b-30">
                                     <div className="card-body">
                                         <h4 className="mt-0 header-title mb-4">Quotation List
-
-
-                                        </h4>
-
-
-
-
-
+                                       </h4>
                                         <div className="table-responsive">
                                             <table className="table table-hover">
                                                 <thead>
@@ -102,11 +84,7 @@ function Quotation() {
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
-
                 </div>
                 <Footer />
 

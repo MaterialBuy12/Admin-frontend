@@ -26,8 +26,6 @@ function Prefab() {
   useEffect(() => {
     async function data() {
       let dat = await prefabbenquiry();
-      console.log("dat",dat)
-
       setposts(dat.data);
     }
     data();

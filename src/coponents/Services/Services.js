@@ -24,7 +24,6 @@ function Services() {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-
   useEffect(() => {
     async function data() {
       let dat = await serceget();
@@ -37,9 +36,7 @@ function Services() {
   const validate = yup.object({
     service: yup.string().required("Required"),
     descr: yup.string().required("Required"),
-    img: yup
-      .mixed()
-      .nullable()     
+    img: yup.mixed().nullable(),
   });
 
   return (
@@ -157,7 +154,7 @@ function Services() {
                             alert("TRY AGAIN ");
                           }
                         } catch (error) {
-                        alert(error)
+                          alert(error);
                         }
                         action.resetForm();
                       }}
@@ -166,7 +163,6 @@ function Services() {
                         <Form>
                           <TextField label="Service " name="service" />
                           <br />
-                          
 
                           <label> Description</label>
 
@@ -185,7 +181,7 @@ function Services() {
                             name="descr"
                             className="error"
                           />
-                          <br/>
+                          <br />
                           <label>Services Image</label>
                           <input
                             type="file"

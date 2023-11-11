@@ -36,7 +36,7 @@ import Privacy from "./Static/Privacy";
 import RRC from "./Static/RRC";
 import Shipping from "./Static/Shipping";
 import TOS from "./Static/TOS";
-import Buyerlevelupdate from './Logistic/Buyerlevelupdate'
+import Buyerlevelupdate from "./Logistic/Buyerlevelupdate";
 import Transporters from "./Logistic/Transporters";
 import Ratecharts from "./Logistic/Ratecharts";
 import Prefab from "./Prefab houses/Prefab";
@@ -86,7 +86,11 @@ function Sidebar() {
           ></Route>
           <Route exact path="/update/cat/:id" element={<Updatecat />}></Route>
           <Route exact path="/update/sub/:id" element={<Updatesub />}></Route>
-          <Route exact path="/update/addvariant/:id" element={<Addvariantform />}></Route>
+          <Route
+            exact
+            path="/update/addvariant/:id"
+            element={<Addvariantform />}
+          ></Route>
           <Route
             exact
             path="/update/pro/:id"
@@ -290,7 +294,8 @@ function Sidebar() {
                     <li>
                       {" "}
                       <Link to="/addvariant" className="waves-effect">
-                        <i className="fa-solid fa-filter"></i> &ensp; Add Variants
+                        <i className="fa-solid fa-filter"></i> &ensp; Add
+                        Variants
                       </Link>
                     </li>
                   </ul>

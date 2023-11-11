@@ -1,15 +1,9 @@
 import { React } from "react";
 import Sidebar from "./coponents/sidebar";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./coponents/Login/Login";
 import Signup from "./coponents/Login/Signup";
 /* eslint-disable */
-
 
 function App() {
   const handleLogout = () => {
@@ -22,12 +16,9 @@ function App() {
     <>
       <Router>
         <Routes>
-        
-            <Route exact path="/" element={<Login />} />
-        
+          <Route exact path="/" element={<Login />} />
+
           <Route exact path="/signup" element={<Signup />}></Route>
-        
-        
         </Routes>
       </Router>
       {localStorage.token ? (

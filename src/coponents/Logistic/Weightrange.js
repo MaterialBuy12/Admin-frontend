@@ -32,8 +32,6 @@ function Weightrange() {
   useEffect(() => {
     (async () => {
       const dat = await Weightget();
-   
-    
 
       setposts(dat[0]);
     })();
@@ -61,7 +59,7 @@ function Weightrange() {
                     </div>
                     <Formik
                       initialValues={{
-                        title:process.env.REACT_APP_WEIGHTTITLE,
+                        title: process.env.REACT_APP_WEIGHTTITLE,
                         weighting1: posts.weighting1,
                         weighting2: posts.weighting2,
                         weighting3: posts.weighting3,
@@ -86,10 +84,7 @@ function Weightrange() {
                       enableReinitialize
                       onSubmit={async (values, actions) => {
                         try {
-                      
-
                           let dataresponse = await Weightgetrange(values);
-                       
 
                           if (!dataresponse.status) {
                             alert("Something went wrong", dataresponse);

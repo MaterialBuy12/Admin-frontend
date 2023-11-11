@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Footer from "../footer/Footer";
 import { Formik, Form, ErrorMessage } from "formik";
 
-import { Productget,  Recomget, Recomput } from "../../services/api";
+import { Productget, Recomget, Recomput } from "../../services/api";
 
 import RecomPosts from "./RecomPosts";
 import Pagination from "../categories/categories/Pagination";
 import Multiselect from "multiselect-react-dropdown";
 
 function Recom() {
-  const [filters,setfilters] = useState([])
+  const [filters, setfilters] = useState([]);
   const [tags2, settags2] = useState([]);
   const [posts, setposts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,11 +27,11 @@ function Recom() {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   useEffect(() => {
-    async function data() {  
+    async function data() {
       let resp = await Recomget();
       setposts(resp.data);
-      let data1=await Productget()
-      setfilters(data1.data)   
+      let data1 = await Productget();
+      setfilters(data1.data);
     }
     data();
     data();
@@ -65,49 +65,51 @@ function Recom() {
                           vari: [],
                         }}
                         onSubmit={async (values, actions) => {
-                         if(tags2.length !== 0 ){
-                          tags2.map((element,index)=>{
-                            values.vari.push(element.productname1)
-                            
-                          })                       
-                        if(tags2.length !== 0 ){
-                          console.log("tags",values)
-                          try {
-                            let data = await Recomput(values);                          
-                            if (data.status) {
-                              alert("SUCCESSFULL");
-                              window.location.reload();
-                            } else {
-                              alert("please select proper value");
+                          if (tags2.length !== 0) {
+                            tags2.map((element, index) => {
+                              values.vari.push(element.productname1);
+                            });
+                            if (tags2.length !== 0) {
+                              try {
+                                let data = await Recomput(values);
+                                if (data.status) {
+                                  alert("SUCCESSFULL");
+                                  window.location.reload();
+                                } else {
+                                  alert("please select proper value");
+                                }
+                              } catch (error) {
+                                alert("error in promo", error);
+                              }
                             }
-                          } catch (error) {
-                            alert("error in promo", error);
                           }
-                        }
-                         }
                           actions.resetForm();
-                       
                         }}
                       >
                         {(formik) => (
                           <Form>
-                         
-                            <div className=" row mx-1 " style={{height: "200px" }}>
+                            <div
+                              className=" row mx-1 "
+                              style={{ height: "200px" }}
+                            >
                               <div className="col">
                                 <label>Product Name</label>
-                              <Multiselect
-                             placeholder="Product Name" 
-                            options={filters} // Options to display in the dropdown
-                            name="vari"
-                            onSelect={(selectedList, selectedItem) => {
-                              settags2(selectedList);
-                            }}
-                            onRemove={(selectedList, removedItem) => {
-                              settags2(selectedList);
-                            }}
-                            style={{ border: "1px solid #353957" , color:"white" }}
-                            displayValue="productname1" // Property name to display in the dropdown options
-                          />
+                                <Multiselect
+                                  placeholder="Product Name"
+                                  options={filters} // Options to display in the dropdown
+                                  name="vari"
+                                  onSelect={(selectedList, selectedItem) => {
+                                    settags2(selectedList);
+                                  }}
+                                  onRemove={(selectedList, removedItem) => {
+                                    settags2(selectedList);
+                                  }}
+                                  style={{
+                                    border: "1px solid #353957",
+                                    color: "white",
+                                  }}
+                                  displayValue="productname1" // Property name to display in the dropdown options
+                                />
 
                                 <ErrorMessage
                                   name="vari"
@@ -115,14 +117,12 @@ function Recom() {
                                   className="error"
                                 />
                               </div>
-                         
                             </div>
-                          <input
+                            <input
                               type="submit"
                               className="btnrounded-3 w-20  btn-lg btn-outline-secondary btn-dark"
                               value="Submit"
                             />
-
                           </Form>
                         )}
                       </Formik>

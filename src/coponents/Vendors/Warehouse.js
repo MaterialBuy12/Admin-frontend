@@ -9,7 +9,7 @@ function Warehouse() {
   const [posts, setposts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(25);
-  const [searchedvalue,setsearchedvalue]=useState("")
+  const [searchedvalue, setsearchedvalue] = useState("");
 
   // total no of pages
   const Totalpages = Math.ceil(posts.length / postsPerPage);
@@ -28,7 +28,7 @@ function Warehouse() {
   useEffect(() => {
     async function data() {
       let dat = await warehouse();
-  
+
       setposts(dat);
     }
     data();
@@ -52,34 +52,53 @@ function Warehouse() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4"> Ware House</h4>
-                    <form class="d-flex mb-2 " style={{width:"30%"}} role="search">
-                      
+                    <form
+                      class="d-flex mb-2 "
+                      style={{ width: "30%" }}
+                      role="search"
+                    >
                       <div className="btn-group">
-                      <input class="form-control  mx-2  btn-close" type="search" value={searchedvalue} placeholder="Search email" onChange={(e)=>{
-                        setsearchedvalue(e.target.value)
-                      }} aria-label="Search Email" />
-                         <button type="button" class="btn bg-transparent" style={{left:"-43px"}}  onClick={async()=>{
-                         let dat = await warehouse();
-                         setposts(dat);   
-                          setsearchedvalue("")                         
-                        
-                       }}>
-                        <i class="fa fa-times" style={{color:"white"}}></i>
-                       </button>
-                      <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
-                        e.preventDefault()
-                       if(searchedvalue){
-                        let dat = await warehousefilter(searchedvalue);        
-                           
-                        setposts(dat.data);
-                       }else{
-                        let dat = await warehouse();
-                        setposts(dat);
-                       }
-                      }}>Search</button>
+                        <input
+                          class="form-control  mx-2  btn-close"
+                          type="search"
+                          value={searchedvalue}
+                          placeholder="Search email"
+                          onChange={(e) => {
+                            setsearchedvalue(e.target.value);
+                          }}
+                          aria-label="Search Email"
+                        />
+                        <button
+                          type="button"
+                          class="btn bg-transparent"
+                          style={{ left: "-43px" }}
+                          onClick={async () => {
+                            let dat = await warehouse();
+                            setposts(dat);
+                            setsearchedvalue("");
+                          }}
+                        >
+                          <i class="fa fa-times" style={{ color: "white" }}></i>
+                        </button>
+                        <button
+                          class="btn btn-outline-dark btn-dark text-white"
+                          type="submit"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            if (searchedvalue) {
+                              let dat = await warehousefilter(searchedvalue);
+
+                              setposts(dat.data);
+                            } else {
+                              let dat = await warehouse();
+                              setposts(dat);
+                            }
+                          }}
+                        >
+                          Search
+                        </button>
                       </div>
                     </form>
-                
 
                     <div className="table-responsive">
                       <table className="table table-hover">

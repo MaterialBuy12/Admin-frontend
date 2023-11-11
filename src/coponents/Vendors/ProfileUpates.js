@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { confirmvendor, vandorapproved} from "../../services/api";
+import { confirmvendor, vandorapproved } from "../../services/api";
 import Footer from "../footer/Footer";
 // import { useNavigate } from "react-router-dom";
 import Vendorsconfirmedposts from "./Vendorsconfirmedposts";
@@ -24,10 +24,9 @@ function ProfileUpates() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   // eslint-disable-next-line
   useEffect(() => {
-   
     async function data() {
       let dat = await vandorapproved();
-   
+
       setposts(dat);
     }
     data();
@@ -50,7 +49,6 @@ function ProfileUpates() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">
-                  
                       Confirmed Vendor List
                     </h4>
                     <form
@@ -69,31 +67,32 @@ function ProfileUpates() {
                           }}
                           aria-label="Search"
                         />
-                          <button type="button" class="btn bg-transparent border-none" style={{left:"-43px"}}  onClick={async()=>{
-                           setsearchedvalue("")
-                           let dat = await vandorapproved ();
-                           setposts(dat);
-                           
-                       }}>
-      <i class="fa fa-times" style={{color:"white"}}></i>
-    </button>
-
+                        <button
+                          type="button"
+                          class="btn bg-transparent border-none"
+                          style={{ left: "-43px" }}
+                          onClick={async () => {
+                            setsearchedvalue("");
+                            let dat = await vandorapproved();
+                            setposts(dat);
+                          }}
+                        >
+                          <i class="fa fa-times" style={{ color: "white" }}></i>
+                        </button>
 
                         <button
                           class="btn btn-outline-dark btn-dark text-white"
                           type="submit"
                           onClick={async (e) => {
                             e.preventDefault();
-                       
+
                             if (searchedvalue) {
-                           
                               let dat = await confirmvendor(searchedvalue);
-                                                         
+
                               setposts(dat.data);
-                            } else{
-                            
-                            let dat = await vandorapproved ();
-                            setposts(dat);
+                            } else {
+                              let dat = await vandorapproved();
+                              setposts(dat);
                             }
                           }}
                         >
@@ -111,6 +110,7 @@ function ProfileUpates() {
                             <th scope="col">Email</th>
 
                             <th scope="col">Phone No.</th>
+                            <th scope="col">Pin Code</th>
                             <th scope="col">GST</th>
                             <th scope="col">Address</th>
                             <th scope="col" colSpan="2">

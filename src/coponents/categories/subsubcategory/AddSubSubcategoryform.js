@@ -19,16 +19,13 @@ function AddSubSubcategoryform() {
     subcategoryid: yup.string().required("Required"),
     subsubcategory: yup.string().required("Required"),
     subsubcategoryimg: yup.mixed().nullable().required("!Required"),
-   
   });
   useEffect(() => {
     async function data() {
       let dat = await getAllCategory();
-      
-  
+
       let response = await getAllSubCategory();
-    
-  
+
       setstate1(response);
 
       setstate(dat);
@@ -52,23 +49,21 @@ function AddSubSubcategoryform() {
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
-                   
-
                     try {
                       if (values.subsubcategoryimg) {
                         const data = new FormData();
                         data.append("name", values.subsubcategoryimg.name);
                         data.append("file", values.subsubcategoryimg);
                         let subimg = await UploadFile(data);
-                     
+
                         values.subsubcategoryimg = subimg.data;
                       }
                     } catch (error) {
-                    alert(error)
+                      alert(error);
                     }
                     try {
                       let response = await SubSubCategory(values);
-                   
+
                       if (response.status) {
                         alert("SUCCESSFULLY CREATED ");
                       } else {
@@ -76,13 +71,12 @@ function AddSubSubcategoryform() {
                       }
                       actions.resetForm();
                     } catch (error) {
-                    alert(error)
+                      alert(error);
                     }
                   }}
                 >
                   {(formik) => (
-                    <Form >
-                      {console.log(formik.values.categoryid)}
+                    <Form>
                       <label>Category Name</label>
                       <Field
                         as="select"
@@ -91,15 +85,12 @@ function AddSubSubcategoryform() {
                           formik.errors.categoryid &&
                           "is-invalid"
                         }`}
-                
                         name="categoryid"
                       >
                         <option defaultValue="">Select Category</option>
                         {state &&
                           state.map((i, index) => (
-                            <option  value={i._id}>
-                              {i.title}
-                            </option>
+                            <option value={i._id}>{i.title}</option>
                           ))}
                       </Field>
                       <ErrorMessage
@@ -116,23 +107,22 @@ function AddSubSubcategoryform() {
                           formik.errors.subcategoryid &&
                           "is-invalid"
                         }`}
-                        
                         name="subcategoryid"
                       >
                         <option defaultValue="">Select Category</option>
                         {state1 &&
                           state1.map((i, index) => {
-                            
-                            if(formik.values.categoryid===i.categoryid) return <option
-                              key={index}
-                              name="subcategory"
-                              value={i._id}
-                            >
-                              {i.subcategory}
-                            </option>
-
-
-})}
+                            if (formik.values.categoryid === i.categoryid)
+                              return (
+                                <option
+                                  key={index}
+                                  name="subcategory"
+                                  value={i._id}
+                                >
+                                  {i.subcategory}
+                                </option>
+                              );
+                          })}
                       </Field>
                       <ErrorMessage
                         component="div"

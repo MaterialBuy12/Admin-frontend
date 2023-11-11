@@ -1,22 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { deletedsubsubcate } from '../../../services/api'
+import { deletedsubsubcate } from "../../../services/api";
 function Subsubposts({ posts }) {
-  const remove=async(i) =>{
-        
-    let dat=await deletedsubsubcate(i._id)
-    if(dat.status){
-        alert("DELETED",dat.data)
-        window.location.reload()
-    }else{
-        alert("Something went wrong")
-        window.location.reload()
+  const remove = async (i) => {
+    let dat = await deletedsubsubcate(i._id);
+    if (dat.status) {
+      alert("DELETED", dat.data);
+      window.location.reload();
+    } else {
+      alert("Something went wrong");
+      window.location.reload();
     }
-}
+  };
 
   return (
     <>
-      
       {posts &&
         posts.map((i, ind) => (
           <tr key={ind}>
@@ -51,9 +49,14 @@ function Subsubposts({ posts }) {
                       <i className="fa-solid fa-pen-to-square"></i>
                     </button>
                   </Link>
-                  <button className="btn btn-lg btn-danger mx-2 rounded" onClick={(e) => {
-                                remove(i)
-                            }}>Delete</button>
+                  <button
+                    className="btn btn-lg btn-danger mx-2 rounded"
+                    onClick={(e) => {
+                      remove(i);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </>
             )}

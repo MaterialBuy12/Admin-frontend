@@ -1,10 +1,9 @@
 import { Form, Formik, ErrorMessage } from "formik";
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {
   getCategory,
-  
   updatepercategory,
   UploadFile,
 } from "../../../services/api";
@@ -13,8 +12,8 @@ import * as yup from "yup";
 /* eslint-disable */
 function Updatecat() {
   const { id } = useParams();
-  var [ head,sethead] = useState([]);
-  
+  var [head, sethead] = useState([]);
+
   const navigate = useNavigate();
   // const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png", ".png"];
 
@@ -36,15 +35,13 @@ function Updatecat() {
       }),
   });
 
-
-   // eslint-disable-next-line
+  // eslint-disable-next-line
   useEffect(() => {
     async function data() {
       let dat = await getCategory(id);
       sethead(dat);
     }
     data();
-
   }, []);
 
   return (
@@ -80,7 +77,6 @@ function Updatecat() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                        
                           if (values.edit) {
                             try {
                               if (values.img) {
@@ -88,7 +84,7 @@ function Updatecat() {
                                 data.append("name", values.img.name);
                                 data.append("file", values.img);
                                 let subimg = await UploadFile(data);
-                             
+
                                 values.img = subimg.data;
                               }
                             } catch (error) {
@@ -99,7 +95,7 @@ function Updatecat() {
                                 values,
                                 values.id
                               );
-                            
+
                               if (response.status) {
                                 alert("UPDATED SUCCESSFULLY");
                                 navigate("/categories");
@@ -189,7 +185,7 @@ function Updatecat() {
                               <>
                                 <img
                                   src={head.img}
-                                  alt="..." 
+                                  alt="..."
                                   className="img-fluid w-25 "
                                 ></img>
                                 <br />

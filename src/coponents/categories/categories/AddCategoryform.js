@@ -5,7 +5,6 @@ import * as yup from "yup";
 
 import { Category, UploadFile } from "../../../services/api";
 function AddCategoryform() {
-
   const validate = yup.object({
     title: yup.string().required("Required"),
     img: yup
@@ -16,8 +15,7 @@ function AddCategoryform() {
         "FILE_SIZE",
         "uploaded file is too big",
         (value) => !value || (value && value.size <= 1024 * 1024 * 1024 * 8)
-      )
-      
+      ),
   });
   return (
     <>
@@ -34,7 +32,6 @@ function AddCategoryform() {
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
-                 
                     try {
                       if (values.img) {
                         const data = new FormData();
@@ -45,10 +42,7 @@ function AddCategoryform() {
                         values.img = image.data;
                       }
                     } catch (error) {
-                      alert(
-                        "error in upload file in add form cat",
-                        error
-                      );
+                      alert("error in upload file in add form cat", error);
                     }
 
                     try {
@@ -61,7 +55,7 @@ function AddCategoryform() {
                         window.location.reload();
                       }
                     } catch (error) {
-                  alert( error);
+                      alert(error);
                     }
 
                     actions.resetForm();

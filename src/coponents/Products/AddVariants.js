@@ -1,12 +1,10 @@
 import React from "react";
 
-import AddVariaion from './Addvariation'
+import AddVariaion from "./Addvariation";
 const AddVariants = () => {
   return (
     <>
-     <AddVariaion />
-
-      
+      <AddVariaion />
     </>
   );
 };

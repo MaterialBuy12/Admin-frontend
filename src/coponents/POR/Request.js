@@ -2,34 +2,35 @@ import React from "react";
 import Footer from "../footer/Footer";
 import { Formik, Form, ErrorMessage } from "formik";
 import TextField from "../categories/TextField";
-import Select from 'react-select';
+import Select from "react-select";
 import * as yup from "yup";
-import { PORVENDOR, frieghtrate, vandorapprovedget, warehouseget } from "../../services/api";
-import { useState ,useEffect } from "react";
+import {
+  PORVENDOR,
+  frieghtrate,
+  vandorapprovedget,
+  warehouseget,
+} from "../../services/api";
+import { useState, useEffect } from "react";
 function Request() {
-  const [posts,setposts]=useState([])
-  const [posts1,setposts1]=useState([])
-  const [value,setvalue]=useState(null)
-  const [value1,setvalue1]=useState(null)
-  
+  const [posts, setposts] = useState([]);
+  const [posts1, setposts1] = useState([]);
+  const [value, setvalue] = useState(null);
+  const [value1, setvalue1] = useState(null);
+
   const validate = yup.object({
     frieghtrate: yup.string().required("Required"),
     vendorsel: yup.string().required("Required"),
     userscharge: yup.string().required("Required"),
-    
-
   });
-  
+
   useEffect(() => {
-   
     async function data() {
       let dat = await vandorapprovedget();
-  
+
       setposts(dat);
     }
     data();
   }, []);
-
 
   const validate1 = yup.object({
     productname: yup.string().required("Required"),
@@ -38,9 +39,6 @@ function Request() {
     vendorprice: yup.string().required("Required"),
     pxquantity: yup.string().required("Required"),
     pxquantityshipping: yup.string().required("Required"),
-    
-    
-
   });
   return (
     <>
@@ -75,21 +73,21 @@ function Request() {
                           initialValues={{
                             frieghtrate: "",
                             vendorsel: "",
-                            userscharge:"",
-                            warehousesel:""
+                            userscharge: "",
+                            warehousesel: "",
                           }}
                           validationSchema={validate}
                           onSubmit={async (values, actions) => {
                             try {
-                              let data=await frieghtrate(values);
-                        
-                            if(data.status==="200"){
-                              window.location.reload()
-                            }else{
-                              alert("something went wrong")
-                            }
+                              let data = await frieghtrate(values);
+
+                              if (data.status === "200") {
+                                window.location.reload();
+                              } else {
+                                alert("something went wrong");
+                              }
                             } catch (error) {
-                             alert("Something went wrong",error) 
+                              alert("Something went wrong", error);
                             }
 
                             actions.resetForm();
@@ -97,67 +95,76 @@ function Request() {
                         >
                           {(formik) => (
                             <Form>
-                               <div className="row justify-content-evenly">
-                                <div className="col-6 mt-3"> 
-                                <label>Vendor Selection</label>
-                      
-                      <Select
-                      isSearchable
-                      noOptionsMessage={()=>"No Option "}
-                      
-        value={value}
-        onChange={async (option) => {
-          formik.setFieldValue('vendorsel', option.value);
-          setvalue()
-          let dat = await warehouseget(option.value);
-          
-    
-      setposts1(dat)
-          
-          
-      }}
-        options={posts}
-        name="vendorsel"
-        defaultValue={formik.values.vendorsel}
-      />
-
-                      <ErrorMessage
-                        name="vendorsel"
-                        component="div"
-                        className="error"
-                      />
-</div>
-                                <div className="col-6 mt-3"> <label>Ware House Selection</label>
-                                <Select
-                      isSearchable
-                      noOptionsMessage={()=>"No Option "}
-                      
-        value={value1}
-        onChange={async (option) => {
-          formik.setFieldValue('warehousesel', option.value);
-          setvalue1()
-         
-          
-    
-    
-          
-          
-      }}
-        options={posts1}
-        name="warehousesel"
-        defaultValue={formik.values.warehousesel}
-      />
-
-                      <ErrorMessage
-                        name="warehousesel"
-                        component="div"
-                        className="error"
-                      /></div>
-                              </div>
-                              
                               <div className="row justify-content-evenly">
-                                <div className="col-6 mt-3"><TextField name="frieghtrate"label="Frieght Rate"/></div>
-                                <div className="col-6 mt-3"><TextField name="userscharge"label="User's Shipping Charge"/></div>
+                                <div className="col-6 mt-3">
+                                  <label>Vendor Selection</label>
+
+                                  <Select
+                                    isSearchable
+                                    noOptionsMessage={() => "No Option "}
+                                    value={value}
+                                    onChange={async (option) => {
+                                      formik.setFieldValue(
+                                        "vendorsel",
+                                        option.value
+                                      );
+                                      setvalue();
+                                      let dat = await warehouseget(
+                                        option.value
+                                      );
+
+                                      setposts1(dat);
+                                    }}
+                                    options={posts}
+                                    name="vendorsel"
+                                    defaultValue={formik.values.vendorsel}
+                                  />
+
+                                  <ErrorMessage
+                                    name="vendorsel"
+                                    component="div"
+                                    className="error"
+                                  />
+                                </div>
+                                <div className="col-6 mt-3">
+                                  {" "}
+                                  <label>Ware House Selection</label>
+                                  <Select
+                                    isSearchable
+                                    noOptionsMessage={() => "No Option "}
+                                    value={value1}
+                                    onChange={async (option) => {
+                                      formik.setFieldValue(
+                                        "warehousesel",
+                                        option.value
+                                      );
+                                      setvalue1();
+                                    }}
+                                    options={posts1}
+                                    name="warehousesel"
+                                    defaultValue={formik.values.warehousesel}
+                                  />
+                                  <ErrorMessage
+                                    name="warehousesel"
+                                    component="div"
+                                    className="error"
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="row justify-content-evenly">
+                                <div className="col-6 mt-3">
+                                  <TextField
+                                    name="frieghtrate"
+                                    label="Frieght Rate"
+                                  />
+                                </div>
+                                <div className="col-6 mt-3">
+                                  <TextField
+                                    name="userscharge"
+                                    label="User's Shipping Charge"
+                                  />
+                                </div>
                               </div>
                               <input
                                 type="Submit"
@@ -175,48 +182,71 @@ function Request() {
                           initialValues={{
                             productname: "",
                             quantity: "",
-                            adminprice:"",
-                            vendorprice:"",
-                            pxquantity:"",
-                            pxquantityshipping:""
+                            adminprice: "",
+                            vendorprice: "",
+                            pxquantity: "",
+                            pxquantityshipping: "",
                           }}
                           validationSchema={validate1}
                           onSubmit={async (values, actions) => {
-                            
                             try {
                               let dat = await PORVENDOR(values);
-                              
-      
+
                               if (dat.status) {
-                            
                                 alert("SUCCESSFUL");
-                              
+
                                 window.location.reload();
                               } else {
                                 alert("Something went wrong");
                               }
                             } catch (error) {
-                            alert(error)
+                              alert(error);
                             }
                             actions.resetForm();
                           }}
                         >
                           {(formik) => (
                             <Form>
-                               <div className="row justify-content-evenly">
-                               <div className="col-6 mt-3"><TextField name="productname"label="Product Name"/></div>
-                               <div className="col-6 mt-3"><TextField name="quantity"label="Quantity"/></div>
+                              <div className="row justify-content-evenly">
+                                <div className="col-6 mt-3">
+                                  <TextField
+                                    name="productname"
+                                    label="Product Name"
+                                  />
+                                </div>
+                                <div className="col-6 mt-3">
+                                  <TextField name="quantity" label="Quantity" />
+                                </div>
+                              </div>
 
-                               
-                              </div>
-                              
                               <div className="row justify-content-evenly">
-                                <div className="col-6 mt-3"><TextField name="adminprice"label="Admin's Price"/></div>
-                                <div className="col-6 mt-3"><TextField name="vendorprice"label="Vendor's Price"/></div>
+                                <div className="col-6 mt-3">
+                                  <TextField
+                                    name="adminprice"
+                                    label="Admin's Price"
+                                  />
+                                </div>
+                                <div className="col-6 mt-3">
+                                  <TextField
+                                    name="vendorprice"
+                                    label="Vendor's Price"
+                                  />
+                                </div>
                               </div>
                               <div className="row justify-content-evenly">
-                                <div className="col-6 mt-3"><TextField name="pxquantity" label="Price X (Quantity)"/></div>
-                                <div className="col-6 mt-3"><TextField name="pxquantityshipping"label="(Price XQuantity)+Shipping " placeholder="Charge"/></div>
+                                <div className="col-6 mt-3">
+                                  <TextField
+                                    name="pxquantity"
+                                    label="Price X (Quantity)"
+                                  />
+                                </div>
+                                <div className="col-6 mt-3">
+                                  <TextField
+                                    name="pxquantityshipping"
+                                    label="(Price XQuantity)+Shipping "
+                                    placeholder="Charge"
+                                  />
+                                </div>
                               </div>
                               <input
                                 type="Submit"

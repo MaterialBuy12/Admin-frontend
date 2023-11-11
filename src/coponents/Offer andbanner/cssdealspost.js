@@ -1,19 +1,17 @@
-import React from 'react'
+import React from "react";
 
-function cssdealspost({posts}) {
-    const remove = async (i) => {
-    
-        let dat = await promocodeupdate(i._id, i.data);
-        window.location.reload();
-      
-      };
+function cssdealspost({ posts }) {
+  const remove = async (i) => {
+    let dat = await promocodeupdate(i._id, i.data);
+    window.location.reload();
+  };
   return (
     <>
-        {posts &&
-        posts.map((i,index) => (
+      {posts &&
+        posts.map((i, index) => (
           <tr key={i._id}>
             <td>
-              <span>{index+1}</span>
+              <span>{index + 1}</span>
             </td>
             <td>
               <span>{i.codename}</span>
@@ -59,7 +57,7 @@ function cssdealspost({posts}) {
           </tr>
         ))}
     </>
-  )
+  );
 }
 
-export default cssdealspost
+export default cssdealspost;

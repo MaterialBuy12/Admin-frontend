@@ -1,4 +1,4 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import Footer from "../footer/Footer";
 import JoditEditor from "jodit-react";
 import { Form, Formik } from "formik";
@@ -32,7 +32,6 @@ function Privacy() {
                           privacypolicy: content,
                         }}
                         onSubmit={async (values, actions) => {
-                        
                           values = content;
                           try {
                             let data = await privacypolicy({

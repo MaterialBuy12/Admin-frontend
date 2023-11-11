@@ -38,7 +38,7 @@ function Prefabform() {
                       onSubmit={async (values, action) => {
                         try {
                           let data = await Prefabbform(values);
-                        
+
                           if (data.status) {
                             alert("SUCCESSFUL");
                             window.location.reload();
@@ -49,7 +49,7 @@ function Prefabform() {
                             alert("TRY AGAIN ");
                           }
                         } catch (error) {
-                        alert(error)
+                          alert(error);
                         }
                         action.resetForm();
                       }}

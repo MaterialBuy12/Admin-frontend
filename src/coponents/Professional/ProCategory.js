@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import TextField from "../categories/TextField";
 import Footer from "../footer/Footer";
-import { Formik, Form ,ErrorMessage} from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import JoditEditor from "jodit-react";
 import * as yup from "yup";
 import { procateget, procatepost } from "../../services/api";
@@ -24,7 +24,6 @@ function ProCategory() {
   useEffect(() => {
     async function data() {
       let dat = await procateget();
-     
 
       setposts(dat);
     }

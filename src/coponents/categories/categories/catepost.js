@@ -4,7 +4,7 @@ import { deletedcate } from "../../../services/api";
 function catepost({ posts }) {
   const remove = async (i) => {
     let dat = await deletedcate(i._id);
-    
+
     if (dat.status) {
       alert("DELETED", dat.data);
       window.location.reload();

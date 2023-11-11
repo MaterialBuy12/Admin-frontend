@@ -4,7 +4,7 @@ import { deletedfilter } from "../../services/api";
 function Filterposts({ posts }) {
   const remove = async (i) => {
     let dat = await deletedfilter(i._id);
-   
+
     if (dat.status) {
       alert("DELETED", dat.data);
       window.location.reload();

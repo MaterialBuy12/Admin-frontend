@@ -6,7 +6,6 @@ import * as yup from "yup";
 import TextField from "../TextField";
 import {
   UploadFile,
-
   getASubCategory,
   UpdateASubCategory,
 } from "../../../services/api";
@@ -16,7 +15,6 @@ function Updatesub() {
   const [head, sethead] = useState([]);
 
   const navigate = useNavigate();
-  
 
   const validate = yup.object({
     subcategory: yup.string().required("Required"),
@@ -28,14 +26,13 @@ function Updatesub() {
       .when("edit", {
         is: true,
         then: yup.string().required("Required"),
-      
       }),
   });
 
   useEffect(() => {
     async function data() {
       let dat = await getASubCategory(id);
-     
+
       sethead(dat);
     }
     data();
@@ -62,7 +59,10 @@ function Updatesub() {
               <div className="col-xl-12">
                 <div className="card m-b-30">
                   <div className="card-body">
-                    <h4 className="mt-0 header-title mb-4"> Update Sub Category</h4>
+                    <h4 className="mt-0 header-title mb-4">
+                      {" "}
+                      Update Sub Category
+                    </h4>
                     <div className="table-responsive">
                       <Formik
                         enableReinitialize
@@ -74,7 +74,6 @@ function Updatesub() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                         
                           if (values.edit) {
                             try {
                               if (values.subcategoryimg) {
@@ -111,7 +110,7 @@ function Updatesub() {
                                 values.id,
                                 values
                               );
-                            
+
                               if (response.status) {
                                 alert("UPDATED SUCCESSFULLY");
                                 navigate("/subcategory");

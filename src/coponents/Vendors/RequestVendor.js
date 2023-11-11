@@ -27,7 +27,7 @@ function RequestVendor() {
   useEffect(() => {
     async function data() {
       let dat = await vandorfalse();
-  
+
       setposts(dat);
     }
     data();
@@ -69,13 +69,18 @@ function RequestVendor() {
                           aria-label="Search"
                           aria-describedby="button-addon2"
                         />
-                       <button type="button" class="btn bg-transparent" style={{left:"-43px"}}  onClick={async()=>{
-                          let dat = await vandorfalse();     
-                          setsearchedvalue("")                         
-                          setposts(dat);
-                       }}>
-      <i class="fa fa-times" style={{color:"white"}}></i>
-    </button>
+                        <button
+                          type="button"
+                          class="btn bg-transparent"
+                          style={{ left: "-43px" }}
+                          onClick={async () => {
+                            let dat = await vandorfalse();
+                            setsearchedvalue("");
+                            setposts(dat);
+                          }}
+                        >
+                          <i class="fa fa-times" style={{ color: "white" }}></i>
+                        </button>
 
                         <button
                           class="btn btn-outline-dark btn-dark text-white"
@@ -84,14 +89,12 @@ function RequestVendor() {
                             e.preventDefault();
                             if (searchedvalue) {
                               let dat = await requestvendor(searchedvalue);
-                                                
 
                               setposts(dat.data);
                             }
-                              let dat = await vandorfalse();
-                              
-                              setposts(dat);
-                            
+                            let dat = await vandorfalse();
+
+                            setposts(dat);
                           }}
                         >
                           Search
@@ -106,8 +109,8 @@ function RequestVendor() {
                             <th scope="col"> Sr No.</th>
                             <th scope="col"> Name</th>
                             <th scope="col">Email</th>
-
                             <th scope="col">Phone No.</th>
+                            <th scope="col">Pin code</th>
                             <th scope="col">GST</th>
                             <th scope="col">Address</th>
                             <th scope="col" colSpan="2">

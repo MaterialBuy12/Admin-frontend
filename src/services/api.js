@@ -15,7 +15,7 @@ export const Loging = async (data) => {
     let response = await axios.post(`${host}/api/adminlogin/login`, data);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -203,7 +203,7 @@ export const Productget = async () => {
     let response = await axios.get(`${host}/api/products/`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const Productname = async () => {
@@ -211,15 +211,18 @@ export const Productname = async () => {
     let response = await axios.get(`${host}/api/products/productnames/names`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
-export const Productvariants = async (id,values ) => {
+export const Productvariants = async (id, values) => {
   try {
-    let response = await axios.post(`${host}/api/products/addvariation/${id}`,values);
+    let response = await axios.post(
+      `${host}/api/products/addvariation/${id}`,
+      values
+    );
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const Productcount = async () => {
@@ -227,7 +230,7 @@ export const Productcount = async () => {
     let response = await axios.get(`${host}/api/products/count/productcount`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const ProductAget = async (id) => {
@@ -235,7 +238,7 @@ export const ProductAget = async (id) => {
     let response = await axios.get(`${host}/api/products/${id}`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const ProductAUpdate = async (id, values) => {
@@ -243,7 +246,7 @@ export const ProductAUpdate = async (id, values) => {
     let response = await axios.put(`${host}/api/products/${id}`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const Productdelete = async (id) => {
@@ -251,7 +254,7 @@ export const Productdelete = async (id) => {
     let response = await axios.delete(`${host}/api/products/${id}`);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -274,11 +277,10 @@ export const warehouse = async () => {
 };
 export const warehouseupdated = async (id) => {
   try {
-    
     let reposnse = await axios.put(`${host}/api/warehouses/approve/${id}`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -290,7 +292,7 @@ export const profecateupdated = async (id, values) => {
     );
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -299,7 +301,7 @@ export const profecategetone = async (id) => {
     let reposnse = await axios.get(`${host}/api/professionalcategories/${id}`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const warehousedeleted = async (id) => {
@@ -329,14 +331,13 @@ export const promocodeget = async () => {
 };
 export const promocodeupdate = async (id, values) => {
   try {
-    
     let reponse = await axios.put(
       `${host}/api/promocodes/currentstatus/${id}`,
       values
     );
     return reponse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const procatepost = async (values) => {
@@ -369,13 +370,31 @@ export const procateget = async () => {
     alert("error in procateget");
   }
 };
+export const getCareerOption = async () => {
+  try {
+    let response = await axios.get(`${host}/api/careers`);
+    return response;
+  } catch (error) {
+    alert("error in procateget");
+  }
+};
+
+
+export const deletecareeroptions = async (id) => {
+  try {
+    let response = await axios.delete(
+      `${host}/api/careers/${id}`
+    );
+    return response;
+  } catch (error) {}
+};
 
 export const profaddpost = async (values) => {
   try {
     let response = await axios.post(`${host}/api/professionals`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const profget = async () => {
@@ -383,17 +402,16 @@ export const profget = async () => {
     let response = await axios.get(`${host}/api/professionals`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
 export const sercepost = async (values) => {
   try {
-    
     let resposnse = await axios.post(`${host}/api/services`, values);
     return resposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -415,7 +433,7 @@ export const sellerfre = async (values) => {
     let response = await axios.post(`${host1}/api/sellerdata`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const sellerfreq = async (values) => {
@@ -423,13 +441,13 @@ export const sellerfreq = async (values) => {
     let response = await axios.get(`${host1}/api/sellerdata`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const getsellerfre = async (id) => {
   try {
     let response = await axios.get(`${host1}/api/sellerdata?id=${id}`);
-    
+
     return response.data;
   } catch (error) {
     alert("error in getsellerlevel", error);
@@ -440,7 +458,7 @@ export const sellerlevelupdate = async (values) => {
     let response = await axios.put(`${host1}/api/sellerdata`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -450,14 +468,14 @@ export const buyerleve = async (values) => {
     let response = await axios.post(`${host1}/api/buyerdata`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
 export const getbuyerlevel = async (id) => {
   try {
     let response = await axios.get(`${host1}/api/buyerdata?id=${id}`);
-    
+
     return response.data;
   } catch (error) {
     alert("error in getbuyerlevel", error);
@@ -468,7 +486,7 @@ export const buyerlevelupdate = async (values) => {
     let response = await axios.put(`${host1}/api/buyerdata`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -477,7 +495,7 @@ export const buyerlevel = async (values) => {
     let response = await axios.get(`${host1}/api/buyerdata`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const buyerlevel1 = async (values) => {
@@ -485,23 +503,27 @@ export const buyerlevel1 = async (values) => {
     let response = await axios.get(`${host1}/api/buyerdata?pin=${values}`);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const orderfilter = async (values) => {
   try {
-    let response = await axios.get(`${host}/api/orders/get/admin?username=${values}`);
+    let response = await axios.get(
+      `${host}/api/orders/get/admin?username=${values}`
+    );
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const orderFilter = async (values) => {
   try {
-    let response = await axios.get(`${host}/api/orders/get/admin/filter?status=${values}`);
+    let response = await axios.get(
+      `${host}/api/orders/get/admin/filter?status=${values}`
+    );
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const requestvendor = async (values) => {
@@ -509,7 +531,7 @@ export const requestvendor = async (values) => {
     let response = await axios.get(`${host}/api/vendors?email=${values}`);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -518,15 +540,17 @@ export const warehousefilter = async (values) => {
     let response = await axios.get(`${host}/api/warehouses?email=${values}`);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const subcategoryfilter = async (values) => {
   try {
-    let response = await axios.get(`${host}/api/subcategories?subcategory=${values}`);
+    let response = await axios.get(
+      `${host}/api/subcategories?subcategory=${values}`
+    );
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const categoryfilter = async (values) => {
@@ -534,40 +558,48 @@ export const categoryfilter = async (values) => {
     let response = await axios.get(`${host}/api/categories?category=${values}`);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const subsubcategoryfilter = async (values) => {
   try {
-    let response = await axios.get(`${host}/api/subsubcategories?subsubcategory=${values}`);
+    let response = await axios.get(
+      `${host}/api/subsubcategories?subsubcategory=${values}`
+    );
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const corporatefilter = async (values) => {
   try {
-    let response = await axios.get(`${host}/api/users/corporateusers?email=${values}`);
+    let response = await axios.get(
+      `${host}/api/users/corporateusers?email=${values}`
+    );
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const normalfilter = async (values) => {
   try {
-    let response = await axios.get(`${host}/api/users/normalusers?email=${values}`);
+    let response = await axios.get(
+      `${host}/api/users/normalusers?email=${values}`
+    );
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const confirmvendor = async (values) => {
   try {
-    let response = await axios.get(`${host}/api/vendors/approvedvendors?email=${values}`);
-  
+    let response = await axios.get(
+      `${host}/api/vendors/approvedvendors?email=${values}`
+    );
+
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const seller1 = async (values) => {
@@ -575,7 +607,7 @@ export const seller1 = async (values) => {
     let response = await axios.get(`${host1}/api/sellerdata?pin=${values}`);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // seller range
@@ -584,7 +616,7 @@ export const sellerrange = async (values) => {
     let response = await axios.put(`${host1}/api/seller`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const sellerpostrange = async (values) => {
@@ -592,7 +624,7 @@ export const sellerpostrange = async (values) => {
     let response = await axios.post(`${host1}/api/seller`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // get seller range
@@ -601,7 +633,7 @@ export const sellergetrange = async () => {
     let response = await axios.get(`${host1}/api/seller`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // approve vendor
@@ -610,7 +642,7 @@ export const vandorapproved = async () => {
     let response = await axios.get(`${host}/api/vendors/approvedvendors`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const vandorapprovedget = async () => {
@@ -618,7 +650,7 @@ export const vandorapprovedget = async () => {
     let response = await axios.get(`${host}/api/vendors/get/getselect`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const warehouseget = async (id) => {
@@ -626,7 +658,7 @@ export const warehouseget = async (id) => {
     let response = await axios.get(`${host}/api/warehouses/vendor/${id}`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // false vendor fetching or not approve
@@ -635,7 +667,7 @@ export const vandorfalse = async () => {
     let response = await axios.get(`${host}/api/vendors/`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // vendor updated
@@ -644,7 +676,7 @@ export const vendorupdated = async (id, values) => {
     let reposnse = await axios.put(`${host}/api/vendors/approve/${id}`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // vendor deleted
@@ -656,7 +688,9 @@ export const vendordeleted = async (id) => {
 };
 export const vendorget = async (id) => {
   try {
-    let response = await axios.get(`${host}/api/vendors/651e852ec38d000033c86b02`);
+    let response = await axios.get(
+      `${host}/api/vendors/651e852ec38d000033c86b02`
+    );
     return response;
   } catch (error) {}
 };
@@ -690,7 +724,7 @@ export const careers = async (values) => {
     let response = await axios.post(`${host}/api/careers`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // privay policies
@@ -699,7 +733,7 @@ export const privacypolicy = async (values) => {
     let reposnse = await axios.post(`${host}/api/privacypolicy/`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // rrc
@@ -708,7 +742,7 @@ export const rrc = async (values) => {
     let reposnse = await axios.post(`${host}/api/rrcpolicy/`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // shipping policies
@@ -717,7 +751,7 @@ export const shipping = async (values) => {
     let reposnse = await axios.post(`${host}/api/shippingpolicies/`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // tos
@@ -726,7 +760,7 @@ export const tos = async (values) => {
     let reposnse = await axios.post(`${host}/api/ts/`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // Carousels
@@ -735,7 +769,7 @@ export const Carousels = async (values) => {
     let reposnse = await axios.put(`${host}/api/caurausals/`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // get  Carousels
@@ -745,7 +779,7 @@ export const getcarousels = async () => {
     let response = await axios.get(`${host}/api/caurausals/`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -755,7 +789,7 @@ export const Banner = async (values) => {
     let reposnse = await axios.put(`${host}/api/banners/`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // get Banner
@@ -764,7 +798,7 @@ export const getBanner = async () => {
     let response = await axios.get(`${host}/api/banners/`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // User Normal and corporate
@@ -773,7 +807,7 @@ export const corporateusers = async () => {
     let response = await axios.get(`${host}/api/users/corporateusers`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // normal user
@@ -782,7 +816,7 @@ export const normalusers = async () => {
     let response = await axios.get(`${host}/api/users/normalusers`);
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // change role
@@ -794,7 +828,7 @@ export const changerole = async (id, values) => {
     );
     return response.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -805,7 +839,7 @@ export const Sellerrange = async (values) => {
     let reposnse = await axios.put(`${host1}/api/seller`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const buydeleted = async (values) => {
@@ -815,7 +849,7 @@ export const buydeleted = async (values) => {
     });
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const frequedeleted = async (values) => {
@@ -825,7 +859,7 @@ export const frequedeleted = async (values) => {
     });
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // transporter
@@ -834,7 +868,7 @@ export const Transporter = async (values) => {
     let reposnse = await axios.post(`${host1}/api/transport`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const Transporterget = async () => {
@@ -842,7 +876,7 @@ export const Transporterget = async () => {
     let reposnse = await axios.get(`${host1}/api/transport`);
     return reposnse.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const Transporterdelete = async (values) => {
@@ -861,7 +895,7 @@ export const Weightgetrange = async (values) => {
     let reposnse = await axios.post(`${host1}/api/weight`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const Weightget = async () => {
@@ -869,7 +903,7 @@ export const Weightget = async () => {
     let reposnse = await axios.get(`${host1}/api/weight`);
     return reposnse.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -880,7 +914,7 @@ export const getfabs = async () => {
     let reposnse = await axios.get(`${host}/api/fabs/`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -890,7 +924,7 @@ export const deletefabs = async (id) => {
     let reposnse = await axios.delete(`${host}/api/fabs/${id}`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const closeenquiry = async (id) => {
@@ -898,7 +932,7 @@ export const closeenquiry = async (id) => {
     let reposnse = await axios.put(`${host}/api/prefabbenquiry/${id}`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const deleteenquiry = async (id) => {
@@ -906,7 +940,7 @@ export const deleteenquiry = async (id) => {
     let reposnse = await axios.delete(`${host}/api/prefabbenquiry/${id}`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -917,7 +951,7 @@ export const Quotationpage = async () => {
     let reposnse = await axios.get(`${host}/api/quotations/`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // deleted quoattion
@@ -926,7 +960,7 @@ export const Quotationdeleted = async (id) => {
     let reposnse = await axios.delete(`${host}/api/quotations/${id}`);
     return reposnse.data;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // product request
@@ -935,7 +969,7 @@ export const ProductRequest1 = async () => {
     let reposnse = await axios.get(`${host}/api/productrequests/`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // product status
@@ -947,7 +981,7 @@ export const ProductRequest21 = async (id) => {
     );
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 // manage product /api/filters
@@ -975,16 +1009,18 @@ export const Orderget = async () => {
     let reposnse = await axios.get(`${host}/api/orders/get/admin`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const orderput = async (user, id, values) => {
-  console.log(user,"api")
   try {
-    let reposnse = await axios.patch(`${host}/api/orders/${user}/${id}`, values);
+    let reposnse = await axios.patch(
+      `${host}/api/orders/${user}/${id}`,
+      values
+    );
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -994,7 +1030,7 @@ export const Dealsput = async (values) => {
     let reposnse = await axios.put(`${host}/api/products/dod/create`, values);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const Recomput = async (values) => {
@@ -1005,7 +1041,7 @@ export const Recomput = async (values) => {
     );
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -1014,7 +1050,7 @@ export const Dealget = async (values) => {
     let reposnse = await axios.get(`${host}/api/products/dod/get`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const Recomget = async (values) => {
@@ -1022,7 +1058,7 @@ export const Recomget = async (values) => {
     let reposnse = await axios.get(`${host}/api/products/recommended/get`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const Dealdelete = async (productname) => {
@@ -1032,7 +1068,7 @@ export const Dealdelete = async (productname) => {
     );
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const Recomdelete = async (productname) => {
@@ -1042,15 +1078,14 @@ export const Recomdelete = async (productname) => {
     );
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
 export const Prefabbform = async (data) => {
   try {
-
     let response = await axios.post(`${host}/api/prefabbform`, data);
-    
+
     return response;
   } catch (error) {}
 };
@@ -1061,7 +1096,7 @@ export const Filterget = async (values) => {
     let reposnse = await axios.get(`${host}/api/filters`);
     return reposnse;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 
@@ -1072,12 +1107,10 @@ export const deletedfilter = async (id) => {
   } catch (error) {}
 };
 
-
 // POr
 export const PORVENDOR = async (data) => {
   try {
     let response = await axios.post(`${host}/api/pors`, data);
-  
 
     return response;
   } catch (error) {
@@ -1088,8 +1121,7 @@ export const PORVENDOR = async (data) => {
 export const DEALSPOST = async (data) => {
   try {
     let response = await axios.post(`${host}/api/css`, data);
-    
-    
+
     return response;
   } catch (error) {
     alert("Something went wrong");
@@ -1098,8 +1130,7 @@ export const DEALSPOST = async (data) => {
 export const DEALSGET = async (data) => {
   try {
     let response = await axios.get(`${host}/api/css`);
-    
-    
+
     return response;
   } catch (error) {
     alert("Something went wrong");
@@ -1111,7 +1142,7 @@ export const frieghtrate = async (values) => {
     let response = await axios.post(`${host}/api/frs`, values);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const prefabbenquiry = async (values) => {
@@ -1119,15 +1150,15 @@ export const prefabbenquiry = async (values) => {
     let response = await axios.get(`${host}/api/prefabbenquiry/`);
     return response;
   } catch (error) {
-  alert(error)
+    alert(error);
   }
 };
 export const downloadget = async () => {
   const response = await fetch(`${host1}/api/ratechart`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'text/csv', // Set the content type to CSV
+      "Content-Type": "text/csv", // Set the content type to CSV
     },
   });
-  return response
+  return response;
 };

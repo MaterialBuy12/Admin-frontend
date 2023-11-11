@@ -2,7 +2,6 @@ import React from "react";
 import { Dealdelete } from "../../services/api";
 
 function Dealsposts({ posts }) {
-  console.log(posts,"=>")
   const remove = async (i) => {
     let dat = await Dealdelete(i.productname1);
     if (dat.status) {
@@ -17,11 +16,11 @@ function Dealsposts({ posts }) {
   return (
     <>
       {posts &&
-        posts.map((i,index) => {
+        posts.map((i, index) => {
           return (
             <tr key={i._id}>
               <td>
-                <span>{index+1}</span>
+                <span>{index + 1}</span>
               </td>
               <td>
                 <span>{i.productname1}</span>
@@ -29,7 +28,7 @@ function Dealsposts({ posts }) {
               <td>
                 <span>{i.discount}</span>
               </td>
-              
+
               <th scope="col">
                 <button
                   className="btn btn-danger m-2"

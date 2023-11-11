@@ -1,35 +1,33 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
-import { profecategetone, profecateupdated } from '../../services/api';
-import TextField from '../categories/TextField';
-import Footer from '../footer/Footer';
-import { useNavigate, useParams } from 'react-router-dom';
+import { profecategetone, profecateupdated } from "../../services/api";
+import TextField from "../categories/TextField";
+import Footer from "../footer/Footer";
+import { useNavigate, useParams } from "react-router-dom";
 
 function UpdateCAtegory() {
-    const { id } = useParams();
-    let navigate=useNavigate()
-    const [posts, setposts] = useState([]);
-     // eslint-disable-next-line
-    useEffect(() => {
-        async function data() {
-          let dat = await profecategetone(id);
-      
-        
-    
-          setposts(dat.data);
-        }
-        data();
-         // eslint-disable-next-line
-      }, []);
-   
+  const { id } = useParams();
+  let navigate = useNavigate();
+  const [posts, setposts] = useState([]);
+  // eslint-disable-next-line
+  useEffect(() => {
+    async function data() {
+      let dat = await profecategetone(id);
+
+      setposts(dat.data);
+    }
+    data();
+    // eslint-disable-next-line
+  }, []);
+
   const validate = yup.object({
     catprof: yup.string().required("Required"),
     descr: yup.string().required("Required"),
   });
   return (
     <>
-     <div className="content-page">
+      <div className="content-page">
         <div className="content">
           <div className="container-fluid">
             <div className="page-title-box">
@@ -46,20 +44,19 @@ function UpdateCAtegory() {
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Add Category</h4>
                     <Formik
-                    enableReinitialize
+                      enableReinitialize
                       initialValues={{
                         catprof: posts.catprof,
-                        descr:posts.descr,
+                        descr: posts.descr,
                       }}
                       validationSchema={validate}
                       onSubmit={async (values, actions) => {
                         try {
-                          let data = await profecateupdated(id,values);
+                          let data = await profecateupdated(id, values);
                           if (data.status) {
                             alert("SUCCESSFULLY");
-                            navigate("/profecat")
+                            navigate("/profecat");
                             window.location.reload();
-
                           } else {
                             alert("Something went wrong");
                           }
@@ -88,13 +85,10 @@ function UpdateCAtegory() {
                 </div>
               </div>
             </div>
-
-         
           </div>
         </div>
         <Footer />
       </div>
-      
     </>
   );
 }

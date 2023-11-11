@@ -1,32 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { profecatedeleted } from '../../services/api';
+import React from "react";
+import { Link } from "react-router-dom";
+import { profecatedeleted } from "../../services/api";
 
-function Categoryposts({posts}) {
-    const remove = async (i) => {
-        
-        let dat = await profecatedeleted(i._id);
-        if (dat.status) {
-          alert("DELETED", dat.data);
-          window.location.reload();
-        } else {
-          alert("Something went wrong");
-          window.location.reload();
-        }
-      };
+function Categoryposts({ posts }) {
+  const remove = async (i) => {
+    let dat = await profecatedeleted(i._id);
+    if (dat.status) {
+      alert("DELETED", dat.data);
+      window.location.reload();
+    } else {
+      alert("Something went wrong");
+      window.location.reload();
+    }
+  };
   return (
     <>
       {posts &&
-        posts.map((i,index) => (
+        posts.map((i, index) => (
           <tr key={i._id}>
-            <th> {index+1}</th>
+            <th> {index + 1}</th>
             <th> {i.catprof}</th>
-            <th> {i.descr.replace(/<[^>]+>/g, '')}</th>
+            <th> {i.descr.replace(/<[^>]+>/g, "")}</th>
 
-          
-          
             <th>
-            <Link to={`/update/profe/cat/${i._id}`}>
+              <Link to={`/update/profe/cat/${i._id}`}>
                 <button className="btn btn-dark btn-lg">
                   <i className="fa-solid fa-pen-to-square"></i>
                 </button>
@@ -42,7 +39,6 @@ function Categoryposts({posts}) {
             </th>
           </tr>
         ))}
-      
     </>
   );
 }

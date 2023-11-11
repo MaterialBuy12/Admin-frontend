@@ -4,10 +4,10 @@
     left: 0;
     right: 0;
     width: 50%;
- 
+
     align-items: center;
     justify-content: center;
-   
+
 
 
 }
@@ -67,22 +67,22 @@ h1 {
 .form__title {
     font-weight: 400;
     font-size: 32px;
-   
+
     color: var(--input-color);
 }
 
 .form__div {
     position: relative;
     height: 48px;
-  
+
 }
 
 .form__input {
     position: absolute;
-    
+
     top: 0;
     left: 0;
-    
+
     width: 80%;
     height: 100%;
     font-size: var(--normal-font-size);
@@ -100,7 +100,7 @@ h1 {
     left: 1rem;
     top: 1rem;
     padding: 0 .25rem;
-    
+
     background-color: var(--second-color);
     color: var(--input-color);
     font-size: var(--normal-font-size);

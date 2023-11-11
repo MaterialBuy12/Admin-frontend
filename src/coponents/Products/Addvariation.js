@@ -23,9 +23,9 @@ function Addvariation() {
 
   useEffect(() => {
     async function data() {
-      let dat=await Productget()
-  
-      setposts(dat.data)
+      let dat = await Productget();
+
+      setposts(dat.data);
     }
     data();
   }, []);

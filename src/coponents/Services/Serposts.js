@@ -3,7 +3,6 @@ import { servicesdeleted } from "../../services/api";
 
 function Serposts({ posts }) {
   const remove = async (i) => {
-
     let dat = await servicesdeleted(i._id);
     if (dat.status) {
       alert("SERVICES DELETED", dat.data);
@@ -16,11 +15,11 @@ function Serposts({ posts }) {
   return (
     <>
       {posts &&
-        posts.map((i,index) => (
+        posts.map((i, index) => (
           <tr key={i._id}>
-            <th> {index+1}</th>
+            <th> {index + 1}</th>
             <th> {i.service}</th>
-            <th> {i.descr.replace(/<[^>]+>/g, '')}</th>
+            <th> {i.descr.replace(/<[^>]+>/g, "")}</th>
 
             <th>
               {" "}

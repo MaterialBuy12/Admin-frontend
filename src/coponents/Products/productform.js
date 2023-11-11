@@ -21,7 +21,6 @@ function ProductForm() {
   const [posts1, setposts1] = useState({});
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
- 
 
   const editor = useRef(null);
   const [state, setstate] = useState([]);
@@ -39,13 +38,13 @@ function ProductForm() {
       let resp = await SubSubgetCategory();
       let datq = await Productname();
       let filtername = await Filterget();
-      let data1=await Productget()
-      setfilters1(data1.data)
-      let optionsvalue=[]
-      filtername.data.map((i)=>{
-        let valueds=i.name+"="+i.att
-        optionsvalue.push({"name" : valueds})
-      })
+      let data1 = await Productget();
+      setfilters1(data1.data);
+      let optionsvalue = [];
+      filtername.data.map((i) => {
+        let valueds = i.name + "=" + i.att;
+        optionsvalue.push({ name: valueds });
+      });
       setfilters(optionsvalue);
       setstate2(resp);
 
@@ -101,14 +100,20 @@ function ProductForm() {
     heightunit8C: yup.string().required("Required"),
     manufacturer9: yup.string().required("Required"),
     madein10: yup.string().required("Required"),
-    minord11A: yup.string().required("Required") .matches(
-      /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
-      "Only Digits"
-    ),
-    maxord11B: yup.string().required("Required") .matches(
-      /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
-      "Only Digits"
-    ),
+    minord11A: yup
+      .string()
+      .required("Required")
+      .matches(
+        /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
+        "Only Digits"
+      ),
+    maxord11B: yup
+      .string()
+      .required("Required")
+      .matches(
+        /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
+        "Only Digits"
+      ),
 
     description12: yup.string().required("Required"),
     description123: yup.string().required("Required"),
@@ -426,155 +431,151 @@ function ProductForm() {
                     free2: "",
                     free1: "",
                     actions1: false,
-                  
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
-                    let arr2=[]
-                    tags2?.map((element,index)=>{
-                      let hs=element.name.split("=")
-                      let temp={"variant":hs[0],"value":hs[1]}
-                      arr2.push(temp)                      
-                    })
+                    let arr2 = [];
+                    tags2?.map((element, index) => {
+                      let hs = element.name.split("=");
+                      let temp = { variant: hs[0], value: hs[1] };
+                      arr2.push(temp);
+                    });
 
-                
-                      try {
-                        if (values.imgs1) {
-                          const data = new FormData();
-                          data.append("name", values.imgs1.name);
-                          data.append("file", values.imgs1);
-                          let img = await UploadFile(data);
+                    try {
+                      if (values.imgs1) {
+                        const data = new FormData();
+                        data.append("name", values.imgs1.name);
+                        data.append("file", values.imgs1);
+                        let img = await UploadFile(data);
 
-                          values.imgs1 = img.data;
-                        }
-                      } catch (error) {
-                      alert(error)
+                        values.imgs1 = img.data;
                       }
-                      try {
-                        if (values.imgs2) {
-                          const data = new FormData();
-                          data.append("name", values.imgs2.name);
-                          data.append("file", values.imgs2);
-                          let img = await UploadFile(data);
+                    } catch (error) {
+                      alert(error);
+                    }
+                    try {
+                      if (values.imgs2) {
+                        const data = new FormData();
+                        data.append("name", values.imgs2.name);
+                        data.append("file", values.imgs2);
+                        let img = await UploadFile(data);
 
-                          values.imgs2 = img.data;
-                        }
-                      } catch (error) {
-                      alert(error)
+                        values.imgs2 = img.data;
                       }
-                      try {
-                        if (values.imgs3) {
-                          const data = new FormData();
-                          data.append("name", values.imgs3.name);
-                          data.append("file", values.imgs3);
-                          let img = await UploadFile(data);
+                    } catch (error) {
+                      alert(error);
+                    }
+                    try {
+                      if (values.imgs3) {
+                        const data = new FormData();
+                        data.append("name", values.imgs3.name);
+                        data.append("file", values.imgs3);
+                        let img = await UploadFile(data);
 
-                          values.imgs3 = img.data;
-                        }
-                      } catch (error) {
-                      alert(error)
+                        values.imgs3 = img.data;
                       }
-                      try {
-                        if (values.imgs4) {
-                          const data = new FormData();
-                          data.append("name", values.imgs4.name);
-                          data.append("file", values.imgs4);
-                          let img = await UploadFile(data);
+                    } catch (error) {
+                      alert(error);
+                    }
+                    try {
+                      if (values.imgs4) {
+                        const data = new FormData();
+                        data.append("name", values.imgs4.name);
+                        data.append("file", values.imgs4);
+                        let img = await UploadFile(data);
 
-                          values.imgs4 = img.data;
-                        }
-                      } catch (error) {
-                      alert(error)
+                        values.imgs4 = img.data;
                       }
-                      try {
-                        if (values.file1) {
-                          const data = new FormData();
-                          data.append("name", values.file1.name);
-                          data.append("file", values.file1);
-                          let img = await UploadFile(data);
+                    } catch (error) {
+                      alert(error);
+                    }
+                    try {
+                      if (values.file1) {
+                        const data = new FormData();
+                        data.append("name", values.file1.name);
+                        data.append("file", values.file1);
+                        let img = await UploadFile(data);
 
-                          values.file1 = img.data;
-                        }
-                      } catch (error) {
-                      alert(error)
+                        values.file1 = img.data;
                       }
-                      try {
-                        if (values.file1) {
-                          const data = new FormData();
-                          data.append("name", values.file1.name);
-                          data.append("file", values.file1);
-                          let img = await UploadFile(data);
+                    } catch (error) {
+                      alert(error);
+                    }
+                    try {
+                      if (values.file1) {
+                        const data = new FormData();
+                        data.append("name", values.file1.name);
+                        data.append("file", values.file1);
+                        let img = await UploadFile(data);
 
-                          values.file1 = img.data;
-                        }
-                      } catch (error) {
-                      alert(error)
+                        values.file1 = img.data;
                       }
-                      try {
-                        if (values.file1) {
-                          const data = new FormData();
-                          data.append("name", values.file1.name);
-                          data.append("file", values.file1);
-                          let img = await UploadFile(data);
+                    } catch (error) {
+                      alert(error);
+                    }
+                    try {
+                      if (values.file1) {
+                        const data = new FormData();
+                        data.append("name", values.file1.name);
+                        data.append("file", values.file1);
+                        let img = await UploadFile(data);
 
-                          values.file1 = img.data;
-                        }
-                      } catch (error) {
-                      alert(error)
+                        values.file1 = img.data;
                       }
-                      try {
-                        if (values.file2) {
-                          const data = new FormData();
-                          data.append("name", values.file2.name);
-                          data.append("file", values.file2);
-                          let img = await UploadFile(data);
+                    } catch (error) {
+                      alert(error);
+                    }
+                    try {
+                      if (values.file2) {
+                        const data = new FormData();
+                        data.append("name", values.file2.name);
+                        data.append("file", values.file2);
+                        let img = await UploadFile(data);
 
-                          values.file2 = img.data;
-                        }
-                      } catch (error) {
-                      alert(error)
+                        values.file2 = img.data;
                       }
-                      try {
-                        if (values.file3) {
-                          const data = new FormData();
-                          data.append("name", values.file3.name);
-                          data.append("file", values.file3);
-                          let img = await UploadFile(data);
+                    } catch (error) {
+                      alert(error);
+                    }
+                    try {
+                      if (values.file3) {
+                        const data = new FormData();
+                        data.append("name", values.file3.name);
+                        data.append("file", values.file3);
+                        let img = await UploadFile(data);
 
-                          values.file3 = img.data;
-                        }
-                      } catch (error) {
-                      alert(error)
+                        values.file3 = img.data;
                       }
-                      try {
-                        if (values.file4) {
-                          const data = new FormData();
-                          data.append("name", values.file4.name);
-                          data.append("file", values.file4);
-                          let img = await UploadFile(data);
+                    } catch (error) {
+                      alert(error);
+                    }
+                    try {
+                      if (values.file4) {
+                        const data = new FormData();
+                        data.append("name", values.file4.name);
+                        data.append("file", values.file4);
+                        let img = await UploadFile(data);
 
-                          values.file4 = img.data;
-                        }
-                      } catch (error) {
-                      alert(error)
+                        values.file4 = img.data;
                       }
-                      try {
-                        let response = await Product(values);
+                    } catch (error) {
+                      alert(error);
+                    }
+                    try {
+                      let response = await Product(values);
 
-                        if (response.status) {
-                          alert(response.data.message);
+                      if (response.status) {
+                        alert(response.data.message);
 
-                          // window.location.reload();
-                        } else {
-                          alert("something went wrong");
-                        }
-                      } catch (error) {
-                      alert(error)
+                        // window.location.reload();
+                      } else {
+                        alert("something went wrong");
                       }
+                    } catch (error) {
+                      alert(error);
+                    }
 
-                      
-                        actions.resetForm();
-                      
+                    actions.resetForm();
                   }}
                 >
                   {(formik) => (
@@ -907,27 +908,22 @@ function ProductForm() {
                             options={filters} // Options to display in the dropdown
                             name="tags"
                             onSelect={(selectedList, selectedItem) => {
-                              console.log(selectedList)
                               settags2(selectedList);
                             }}
                             onRemove={(selectedList, removedItem) => {
                               settags2(selectedList);
                             }}
                             style={{ border: "1px solid #353957" }}
-                            displayValue="name"  // Property name to display in the dropdown options
-                            
-                            
+                            displayValue="name" // Property name to display in the dropdown options
                           />
                         </div>
 
                         <div className="col-lg-6 mt-2">
-                         
                           <label>
-                            
                             15. Frequently Bought Together Products{" "}
                           </label>
                           <Multiselect
-                             placeholder="Product Name" 
+                            placeholder="Product Name"
                             options={filters1} // Options to display in the dropdown
                             name="vari"
                             onSelect={(selectedList, selectedItem) => {
@@ -936,7 +932,11 @@ function ProductForm() {
                             onRemove={(selectedList, removedItem) => {
                               settags23(selectedList);
                             }}
-                            style={{ border: "1px solid #353957" , color:"white" ,overflow:"none"}}
+                            style={{
+                              border: "1px solid #353957",
+                              color: "white",
+                              overflow: "none",
+                            }}
                             displayValue="productname1" // Property name to display in the dropdown options
                           />
 
@@ -1074,7 +1074,10 @@ function ProductForm() {
                             <option defaultValue="">Select Category</option>
                             {state2 &&
                               state2.map((i, index) => {
-                                if (formik.values.categoryid === i.categoryname && formik.values.subcategory === i.subsubcategory)
+                                if (
+                                  formik.values.categoryid === i.categoryname &&
+                                  formik.values.subcategory === i.subsubcategory
+                                )
                                   return (
                                     <option value={i.subsubcategory}>
                                       {i.subsubcategory}
@@ -1172,7 +1175,6 @@ function ProductForm() {
                           />
                         </div>
                       </div>
-                     
 
                       <label className="mt-2">20. Rate Chart</label>
                       <div className="row mt-2">
@@ -1437,9 +1439,8 @@ function ProductForm() {
                           />
                         </div>
                       </div>
-                
+
                       <div className="row">
-                       
                         <input
                           type="submit"
                           className="btn mt-4 rounded-3 w-20 mx-5 btn-lg btn-outline-secondary btn-dark"

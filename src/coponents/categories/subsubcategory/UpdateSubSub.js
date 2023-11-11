@@ -1,8 +1,12 @@
 import { Form, Formik, ErrorMessage } from "formik";
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {  SubSubgetACategory, SubSubUpdateCategory, UploadFile } from "../../../services/api";
+import {
+  SubSubgetACategory,
+  SubSubUpdateCategory,
+  UploadFile,
+} from "../../../services/api";
 import TextField from "../TextField";
 
 import * as yup from "yup";
@@ -10,35 +14,32 @@ import * as yup from "yup";
 function UpdateSubSub() {
   const { id } = useParams();
   var [head, sethead] = useState([]);
-  
+
   const navigate = useNavigate();
- 
+
   const validate = yup.object({
-   subsubcategory: yup.string().required("Required"),
+    subsubcategory: yup.string().required("Required"),
     edit: yup.boolean(),
-   subsubcategoryimg: yup
+    subsubcategoryimg: yup
       .mixed()
       .nullable()
       .when("edit", {
         is: true,
         then: yup.string().required("Required"),
-        
       }),
   });
- 
+
   async function data() {
     let dat = await SubSubgetACategory(id);
-  
-  
+
     sethead(dat);
   }
   useEffect(() => {
     data();
   }, []);
- 
+
   return (
     <>
-    {console.log("hello",head)}
       <div className="content-page">
         <div className="content">
           <div className="container-fluid">
@@ -60,30 +61,31 @@ function UpdateSubSub() {
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4"> Update Category</h4>
                     <div className="table-responsive">
-
-                    <Formik
+                      <Formik
                         enableReinitialize
                         initialValues={{
-                         subsubcategory:head.subsubcategory,
-                         subsubcategoryimg: head.subsubcategoryimg,
+                          subsubcategory: head.subsubcategory,
+                          subsubcategoryimg: head.subsubcategoryimg,
                           edit: false,
                           id: id,
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                        
                           if (values.edit) {
                             try {
                               if (values.subsubcategoryimg) {
                                 const data = new FormData();
-                                data.append("name", values.subsubcategoryimg.name);
+                                data.append(
+                                  "name",
+                                  values.subsubcategoryimg.name
+                                );
                                 data.append("file", values.subsubcategoryimg);
                                 let subimg = await UploadFile(data);
 
                                 values.subsubcategoryimg = subimg.data;
                               }
                             } catch (error) {
-                            alert(error)
+                              alert(error);
                             }
                             try {
                               let response = await SubSubUpdateCategory(
@@ -102,14 +104,13 @@ function UpdateSubSub() {
                             } catch (error) {
                               alert(error);
                             }
-                          }
-                          else {
+                          } else {
                             try {
                               let response = await SubSubUpdateCategory(
                                 values.id,
                                 values
                               );
-                            
+
                               if (response.status) {
                                 alert("UPDATED SUCCESSFULLY");
                                 navigate("/subcategory");
@@ -120,7 +121,7 @@ function UpdateSubSub() {
                                 alert("Something went wrong");
                               }
                             } catch (error) {
-                            alert(error)
+                              alert(error);
                             }
                           }
                         }}
@@ -217,7 +218,6 @@ function UpdateSubSub() {
                           </Form>
                         )}
                       </Formik>
-                     
                     </div>
                   </div>
                 </div>
