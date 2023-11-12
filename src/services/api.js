@@ -22,23 +22,14 @@ export const Loging = async (data) => {
 // customer count /customerscount
 export const Customercount = async () => {
   try {
-    let response = await axios.get(`${host}/api/users/customerscount`);
+    let response = await axios.get(`${host}/api/revenue`);
 
     return response.data;
   } catch (error) {
     alert("Something went wrong");
   }
 };
-// vendors counter
-export const Vendorcount = async () => {
-  try {
-    let response = await axios.get(`${host}/api/users/vendorscount`);
 
-    return response.data;
-  } catch (error) {
-    alert("Something went wrong");
-  }
-};
 // category
 export const Category = async (data) => {
   try {
@@ -225,14 +216,7 @@ export const Productvariants = async (id, values) => {
     alert(error);
   }
 };
-export const Productcount = async () => {
-  try {
-    let response = await axios.get(`${host}/api/products/count/productcount`);
-    return response.data;
-  } catch (error) {
-    alert(error);
-  }
-};
+
 export const ProductAget = async (id) => {
   try {
     let response = await axios.get(`${host}/api/products/${id}`);

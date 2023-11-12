@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
-import {
-  Customercount,
-  Orderget,
-  Productcount,
-  Vendorcount,
-} from "../services/api";
+import { Customercount } from "../services/api";
 import Footer from "./footer/Footer";
 function Home() {
-  const [cutomercount, setcutomercount] = useState("");
+  const [cutomercount, setcustomercount] = useState("");
   const [vendorcount, setvendorcount] = useState("");
   const [productco, setproductco] = useState("");
   const [yearlyRevenue, setYearlyRevenue] = useState([]);
@@ -17,60 +12,20 @@ function Home() {
   const [monthlyRevenue, setMonthlyRevenue] = useState([]);
 
   useEffect(() => {
-    async function data() {
-      let dat = await Orderget();
-      let revenueamount = dat.data.data.orders;
-
-      let yearRevenue = 0;
-
-      for (const order of revenueamount) {
-        if (order.status !== "REFUND") {
-          const createdAt = new Date(order.createdAt);
-          const currentYear = new Date().getFullYear();
-          if (createdAt.getFullYear() === currentYear) {
-            yearRevenue += order.amount;
-          }
-        }
-      }
-      setYearlyRevenue(yearRevenue);
-
-      let monthRevenue = 0;
-
-      for (const order of revenueamount) {
-        if (order.status !== "REFUND") {
-          const createdAt = new Date(order.createdAt);
-
-          const currentYear = new Date().getMonth();
-
-          if (createdAt.getMonth() === currentYear) {
-            monthRevenue += order.amount;
-          }
-        }
-      }
-      setMonthlyRevenue(monthRevenue);
-
-      let totalRevenue = 0;
-      for (const order of revenueamount) {
-        if (order.status !== "REFUND") {
-          totalRevenue += order.amount;
-        }
-      }
-      setLifeRevenue(totalRevenue);
-    }
-    data();
-  }, []);
-  useEffect(() => {
-    async function data() {
+    async function fetchData() {
+      // You can await here
       let dat = await Customercount();
-      let data = await Vendorcount();
-      let resp = await Productcount();
-
-      setcutomercount(dat.data);
-      setvendorcount(data.data);
-      setproductco(resp);
+      console.log(dat);
+      setcustomercount(dat.customerCount);
+      setvendorcount(dat.vendorCount);
+      setproductco(dat.productCount);
+      setMonthlyRevenue(dat.currentMonthRevenue);
+      setYearlyRevenue(dat.currentYearRevenue);
+      setLifeRevenue(dat.totalRevenue);
     }
-    data();
+    fetchData();
   }, []);
+
   return (
     <>
       <div className="content-page">
