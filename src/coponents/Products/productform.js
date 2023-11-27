@@ -264,47 +264,21 @@ function ProductForm() {
         "Only Digits"
       ),
     free5: yup
-      .string()
-
-      .matches(
-        /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
-        "Only Digits"
-      ),
+    .bool(),
     free4: yup
-      .string()
-
-      .matches(
-        /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
-        "Only Digits"
-      ),
+    .bool(),
     free6: yup
-      .string()
-
-      .matches(
-        /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
-        "Only Digits"
-      ),
+    .bool(),
     free3: yup
-      .string()
+    .bool(),
+    free2: yup .bool(),
+     
 
-      .matches(
-        /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
-        "Only Digits"
-      ),
-    free2: yup
-      .string()
-
-      .matches(
-        /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
-        "Only Digits"
-      ),
+     
     free1: yup
-      .string()
+      .bool(),
 
-      .matches(
-        /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
-        "Only Digits"
-      ),
+     
     minimum6: yup
       .string()
 
@@ -424,12 +398,12 @@ function ProductForm() {
                     vari: [],
                     description123: "",
                     charges: "",
-                    free6: "",
-                    free5: "",
-                    free4: "",
-                    free3: "",
-                    free2: "",
-                    free1: "",
+                    free6: false,
+                    free5: false,
+                    free4: false,
+                    free3: false,
+                    free2: false,
+                    free1: false,
                     actions1: false,
                   }}
                   validationSchema={validate}
@@ -1188,7 +1162,16 @@ function ProductForm() {
                           <Inputfielded label="Price 1" name="price1" />
                         </div>
                         <div className="col-1 mt-2">
-                          <Inputfielded label="Free 1" name="free1" />
+                        <div className="col-12 col-lg-3  mt-2">
+                        
+                        </div>
+                        <label>Free 1</label>
+                          <br />
+                          <Switch
+                            onChange={(e) =>
+                              formik.setFieldValue("free1", true)
+                            }
+                          />
                         </div>
 
                         <div className="col-1  mt-2">
@@ -1201,7 +1184,13 @@ function ProductForm() {
                           <Inputfielded label="Price 2" name="price2" />
                         </div>
                         <div className="col-1 mt-2">
-                          <Inputfielded label="Free 2" name="free2" />
+                        <label>Free 2</label>
+                          <br />
+                          <Switch
+                            onChange={(e) =>
+                              formik.setFieldValue("free2", true)
+                            }
+                          />
                         </div>
                         <div className="col-1 mt-2">
                           <Inputfielded label="Min 3" name="minimum3" />
@@ -1213,7 +1202,13 @@ function ProductForm() {
                           <Inputfielded label="Price 3" name="price3" />
                         </div>
                         <div className="col-1 mt-2">
-                          <Inputfielded label="Free 3" name="free3" />
+                        <label>Free 3</label>
+                          <br />
+                          <Switch
+                            onChange={(e) =>
+                              formik.setFieldValue("free3", true)
+                            }
+                          />
                         </div>
                       </div>
                       <div className="row mt-2"></div>
@@ -1228,7 +1223,13 @@ function ProductForm() {
                           <Inputfielded label="Price 4" name="price4" />
                         </div>
                         <div className="col-1 mt-2">
-                          <Inputfielded label="Free 4" name="free4" />
+                        <label>Free 4</label>
+                          <br />
+                          <Switch
+                            onChange={(e) =>
+                              formik.setFieldValue("free4", true)
+                            }
+                          />
                         </div>
 
                         <div className="col-1  mt-2">
@@ -1241,7 +1242,13 @@ function ProductForm() {
                           <Inputfielded label="Price 5" name="price5" />
                         </div>
                         <div className="col-1 mt-2">
-                          <Inputfielded label="Free 5" name="free5" />
+                        <label>Free 5</label>
+                          <br />
+                          <Switch
+                            onChange={(e) =>
+                              formik.setFieldValue("free5", true)
+                            }
+                          />
                         </div>
                         <div className="col-1  mt-2">
                           <Inputfielded label="Min 6" name="minimum6" />
@@ -1253,7 +1260,13 @@ function ProductForm() {
                           <Inputfielded label="Price 6" name="price6" />
                         </div>
                         <div className="col-1 mt-2">
-                          <Inputfielded label="Free 6" name="free6" />
+                        <label>Free 6</label>
+                          <br />
+                          <Switch
+                            onChange={(e) =>
+                              formik.setFieldValue("free6", true)
+                            }
+                          />
                         </div>
                       </div>
 
