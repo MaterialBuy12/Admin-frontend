@@ -185,11 +185,12 @@ function CSSDeals() {
                                   </option>
                                   {state2 &&
                                     state2.map((i, index) => {
+                                     
                                       if (
                                         formik.values.category ===
                                           i.categoryname &&
                                         formik.values.subcategory ===
-                                          i.subsubcategory
+                                        i.subcategoryname
                                       )
                                         return (
                                           <option value={i.subsubcategory}>

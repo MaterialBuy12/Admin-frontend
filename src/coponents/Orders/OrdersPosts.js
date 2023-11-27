@@ -200,6 +200,8 @@ function OrdersPosts({ posts }) {
                         <br />
                         <label> Mobile No :{orderDetails.mobileno} </label>
                         <br />
+                        <label> GST No :{orderDetails.gst} </label>
+                        <br />
                         <label>
                           Shipping Address: {orderDetails.shippingaddress}
                         </label>

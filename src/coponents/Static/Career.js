@@ -68,6 +68,7 @@ function Career() {
                           let data = await careers(values);
                           if (data.status) {
                             alert("SUCCESSFULLY CREATED CAREER ");
+                            window.location.reload()
                           } else {
                             alert("Something went wrong");
                           }

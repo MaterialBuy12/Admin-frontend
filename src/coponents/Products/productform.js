@@ -1074,9 +1074,9 @@ function ProductForm() {
                             <option defaultValue="">Select Category</option>
                             {state2 &&
                               state2.map((i, index) => {
+                                console.log( formik.values.subcategory,i.subcategoryname)
                                 if (
-                                  formik.values.categoryid === i.categoryname &&
-                                  formik.values.subcategory === i.subsubcategory
+                                  formik.values.categoryid === i.categoryname && formik.values.subcategory === i.subcategoryname
                                 )
                                   return (
                                     <option value={i.subsubcategory}>

@@ -58,7 +58,7 @@ function NormalCusttomer() {
                             <input
                               class="form-control  mx-2  btn-close"
                               type="search"
-                              placeholder="Search eamil"
+                              placeholder="Search email"
                               value={searchedvalue}
                               onChange={(e) => {
                                 setsearchedvalue(e.target.value);
