@@ -23,6 +23,7 @@ function RequestProduct() {
   useEffect(() => {
     async function data() {
       let dat = await ProductRequest1();
+      console.log("=>",dat.data)
       setposts(dat.data);
     }
     data();

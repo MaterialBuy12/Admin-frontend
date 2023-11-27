@@ -32,7 +32,9 @@ function RequestProductPosts({ posts }) {
         posts.map((i) => (
           <tr key={i._id}>
             <td>
-              <span>{i.vendorid}</span>
+              <span>{i.vendor_docs.map((l) => (
+                <span key={l._id}>{l.name}</span>
+              ))}</span>
             </td>
             <td>
               <span>
