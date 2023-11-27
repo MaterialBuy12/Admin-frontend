@@ -66,6 +66,7 @@ function AddSubSubcategoryform() {
 
                       if (response.status) {
                         alert("SUCCESSFULLY CREATED ");
+                        window.location.reload()
                       } else {
                         alert("something went wrong");
                       }
