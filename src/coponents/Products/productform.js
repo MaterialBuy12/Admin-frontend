@@ -302,6 +302,10 @@ function ProductForm() {
         }
       }),
     categoryid: yup.string().required("Required"),
+    excpins:yup.string(),
+                    seotags:yup.string(),
+                    seotile: yup.string(),
+                    seodesc: yup.string(),
 
     price6: yup
       .string()
@@ -405,6 +409,11 @@ function ProductForm() {
                     free2: false,
                     free1: false,
                     actions1: false,
+                    excpins:"",
+                    seotags:"",
+                    seotile:"",
+                    seodesc:"",
+
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
@@ -1452,6 +1461,17 @@ function ProductForm() {
                           />
                         </div>
                       </div>
+                      <br/>
+
+                      <Inputfielded label="Buyer Excluded Pincodes" name="excpins" />
+
+                      
+                      <Inputfielded label="SEO Title" name="seotile" />
+                      
+                      <Inputfielded label="SEO Description" name="seodesc" />
+
+                      
+                      <Inputfielded label="SEO Tags" name="seotags" />
 
                       <div className="row">
                         <input
