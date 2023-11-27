@@ -51,7 +51,7 @@ function TransportersPosts({posts}) {
                     aria-labelledby="exampleModalLabel"
                     aria-hidden="true"
                   >
-                    <div className="modal-dialog">
+                    <div className="modal-dialog modal-xl">
                       <div className="modal-content">
                         <div className="modal-header">
                           
