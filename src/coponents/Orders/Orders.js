@@ -74,10 +74,10 @@ function Orders() {
                         </select>
                       </div>
                       <div className="col-8 mt-4">
-                        <form class="d-flex mb-2 " role="search">
+                        <form className="d-flex mb-2 " role="search">
                           <div className="btn-group">
                             <input
-                              class="form-control  mx-2  "
+                              className="form-control  mx-2  "
                               type="search"
                               value={searchedvalue}
                               placeholder="Search username"
@@ -88,7 +88,7 @@ function Orders() {
                             />
                             <button
                               type="button"
-                              class="btn bg-transparent border-none"
+                              className="btn bg-transparent border-none"
                               style={{ left: "-43px" }}
                               onClick={async () => {
                                 setsearchedvalue("");
@@ -97,13 +97,13 @@ function Orders() {
                               }}
                             >
                               <i
-                                class="fa fa-times"
+                                className="fa fa-times"
                                 style={{ color: "white" }}
                               ></i>
                             </button>
 
                             <button
-                              class="btn btn-outline-dark btn-dark text-white"
+                              className="btn btn-outline-dark btn-dark text-white"
                               type="submit"
                               onClick={async (e) => {
                                 e.preventDefault();

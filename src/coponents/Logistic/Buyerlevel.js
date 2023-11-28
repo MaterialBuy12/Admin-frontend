@@ -132,14 +132,14 @@ function Buyerlevel() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Buller Level</h4>
-                    <form class="d-flex mb-2 " style={{width:"30%"}} role="search">
+                    <form className="d-flex mb-2 " style={{width:"30%"}} role="search">
                       
       <div className="btn-group">
-      <input class="form-control  mx-2  btn-close" type="search" placeholder="Search" onChange={(e)=>{
+      <input className="form-control  mx-2  btn-close" type="search" placeholder="Search" onChange={(e)=>{
         setsearchedvalue(e.target.value)
       }} aria-label="Search" />
        
-      <button class="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
+      <button className="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
         e.preventDefault()
        if(searchedvalue){
         let dat = await buyerlevel1(searchedvalue);

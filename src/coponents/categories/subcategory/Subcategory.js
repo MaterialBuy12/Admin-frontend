@@ -69,13 +69,13 @@ function Subcategory() {
                 <div className="card-body">
                   <h4 className="mt-0 header-title mb-4">Sub Category</h4>
                   <form
-                    class="d-flex mb-2 "
+                    className="d-flex mb-2 "
                     style={{ width: "30%" }}
                     role="search"
                   >
                     <div className="btn-group">
                       <input
-                        class="form-control  mx-2  btn-close"
+                        className="form-control  mx-2  btn-close"
                         type="search"
                         value={searchedvalue}
                         placeholder="Search sub category"
@@ -86,7 +86,7 @@ function Subcategory() {
                       />
                       <button
                         type="button"
-                        class="btn bg-transparent"
+                        className="btn bg-transparent"
                         style={{ left: "-43px" }}
                         onClick={async () => {
                           let dat = await getAllSubCategory();
@@ -94,10 +94,10 @@ function Subcategory() {
                           setsearchedvalue("");
                         }}
                       >
-                        <i class="fa fa-times" style={{ color: "white" }}></i>
+                        <i className="fa fa-times" style={{ color: "white" }}></i>
                       </button>
                       <button
-                        class="btn btn-outline-dark btn-dark text-white"
+                        className="btn btn-outline-dark btn-dark text-white"
                         type="submit"
                         onClick={async (e) => {
                           e.preventDefault();

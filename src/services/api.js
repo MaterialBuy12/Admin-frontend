@@ -1004,10 +1004,10 @@ export const Orderget = async () => {
     alert(error);
   }
 };
-export const orderput = async (user, id, values) => {
+export const orderput = async (user, id,orderId, values) => {
   try {
     let reposnse = await axios.patch(
-      `${host}/api/orders/${user}/${id}`,
+      `${host}/api/orders/${user}/${id}/${orderId}`,
       values
     );
     return reposnse;

@@ -7,7 +7,8 @@ function OrdersPosts({ posts }) {
   const [orderDetails, setOrderDetails] = useState({});
 
   const handleSubmit = async (orders, productid) => {
-    let data = await orderput(orders.order.user, productid, { status: sta });
+    
+    let data = await orderput(orders.order.user, productid,orders.order._id,  { status: sta });
     if (data.status === 200) {
       alert("SUCCESSFULL");
       window.location.reload();
