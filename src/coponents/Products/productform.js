@@ -417,13 +417,18 @@ function ProductForm() {
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
+                    let arrayelement = []
+                   tags23?.map((element) => {
+                      arrayelement.push(element)
+                   });
+                   values.vari = arrayelement
                     let arr2 = [];
                     tags2?.map((element, index) => {
                       let hs = element.name.split("=");
                       let temp = { variant: hs[0], value: hs[1] };
                       arr2.push(temp);
                     });
-
+                    values.tags = arr2;
                     try {
                       if (values.imgs1) {
                         const data = new FormData();
@@ -496,18 +501,7 @@ function ProductForm() {
                     } catch (error) {
                       alert(error);
                     }
-                    try {
-                      if (values.file1) {
-                        const data = new FormData();
-                        data.append("name", values.file1.name);
-                        data.append("file", values.file1);
-                        let img = await UploadFile(data);
-
-                        values.file1 = img.data;
-                      }
-                    } catch (error) {
-                      alert(error);
-                    }
+                   
                     try {
                       if (values.file2) {
                         const data = new FormData();
@@ -544,6 +538,7 @@ function ProductForm() {
                     } catch (error) {
                       alert(error);
                     }
+                    
                     try {
                       let response = await Product(values);
 
@@ -1057,7 +1052,7 @@ function ProductForm() {
                             <option defaultValue="">Select Category</option>
                             {state2 &&
                               state2.map((i, index) => {
-                                console.log( formik.values.subcategory,i.subcategoryname)
+                               
                                 if (
                                   formik.values.categoryid === i.categoryname && formik.values.subcategory === i.subcategoryname
                                 )

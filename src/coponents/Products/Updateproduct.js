@@ -3,6 +3,7 @@ import { Formik, Form, ErrorMessage, Field } from "formik";
 import TextField from "../categories/TextField";
 import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
+import Inputfielded from "../Offer andbanner/Inputfielded";
 import * as yup from "yup";
 import Multiselect from "multiselect-react-dropdown";
 import {
@@ -20,6 +21,8 @@ function Updateproduct() {
   const [state4, setstate4] = useState([]);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
+  const [filters1, setfilters1] = useState([]);
+  const [tags23, settags23] = useState([]);
 
   const { id } = useParams();
   const [state, setstate] = useState([]);
@@ -52,6 +55,11 @@ function Updateproduct() {
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
       ),
+    excpins: yup.string(),
+    seotags: yup.string(),
+    seotile: yup.string(),
+    seodesc: yup.string(),
+
     discountprice2B: yup
       .string()
 
@@ -133,76 +141,6 @@ function Updateproduct() {
                     <div>
                       <Formik
                         enableReinitialize
-                        //     initialValues={{
-                        //       productname1: state.productname1,
-                        //       calculator:state.calculator,
-                        //       price2A: state.price2A,
-                        //       discountprice2B: state.discountprice2B,
-                        //       taxpercent3: state.taxpercent3,
-                        //       partprice4A: state.partprice4A,
-                        //       sell4B: state.sell4B,
-                        //       skuid5: state.skuid5,
-                        //       stock6: state.stock6,
-                        //       weight7A: state.weight7A,
-                        //       weightunit7A: state.weightunit7A,
-                        //       volumetricweight7B: state.volumetricweight7B,
-                        //       volumetricunit7B: state.volumetricunit7B,
-                        //       len8A: state.len8A,
-                        //       lenunit8A: state.lenunit8A,
-                        //       width8B: state.width8B,
-                        //       widthunit8B: state.widthunit8B,
-                        //       height8C: state.height8C,
-                        //       heightunit8C: state.heightunit8C,
-                        //       manufacturer9: state.manufacturer9,
-                        //       madein10: state.madein10,
-                        //       minord11A: state.minord11A,
-                        //       maxord11B: state.maxord11B,
-                        //       description12: state.description12,
-                        //       cancellable: state.cancellable,
-                        //       returnable: state.returnable,
-                        //       refunable: state.refunable,
-                        //       quote: state.quote,
-                        //       loading: state.loading,
-                        //       unit18A: state.unit18A,
-                        //       unit18B: state.unit18B,
-                        //       unit18C: state.unit18C,
-                        //       unit18D: state.unit18D,
-                        //       cal:state.cal,
-                        //       subcategory: state.subcategory,
-                        //       categoryid: state.categoryid,
-                        //       vari: [state.vari],
-                        //       calculatorunit:state.calculatorunit,
-                        //       tags:[state.tags],
-                        //       subsubcategory: state.subsubcategory,
-                        //       minimum1: state.minimum1,
-                        //       maximum1: state.maximum1,
-                        //       price1: state.price1,
-                        //       minimum2: state.minimum2,
-                        //       maximum2: state.maximum2,
-                        //       price2: state.price2,
-                        //       minimum3: state.minimum3,
-                        //       maximum3: state.maximum3,
-                        //       price3: state.price3,
-                        //       minimum4: state.minimum4,
-                        //       maximum4: state.maximum4,
-                        //       price4: state.price4,
-                        //       minimum5: state.minimum5,
-                        //       maximum5: state.maximum5,
-                        //       price5: state.price5,
-                        //       minimum6: state.minimum6,
-                        //       maximum6: state.maximum6,
-                        //       price6: state.price6,                          // new values
-                        //       description123: state.description123,
-                        // charges:state.charges,
-                        // free6:state.free6,
-                        // free5:state.free5,
-                        // free4:state.free4,
-                        // free3:state.free3,
-                        // free2:state.free2,
-                        // free1:state.free1,
-
-                        //     }}
-
                         initialValues={{
                           productname1: state.productname1,
                           price2A: state.price2A,
@@ -287,12 +225,134 @@ function Updateproduct() {
                           free2: state.free2,
                           free1: state.free1,
                           actions1: false,
+                          excpins: state.excpins,
+                          seotags: state.seotags,
+                          seotile: state.seotile,
+                          seodesc: state.seodesc,
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                          tags2.map((element, index) => {
-                            values.tags[index] = element.name;
+                          let arrayelement = []
+                          tags23?.map((element) => {
+                             arrayelement.push(element)
                           });
+                          values.vari = arrayelement
+                          let arr2 = [];
+                          tags2?.map((element, index) => {
+                            let hs = element.name.split("=");
+                            let temp = { variant: hs[0], value: hs[1] };
+                            arr2.push(temp);
+                          });
+                          values.tags = arr2;
+                          try {
+                            if (values.imgs1) {
+                              const data = new FormData();
+                              data.append("name", values.imgs1.name);
+                              data.append("file", values.imgs1);
+                              let img = await UploadFile(data);
+      
+                              values.imgs1 = img.data;
+                            }
+                          } catch (error) {
+                            alert(error);
+                          }
+                          try {
+                            if (values.imgs2) {
+                              const data = new FormData();
+                              data.append("name", values.imgs2.name);
+                              data.append("file", values.imgs2);
+                              let img = await UploadFile(data);
+      
+                              values.imgs2 = img.data;
+                            }
+                          } catch (error) {
+                            alert(error);
+                          }
+                          try {
+                            if (values.imgs3) {
+                              const data = new FormData();
+                              data.append("name", values.imgs3.name);
+                              data.append("file", values.imgs3);
+                              let img = await UploadFile(data);
+      
+                              values.imgs3 = img.data;
+                            }
+                          } catch (error) {
+                            alert(error);
+                          }
+                          try {
+                            if (values.imgs4) {
+                              const data = new FormData();
+                              data.append("name", values.imgs4.name);
+                              data.append("file", values.imgs4);
+                              let img = await UploadFile(data);
+      
+                              values.imgs4 = img.data;
+                            }
+                          } catch (error) {
+                            alert(error);
+                          }
+                          try {
+                            if (values.file1) {
+                              const data = new FormData();
+                              data.append("name", values.file1.name);
+                              data.append("file", values.file1);
+                              let img = await UploadFile(data);
+      
+                              values.file1 = img.data;
+                            }
+                          } catch (error) {
+                            alert(error);
+                          }
+                          try {
+                            if (values.file1) {
+                              const data = new FormData();
+                              data.append("name", values.file1.name);
+                              data.append("file", values.file1);
+                              let img = await UploadFile(data);
+      
+                              values.file1 = img.data;
+                            }
+                          } catch (error) {
+                            alert(error);
+                          }
+                         
+                          try {
+                            if (values.file2) {
+                              const data = new FormData();
+                              data.append("name", values.file2.name);
+                              data.append("file", values.file2);
+                              let img = await UploadFile(data);
+      
+                              values.file2 = img.data;
+                            }
+                          } catch (error) {
+                            alert(error);
+                          }
+                          try {
+                            if (values.file3) {
+                              const data = new FormData();
+                              data.append("name", values.file3.name);
+                              data.append("file", values.file3);
+                              let img = await UploadFile(data);
+      
+                              values.file3 = img.data;
+                            }
+                          } catch (error) {
+                            alert(error);
+                          }
+                          try {
+                            if (values.file4) {
+                              const data = new FormData();
+                              data.append("name", values.file4.name);
+                              data.append("file", values.file4);
+                              let img = await UploadFile(data);
+      
+                              values.file4 = img.data;
+                            }
+                          } catch (error) {
+                            alert(error);
+                          }
                           try {
                             let response = await ProductAUpdate(id, values);
                             if (response.status) {
@@ -687,6 +747,34 @@ function Updateproduct() {
                                 />
                                 {/* {formik.values.tags?<p>Selected values : {formik.values.tags}</p>:""} */}
                               </div>
+                              <div className="col-lg-6 mt-2">
+                          <label>
+                            15. Frequently Bought Together Products{" "}
+                          </label>
+                          <Multiselect
+                            placeholder="Product Name"
+                            options={filters1} // Options to display in the dropdown
+                            name="vari"
+                            onSelect={(selectedList, selectedItem) => {
+                              settags23(selectedList);
+                            }}
+                            onRemove={(selectedList, removedItem) => {
+                              settags23(selectedList);
+                            }}
+                            style={{
+                              border: "1px solid #353957",
+                              color: "white",
+                              overflow: "none",
+                            }}
+                            displayValue="productname1" // Property name to display in the dropdown options
+                          />
+
+                          <ErrorMessage
+                            name="vari"
+                            component="div"
+                            className="error"
+                          />
+                        </div>
                             </div>
                             {/* 7 row */}
                             <div className="row mt-2">
@@ -1001,7 +1089,22 @@ function Updateproduct() {
                                 <TextField label="Price 1" name="price1" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 1" name="free1" />
+                                <label>Free 1</label>
+                                <br />
+                                {formik.values.free1 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free1", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free1", true)
+                                    }
+                                  />
+                                )}
                               </div>
 
                               <div className="col-1  mt-2">
@@ -1014,7 +1117,22 @@ function Updateproduct() {
                                 <TextField label="Price 2" name="price2" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 2" name="free2" />
+                                <label>Free 2</label>
+                                <br />
+                                {formik.values.free2 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free2", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free2", true)
+                                    }
+                                  />
+                                )}
                               </div>
                               <div className="col-1 mt-2">
                                 <TextField label="Min 3" name="minimum3" />
@@ -1026,7 +1144,22 @@ function Updateproduct() {
                                 <TextField label="Price 3" name="price3" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 3" name="free3" />
+                                <label>Free 3</label>
+                                <br />
+                                {formik.values.free3 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free3", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free3", true)
+                                    }
+                                  />
+                                )}
                               </div>
                             </div>
                             <div className="row mt-2"></div>
@@ -1041,7 +1174,22 @@ function Updateproduct() {
                                 <TextField label="Price 4" name="price4" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 4" name="free4" />
+                                <label>Free 4</label>
+                                <br />
+                                {formik.values.free4 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free4", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free4", true)
+                                    }
+                                  />
+                                )}
                               </div>
 
                               <div className="col-1  mt-2">
@@ -1054,7 +1202,22 @@ function Updateproduct() {
                                 <TextField label="Price 5" name="price5" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 5" name="free5" />
+                                <label>Free 5</label>
+                                <br />
+                                {formik.values.free5 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free5", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free5", true)
+                                    }
+                                  />
+                                )}
                               </div>
                               <div className="col-1  mt-2">
                                 <TextField label="Min 6" name="minimum6" />
@@ -1066,9 +1229,240 @@ function Updateproduct() {
                                 <TextField label="Price 6" name="price6" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 6" name="free6" />
+                                <label>Free 6</label>
+                                <br />
+                                {formik.values.free6 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free6", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free6", true)
+                                    }
+                                  />
+                                )}
                               </div>
                             </div>
+                            <div className="row mt-2">
+                              <div className="col-3">
+                                <label>21A. Image</label>
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className={`form-control shadow-none ${
+                                    formik.touched.imgs1 &&
+                                    formik.errors.imgs1 &&
+                                    "is-invalid"
+                                  }`}
+                                  name="img"
+                                  placeholder="Image"
+                                  onChange={(e) =>
+                                    formik.setFieldValue(
+                                      "imgs1",
+                                      e.target.files[0]
+                                    )
+                                  }
+                                />
+                                <ErrorMessage
+                                  component="div"
+                                  name="imgs1"
+                                  className="error"
+                                />
+                              </div>
+                              <div className="col-3 ">
+                                <label>21B. Image</label>
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className={`form-control shadow-none ${
+                                    formik.touched.imgs2 &&
+                                    formik.errors.imgs2 &&
+                                    "is-invalid"
+                                  }`}
+                                  name="imgs2"
+                                  placeholder="Image"
+                                  onChange={(e) =>
+                                    formik.setFieldValue(
+                                      "imgs2",
+                                      e.target.files[0]
+                                    )
+                                  }
+                                />
+                                <ErrorMessage
+                                  component="div"
+                                  name="imgs2"
+                                  className="error"
+                                />
+                              </div>
+                              <div className="col-3 ">
+                                <label>21C. Image</label>
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className={`form-control shadow-none ${
+                                    formik.touched.imgs3 &&
+                                    formik.errors.imgs3 &&
+                                    "is-invalid"
+                                  }`}
+                                  name="imgs3"
+                                  placeholder="Image"
+                                  onChange={(e) =>
+                                    formik.setFieldValue(
+                                      "imgs3",
+                                      e.target.files[0]
+                                    )
+                                  }
+                                />
+                                <ErrorMessage
+                                  component="div"
+                                  name="imgs3"
+                                  className="error"
+                                />
+                              </div>
+                              <div className="col-3 ">
+                                <label>21D. Image</label>
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className={`form-control shadow-none ${
+                                    formik.touched.imgs4 &&
+                                    formik.errors.imgs4 &&
+                                    "is-invalid"
+                                  }`}
+                                  name="imgs4"
+                                  placeholder="Image"
+                                  onChange={(e) =>
+                                    formik.setFieldValue(
+                                      "imgs4",
+                                      e.target.files[0]
+                                    )
+                                  }
+                                />
+                                <ErrorMessage
+                                  component="div"
+                                  name="imgs4"
+                                  className="error"
+                                />
+                              </div>
+                            </div>
+                            {/* file upload  */}
+                            <div className="row mt-3">
+                              <div className="col-3">
+                                <label>22A. File</label>
+                                <input
+                                  type="file"
+                                  accept=".pdf"
+                                  className={`form-control shadow-none ${
+                                    formik.touched.file1 &&
+                                    formik.errors.file1 &&
+                                    "is-invalid"
+                                  }`}
+                                  name="file1"
+                                  placeholder="Image"
+                                  onChange={(e) =>
+                                    formik.setFieldValue(
+                                      "file1",
+                                      e.target.files[0]
+                                    )
+                                  }
+                                />
+                                <ErrorMessage
+                                  component="div"
+                                  name="file1"
+                                  className="error"
+                                />
+                              </div>
+                              <div className="col-3 ">
+                                <label>22B. File</label>
+                                <input
+                                  type="file"
+                                  accept=".pdf"
+                                  className={`form-control shadow-none ${
+                                    formik.touched.file2 &&
+                                    formik.errors.file2 &&
+                                    "is-invalid"
+                                  }`}
+                                  name="file2"
+                                  placeholder="Image"
+                                  onChange={(e) =>
+                                    formik.setFieldValue(
+                                      "file2",
+                                      e.target.files[0]
+                                    )
+                                  }
+                                />
+                                <ErrorMessage
+                                  component="div"
+                                  name="file2"
+                                  className="error"
+                                />
+                              </div>
+                              <div className="col-3 ">
+                                <label>22C. File</label>
+                                <input
+                                  type="file"
+                                  accept=".pdf"
+                                  className={`form-control shadow-none ${
+                                    formik.touched.file3 &&
+                                    formik.errors.file3 &&
+                                    "is-invalid"
+                                  }`}
+                                  name="img"
+                                  placeholder="Image"
+                                  onChange={(e) =>
+                                    formik.setFieldValue(
+                                      "file3",
+                                      e.target.files[0]
+                                    )
+                                  }
+                                />
+                                <ErrorMessage
+                                  component="div"
+                                  name="file3"
+                                  className="error"
+                                />
+                              </div>
+                              <div className="col-3 ">
+                                <label>22D. File</label>
+                                <input
+                                  type="file"
+                                  accept="/.pdf"
+                                  className={`form-control shadow-none ${
+                                    formik.touched.file4 &&
+                                    formik.errors.file4 &&
+                                    "is-invalid"
+                                  }`}
+                                  name="img"
+                                  placeholder="Image"
+                                  onChange={(e) =>
+                                    formik.setFieldValue(
+                                      "file4",
+                                      e.target.files[0]
+                                    )
+                                  }
+                                />
+                                <ErrorMessage
+                                  component="div"
+                                  name="file4"
+                                  className="error"
+                                />
+                              </div>
+                            </div>
+                            <br />
+                            <Inputfielded
+                              label="Buyer Excluded Pincodes"
+                              name="excpins"
+                            />
+                            <Inputfielded label="SEO Title" name="seotile" />
+                            <Inputfielded
+                              label="SEO Description"
+                              name="seodesc"
+                            />
+                            <Inputfielded label="SEO Tags" name="seotags" />
                             <input
                               type="submit"
                               className="btn mt-4 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark"

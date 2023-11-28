@@ -23,7 +23,7 @@ function RequestProduct() {
   useEffect(() => {
     async function data() {
       let dat = await ProductRequest1();
-      console.log("=>",dat.data)
+
       setposts(dat.data);
     }
     data();
@@ -54,6 +54,7 @@ function RequestProduct() {
                           <tr>
                             <th scope="col"> Vendor Name</th>
                             <th scope="col"> Ware House</th>
+                            <th scope="col"> Price</th>
                             <th scope="col">Product Name</th>
 
                             <th scope="col" colSpan="2">

@@ -1,20 +1,9 @@
-import React, { useState } from "react";
-import { ProductRequest21, vendorget } from "../../services/api";
+import React from "react";
+import { ProductRequest21 } from "../../services/api";
 
 function RequestProductPosts({ posts }) {
 
-  async function fetchVendorData() {
-    // console.log(id,"hello")
-    try {
-      const response = await vendorget("6529370f965a4424bc52e35e");
-      if (response.status) {
-        console.log("data",response)
-      }
-    } catch (error) {
-      alert(`Error fetching vendor data for post `, error);
-    }
-  }
-
+ 
   const remove = async (i) => {
     let dat = await ProductRequest21(i._id);
     if (dat.status) {
@@ -43,6 +32,7 @@ function RequestProductPosts({ posts }) {
                 ))}
               </span>
             </td>
+            <td>{i.price}</td>
             <td>
               <span>
                 {i.product_docs.map((j) => (

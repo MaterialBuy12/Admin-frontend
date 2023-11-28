@@ -545,6 +545,14 @@ export const categoryfilter = async (values) => {
     alert(error);
   }
 };
+export const productfilter = async (values) => {
+  try {
+    let response = await axios.get(`${host}/api/filters?filter=${values}`);
+    return response;
+  } catch (error) {
+    alert(error);
+  }
+};
 export const subsubcategoryfilter = async (values) => {
   try {
     let response = await axios.get(
