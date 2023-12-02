@@ -12,6 +12,7 @@ import {
   getAllSubCategory,
   ProductAget,
   ProductAUpdate,
+  Productget,
   SubSubgetCategory,
 } from "../../services/api";
 import Footer from "../footer/Footer";
@@ -36,6 +37,8 @@ function Updateproduct() {
       let datas = await ProductAget(id);
       let filtername = await Filterget();
       let optionsvalue = [];
+      let data1 = await Productget();
+      setfilters1(data1.data);
       filtername.data.map((i) => {
         let valueds = i.name + "=" + i.att;
         optionsvalue.push({ name: valueds });
