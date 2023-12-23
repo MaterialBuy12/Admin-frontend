@@ -53,7 +53,7 @@ function ProfileUpates() {
                     </h4>
                     <form
                       className="d-flex mb-2 "
-                      style={{ width: "30%" }}
+                      style={{ width: "50%" }}
                       role="search"
                     >
                       <div className="btn-group">

@@ -20,6 +20,7 @@ function CSSDeals() {
   const [state, setstate] = useState([]);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
+  const [searchedvalue, setsearchedvalue] = useState("");
   //   const navigate = useNavigate();
   const [posts, setposts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -232,23 +233,56 @@ function CSSDeals() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">CSS Deals</h4>
+
                     <form
                       className="d-flex mb-2 "
-                      style={{ width: "30%" }}
+                      style={{ width: "50%" }}
                       role="search"
                     >
-                      <input
-                        className="form-control w-5 mx-2"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                      />
-                      <button
-                        className="btn rounded btn-md btn-outline-secondary btn-dark"
-                        type="submit"
-                      >
-                        Search
-                      </button>
+                      <div className="btn-group">
+                        <input
+                          className="form-control  mx-2  btn-close"
+                          type="search"
+                          value={searchedvalue}
+                          placeholder="Search category"
+                          onChange={(e) => {
+                            setsearchedvalue(e.target.value);
+                          }}
+                          aria-label="Search Product Name"
+                        />
+                        <button
+                          type="button"
+                          className="btn bg-transparent"
+                          style={{ left: "-43px" }}
+                          onClick={async () => {
+                            let data = await DEALSGET();
+                            setposts(data.data);
+                            setsearchedvalue("");
+                          }}
+                        >
+                          <i
+                            className="fa fa-times"
+                            style={{ color: "white" }}
+                          ></i>
+                        </button>
+                        <button
+                          className="btn rounded btn-md btn-outline-secondary btn-dark"
+                          type="submit"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            // todo: add functionality
+                            if (searchedvalue) {
+                              // let dat = await dodfilter(searchedvalue);
+                              // setposts(dat.data);
+                            } else {
+                              // let dat = await Dealget();
+                              // setposts(dat.data);
+                            }
+                          }}
+                        >
+                          Search
+                        </button>
+                      </div>
                     </form>
 
                     <div className="table-responsive">

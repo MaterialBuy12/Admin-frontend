@@ -49,7 +49,7 @@ function Prefab() {
 
                     <form
                       className="d-flex mb-2 "
-                      style={{ width: "30%" }}
+                      style={{ width: "50%" }}
                       role="search"
                     >
                       <div className="btn-group">
@@ -84,11 +84,7 @@ function Prefab() {
                           onClick={async (e) => {
                             e.preventDefault();
                             if (searchedvalue) {
-                              // todo: add the functionallity
-                              console.log("added the function");
-                              let dat = await prefabfilter(
-                                searchedvalue
-                              );
+                              let dat = await prefabfilter(searchedvalue);
 
                               setposts(dat.data);
                             } else {

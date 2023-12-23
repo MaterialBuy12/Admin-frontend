@@ -54,7 +54,7 @@ function Warehouse() {
                     <h4 className="mt-0 header-title mb-4"> Ware House</h4>
                     <form
                       className="d-flex mb-2 "
-                      style={{ width: "30%" }}
+                      style={{ width: "50%" }}
                       role="search"
                     >
                       <div className="btn-group">

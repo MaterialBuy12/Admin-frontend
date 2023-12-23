@@ -136,7 +136,7 @@ function SellerFrequency() {
                     <h4 className="mt-0 header-title mb-4">Seller Frequency</h4>
                     <form
                       className="d-flex mb-2 "
-                      style={{ width: "30%" }}
+                      style={{ width: "50%" }}
                       role="search"
                     >
                       <input

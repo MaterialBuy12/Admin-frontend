@@ -16,7 +16,7 @@ function Buyerlevel() {
   const [postsPerPage] = useState(25);
 
   // total no of pages
-  const Totalpages = Math.ceil(posts.length / postsPerPage) ;
+  const Totalpages = Math.ceil(posts.length / postsPerPage);
   const pages = [...Array(Totalpages + 1).keys()].slice(1);
 
   // Get current posts
@@ -29,7 +29,7 @@ function Buyerlevel() {
   useEffect(() => {
     async function data() {
       let dat = await buyerlevel();
-          setposts(dat.data);
+      setposts(dat.data);
     }
     data();
   }, []);
@@ -69,15 +69,15 @@ function Buyerlevel() {
                         onSubmit={async (values, action) => {
                           try {
                             let dat = await buyerleve(values);
-                          
+
                             if (dat.status) {
                               alert("SUCCESSFULLY ", dat.data);
-                              window.location.reload()
+                              window.location.reload();
                             } else {
                               alert("Something went wrong");
                             }
                           } catch (error) {
-                          alert(error)
+                            alert(error);
                           }
                           action.resetForm();
                         }}
@@ -132,27 +132,41 @@ function Buyerlevel() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Buller Level</h4>
-                    <form className="d-flex mb-2 " style={{width:"30%"}} role="search">
-                      
-      <div className="btn-group">
-      <input className="form-control  mx-2  btn-close" type="search" placeholder="Search" onChange={(e)=>{
-        setsearchedvalue(e.target.value)
-      }} aria-label="Search" />
-       
-      <button className="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
-        e.preventDefault()
-       if(searchedvalue){
-        let dat = await buyerlevel1(searchedvalue);
-    
-           
-        setposts(dat.data.data);
-       }else{
-        let dat = await buyerlevel();
-        setposts(dat.data);
-       }
-      }}>Search</button>
-      </div>
-    </form>
+                    <form
+                      className="d-flex mb-2 "
+                      style={{ width: "50%" }}
+                      role="search"
+                    >
+                      <div className="btn-group">
+                        <input
+                          className="form-control  mx-2  btn-close"
+                          type="search"
+                          placeholder="Search"
+                          onChange={(e) => {
+                            setsearchedvalue(e.target.value);
+                          }}
+                          aria-label="Search"
+                        />
+
+                        <button
+                          className="btn rounded btn-md btn-outline-secondary btn-dark"
+                          type="submit"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            if (searchedvalue) {
+                              let dat = await buyerlevel1(searchedvalue);
+
+                              setposts(dat.data.data);
+                            } else {
+                              let dat = await buyerlevel();
+                              setposts(dat.data);
+                            }
+                          }}
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </form>
 
                     <div className="table-responsive">
                       <table className="table table-hover">

@@ -110,16 +110,9 @@ function Corporate() {
                                 <th scope="col">GST</th>
                                 <th scope="col">Pan number</th>
                                 <th scope="col">Organization Name</th>
-                                <th scope="col">Billing Address 1</th>
-                                <th scope="col">Billing Address 2</th>
-                                <th scope="col">Billing Address 3</th>
-                                <th scope="col">Billing Address 4</th>
-                                <th scope="col">Billing Address 5</th>
-                                <th scope="col">Shipping Address 1</th>
-                                <th scope="col">Shipping Address 2</th>
-                                <th scope="col">Shipping Address 3</th>
-                                <th scope="col">Shipping Address 4</th>
-                                <th scope="col">Shipping Address 5</th>
+                                <th scope="col">Billing Address </th>
+
+                                <th scope="col">Shipping Address </th>
 
                                 <th scope="col">Action</th>
                               </tr>

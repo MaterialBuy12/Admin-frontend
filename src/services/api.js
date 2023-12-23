@@ -574,6 +574,26 @@ export const prefabfilter = async (values) => {
   }
 };
 
+export const transportfilter = async (values) => {
+  try {
+    let response = await axios.get(
+      `${host1}/api/transport?email=${values}`
+    );
+    return response;
+  } catch (error) {
+    alert(error);
+  }
+};
+export const dodfilter = async (values) => {
+  try {
+    let response = await axios.get(
+      `${host}/api/products/dod/get?productName=${values}`
+    );
+    return response;
+  } catch (error) {
+    alert(error);
+  }
+};
 
 
 export const corporatefilter = async (values) => {

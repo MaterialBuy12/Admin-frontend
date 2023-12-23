@@ -4,7 +4,7 @@ import * as yup from "yup";
 
 import { Formik, Form, ErrorMessage } from "formik";
 
-import { Dealget, Dealsput, Productget } from "../../services/api";
+import { Dealget, Dealsput, Productget, dodfilter } from "../../services/api";
 import "../../App.css";
 
 import DealsPosts from "./DealsPosts";
@@ -158,7 +158,7 @@ function Deals() {
 
                     <form
                       className="d-flex mb-2 "
-                      style={{ width: "30%" }}
+                      style={{ width: "50%" }}
                       role="search"
                     >
                       <div className="btn-group">
@@ -193,16 +193,11 @@ function Deals() {
                           onClick={async (e) => {
                             e.preventDefault();
                             if (searchedvalue) {
-                              // todo: add the functionallity
-                              console.log("added the function");
-                              // let dat = await subsubcategoryfilter(
-                              //   searchedvalue
-                              // );
-
-                              // setposts(dat.data);
+                              let dat = await dodfilter(searchedvalue);
+                              setposts(dat.data);
                             } else {
-                              // let dat = await SubSubgetCategory();
-                              // setposts(dat);
+                              let dat = await Dealget();
+                              setposts(dat.data);
                             }
                           }}
                         >

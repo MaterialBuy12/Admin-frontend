@@ -3,7 +3,11 @@ import Footer from "../footer/Footer";
 import { Formik, Form, ErrorMessage } from "formik";
 import TextField from "../categories/TextField";
 import * as yup from "yup";
-import { Transporter, Transporterget } from "../../services/api";
+import {
+  Transporter,
+  Transporterget,
+  transportfilter,
+} from "../../services/api";
 import "yup-phone";
 import Pagination from "../categories/categories/Pagination";
 import TransportersPosts from "./TransportersPosts";
@@ -156,7 +160,7 @@ function Transporters() {
                     <h4 className="mt-0 header-title mb-4">Transporter List</h4>
                     <form
                       className="d-flex mb-2 "
-                      style={{ width: "30%" }}
+                      style={{ width: "50%" }}
                       role="search"
                     >
                       <div className="btn-group">
@@ -191,16 +195,13 @@ function Transporters() {
                           onClick={async (e) => {
                             e.preventDefault();
                             if (searchedvalue) {
-                              // todo: add the functionallity
-                              console.log("added the function");
-                              // let dat = await subsubcategoryfilter(
-                              //   searchedvalue
-                              // );
+                              let dat = await transportfilter(searchedvalue);
+                              console.log(dat.data, "==>");
 
-                              // setposts(dat.data);
+                              setposts(dat.data);
                             } else {
-                              // let dat = await SubSubgetCategory();
-                              // setposts(dat);
+                              let dat = await Transporterget();
+                              setposts(dat);
                             }
                           }}
                         >
