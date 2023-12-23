@@ -33,10 +33,37 @@ function NormalPost({ posts }) {
               <span>{i.gst}</span>
             </td>
             <td>
-              <span>{i.billingaddress}</span>
+              <span>{i.pan}</span>
             </td>
             <td>
-              <span>{i.shippingaddress}</span>
+              <span>{i.billingaddress1}</span>
+            </td>
+            <td>
+              <span>{i.billingaddress2}</span>
+            </td>
+            <td>
+              <span>{i.billingaddress3}</span>
+            </td>
+            <td>
+              <span>{i.billingaddress4}</span>
+            </td>
+            <td>
+              <span>{i.billingaddress5}</span>
+            </td>
+            <td>
+              <span>{i.shippingaddress1}</span>
+            </td>
+            <td>
+              <span>{i.shippingaddress2}</span>
+            </td>
+            <td>
+              <span>{i.shippingaddress3}</span>
+            </td>
+            <td>
+              <span>{i.shippingaddress4}</span>
+            </td>
+            <td>
+              <span>{i.shippingaddress5}</span>
             </td>
             <td>
               <span>

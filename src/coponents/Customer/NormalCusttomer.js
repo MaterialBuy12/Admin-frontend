@@ -24,7 +24,7 @@ function NormalCusttomer() {
   useEffect(() => {
     async function data() {
       let dat = await normalusers();
-
+      console.log(dat.data)
       setposts(dat.data);
     }
 
@@ -109,8 +109,17 @@ function NormalCusttomer() {
                                 <th scope="col">Mobile no</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">GST</th>
-                                <th scope="col">Billing Address</th>
-                                <th scope="col">Shipping Address</th>
+                                <th scope="col"> Pan Number</th>
+                                <th scope="col">Billing Address 1</th>
+                                <th scope="col">Billing Address 2</th>
+                                <th scope="col">Billing Address 3</th>
+                                <th scope="col">Billing Address 4</th>
+                                <th scope="col">Billing Address 5</th>
+                                <th scope="col">Shipping Address 1</th>
+                                <th scope="col">Shipping Address 2</th>
+                                <th scope="col">Shipping Address 3</th>
+                                <th scope="col">Shipping Address 4</th>
+                                <th scope="col">Shipping Address 5</th>
 
                                 <th scope="col">Action</th>
                               </tr>

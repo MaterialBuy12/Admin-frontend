@@ -563,6 +563,19 @@ export const subsubcategoryfilter = async (values) => {
     alert(error);
   }
 };
+export const prefabfilter = async (values) => {
+  try {
+    let response = await axios.get(
+      `${host}/api/prefabbenquiry?email=${values}`
+    );
+    return response;
+  } catch (error) {
+    alert(error);
+  }
+};
+
+
+
 export const corporatefilter = async (values) => {
   try {
     let response = await axios.get(

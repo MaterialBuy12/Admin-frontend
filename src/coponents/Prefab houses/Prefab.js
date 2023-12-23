@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { prefabbenquiry } from "../../services/api";
+import { prefabbenquiry, prefabfilter } from "../../services/api";
 import Footer from "../footer/Footer";
 // import { useNavigate } from "react-router-dom";
 import Fabspots from "./Fabspots";
@@ -46,7 +46,7 @@ function Prefab() {
                     <h4 className="mt-0 header-title mb-4">
                       Prefab Houses Enquiry
                     </h4>
-                    
+
                     <form
                       className="d-flex mb-2 "
                       style={{ width: "30%" }}
@@ -85,15 +85,15 @@ function Prefab() {
                             e.preventDefault();
                             if (searchedvalue) {
                               // todo: add the functionallity
-                              console.log("added the function")
-                              // let dat = await subsubcategoryfilter(
-                              //   searchedvalue
-                              // );
+                              console.log("added the function");
+                              let dat = await prefabfilter(
+                                searchedvalue
+                              );
 
-                              // setposts(dat.data);
+                              setposts(dat.data);
                             } else {
-                              // let dat = await SubSubgetCategory();
-                              // setposts(dat);
+                              let dat = await prefabbenquiry();
+                              setposts(dat.data);
                             }
                           }}
                         >
