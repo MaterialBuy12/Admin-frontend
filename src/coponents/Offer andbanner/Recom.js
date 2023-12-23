@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Footer from "../footer/Footer";
 import { Formik, Form, ErrorMessage } from "formik";
 
-import { Productget, Recomget, Recomput } from "../../services/api";
+import { Productget, Recomget, Recomput, dodfilter } from "../../services/api";
 
 import RecomPosts from "./RecomPosts";
 import Pagination from "../categories/categories/Pagination";
@@ -174,16 +174,11 @@ function Recom() {
                           onClick={async (e) => {
                             e.preventDefault();
                             if (searchedvalue) {
-                              // todo: add the functionallity
-                              console.log("added the function")
-                              // let dat = await subsubcategoryfilter(
-                              //   searchedvalue
-                              // );
-
-                              // setposts(dat.data);
+                              let dat = await dodfilter(searchedvalue);
+                              setposts(dat.data);
                             } else {
-                              // let dat = await SubSubgetCategory();
-                              // setposts(dat);
+                              let resp = await Recomget();
+                              setposts(resp.data);
                             }
                           }}
                         >
