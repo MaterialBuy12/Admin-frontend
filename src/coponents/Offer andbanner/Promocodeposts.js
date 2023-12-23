@@ -58,7 +58,7 @@ function Promocodeposts({ posts }) {
                   confirm(i);
                 }}
               >
-                <i className="fa-solid fa-toggle-on"></i>
+                <i className={!(i.currentstatus)? "fa-solid fa-toggle-on":"fa-solid fa-toggle-off"}></i>
               </button>
             </td>
           </tr>
