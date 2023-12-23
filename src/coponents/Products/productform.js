@@ -411,7 +411,7 @@ function ProductForm() {
                     actions1: false,
                     excpins:"",
                     seotags:"",
-                    seotile:"",
+                    seotitle:"",
                     seodesc:"",
 
                   }}
@@ -1461,7 +1461,7 @@ function ProductForm() {
                       <Inputfielded label="Buyer Excluded Pincodes" name="excpins" />
 
                       
-                      <Inputfielded label="SEO Title" name="seotile" />
+                      <Inputfielded label="SEO Title" name="seotitle" />
                       
                       <Inputfielded label="SEO Description" name="seodesc" />
 
