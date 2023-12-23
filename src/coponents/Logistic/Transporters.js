@@ -24,6 +24,7 @@ function Transporters() {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const [searchedvalue, setsearchedvalue] = useState("");
 
   // eslint-disable-next-line
   const editor = useRef(null);
@@ -71,8 +72,6 @@ function Transporters() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                      
-
                           try {
                             let data = await Transporter(values);
                             if (data.status) {
@@ -82,7 +81,7 @@ function Transporters() {
                               alert("something went wrong");
                             }
                           } catch (error) {
-                          alert(error)
+                            alert(error);
                           }
 
                           actions.resetForm();
@@ -155,6 +154,60 @@ function Transporters() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Transporter List</h4>
+                    <form
+                      className="d-flex mb-2 "
+                      style={{ width: "30%" }}
+                      role="search"
+                    >
+                      <div className="btn-group">
+                        <input
+                          className="form-control  mx-2  btn-close"
+                          type="search"
+                          value={searchedvalue}
+                          placeholder="Search Email"
+                          onChange={(e) => {
+                            setsearchedvalue(e.target.value);
+                          }}
+                          aria-label="Search Email"
+                        />
+                        <button
+                          type="button"
+                          className="btn bg-transparent"
+                          style={{ left: "-43px" }}
+                          onClick={async () => {
+                            let dat = await Transporterget();
+                            setposts(dat);
+                            setsearchedvalue("");
+                          }}
+                        >
+                          <i
+                            className="fa fa-times"
+                            style={{ color: "white" }}
+                          ></i>
+                        </button>
+                        <button
+                          className="btn rounded btn-md btn-outline-secondary btn-dark"
+                          type="submit"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            if (searchedvalue) {
+                              // todo: add the functionallity
+                              console.log("added the function");
+                              // let dat = await subsubcategoryfilter(
+                              //   searchedvalue
+                              // );
+
+                              // setposts(dat.data);
+                            } else {
+                              // let dat = await SubSubgetCategory();
+                              // setposts(dat);
+                            }
+                          }}
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </form>
 
                     <div className="table-responsive">
                       <table className="table table-hover">

@@ -185,12 +185,11 @@ function CSSDeals() {
                                   </option>
                                   {state2 &&
                                     state2.map((i, index) => {
-                                     
                                       if (
                                         formik.values.category ===
                                           i.categoryname &&
                                         formik.values.subcategory ===
-                                        i.subcategoryname
+                                          i.subcategoryname
                                       )
                                         return (
                                           <option value={i.subsubcategory}>
@@ -233,7 +232,11 @@ function CSSDeals() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">CSS Deals</h4>
-                    <form className="d-flex w-10" role="search">
+                    <form
+                      className="d-flex mb-2 "
+                      style={{ width: "30%" }}
+                      role="search"
+                    >
                       <input
                         className="form-control w-5 mx-2"
                         type="search"
@@ -241,7 +244,7 @@ function CSSDeals() {
                         aria-label="Search"
                       />
                       <button
-                        className="btn btn-outline-dark btn-dark text-white"
+                        className="btn rounded btn-md btn-outline-secondary btn-dark"
                         type="submit"
                       >
                         Search

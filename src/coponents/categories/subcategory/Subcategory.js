@@ -94,10 +94,13 @@ function Subcategory() {
                           setsearchedvalue("");
                         }}
                       >
-                        <i className="fa fa-times" style={{ color: "white" }}></i>
+                        <i
+                          className="fa fa-times"
+                          style={{ color: "white" }}
+                        ></i>
                       </button>
                       <button
-                        className="btn btn-outline-dark btn-dark text-white"
+                        className="btn rounded btn-md btn-outline-secondary btn-dark"
                         type="submit"
                         onClick={async (e) => {
                           e.preventDefault();

@@ -21,7 +21,7 @@ function Prefab() {
 
   // // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  const [searchedvalue, setsearchedvalue] = useState("");
   // eslint-disable-next-line
   useEffect(() => {
     async function data() {
@@ -46,6 +46,61 @@ function Prefab() {
                     <h4 className="mt-0 header-title mb-4">
                       Prefab Houses Enquiry
                     </h4>
+                    
+                    <form
+                      className="d-flex mb-2 "
+                      style={{ width: "30%" }}
+                      role="search"
+                    >
+                      <div className="btn-group">
+                        <input
+                          className="form-control  mx-2  btn-close"
+                          type="search"
+                          value={searchedvalue}
+                          placeholder="Search Email"
+                          onChange={(e) => {
+                            setsearchedvalue(e.target.value);
+                          }}
+                          aria-label="Search Email"
+                        />
+                        <button
+                          type="button"
+                          className="btn bg-transparent"
+                          style={{ left: "-43px" }}
+                          onClick={async () => {
+                            let dat = await prefabbenquiry();
+                            setposts(dat.data);
+                            setsearchedvalue("");
+                          }}
+                        >
+                          <i
+                            className="fa fa-times"
+                            style={{ color: "white" }}
+                          ></i>
+                        </button>
+                        <button
+                          className="btn rounded btn-md btn-outline-secondary btn-dark"
+                          type="submit"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            if (searchedvalue) {
+                              // todo: add the functionallity
+                              console.log("added the function")
+                              // let dat = await subsubcategoryfilter(
+                              //   searchedvalue
+                              // );
+
+                              // setposts(dat.data);
+                            } else {
+                              // let dat = await SubSubgetCategory();
+                              // setposts(dat);
+                            }
+                          }}
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </form>
 
                     <div className="table-responsive">
                       <table className="table table-hover">

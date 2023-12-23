@@ -1,8 +1,7 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { servicesdeleted } from "../../services/api";
 
 function Serposts({ posts }) {
-
   const [description, setDescription] = useState("");
   const remove = async (i) => {
     let dat = await servicesdeleted(i._id);
@@ -15,12 +14,9 @@ function Serposts({ posts }) {
     }
   };
 
-  const detailsChangeHanlder =  (i) => {
-   
-    setDescription(
-    i.replace(/<[^>]+>/g, "")
-    );
-  }
+  const detailsChangeHanlder = (i) => {
+    setDescription(i.replace(/<[^>]+>/g, ""));
+  };
   return (
     <>
       {posts &&
@@ -29,64 +25,57 @@ function Serposts({ posts }) {
             <th> {index + 1}</th>
             <th> {i.service}</th>
 
-
-
             <th>
-              
-            <button
-                    type="button"
-                    className="btn btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    onClick={()=>detailsChangeHanlder(i.descr)}
-                  >
-                    Details
-                  </button>
-              
-              
-               {/* {i.descr.replace(/<[^>]+>/g, "")} */}
-               
-               <div
-                    className="modal fade"
-                    id="exampleModal"
-                    tabIndex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div className="modal-dialog modal-xl">
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                onClick={() => detailsChangeHanlder(i.descr)}
+              >
+                Details
+              </button>
 
-                          <button
-                            type="button"
-                            className="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div className="modal-body">
-                          <label className='modal-body__content'> {description}</label>
-                          <br />
-                     
-                        </div>
+              {/* {i.descr.replace(/<[^>]+>/g, "")} */}
 
-                        <div className="modal-footer">
-                          <button
-                            type="button"
-                            className="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                          >
-                            Close
-                          </button>
-                        </div>
-                      </div>
+              <div
+                className="modal fade"
+                id="exampleModal"
+                tabIndex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog modal-xl">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div className="modal-body">
+                      <label className="modal-body__content">
+                        {" "}
+                        {description}
+                      </label>
+                      <br />
+                    </div>
+
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
                     </div>
                   </div>
-                
-               
-               
-               </th>
+                </div>
+              </div>
+            </th>
 
             <th>
               {" "}

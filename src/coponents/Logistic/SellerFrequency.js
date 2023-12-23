@@ -13,7 +13,7 @@ function SellerFrequency() {
   const [posts, setposts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(25);
-  const [searchedvalue,setsearchedvalue]=useState("")
+  const [searchedvalue, setsearchedvalue] = useState("");
 
   // total no of pages
   const Totalpages = Math.ceil(posts.length / postsPerPage);
@@ -80,7 +80,7 @@ function SellerFrequency() {
                               alert("Something went wrong");
                             }
                           } catch (error) {
-                          alert(error)
+                            alert(error);
                           }
                           action.resetForm();
                         }}
@@ -134,21 +134,37 @@ function SellerFrequency() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Seller Frequency</h4>
-                    <form className="d-flex mb-2 " style={{width:"30%"}} role="search">
-      <input className="form-control  mx-2" type="search" placeholder="Search" onChange={(e)=>{
-        setsearchedvalue(e.target.value)
-      }} aria-label="Search"/>
-      <button className="btn btn-outline-dark btn-dark text-white" type="submit"onClick={async (e)=>{
-        e.preventDefault()
-          if(searchedvalue){
-            let dat = await seller1(searchedvalue);      
-            setposts(dat.data.data);
-          }else{
-            let dat = await sellerfreq();
-            setposts(dat.data);
-          }
-      }}>Search</button>
-    </form>
+                    <form
+                      className="d-flex mb-2 "
+                      style={{ width: "30%" }}
+                      role="search"
+                    >
+                      <input
+                        className="form-control  mx-2"
+                        type="search"
+                        placeholder="Search"
+                        onChange={(e) => {
+                          setsearchedvalue(e.target.value);
+                        }}
+                        aria-label="Search"
+                      />
+                      <button
+                        className="btn rounded btn-md btn-outline-secondary btn-dark"
+                        type="submit"
+                        onClick={async (e) => {
+                          e.preventDefault();
+                          if (searchedvalue) {
+                            let dat = await seller1(searchedvalue);
+                            setposts(dat.data.data);
+                          } else {
+                            let dat = await sellerfreq();
+                            setposts(dat.data);
+                          }
+                        }}
+                      >
+                        Search
+                      </button>
+                    </form>
                     <div className="table-responsive">
                       <table className="table table-hover">
                         <thead>

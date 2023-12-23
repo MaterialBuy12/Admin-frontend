@@ -35,7 +35,7 @@ function Deals() {
 
   const [filters, setfilters] = useState([]);
   const [tags2, settags2] = useState([]);
-
+  const [searchedvalue, setsearchedvalue] = useState("");
   useEffect(() => {
     async function data() {
       let resp = await Dealget();
@@ -155,6 +155,61 @@ function Deals() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Deals List</h4>
+
+                    <form
+                      className="d-flex mb-2 "
+                      style={{ width: "30%" }}
+                      role="search"
+                    >
+                      <div className="btn-group">
+                        <input
+                          className="form-control  mx-2  btn-close"
+                          type="search"
+                          value={searchedvalue}
+                          placeholder="Search Product Name"
+                          onChange={(e) => {
+                            setsearchedvalue(e.target.value);
+                          }}
+                          aria-label="Search Product Name"
+                        />
+                        <button
+                          type="button"
+                          className="btn bg-transparent"
+                          style={{ left: "-43px" }}
+                          onClick={async () => {
+                            let dat = await Dealget();
+                            setposts(dat.data);
+                            setsearchedvalue("");
+                          }}
+                        >
+                          <i
+                            className="fa fa-times"
+                            style={{ color: "white" }}
+                          ></i>
+                        </button>
+                        <button
+                          className="btn rounded btn-md btn-outline-secondary btn-dark"
+                          type="submit"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            if (searchedvalue) {
+                              // todo: add the functionallity
+                              console.log("added the function");
+                              // let dat = await subsubcategoryfilter(
+                              //   searchedvalue
+                              // );
+
+                              // setposts(dat.data);
+                            } else {
+                              // let dat = await SubSubgetCategory();
+                              // setposts(dat);
+                            }
+                          }}
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </form>
 
                     <div className="table-responsive">
                       <table className="table table-hover">
