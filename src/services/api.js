@@ -594,6 +594,16 @@ export const dodfilter = async (values) => {
     alert(error);
   }
 };
+export const cssfilter = async (values) => {
+  try {
+    let response = await axios.get(
+      `${host}/api/css?category=${values}`
+    );
+    return response;
+  } catch (error) {
+    alert(error);
+  }
+};
 
 
 export const corporatefilter = async (values) => {

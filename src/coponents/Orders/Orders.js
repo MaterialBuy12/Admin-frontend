@@ -56,7 +56,6 @@ function Orders() {
                               setord(dat.data.data.orders);
                             } else {
                               let dat = await orderFilter(i.target.value);
-                              console.log(dat.data.data)
                               setord(dat.data.data.orders);
                             }
                           }}
@@ -103,7 +102,7 @@ function Orders() {
                             </button>
 
                             <button
-                              className="btn btn-outline-dark btn-dark text-white"
+                              className="btn rounded btn-md btn-outline-secondary btn-dark"
                               type="submit"
                               onClick={async (e) => {
                                 e.preventDefault();

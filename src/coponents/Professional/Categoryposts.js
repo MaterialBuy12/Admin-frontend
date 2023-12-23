@@ -48,12 +48,19 @@ function Categoryposts({ posts }) {
                 <div className="modal-dialog  modal-xl">
                   <div className="modal-content">
                     <div className="modal-header">
+                      Description
                       <button
                         type="button"
-                        className="btn-close"
+                        className="btn rounded btn-md my-1 btn-outline-secondary btn-dark"
                         data-bs-dismiss="modal"
                         aria-label="Close"
-                      ></button>
+                      >
+                        {" "}
+                        <i
+                          className="fa fa-times"
+                          style={{ color: "white" }}
+                        ></i>
+                      </button>
                     </div>
                     <div className="modal-body">
                       <label className="modal-body__content">

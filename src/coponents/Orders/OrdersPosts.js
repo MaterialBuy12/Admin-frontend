@@ -7,8 +7,9 @@ function OrdersPosts({ posts }) {
   const [orderDetails, setOrderDetails] = useState({});
 
   const handleSubmit = async (orders, productid) => {
-    
-    let data = await orderput(orders.order.user, productid,orders.order._id,  { status: sta });
+    let data = await orderput(orders.order.user, productid, orders.order._id, {
+      status: sta,
+    });
     if (data.status === 200) {
       alert("SUCCESSFULL");
       window.location.reload();
@@ -17,6 +18,7 @@ function OrdersPosts({ posts }) {
 
   const detailsChangeHanlder = (p, i) => {
     setOrderDetails({
+      productname: p.productname1,
       category: p.categoryid,
       scategory: p.subcategory,
       sscategory: p.subsubcategory,
@@ -171,14 +173,20 @@ function OrdersPosts({ posts }) {
                   <div className="modal-dialog">
                     <div className="modal-content">
                       <div className="modal-header">
-                        <h5>{p.productname1}</h5>
+                        <h5>{orderDetails.productname}</h5>
 
                         <button
                           type="button"
-                          className="btn-close"
+                          className="btn rounded btn-md btn-outline-secondary btn-dark pull-right"
                           data-bs-dismiss="modal"
                           aria-label="Close"
-                        ></button>
+                        >
+                          {" "}
+                          <i
+                            className="fa fa-times"
+                            style={{ color: "white" }}
+                          ></i>
+                        </button>
                       </div>
                       <div className="modal-body">
                         <label>Category: {orderDetails.category}</label>

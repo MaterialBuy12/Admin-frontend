@@ -4,6 +4,7 @@ import {
   DEALSGET,
   DEALSPOST,
   SubSubgetCategory,
+  cssfilter,
   getAllCategory,
   getAllSubCategory,
 } from "../../services/api";
@@ -270,13 +271,13 @@ function CSSDeals() {
                           type="submit"
                           onClick={async (e) => {
                             e.preventDefault();
-                            // todo: add functionality
+
                             if (searchedvalue) {
-                              // let dat = await dodfilter(searchedvalue);
-                              // setposts(dat.data);
+                              let dat = await cssfilter(searchedvalue);
+                              setposts(dat.data);
                             } else {
-                              // let dat = await Dealget();
-                              // setposts(dat.data);
+                              let data = await DEALSGET();
+                              setposts(data.data);
                             }
                           }}
                         >
