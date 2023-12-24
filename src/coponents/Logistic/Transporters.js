@@ -168,7 +168,7 @@ function Transporters() {
                           className="form-control  mx-2  btn-close"
                           type="search"
                           value={searchedvalue}
-                          placeholder="Search Email"
+                          placeholder="Search Name"
                           onChange={(e) => {
                             setsearchedvalue(e.target.value);
                           }}
@@ -196,8 +196,6 @@ function Transporters() {
                             e.preventDefault();
                             if (searchedvalue) {
                               let dat = await transportfilter(searchedvalue);
-                              console.log(dat.data, "==>");
-
                               setposts(dat.data);
                             } else {
                               let dat = await Transporterget();
@@ -220,7 +218,6 @@ function Transporters() {
                             <th scope="col">Email</th>
                             <th scope="col">GST</th>
                             <th scope="col">Address</th>
-
                             <th scope="col">Rate</th>
                             <th scope="col">Action</th>
                           </tr>

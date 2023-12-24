@@ -62,7 +62,7 @@ function Filter() {
                           className="form-control  mx-2  btn-close"
                           type="search"
                           value={searchedvalue}
-                          placeholder="Search filter"
+                          placeholder="Search Filter Name"
                           onChange={(e) => {
                             setsearchedvalue(e.target.value);
                           }}
@@ -81,7 +81,7 @@ function Filter() {
                           <i className="fa fa-times" style={{ color: "white" }}></i>
                         </button>
                         <button
-                          className="btn btn-outline-dark btn-dark text-white"
+                         className="btn rounded btn-md btn-outline-secondary btn-dark"
                           type="submit"
                           onClick={async (e) => {
                             e.preventDefault();
@@ -90,7 +90,6 @@ function Filter() {
                               setposts(dat.data);
                             } else {
                               let dat = await Filterget();
-
                               setposts(dat.data);
                             }
                           }}
@@ -105,7 +104,7 @@ function Filter() {
                     <table className="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col"> Filter</th>
+                          <th scope="col"> Filter Name</th>
                           <th scope="col">Attributres</th>
 
                           <th scope="col">Action</th>
