@@ -220,7 +220,7 @@ function Updateproduct() {
                           tags: state.tags,
                           vari: state.vari,
                           description123: state.description123,
-                          charges: state.charges,
+                         
                           free6: state.free6,
                           free5: state.free5,
                           free4: state.free4,
@@ -241,12 +241,14 @@ function Updateproduct() {
                           });
                           values.vari = arrayelement
                           let arr2 = [];
-                          tags2?.map((element, index) => {
-                            let hs = element.name.split("=");
-                            let temp = { variant: hs[0], value: hs[1] };
-                            arr2.push(temp);
-                          });
-                          values.tags = arr2;
+                          if (tags2.length > 0) {
+                            tags2?.map((element, index) => {
+                              let hs = element.name.split("=");
+                              let temp = { variant: hs[0], value: hs[1] };
+                              arr2.push(temp);
+                            });
+                            values.tags = arr2;
+                          }
                           try {
                             if (values.imgs1) {
                               const data = new FormData();
@@ -692,6 +694,21 @@ function Updateproduct() {
                                   className="error"
                                 />
                               </div>
+                              <div className="col-12 col-lg-3 mt-2">
+                                <label>14. Tags</label>
+
+                                <Multiselect
+                                  options={filters} // Options to display in the dropdown
+                                  onSelect={(selectedList, selectedItem) => {
+                                    settags2(selectedList);
+                                  }}
+                                  onRemove={(selectedList, removedItem) => {
+                                    settags2(selectedList);
+                                  }}
+                                  style={{ border: "1px solid #353957" }}
+                                  displayValue="name" // Property name to display in the dropdown options
+                                />
+                              </div>
                             </div>
                             <div className="row mt-2">
                               <div className="col-12 col-lg-3  mt-2">
@@ -894,12 +911,7 @@ function Updateproduct() {
                                   />
                                 )}
                               </div>
-                              <div className="col-12 col-lg-3 mt-2">
-                                <TextField
-                                  label="16F. Charges"
-                                  name="charges"
-                                />
-                              </div>
+                              
                             </div>
                             {/* new row */}
                             <div className="row mt-2">
@@ -1460,7 +1472,7 @@ function Updateproduct() {
                               label="Buyer Excluded Pincodes"
                               name="excpins"
                             />
-                            <Inputfielded label="SEO Title" name="seotile" />
+                            <Inputfielded label="SEO Title" name="seotitle" />
                             <Inputfielded
                               label="SEO Description"
                               name="seodesc"
