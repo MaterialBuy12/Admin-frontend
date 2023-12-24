@@ -989,6 +989,14 @@ export const Quotationpage = async () => {
     alert(error);
   }
 };
+export const QuotationFilter = async (value) => {
+  try {
+    let reposnse = await axios.get(`${host}/api/quotations?name=${value}`);
+    return reposnse;
+  } catch (error) {
+    alert(error);
+  }
+};
 // deleted quoattion
 export const Quotationdeleted = async (id) => {
   try {

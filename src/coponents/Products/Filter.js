@@ -97,7 +97,8 @@ function Filter() {
                           Search
                         </button>
                       </div>
-                    </form></h4>
+                    </form>
+                    </h4>
 
                   <div className="table-responsive">
                    
