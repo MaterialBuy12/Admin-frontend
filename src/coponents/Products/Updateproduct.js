@@ -58,10 +58,7 @@ function Updateproduct() {
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
       ),
-    excpins: yup.string(),
-    seotags: yup.string(),
-    seotile: yup.string(),
-    seodesc: yup.string(),
+  
 
     discountprice2B: yup
       .string()
@@ -101,9 +98,7 @@ function Updateproduct() {
     madein10: yup.string().required("Required"),
     minord11A: yup.string().required("Required"),
     maxord11B: yup.string().required("Required"),
-
     description12: yup.string().required("Required"),
-
     categoryid: yup.string().required("Required"),
     subcategory: yup.string(),
     subsubcategory: yup.string(),
@@ -220,7 +215,7 @@ function Updateproduct() {
                           tags: state.tags,
                           vari: state.vari,
                           description123: state.description123,
-                         
+
                           free6: state.free6,
                           free5: state.free5,
                           free4: state.free4,
@@ -230,16 +225,16 @@ function Updateproduct() {
                           actions1: false,
                           excpins: state.excpins,
                           seotags: state.seotags,
-                          seotile: state.seotitle,
+                          seotitle: state.seotitle,
                           seodesc: state.seodesc,
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
-                          let arrayelement = []
+                          let arrayelement = [];
                           tags23?.map((element) => {
-                             arrayelement.push(element)
+                            arrayelement.push(element);
                           });
-                          values.vari = arrayelement
+                          values.vari = arrayelement;
                           let arr2 = [];
                           if (tags2.length > 0) {
                             tags2?.map((element, index) => {
@@ -250,109 +245,109 @@ function Updateproduct() {
                             values.tags = arr2;
                           }
                           try {
-                            if (values.imgs1) {
+                            if (values.imgs1.name) {
                               const data = new FormData();
                               data.append("name", values.imgs1.name);
                               data.append("file", values.imgs1);
                               let img = await UploadFile(data);
-      
+
                               values.imgs1 = img.data;
                             }
                           } catch (error) {
                             alert(error);
                           }
                           try {
-                            if (values.imgs2) {
+                            if (values.imgs2.name) {
                               const data = new FormData();
                               data.append("name", values.imgs2.name);
                               data.append("file", values.imgs2);
                               let img = await UploadFile(data);
-      
+
                               values.imgs2 = img.data;
                             }
                           } catch (error) {
                             alert(error);
                           }
                           try {
-                            if (values.imgs3) {
+                            if (values.imgs3.name) {
                               const data = new FormData();
                               data.append("name", values.imgs3.name);
                               data.append("file", values.imgs3);
                               let img = await UploadFile(data);
-      
+
                               values.imgs3 = img.data;
                             }
                           } catch (error) {
                             alert(error);
                           }
                           try {
-                            if (values.imgs4) {
+                            if (values.imgs4.name) {
                               const data = new FormData();
                               data.append("name", values.imgs4.name);
                               data.append("file", values.imgs4);
                               let img = await UploadFile(data);
-      
+
                               values.imgs4 = img.data;
                             }
                           } catch (error) {
                             alert(error);
                           }
                           try {
-                            if (values.file1) {
+                            if (values.file1.name) {
                               const data = new FormData();
                               data.append("name", values.file1.name);
                               data.append("file", values.file1);
                               let img = await UploadFile(data);
-      
+
                               values.file1 = img.data;
                             }
                           } catch (error) {
                             alert(error);
                           }
                           try {
-                            if (values.file1) {
+                            if (values.file1.name) {
                               const data = new FormData();
                               data.append("name", values.file1.name);
                               data.append("file", values.file1);
                               let img = await UploadFile(data);
-      
+
                               values.file1 = img.data;
                             }
                           } catch (error) {
                             alert(error);
                           }
-                         
+
                           try {
-                            if (values.file2) {
+                            if (values.file2.name) {
                               const data = new FormData();
                               data.append("name", values.file2.name);
                               data.append("file", values.file2);
                               let img = await UploadFile(data);
-      
+
                               values.file2 = img.data;
                             }
                           } catch (error) {
                             alert(error);
                           }
                           try {
-                            if (values.file3) {
+                            if (values.file3.name) {
                               const data = new FormData();
                               data.append("name", values.file3.name);
                               data.append("file", values.file3);
                               let img = await UploadFile(data);
-      
+
                               values.file3 = img.data;
                             }
                           } catch (error) {
                             alert(error);
                           }
                           try {
-                            if (values.file4) {
+                            if (values.file4.name) {
                               const data = new FormData();
                               data.append("name", values.file4.name);
                               data.append("file", values.file4);
                               let img = await UploadFile(data);
-      
+
                               values.file4 = img.data;
                             }
                           } catch (error) {
@@ -694,21 +689,6 @@ function Updateproduct() {
                                   className="error"
                                 />
                               </div>
-                              <div className="col-12 col-lg-3 mt-2">
-                                <label>14. Tags</label>
-
-                                <Multiselect
-                                  options={filters} // Options to display in the dropdown
-                                  onSelect={(selectedList, selectedItem) => {
-                                    settags2(selectedList);
-                                  }}
-                                  onRemove={(selectedList, removedItem) => {
-                                    settags2(selectedList);
-                                  }}
-                                  style={{ border: "1px solid #353957" }}
-                                  displayValue="name" // Property name to display in the dropdown options
-                                />
-                              </div>
                             </div>
                             <div className="row mt-2">
                               <div className="col-12 col-lg-3  mt-2">
@@ -768,33 +748,33 @@ function Updateproduct() {
                                 {/* {formik.values.tags?<p>Selected values : {formik.values.tags}</p>:""} */}
                               </div>
                               <div className="col-lg-6 mt-2">
-                          <label>
-                            15. Frequently Bought Together Products{" "}
-                          </label>
-                          <Multiselect
-                            placeholder="Product Name"
-                            options={filters1} // Options to display in the dropdown
-                            name="vari"
-                            onSelect={(selectedList, selectedItem) => {
-                              settags23(selectedList);
-                            }}
-                            onRemove={(selectedList, removedItem) => {
-                              settags23(selectedList);
-                            }}
-                            style={{
-                              border: "1px solid #353957",
-                              color: "white",
-                              overflow: "none",
-                            }}
-                            displayValue="productname1" // Property name to display in the dropdown options
-                          />
+                                <label>
+                                  15. Frequently Bought Together Products{" "}
+                                </label>
+                                <Multiselect
+                                  placeholder="Product Name"
+                                  options={filters1} // Options to display in the dropdown
+                                  name="vari"
+                                  onSelect={(selectedList, selectedItem) => {
+                                    settags23(selectedList);
+                                  }}
+                                  onRemove={(selectedList, removedItem) => {
+                                    settags23(selectedList);
+                                  }}
+                                  style={{
+                                    border: "1px solid #353957",
+                                    color: "white",
+                                    overflow: "none",
+                                  }}
+                                  displayValue="productname1" // Property name to display in the dropdown options
+                                />
 
-                          <ErrorMessage
-                            name="vari"
-                            component="div"
-                            className="error"
-                          />
-                        </div>
+                                <ErrorMessage
+                                  name="vari"
+                                  component="div"
+                                  className="error"
+                                />
+                              </div>
                             </div>
                             {/* 7 row */}
                             <div className="row mt-2">
@@ -911,7 +891,6 @@ function Updateproduct() {
                                   />
                                 )}
                               </div>
-                              
                             </div>
                             {/* new row */}
                             <div className="row mt-2">

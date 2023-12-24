@@ -242,7 +242,7 @@ function Addvariantform() {
                             values.tags = arr2;
                           }
                           try {
-                            if (values.imgs1) {
+                            if (values.imgs1.name) {
                               const data = new FormData();
                               data.append("name", values.imgs1.name);
                               data.append("file", values.imgs1);
@@ -254,7 +254,7 @@ function Addvariantform() {
                             alert(error);
                           }
                           try {
-                            if (values.imgs2) {
+                            if (values.imgs2.name) {
                               const data = new FormData();
                               data.append("name", values.imgs2.name);
                               data.append("file", values.imgs2);
@@ -266,7 +266,7 @@ function Addvariantform() {
                             alert(error);
                           }
                           try {
-                            if (values.imgs3) {
+                            if (values.imgs3.name) {
                               const data = new FormData();
                               data.append("name", values.imgs3.name);
                               data.append("file", values.imgs3);
@@ -278,7 +278,7 @@ function Addvariantform() {
                             alert(error);
                           }
                           try {
-                            if (values.imgs4) {
+                            if (values.imgs4.name) {
                               const data = new FormData();
                               data.append("name", values.imgs4.name);
                               data.append("file", values.imgs4);
@@ -290,8 +290,8 @@ function Addvariantform() {
                             alert(error);
                           }
 
-                          try {
-                            if (values.file1) {
+                         try {
+                            if (values.file1.name) {
                               const data = new FormData();
                               data.append("name", values.file1.name);
                               data.append("file", values.file1);
@@ -303,19 +303,7 @@ function Addvariantform() {
                             alert(error);
                           }
                           try {
-                            if (values.file1) {
-                              const data = new FormData();
-                              data.append("name", values.file1.name);
-                              data.append("file", values.file1);
-                              let img = await UploadFile(data);
-
-                              values.file1 = img.data;
-                            }
-                          } catch (error) {
-                            alert(error);
-                          }
-                          try {
-                            if (values.file2) {
+                            if (values.file2.name) {
                               const data = new FormData();
                               data.append("name", values.file2.name);
                               data.append("file", values.file2);
@@ -327,7 +315,7 @@ function Addvariantform() {
                             alert(error);
                           }
                           try {
-                            if (values.file3) {
+                            if (values.file3.name) {
                               const data = new FormData();
                               data.append("name", values.file3.name);
                               data.append("file", values.file3);
@@ -339,7 +327,7 @@ function Addvariantform() {
                             alert(error);
                           }
                           try {
-                            if (values.file4) {
+                            if (values.file4.name) {
                               const data = new FormData();
                               data.append("name", values.file4.name);
                               data.append("file", values.file4);
