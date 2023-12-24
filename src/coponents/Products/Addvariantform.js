@@ -16,6 +16,7 @@ import {
 } from "../../services/api";
 import Footer from "../footer/Footer";
 import { useParams, useNavigate } from "react-router-dom";
+import Inputfielded from "../Offer andbanner/Inputfielded";
 /* eslint-disable */
 function Addvariantform() {
   const [state4, setstate4] = useState([]);
@@ -1036,9 +1037,23 @@ function Addvariantform() {
                                 <TextField label="Price 1" name="price1" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 1" name="free1" />
+                                <label>Free 1</label>
+                                <br />
+                                {formik.values.free1 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free1", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free1", true)
+                                    }
+                                  />
+                                )}
                               </div>
-
                               <div className="col-1  mt-2">
                                 <TextField label="Min 2" name="minimum2" />
                               </div>
@@ -1049,7 +1064,22 @@ function Addvariantform() {
                                 <TextField label="Price 2" name="price2" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 2" name="free2" />
+                                <label>Free 2</label>
+                                <br />
+                                {formik.values.free2 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free2", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free2", true)
+                                    }
+                                  />
+                                )}
                               </div>
                               <div className="col-1 mt-2">
                                 <TextField label="Min 3" name="minimum3" />
@@ -1061,7 +1091,22 @@ function Addvariantform() {
                                 <TextField label="Price 3" name="price3" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 3" name="free3" />
+                                <label>Free 3</label>
+                                <br />
+                                {formik.values.free3 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free3", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free3", true)
+                                    }
+                                  />
+                                )}
                               </div>
                             </div>
                             <div className="row mt-2"></div>
@@ -1076,7 +1121,22 @@ function Addvariantform() {
                                 <TextField label="Price 4" name="price4" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 4" name="free4" />
+                                <label>Free 4</label>
+                                <br />
+                                {formik.values.free4 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free4", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free4", true)
+                                    }
+                                  />
+                                )}
                               </div>
 
                               <div className="col-1  mt-2">
@@ -1089,7 +1149,22 @@ function Addvariantform() {
                                 <TextField label="Price 5" name="price5" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 5" name="free5" />
+                                <label>Free 5</label>
+                                <br />
+                                {formik.values.free5 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free5", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free5", true)
+                                    }
+                                  />
+                                )}
                               </div>
                               <div className="col-1  mt-2">
                                 <TextField label="Min 6" name="minimum6" />
@@ -1101,7 +1176,22 @@ function Addvariantform() {
                                 <TextField label="Price 6" name="price6" />
                               </div>
                               <div className="col-1 mt-2">
-                                <TextField label="Free 6" name="free6" />
+                                <label>Free 6</label>
+                                <br />
+                                {formik.values.free6 ? (
+                                  <Switch
+                                    checked
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free6", false)
+                                    }
+                                  />
+                                ) : (
+                                  <Switch
+                                    onChange={(e) =>
+                                      formik.setFieldValue("free6", true)
+                                    }
+                                  />
+                                )}
                               </div>
                             </div>
 
@@ -1310,12 +1400,24 @@ function Addvariantform() {
                                 />
                               </div>
                             </div>
-
+                                  <br/>
+                            <Inputfielded
+                              label="Buyer Excluded Pincodes"
+                              name="excpins"
+                            />
+                            <Inputfielded label="SEO Title" name="seotile" />
+                            <Inputfielded
+                              label="SEO Description"
+                              name="seodesc"
+                            />
+                            <Inputfielded label="SEO Tags" name="seotags" />
                             <input
                               type="submit"
                               className="btn mt-4 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark"
                               value="Submit"
                             />
+
+                           
                           </Form>
                         )}
                       </Formik>

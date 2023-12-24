@@ -17,7 +17,7 @@ function OrdersPosts({ posts }) {
   };
 
   const detailsChangeHanlder = (p, i) => {
-    setOrderDetails({
+       setOrderDetails({
       productname: p.productname1,
       category: p.categoryid,
       scategory: p.subcategory,
@@ -28,7 +28,10 @@ function OrdersPosts({ posts }) {
       emailid: i.user[0].email,
       address: i.user[0].shippingaddress1,
       mobileno: i.user[0].phoneno,
-      shippingaddress: i.order.address,
+      gst: i.user[0].gst,
+      pan: i.user[0].pan,
+      billingaddress:i.order.billingaddress,
+      shippingaddress: i.order.shippingaddress,
     });
   };
   return (
@@ -56,7 +59,7 @@ function OrdersPosts({ posts }) {
                 })()}
               </th>
               <th>
-                {(() => {
+                {/* {(() => {
                   let quantity;
                   const status = i.order.products.map((prod) => {
                     if (prod.vairanceid) {
@@ -70,10 +73,10 @@ function OrdersPosts({ posts }) {
                   });
 
                   return quantity;
-                })()}
+                })()} */}
               </th>
               <th>
-                {(() => {
+                {/* {(() => {
                   let quantity;
                   const status = i.order.products.map((prod) => {
                     if (prod.vairanceid) {
@@ -103,7 +106,8 @@ function OrdersPosts({ posts }) {
                   }
 
                   return quantity;
-                })()}
+                })()} */}
+
               </th>
 
               <th>
@@ -193,29 +197,34 @@ function OrdersPosts({ posts }) {
                         <br />
                         <label>Sub Category: {orderDetails.scategory}</label>
                         <br />
-                        <lacatbel>
+                        <label>
                           Sub Sub Category : {orderDetails.sscategory}
-                        </lacatbel>
+                        </label>
                         <br />
                         <label> SKUID :{orderDetails.skuid}</label>
                         <br />
-                        <label>Discounted Price : {orderDetails.dprice}</label>
-                        <br />
-                        <label> Payment Id : {orderDetails.paymentid}</label>
+                        <label> Mobile No :{orderDetails.mobileno} </label>
                         <br />
                         <label>Email :{orderDetails.emailid}</label>
                         <br />
-                        <label> Address : {orderDetails.address}</label>
-                        <br />
-                        <label> Mobile No :{orderDetails.mobileno} </label>
-                        <br />
                         <label> GST No :{orderDetails.gst} </label>
                         <br />
+                        <label> Pan No :{orderDetails.pan} </label>
+                        <br />
+                        <label>
+                          Billing Address: {orderDetails.billingaddress}
+                        </label>
+                        <br/>
                         <label>
                           Shipping Address: {orderDetails.shippingaddress}
                         </label>
                         <br />
-                      </div>
+                        <label> Payment Id : {orderDetails.paymentid}</label>
+                        <br />
+                        <label>Final Price : {orderDetails.dprice}</label>
+                        <br />
+                    
+                        </div>
 
                       <div className="modal-footer">
                         <button

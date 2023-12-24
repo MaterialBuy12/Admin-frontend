@@ -18,10 +18,6 @@ import {
 } from "../../services/api";
 /* eslint-disable */
 function ProductForm() {
-  const [posts1, setposts1] = useState({});
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-
   const editor = useRef(null);
   const [state, setstate] = useState([]);
   const [state1, setstate1] = useState([]);
@@ -59,14 +55,14 @@ function ProductForm() {
     productname1: yup.string().required("Required"),
     price2A: yup
       .string()
-
+      .required("Required")
       .matches(
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
       ),
     discountprice2B: yup
       .string()
-
+      .required()
       .matches(
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
@@ -80,12 +76,11 @@ function ProductForm() {
       ),
     partprice4A: yup
       .string()
-      .required("Required")
       .matches(
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
       ),
-    sell4B: yup.string().required("Required"),
+    sell4B: yup.string(),
     skuid5: yup.string().required("Required"),
     stock6: yup.string().required("Required"),
     weight7A: yup.string().required("Required"),
@@ -263,22 +258,14 @@ function ProductForm() {
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
       ),
-    free5: yup
-    .bool(),
-    free4: yup
-    .bool(),
-    free6: yup
-    .bool(),
-    free3: yup
-    .bool(),
-    free2: yup .bool(),
-     
+    free5: yup.bool(),
+    free4: yup.bool(),
+    free6: yup.bool(),
+    free3: yup.bool(),
+    free2: yup.bool(),
 
-     
-    free1: yup
-      .bool(),
+    free1: yup.bool(),
 
-     
     minimum6: yup
       .string()
 
@@ -302,10 +289,10 @@ function ProductForm() {
         }
       }),
     categoryid: yup.string().required("Required"),
-    excpins:yup.string(),
-                    seotags:yup.string(),
-                    seotile: yup.string(),
-                    seodesc: yup.string(),
+    excpins: yup.string(),
+    seotags: yup.string(),
+    seotitle: yup.string(),
+    seodesc: yup.string(),
 
     price6: yup
       .string()
@@ -401,7 +388,7 @@ function ProductForm() {
                     tags: [{}],
                     vari: [],
                     description123: "",
-                    charges: "",
+
                     free6: false,
                     free5: false,
                     free4: false,
@@ -409,19 +396,18 @@ function ProductForm() {
                     free2: false,
                     free1: false,
                     actions1: false,
-                    excpins:"",
-                    seotags:"",
-                    seotitle:"",
-                    seodesc:"",
-
+                    excpins: "",
+                    seotags: "",
+                    seotitle: "",
+                    seodesc: "",
                   }}
                   validationSchema={validate}
                   onSubmit={async (values, actions) => {
-                    let arrayelement = []
-                   tags23?.map((element) => {
-                      arrayelement.push(element)
-                   });
-                   values.vari = arrayelement
+                    let arrayelement = [];
+                    tags23?.map((element) => {
+                      arrayelement.push(element);
+                    });
+                    values.vari = arrayelement;
                     let arr2 = [];
                     tags2?.map((element, index) => {
                       let hs = element.name.split("=");
@@ -501,7 +487,7 @@ function ProductForm() {
                     } catch (error) {
                       alert(error);
                     }
-                   
+
                     try {
                       if (values.file2) {
                         const data = new FormData();
@@ -538,7 +524,7 @@ function ProductForm() {
                     } catch (error) {
                       alert(error);
                     }
-                    
+
                     try {
                       let response = await Product(values);
 
@@ -977,9 +963,6 @@ function ProductForm() {
                             }
                           />
                         </div>
-                        <div className="col-12 col-lg-3 mt-2">
-                          <Inputfielded label="16F. Charges" name="charges" />
-                        </div>
                       </div>
                       <div className="row mt-2">
                         <div className="col-12 col-lg-3 mt-2">
@@ -1052,9 +1035,10 @@ function ProductForm() {
                             <option defaultValue="">Select Category</option>
                             {state2 &&
                               state2.map((i, index) => {
-                               
                                 if (
-                                  formik.values.categoryid === i.categoryname && formik.values.subcategory === i.subcategoryname
+                                  formik.values.categoryid === i.categoryname &&
+                                  formik.values.subcategory ===
+                                    i.subcategoryname
                                 )
                                   return (
                                     <option value={i.subsubcategory}>
@@ -1166,10 +1150,8 @@ function ProductForm() {
                           <Inputfielded label="Price 1" name="price1" />
                         </div>
                         <div className="col-1 mt-2">
-                        <div className="col-12 col-lg-3  mt-2">
-                        
-                        </div>
-                        <label>Free 1</label>
+                          <div className="col-12 col-lg-3  mt-2"></div>
+                          <label>Free 1</label>
                           <br />
                           <Switch
                             onChange={(e) =>
@@ -1188,7 +1170,7 @@ function ProductForm() {
                           <Inputfielded label="Price 2" name="price2" />
                         </div>
                         <div className="col-1 mt-2">
-                        <label>Free 2</label>
+                          <label>Free 2</label>
                           <br />
                           <Switch
                             onChange={(e) =>
@@ -1206,7 +1188,7 @@ function ProductForm() {
                           <Inputfielded label="Price 3" name="price3" />
                         </div>
                         <div className="col-1 mt-2">
-                        <label>Free 3</label>
+                          <label>Free 3</label>
                           <br />
                           <Switch
                             onChange={(e) =>
@@ -1227,7 +1209,7 @@ function ProductForm() {
                           <Inputfielded label="Price 4" name="price4" />
                         </div>
                         <div className="col-1 mt-2">
-                        <label>Free 4</label>
+                          <label>Free 4</label>
                           <br />
                           <Switch
                             onChange={(e) =>
@@ -1246,7 +1228,7 @@ function ProductForm() {
                           <Inputfielded label="Price 5" name="price5" />
                         </div>
                         <div className="col-1 mt-2">
-                        <label>Free 5</label>
+                          <label>Free 5</label>
                           <br />
                           <Switch
                             onChange={(e) =>
@@ -1264,7 +1246,7 @@ function ProductForm() {
                           <Inputfielded label="Price 6" name="price6" />
                         </div>
                         <div className="col-1 mt-2">
-                        <label>Free 6</label>
+                          <label>Free 6</label>
                           <br />
                           <Switch
                             onChange={(e) =>
@@ -1456,16 +1438,17 @@ function ProductForm() {
                           />
                         </div>
                       </div>
-                      <br/>
+                      <br />
 
-                      <Inputfielded label="Buyer Excluded Pincodes" name="excpins" />
+                      <Inputfielded
+                        label="Buyer Excluded Pincodes"
+                        name="excpins"
+                      />
 
-                      
                       <Inputfielded label="SEO Title" name="seotitle" />
-                      
+
                       <Inputfielded label="SEO Description" name="seodesc" />
 
-                      
                       <Inputfielded label="SEO Tags" name="seotags" />
 
                       <div className="row">
