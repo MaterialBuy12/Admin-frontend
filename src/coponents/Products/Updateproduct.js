@@ -230,7 +230,7 @@ function Updateproduct() {
                           actions1: false,
                           excpins: state.excpins,
                           seotags: state.seotags,
-                          seotile: state.seotile,
+                          seotile: state.seotitle,
                           seodesc: state.seodesc,
                         }}
                         validationSchema={validate}
