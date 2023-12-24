@@ -4,7 +4,7 @@ import TextField from "../categories/TextField";
 import Switch from "@mui/material/Switch";
 import JoditEditor from "jodit-react";
 import * as yup from "yup";
-
+import Multiselect from "multiselect-react-dropdown";
 import {
   Filterget,
   getAllCategory,
@@ -39,6 +39,7 @@ function Addvariantform() {
         let valueds = i.name + "=" + i.att;
         optionsvalue.push({ name: valueds });
       });
+      console.log(optionsvalue, "cosole");
       setfilters(optionsvalue);
 
       setstate(datas.data);
@@ -210,13 +211,20 @@ function Addvariantform() {
 
                           // new values
                           description123: state.description123,
-                          charges: state.charges,
                           free6: state.free6,
                           free5: state.free5,
                           free4: state.free4,
                           free3: state.free3,
                           free2: state.free2,
                           free1: state.free1,
+                          vol18E: state.vol18E,
+                          vol18F: state.vol18F,
+                          vol18G: state.vol18G,
+                          vol18H: state.vol18H,
+                          excpins: state.excpins,
+                          seotags: state.seotags,
+                          seotitle: state.seotitle,
+                          seodesc: state.seodesc,
                           imgs1: "",
                           imgs2: "",
                           imgs3: "",
@@ -224,6 +232,15 @@ function Addvariantform() {
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
+                          let arr2 = [];
+                          if (tags2.length > 0) {
+                            tags2?.map((element, index) => {
+                              let hs = element.name.split("=");
+                              let temp = { variant: hs[0], value: hs[1] };
+                              arr2.push(temp);
+                            });
+                            values.tags = arr2;
+                          }
                           try {
                             if (values.imgs1) {
                               const data = new FormData();
@@ -712,6 +729,21 @@ function Addvariantform() {
                                   name="calculatorunit"
                                 />
                               </div>
+                              <div className="col-12 col-lg-3 mt-2">
+                                <label>14. Tags</label>
+
+                                <Multiselect
+                                  options={filters} // Options to display in the dropdown
+                                  onSelect={(selectedList, selectedItem) => {
+                                    settags2(selectedList);
+                                  }}
+                                  onRemove={(selectedList, removedItem) => {
+                                    settags2(selectedList);
+                                  }}
+                                  style={{ border: "1px solid #353957" }}
+                                  displayValue="name" // Property name to display in the dropdown options
+                                />
+                              </div>
                             </div>
                             <div className="row mt-2">
                               <div className="col-12 col-lg-3  mt-2">
@@ -825,12 +857,6 @@ function Addvariantform() {
                                     }
                                   />
                                 )}
-                              </div>
-                              <div className="col-12 col-lg-3 mt-2">
-                                <TextField
-                                  label="16F. Charges"
-                                  name="charges"
-                                />
                               </div>
                             </div>
 
@@ -1400,12 +1426,12 @@ function Addvariantform() {
                                 />
                               </div>
                             </div>
-                                  <br/>
+                            <br />
                             <Inputfielded
                               label="Buyer Excluded Pincodes"
                               name="excpins"
                             />
-                            <Inputfielded label="SEO Title" name="seotile" />
+                            <Inputfielded label="SEO Title" name="seotitle" />
                             <Inputfielded
                               label="SEO Description"
                               name="seodesc"
@@ -1416,8 +1442,6 @@ function Addvariantform() {
                               className="btn mt-4 rounded-3 w-20  btn-lg btn-outline-secondary btn-dark"
                               value="Submit"
                             />
-
-                           
                           </Form>
                         )}
                       </Formik>

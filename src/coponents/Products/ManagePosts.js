@@ -32,9 +32,7 @@ function ManagePosts({ posts }) {
             <td>
               <span>{i.stock6}</span>
             </td>
-            <td>
-              <span>{i.weight7A}</span>
-            </td>
+           
             <th scope="col">
               <Link to={`/update/pro/${i._id}`}>
                 <button className="btn btn-dark btn-lg">

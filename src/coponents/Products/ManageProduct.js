@@ -57,8 +57,6 @@ function ManageProduct() {
                             <th scope="col">Price</th>
                             <th scope="col">Discount Price</th>
                             <th scope="col">Stock</th>
-                            <th scope="col">Weight</th>
-
                             <th scope="col" colSpan="2">
                               Action
                             </th>

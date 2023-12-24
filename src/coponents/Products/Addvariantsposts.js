@@ -26,9 +26,7 @@ function Addvariantsposts({ posts }) {
               <td>
                 <span>{i.stock6}</span>
               </td>
-              <td>
-                <span>{i.weight7A}</span>
-              </td>
+           
               <th scope="col">
                 <Link to={`/update/addvariant/${i._id}`}>
                   <button className="btn btn-dark btn-lg">
