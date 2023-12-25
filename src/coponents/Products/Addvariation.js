@@ -20,11 +20,11 @@ function Addvariation() {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  const [searchedvalue, setsearchedvalue] = useState("");
   useEffect(() => {
     async function data() {
       let dat = await Productget();
-
+      console.log(dat.data, "mansa");
       setposts(dat.data);
     }
     data();
@@ -47,6 +47,63 @@ function Addvariation() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Add variants</h4>
+                    <form
+                      className="d-flex mb-2 "
+                      style={{ width: "50%" }}
+                      role="search"
+                    >
+                      <div className="btn-group">
+                        <input
+                          className="form-control  mx-2  btn-close"
+                          type="search"
+                          value={searchedvalue}
+                          placeholder="Search Name"
+                          onChange={(e) => {
+                            setsearchedvalue(e.target.value);
+                          }}
+                          aria-label="Search Email"
+                        />
+                        <button
+                          type="button"
+                          className="btn bg-transparent"
+                          style={{ left: "-43px" }}
+                          onClick={async () => {
+                            let dat = await Productget();
+
+                            setposts(dat.data);
+                            setsearchedvalue("");
+                          }}
+                        >
+                          <i
+                            className="fa fa-times"
+                            style={{ color: "white" }}
+                          ></i>
+                        </button>
+                        <button
+                          className="btn rounded btn-md btn-outline-secondary btn-dark"
+                          type="submit"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            if (searchedvalue) {
+                              let filteredArray = posts.filter((item) => {
+                                if (
+                                  Object.values(item).includes(searchedvalue)
+                                ) {
+                                  return item;
+                                }
+                              });
+                              setposts(filteredArray);
+                            } else {
+                              let dat = await Productget();
+
+                              setposts(dat.data);
+                            }
+                          }}
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </form>
 
                     <div className="table-responsive">
                       <table className="table table-hover">
@@ -57,7 +114,7 @@ function Addvariation() {
                             <th scope="col">Price</th>
                             <th scope="col">Discount Price</th>
                             <th scope="col">Stock</th>
-                          
+
                             <th scope="col" colSpan="2">
                               Add variant
                             </th>

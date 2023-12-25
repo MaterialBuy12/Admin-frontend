@@ -24,6 +24,7 @@ function Orders() {
   useEffect(() => {
     async function data() {
       let dat = await Orderget();
+      console.log(dat.data)
       setord(dat.data.data.orders);
     }
     data();

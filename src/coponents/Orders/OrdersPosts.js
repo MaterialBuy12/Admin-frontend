@@ -17,23 +17,25 @@ function OrdersPosts({ posts }) {
   };
 
   const detailsChangeHanlder = (p, i) => {
-       setOrderDetails({
+    console.log(i.order.products[0].finalPrice, "i");
+    setOrderDetails({
       productname: p.productname1,
       category: p.categoryid,
       scategory: p.subcategory,
       sscategory: p.subsubcategory,
       skuid: p.skuid5,
-      dprice: p.discountprice2B,
+      dprice:i.order.products[0].finalPrice,
       paymentid: i.order.paymentId,
       emailid: i.user[0].email,
       address: i.user[0].shippingaddress1,
       mobileno: i.user[0].phoneno,
       gst: i.user[0].gst,
       pan: i.user[0].pan,
-      billingaddress:i.order.billingaddress,
-      shippingaddress: i.order.shippingaddress,
+      billingaddress: i.order.BillingAddress,
+      shippingaddress: i.order.Shippingaddress,
     });
   };
+
   return (
     <>
       {posts &&
@@ -59,55 +61,20 @@ function OrdersPosts({ posts }) {
                 })()}
               </th>
               <th>
-                {/* {(() => {
-                  let quantity;
-                  const status = i.order.products.map((prod) => {
-                    if (prod.vairanceid) {
-                      if (prod.vairanceid === p._id) {
-                        quantity = prod.quantity;
-                      }
-                    }
-                    if (prod.productid === p._id) {
-                      quantity = prod.quantity;
-                    }
+                {(() => {
+                  let quantity = i.order.products.map((q) => {
+                    return q.quantity;
                   });
-
                   return quantity;
-                })()} */}
+                })()}
               </th>
               <th>
-                {/* {(() => {
-                  let quantity;
-                  const status = i.order.products.map((prod) => {
-                    if (prod.vairanceid) {
-                      if (prod.vairanceid === p._id) {
-                        quantity = prod.quantity;
-                      }
-                    }
-                    if (prod.productid === p._id) {
-                      quantity = prod.quantity;
-                    }
+                {(() => {
+                  let amount = i.order.products.map((q) => {
+                    return q.quantity * q.finalPrice;
                   });
-
-                  if (quantity >= p.minimum1 && quantity <= p.maximum1) {
-                    return quantity * p.price1;
-                  } else if (quantity >= p.minimum2 && quantity <= p.maximum2) {
-                    return quantity * p.price2;
-                  } else if (quantity >= p.minimum3 && quantity <= p.maximum3) {
-                    return quantity * p.price3;
-                  } else if (quantity >= p.minimum4 && quantity <= p.maximum4) {
-                    return quantity * p.price4;
-                  } else if (quantity >= p.minimum5 && quantity <= p.maximum5) {
-                    return quantity * p.price5;
-                  } else if (quantity >= p.minimum6 && quantity <= p.maximum6) {
-                    return quantity * p.price6;
-                  } else {
-                    return "0";
-                  }
-
-                  return quantity;
-                })()} */}
-
+                  return amount;
+                })()}
               </th>
 
               <th>
@@ -214,7 +181,7 @@ function OrdersPosts({ posts }) {
                         <label>
                           Billing Address: {orderDetails.billingaddress}
                         </label>
-                        <br/>
+                        <br />
                         <label>
                           Shipping Address: {orderDetails.shippingaddress}
                         </label>
@@ -223,8 +190,7 @@ function OrdersPosts({ posts }) {
                         <br />
                         <label>Final Price : {orderDetails.dprice}</label>
                         <br />
-                    
-                        </div>
+                      </div>
 
                       <div className="modal-footer">
                         <button

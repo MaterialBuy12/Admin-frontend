@@ -225,9 +225,9 @@ export const ProductAget = async (id) => {
     alert(error);
   }
 };
-export const ProductAUpdate = async (id, values) => {
+export const ProductAUpdate = async (id,varianceid, values) => {
   try {
-    let response = await axios.put(`${host}/api/products/${id}`, values);
+    let response = await axios.put(`${host}/api/products/${id}/${varianceid}`, values);
     return response;
   } catch (error) {
     alert(error);
@@ -500,10 +500,22 @@ export const orderfilter = async (values) => {
     alert(error);
   }
 };
+
 export const orderFilter = async (values) => {
   try {
     let response = await axios.get(
       `${host}/api/orders/get/admin/filter?status=${values}`
+    );
+    return response;
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const productrequestFilter = async (values) => {
+  try {
+    let response = await axios.get(
+      `${host}/api/productrequests?vendorId=${values}`
     );
     return response;
   } catch (error) {

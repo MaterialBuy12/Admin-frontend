@@ -25,7 +25,7 @@ function Updateproduct() {
   const [filters1, setfilters1] = useState([]);
   const [tags23, settags23] = useState([]);
 
-  const { id } = useParams();
+  const { id, varianceid } = useParams();
   const [state, setstate] = useState([]);
   const [filters, setfilters] = useState([]);
   const [tags2, settags2] = useState([]);
@@ -34,7 +34,7 @@ function Updateproduct() {
   const editor = useRef(null);
   useEffect(() => {
     async function data() {
-      let datas = await ProductAget(id);
+      let datas = await ProductAget(id, varianceid);
       let filtername = await Filterget();
       let optionsvalue = [];
       let data1 = await Productget();
@@ -354,7 +354,7 @@ function Updateproduct() {
                             alert(error);
                           }
                           try {
-                            let response = await ProductAUpdate(id, values);
+                            let response = await ProductAUpdate(id,varianceid, values);
                             if (response.status) {
                               alert("SUCCESSFULLY");
                               navigate("/manageproduct");

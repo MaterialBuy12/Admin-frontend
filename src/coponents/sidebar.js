@@ -93,7 +93,7 @@ function Sidebar() {
           ></Route>
           <Route
             exact
-            path="/update/pro/:id"
+            path="/update/pro/:id/:varianceid"
             element={<Updateproduct />}
           ></Route>
           <Route
