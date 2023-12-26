@@ -35,6 +35,7 @@ function Updateproduct() {
   useEffect(() => {
     async function data() {
       let datas = await ProductAget(id, varianceid);
+      console.log("datas",datas)
       let filtername = await Filterget();
       let optionsvalue = [];
       let data1 = await Productget();

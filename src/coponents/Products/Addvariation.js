@@ -24,7 +24,6 @@ function Addvariation() {
   useEffect(() => {
     async function data() {
       let dat = await Productget();
-      console.log(dat.data, "mansa");
       setposts(dat.data);
     }
     data();

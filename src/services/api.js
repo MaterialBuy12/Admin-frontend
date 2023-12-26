@@ -217,9 +217,9 @@ export const Productvariants = async (id, values) => {
   }
 };
 
-export const ProductAget = async (id) => {
+export const ProductAget = async (id,varianceid) => {
   try {
-    let response = await axios.get(`${host}/api/products/${id}`);
+    let response = await axios.get(`${host}/api/products/${id}/${varianceid}`);
     return response.data;
   } catch (error) {
     alert(error);

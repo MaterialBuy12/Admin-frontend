@@ -17,7 +17,7 @@ function ManageProduct() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
+  const [searchedvalue, setsearchedvalue] = useState("");
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -47,6 +47,67 @@ function ManageProduct() {
                 <div className="card m-b-30">
                   <div className="card-body">
                     <h4 className="mt-0 header-title mb-4">Manage Product</h4>
+                    <form
+                      className="d-flex mb-2 "
+                      style={{ width: "50%" }}
+                      role="search"
+                    >
+                      <div className="btn-group">
+                        <input
+                          className="form-control  mx-2  btn-close"
+                          type="search"
+                          value={searchedvalue}
+                          placeholder="Search Name"
+                          onChange={(e) => {
+                            setsearchedvalue(e.target.value);
+                          }}
+                          aria-label="Search Email"
+                        />
+                        <button
+                          type="button"
+                          className="btn bg-transparent"
+                          style={{ left: "-43px" }}
+                          onClick={async () => {
+                            let dat = await Productget();
+
+                            setposts(dat.data);
+                            setsearchedvalue("");
+                          }}
+                        >
+                          <i
+                            className="fa fa-times"
+                            style={{ color: "white" }}
+                          ></i>
+                        </button>
+                        <button
+                          className="btn rounded btn-md btn-outline-secondary btn-dark"
+                          type="submit"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            if (searchedvalue) {
+                            
+                              let filteredArray = posts.filter((user) => {
+                               
+                                if (user.productname1 === searchedvalue) {
+                                  
+                                  return user;
+                                }
+                              }
+                              
+                              );
+                              setposts(filteredArray)
+                              
+                            } else {
+                              let dat = await Productget();
+
+                              setposts(dat.data);
+                            }
+                          }}
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </form>
 
                     <div className="table-responsive">
                       <table className="table table-hover">
