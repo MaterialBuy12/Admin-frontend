@@ -32,7 +32,6 @@ function ProductForm() {
       let dat = await getAllCategory();
       let response = await getAllSubCategory();
       let resp = await SubSubgetCategory();
-      let datq = await Productname();
       let filtername = await Filterget();
       let data1 = await Productget();
       setfilters1(data1.data);
@@ -45,7 +44,7 @@ function ProductForm() {
       setstate2(resp);
 
       setstate1(response);
-      setposts1(datq);
+
       setstate(dat);
     }
     data();
