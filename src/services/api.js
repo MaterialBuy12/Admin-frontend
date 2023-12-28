@@ -233,9 +233,9 @@ export const ProductAUpdate = async (id,varianceid, values) => {
     alert(error);
   }
 };
-export const Productdelete = async (id) => {
+export const Productdelete = async (id,ids) => {
   try {
-    let response = await axios.delete(`${host}/api/products/${id}`);
+    let response = await axios.delete(`${host}/api/products/${id}/${ids}`);
     return response;
   } catch (error) {
     alert(error);
@@ -1102,13 +1102,13 @@ export const Recomput = async (values) => {
 
 export const Dealget = async (values) => {
   try {
-    let reposnse = await axios.get(`${host}/api/products/dod/get`);
+    let reposnse = await axios.get(`${host}/api/products/dod/get`,values);
     return reposnse;
   } catch (error) {
     alert(error);
   }
 };
-export const Recomget = async (values) => {
+export const Recomget = async () => {
   try {
     let reposnse = await axios.get(`${host}/api/products/recommended/get`);
     return reposnse;

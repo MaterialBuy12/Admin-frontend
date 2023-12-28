@@ -15,7 +15,6 @@ function Home() {
     async function fetchData() {
       // You can await here
       let dat = await Customercount();
-      console.log(dat);
       setcustomercount(dat.customerCount);
       setvendorcount(dat.vendorCount);
       setproductco(dat.productCount);

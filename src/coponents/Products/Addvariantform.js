@@ -10,6 +10,7 @@ import {
   getAllCategory,
   getAllSubCategory,
   ProductAget,
+  Productget,
   Productvariants,
   SubSubgetCategory,
   UploadFile,
@@ -17,17 +18,20 @@ import {
 import Footer from "../footer/Footer";
 import { useParams, useNavigate } from "react-router-dom";
 import Inputfielded from "../Offer andbanner/Inputfielded";
+
 /* eslint-disable */
 function Addvariantform() {
   const [state4, setstate4] = useState([]);
   const [state1, setstate1] = useState([]);
   const [state2, setstate2] = useState([]);
+  const [filters1, setfilters1] = useState([]);
 
   const { id } = useParams();
   const [state, setstate] = useState([]);
   const [filters, setfilters] = useState([]);
   const [tags2, settags2] = useState([]);
   let navigate = useNavigate();
+  const [tags23, settags23] = useState([]);
 
   const editor = useRef(null);
   useEffect(() => {
@@ -39,7 +43,8 @@ function Addvariantform() {
         let valueds = i.name + "=" + i.att;
         optionsvalue.push({ name: valueds });
       });
-      console.log(optionsvalue, "cosole");
+      let data1 = await Productget();
+      setfilters1(data1.data);
       setfilters(optionsvalue);
 
       setstate(datas.data);
@@ -50,14 +55,12 @@ function Addvariantform() {
     productname1: yup.string().required("Required"),
     price2A: yup
       .string()
-
       .matches(
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
       ),
     discountprice2B: yup
       .string()
-
       .matches(
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
@@ -93,9 +96,7 @@ function Addvariantform() {
     madein10: yup.string().required("Required"),
     minord11A: yup.string().required("Required"),
     maxord11B: yup.string().required("Required"),
-
     description12: yup.string().required("Required"),
-
     categoryid: yup.string().required("Required"),
     subcategory: yup.string(),
     subsubcategory: yup.string(),
@@ -233,6 +234,13 @@ function Addvariantform() {
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
                           let arr2 = [];
+                          let arrayelement = [];
+                          if(tags23.length > 0){
+                            tags23?.map((element) => {
+                              arrayelement.push(element);
+                            });
+                            arr2.push(temp);
+                          }
                           if (tags2.length > 0) {
                             tags2?.map((element, index) => {
                               let hs = element.name.split("=");
@@ -290,7 +298,7 @@ function Addvariantform() {
                             alert(error);
                           }
 
-                         try {
+                          try {
                             if (values.file1.name) {
                               const data = new FormData();
                               data.append("name", values.file1.name);
@@ -733,7 +741,38 @@ function Addvariantform() {
                                 />
                               </div>
                             </div>
+                           <div className="row mt-2">
+                           <div className="col-lg-6 mt-1 ">
+                              <label>
+                                15. Frequently Bought Together Products{" "}
+                              </label>
+                              <Multiselect
+                                placeholder="Product Name"
+                                options={filters1} // Options to display in the dropdown
+                                name="vari"
+                                onSelect={(selectedList, selectedItem) => {
+                                  settags23(selectedList);
+                                }}
+                                onRemove={(selectedList, removedItem) => {
+                                  settags23(selectedList);
+                                }}
+                                style={{
+                                  border: "1px solid #353957",
+                                  color: "white",
+                                  overflow: "none",
+                                }}
+                                displayValue="productname1" // Property name to display in the dropdown options
+                              />
+
+                              <ErrorMessage
+                                name="vari"
+                                component="div"
+                                className="error"
+                              />
+                            </div>
+                           </div>
                             <div className="row mt-2">
+                           
                               <div className="col-12 col-lg-3  mt-2">
                                 <label>16A. Is Cancellable ?</label>
                                 <br />

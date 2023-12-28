@@ -24,7 +24,6 @@ function NormalCusttomer() {
   useEffect(() => {
     async function data() {
       let dat = await normalusers();
-      console.log(dat.data);
       setposts(dat.data);
     }
 

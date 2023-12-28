@@ -35,7 +35,6 @@ function Updateproduct() {
   useEffect(() => {
     async function data() {
       let datas = await ProductAget(id, varianceid);
-      console.log("datas",datas)
       let filtername = await Filterget();
       let optionsvalue = [];
       let data1 = await Productget();
@@ -54,7 +53,7 @@ function Updateproduct() {
     productname1: yup.string().required("Required"),
     price2A: yup
       .string()
-
+      .required("Required")
       .matches(
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
@@ -63,7 +62,7 @@ function Updateproduct() {
 
     discountprice2B: yup
       .string()
-
+      .required("Required")
       .matches(
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
@@ -77,12 +76,11 @@ function Updateproduct() {
       ),
     partprice4A: yup
       .string()
-      .required("Required")
       .matches(
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
       ),
-    sell4B: yup.string().required("Required"),
+    sell4B: yup.string(),
     skuid5: yup.string().required("Required"),
     stock6: yup.string().required("Required"),
     weight7A: yup.string().required("Required"),

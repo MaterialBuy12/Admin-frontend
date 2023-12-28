@@ -32,7 +32,6 @@ function Career() {
   useEffect(() => {
     async function data() {
       let data = await getCareerOption();
-      console.log("data",data.data)
       setposts(data.data)
     
     } 

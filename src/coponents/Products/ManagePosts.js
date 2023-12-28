@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Productdelete } from "../../services/api";
 function ManagePosts({ posts }) {
-  const remove = async (i) => {
-    let dat = await Productdelete(i._id);
+  const remove = async (i,j) => {
+    let dat = await Productdelete(i._id,j._id);
     if (dat.status) {
       alert(" DELETED", dat.data);
       window.location.reload();
@@ -45,7 +45,7 @@ function ManagePosts({ posts }) {
                 <button
                   className="btn btn-danger btn-lg mx-2"
                   onClick={(e) => {
-                    remove(j);
+                    remove(i,j);
                   }}
                 >
                   Remove

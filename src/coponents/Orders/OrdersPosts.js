@@ -17,7 +17,6 @@ function OrdersPosts({ posts }) {
   };
 
   const detailsChangeHanlder = (p, i) => {
-    console.log(i.order.products[0].finalPrice, "i");
     setOrderDetails({
       productname: p.productname1,
       category: p.categoryid,

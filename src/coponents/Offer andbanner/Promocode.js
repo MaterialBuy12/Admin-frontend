@@ -25,8 +25,6 @@ function Promocode() {
   useEffect(() => {
     async function data() {
       let dat = await promocodeget();
-      console.log(dat)
-
       setposts(dat);
     }
     data();

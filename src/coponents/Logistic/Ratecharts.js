@@ -17,10 +17,10 @@ function Ratecharts() {
     a.click();
     window.URL.revokeObjectURL(url);
   } else {
-    console.error('Failed to download CSV');
+    alert('Failed to download CSV');
   }
 } catch (error) {
-  console.error('Error:', error);
+  alert('Error:', error);
 }
  }
   const validate = yup.object({

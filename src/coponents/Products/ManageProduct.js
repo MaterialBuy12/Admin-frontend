@@ -89,7 +89,6 @@ function ManageProduct() {
                               let filteredArray = posts.filter((user) => {
                                
                                 if (user.productname1 === searchedvalue) {
-                                  
                                   return user;
                                 }
                               }

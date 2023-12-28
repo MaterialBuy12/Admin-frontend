@@ -112,6 +112,10 @@ function Addvariation() {
                             <th scope="col">Image</th>
                             <th scope="col">Price</th>
                             <th scope="col">Discount Price</th>
+                            <th scope="col">Variation Value Option</th>
+                            <th scope="col">Variation Value Option</th>
+                            <th scope="col">Variation Value Option</th>
+                            <th scope="col">Variation Value Option</th>
                             <th scope="col">Stock</th>
 
                             <th scope="col" colSpan="2">
