@@ -226,6 +226,10 @@ function Updateproduct() {
                           seotags: state.seotags,
                           seotitle: state.seotitle,
                           seodesc: state.seodesc,
+                          vari11: state.vari11,
+                          vari12: state.vari12,
+                          vari13: state.vari13,
+                          vari14: state.vari14,
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
@@ -1047,29 +1051,41 @@ function Updateproduct() {
                             <div className="row mt-2">
                               <div className="col-3  mt-2">
                                 <TextField
-                                  label="19A. Variation 1 Name"
-                                  name="vari1"
+                                  label={formik.values.vari1}
+                                  name="vari11"
                                 />
                               </div>
-                              <div className="col-3  mt-2">
-                                <TextField
-                                  label="19B. Variation 2 Name"
-                                  name="vari2"
-                                />
-                              </div>
-                              <div className="col-3  mt-2">
-                                <TextField
-                                  label="19C. Variation 3 Name"
-                                  name="vari3"
-                                />
-                              </div>
-                              <div className="col-3  mt-2">
-                                <TextField
-                                  label="19D. Variation 4 Name"
-                                  name="vari4"
-                                />
-                              </div>
-                            </div>{" "}
+                              {formik.values.vari2 ? (
+                                <div className="col-3  mt-2">
+                                  <TextField
+                                    label={formik.values.vari2}
+                                    name="vari12"
+                                  />
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                              {formik.values.vari3 ? (
+                                <div className="col-3  mt-2">
+                                  <TextField
+                                    label={formik.values.vari3}
+                                    name="vari13"
+                                  />
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                              {formik.values.vari4 ? (
+                                <div className="col-3  mt-2">
+                                  <TextField
+                                    label={formik.values.vari4}
+                                    name="vari14"
+                                  />
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                            </div>
                             <label className="mt-2">20. Rate Chart</label>
                             <div className="row mt-2">
                               <div className="col-1 mt-2">
