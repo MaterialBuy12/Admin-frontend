@@ -78,7 +78,32 @@ function Addvariation() {
                             style={{ color: "white" }}
                           ></i>
                         </button>
+
                         <button
+                          className="btn rounded btn-md btn-outline-secondary btn-dark"
+                          type="submit"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            if (searchedvalue) {
+                              let filteredArray = posts.filter((user) => {
+                                // Convert both search term and product name to lowercase for case-insensitive matching
+                                const searchTermLower = searchedvalue.toLowerCase();
+                                const productNameLower = user.productname1.toLowerCase();
+
+                                // Use includes for partial matching
+                                return productNameLower.includes(searchTermLower);
+                              });
+                              setposts(filteredArray);
+                            } else {
+                              let dat = await Productget();
+                              setposts(dat.data);
+                            }
+                          }}
+                        >
+                          Search
+                        </button>
+
+                        {/* <button
                           className="btn rounded btn-md btn-outline-secondary btn-dark"
                           type="submit"
                           onClick={async (e) => {
@@ -100,7 +125,7 @@ function Addvariation() {
                           }}
                         >
                           Search
-                        </button>
+                        </button> */}
                       </div>
                     </form>
 
