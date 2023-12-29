@@ -11,6 +11,7 @@ import {
   getAllSubCategory,
   ProductAget,
   Productget,
+  ProductsAget,
   Productvariants,
   SubSubgetCategory,
   UploadFile,
@@ -36,7 +37,7 @@ function Addvariantform() {
   const editor = useRef(null);
   useEffect(() => {
     async function data() {
-      let datas = await ProductAget(id);
+      let datas = await ProductsAget(id);
       let filtername = await Filterget();
       let optionsvalue = [];
       filtername.data.map((i) => {

@@ -234,6 +234,14 @@ export const ProductAget = async (id,varianceid  = "") => {
     alert(error);
   }
 };
+export const ProductsAget = async (id,varianceid  = "") => {
+  try {
+    let response = await axios.get(`${host}/api/products/${id}/${varianceid}`);
+    return response.data;
+  } catch (error) {
+    alert(error);
+  }
+};
 export const ProductAUpdate = async (id,varianceid, values) => {
   try {
     let response = await axios.put(`${host}/api/products/variance/${id}/${varianceid}`, values);
