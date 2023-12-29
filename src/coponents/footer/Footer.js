@@ -4,7 +4,7 @@ function Footer() {
   return (
     <>
       <footer className="footer">
-        MaterialBuy © 2022 - Developed by{" "}
+        MaterialBuy © 2024 - Developed by{" "}
         <span className="d-none d-sm-inline-block">
           <a target="_blank" rel="noopener" href="https://techqkonnect.com/">
             Techq Konnect
