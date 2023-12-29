@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Footer from "../footer/Footer";
 import { Formik, Form, ErrorMessage } from "formik";
 
-import { Productget, Recomget, Recomput, dodfilter } from "../../services/api";
+import { Productget, Recomget, Recomput, Varianceget, dodfilter } from "../../services/api";
 
 import RecomPosts from "./RecomPosts";
 import Pagination from "../categories/categories/Pagination";
@@ -30,7 +30,7 @@ function Recom() {
     async function data() {
       let resp = await Recomget();
       setposts(resp.data);
-      let data1 = await Productget();
+      let data1 = await Varianceget();
       setfilters(data1.data);
     }
     data();

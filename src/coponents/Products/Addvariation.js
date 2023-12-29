@@ -103,29 +103,7 @@ function Addvariation() {
                           Search
                         </button>
 
-                        {/* <button
-                          className="btn rounded btn-md btn-outline-secondary btn-dark"
-                          type="submit"
-                          onClick={async (e) => {
-                            e.preventDefault();
-                            if (searchedvalue) {
-                              let filteredArray = posts.filter((item) => {
-                                if (
-                                  Object.values(item).includes(searchedvalue)
-                                ) {
-                                  return item;
-                                }
-                              });
-                              setposts(filteredArray);
-                            } else {
-                              let dat = await Productget();
-
-                              setposts(dat.data);
-                            }
-                          }}
-                        >
-                          Search
-                        </button> */}
+                      
                       </div>
                     </form>
 

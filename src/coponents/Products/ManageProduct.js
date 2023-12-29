@@ -24,7 +24,7 @@ function ManageProduct() {
   useEffect(() => {
     async function data() {
       let dat = await Productget();
-
+      console.log("product",dat.data)
       setposts(dat.data);
     }
     data();

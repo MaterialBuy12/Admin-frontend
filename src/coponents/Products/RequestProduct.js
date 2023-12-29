@@ -84,11 +84,13 @@ function RequestProduct() {
                             e.preventDefault();
                             if (searchedvalue) {
                               let filteredArray = posts.filter((user) => {
-                                if (
-                                  user.vendor_docs[0].name === searchedvalue
-                                ) {
-                                  return user;
-                                }
+                                // Convert both search term and product name to lowercase for case-insensitive matching
+                                const searchTermLower =
+                                  searchedvalue.toLowerCase();
+                                const vendorNameLower =
+                                user.vendor_docs[0].name.toLowerCase();
+                                return vendorNameLower.includes(searchTermLower)
+                           
                               });
                               setposts(filteredArray);
                             } else {

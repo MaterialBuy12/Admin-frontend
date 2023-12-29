@@ -4,7 +4,7 @@ import * as yup from "yup";
 
 import { Formik, Form, ErrorMessage } from "formik";
 
-import { Dealget, Dealsput, Productget, dodfilter } from "../../services/api";
+import { Dealget, Dealsput, Productget, Varianceget, dodfilter } from "../../services/api";
 import "../../App.css";
 
 import DealsPosts from "./DealsPosts";
@@ -28,7 +28,8 @@ function Deals() {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const validate = yup.object({
-    discount: yup.number().typeError("Only number").required("Required"),
+    discount: yup.number().typeError("Only number").required("Required").moreThan(0, 'Discount should not be zero or less than zero')
+    .lessThan(101, "Discount should not be more than 100%"),
     // type: yup.string().required("Required"),
     vari: yup.array().required("Required"),
   });
@@ -39,7 +40,7 @@ function Deals() {
   useEffect(() => {
     async function data() {
       let resp = await Dealget();
-      let data1 = await Productget();
+      let data1 = await Varianceget();
       setfilters(data1.data);
       setposts(resp.data);
     }

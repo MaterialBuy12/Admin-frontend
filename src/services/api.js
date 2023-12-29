@@ -197,6 +197,15 @@ export const Productget = async () => {
     alert(error);
   }
 };
+
+export const Varianceget = async () => {
+  try {
+    let response = await axios.get(`${host}/api/products/variations/get`);
+    return response;
+  } catch (error) {
+    alert(error);
+  }
+};
 export const Productname = async () => {
   try {
     let response = await axios.get(`${host}/api/products/productnames/names`);
@@ -219,7 +228,7 @@ export const Productvariants = async (id, values) => {
 
 export const ProductAget = async (id,varianceid  = "") => {
   try {
-    let response = await axios.get(`${host}/api/products/${id}/${varianceid}`);
+    let response = await axios.get(`${host}/api/products/variance/${id}/${varianceid}`);
     return response.data;
   } catch (error) {
     alert(error);
@@ -227,7 +236,7 @@ export const ProductAget = async (id,varianceid  = "") => {
 };
 export const ProductAUpdate = async (id,varianceid, values) => {
   try {
-    let response = await axios.put(`${host}/api/products/${id}/${varianceid}`, values);
+    let response = await axios.put(`${host}/api/products/variance/${id}/${varianceid}`, values);
     return response;
   } catch (error) {
     alert(error);
