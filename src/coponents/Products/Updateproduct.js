@@ -1051,6 +1051,33 @@ function Updateproduct() {
                             <div className="row mt-2">
                               <div className="col-3  mt-2">
                                 <TextField
+                                  label="19A. Variation 1 Name"
+                                  name="vari1"
+                                />
+                              </div>
+                              <div className="col-3  mt-2">
+                                <TextField
+                                  label="19B. Variation 2 Name"
+                                  name="vari2"
+                                />
+                              </div>
+                              <div className="col-3  mt-2">
+                                <TextField
+                                  label="19C. Variation 3 Name"
+                                  name="vari3"
+                                />
+                              </div>
+                              <div className="col-3  mt-2">
+                                <TextField
+                                  label="19D. Variation 4 Name"
+                                  name="vari4"
+                                />
+                              </div>
+                            </div>{" "}
+
+                            <div className="row mt-2">
+                              <div className="col-3  mt-2">
+                                <TextField
                                   label={formik.values.vari1}
                                   name="vari11"
                                 />
