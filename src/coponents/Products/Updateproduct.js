@@ -14,6 +14,7 @@ import {
   ProductAUpdate,
   Productget,
   SubSubgetCategory,
+  UploadFile,
 } from "../../services/api";
 import Footer from "../footer/Footer";
 import { useParams, useNavigate } from "react-router-dom";
@@ -58,7 +59,6 @@ function Updateproduct() {
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
       ),
-
 
     discountprice2B: yup
       .string()
@@ -304,23 +304,15 @@ function Updateproduct() {
                               data.append("name", values.file1.name);
                               data.append("file", values.file1);
                               let img = await UploadFile(data);
-
+                              console.log("img", img)
                               values.file1 = img.data;
                             }
                           } catch (error) {
                             alert(error);
-                          }
-                          try {
-                            if (values.file1.name) {
-                              const data = new FormData();
-                              data.append("name", values.file1.name);
-                              data.append("file", values.file1);
-                              let img = await UploadFile(data);
-
-                              values.file1 = img.data;
-                            }
-                          } catch (error) {
-                            alert(error);
+                            console.log(
+                              "console.log",
+                             error
+                            );
                           }
 
                           try {
@@ -1085,7 +1077,10 @@ function Updateproduct() {
                                   <TextField
                                     label={formik.values.vari1}
                                     name="vari11"
-                                  />):""}
+                                  />
+                                ) : (
+                                  ""
+                                )}
                               </div>
                               {formik.values.vari2 ? (
                                 <div className="col-3  mt-2">
