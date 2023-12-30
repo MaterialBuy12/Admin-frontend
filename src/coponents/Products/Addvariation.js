@@ -124,6 +124,9 @@ function Addvariation() {
                             <th scope="col" colSpan="2">
                               Add variant
                             </th>
+                            <th scope="col" colSpan="2">
+                              Remove Product
+                            </th>
                           </tr>
                         </thead>
                         <tbody>

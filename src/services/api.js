@@ -1,9 +1,20 @@
 import axios from "axios";
 let host = process.env.REACT_APP_HOST;
 let host1 = process.env.REACT_APP_FLASKHOST;
+
+// common header
+axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
+  "token"
+)}`;
 export const Register = async (data) => {
   try {
-    let response = await axios.post(`${host}/api/adminlogin/adminsignup`, data);
+    let response = await axios.post(
+      `${host}/api/adminlogin/adminsignup`,
+      data,
+      {
+        headers: {},
+      }
+    );
     return response;
   } catch (error) {
     alert(error.response.data.error);
@@ -12,7 +23,9 @@ export const Register = async (data) => {
 
 export const Loging = async (data) => {
   try {
-    let response = await axios.post(`${host}/api/adminlogin/login`, data);
+    let response = await axios.post(`${host}/api/adminlogin/login`, data, {
+      headers: {},
+    });
     return response;
   } catch (error) {
     alert(error);
@@ -226,15 +239,17 @@ export const Productvariants = async (id, values) => {
   }
 };
 
-export const ProductAget = async (id,varianceid  = "") => {
+export const ProductAget = async (id, varianceid = "") => {
   try {
-    let response = await axios.get(`${host}/api/products/variance/${id}/${varianceid}`);
+    let response = await axios.get(
+      `${host}/api/products/variance/${id}/${varianceid}`
+    );
     return response.data;
   } catch (error) {
     alert(error);
   }
 };
-export const ProductsAget = async (id,varianceid  = "") => {
+export const ProductsAget = async (id, varianceid = "") => {
   try {
     let response = await axios.get(`${host}/api/products/${id}/${varianceid}`);
     return response.data;
@@ -242,17 +257,29 @@ export const ProductsAget = async (id,varianceid  = "") => {
     alert(error);
   }
 };
-export const ProductAUpdate = async (id,varianceid, values) => {
+export const ProductAUpdate = async (id, varianceid, values) => {
   try {
-    let response = await axios.put(`${host}/api/products/variance/${id}/${varianceid}`, values);
+    let response = await axios.put(
+      `${host}/api/products/variance/${id}/${varianceid}`,
+      values
+    );
     return response;
   } catch (error) {
     alert(error);
   }
 };
-export const Productdelete = async (id,ids) => {
+export const Productdelete = async (id, ids) => {
   try {
     let response = await axios.delete(`${host}/api/products/${id}/${ids}`);
+    return response;
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const mainProductdelete = async (id) => {
+  try {
+    let response = await axios.delete(`${host}/api/products/productDelete/${id}`);
     return response;
   } catch (error) {
     alert(error);
@@ -380,12 +407,9 @@ export const getCareerOption = async () => {
   }
 };
 
-
 export const deletecareeroptions = async (id) => {
   try {
-    let response = await axios.delete(
-      `${host}/api/careers/${id}`
-    );
+    let response = await axios.delete(`${host}/api/careers/${id}`);
     return response;
   } catch (error) {}
 };
@@ -605,9 +629,7 @@ export const prefabfilter = async (values) => {
 
 export const transportfilter = async (values) => {
   try {
-    let response = await axios.get(
-      `${host1}/api/transport?name=${values}`
-    );
+    let response = await axios.get(`${host1}/api/transport?name=${values}`);
     return response;
   } catch (error) {
     alert(error);
@@ -625,15 +647,12 @@ export const dodfilter = async (values) => {
 };
 export const cssfilter = async (values) => {
   try {
-    let response = await axios.get(
-      `${host}/api/css?category=${values}`
-    );
+    let response = await axios.get(`${host}/api/css?category=${values}`);
     return response;
   } catch (error) {
     alert(error);
   }
 };
-
 
 export const corporatefilter = async (values) => {
   try {
@@ -1084,7 +1103,7 @@ export const Orderget = async () => {
     alert(error);
   }
 };
-export const orderput = async (user, id,orderId, values) => {
+export const orderput = async (user, id, orderId, values) => {
   try {
     let reposnse = await axios.patch(
       `${host}/api/orders/${user}/${id}/${orderId}`,
@@ -1119,7 +1138,7 @@ export const Recomput = async (values) => {
 
 export const Dealget = async (values) => {
   try {
-    let reposnse = await axios.get(`${host}/api/products/dod/get`,values);
+    let reposnse = await axios.get(`${host}/api/products/dod/get`, values);
     return reposnse;
   } catch (error) {
     alert(error);

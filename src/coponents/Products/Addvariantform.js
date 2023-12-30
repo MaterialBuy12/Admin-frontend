@@ -233,6 +233,7 @@ function Addvariantform() {
                           imgs3: "",
                           imgs4: "",
                           mainProductId: id,
+                          vari: state.vari,
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
@@ -242,7 +243,7 @@ function Addvariantform() {
                             tags23?.map((element) => {
                               arrayelement.push(element);
                             });
-                            arr2.push(temp);
+                            values.vari = arrayelement
                           }
                           if (tags2.length > 0) {
                             tags2?.map((element, index) => {
@@ -349,20 +350,20 @@ function Addvariantform() {
                           } catch (error) {
                             alert(error);
                           }
+console.log("==>",values.vari)
+                          // try {
+                          //   let response = await Productvariants(id, values);
+                          //   if (response.status) {
+                          //     alert("SUCCESSFULLY");
+                          //     navigate("/manageproduct");
 
-                          try {
-                            let response = await Productvariants(id, values);
-                            if (response.status) {
-                              alert("SUCCESSFULLY");
-                              navigate("/manageproduct");
-
-                              window.location.reload();
-                            } else {
-                              alert("something went wrong");
-                            }
-                          } catch (error) {
-                            alert(error);
-                          }
+                          //     window.location.reload();
+                          //   } else {
+                          //     alert("something went wrong");
+                          //   }
+                          // } catch (error) {
+                          //   alert(error);
+                          // }
 
                           actions.resetForm();
                         }}
@@ -1084,16 +1085,16 @@ function Addvariantform() {
 
                             <label className="mt-2">20. Rate Chart</label>
                             <div className="row mt-2">
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Min 1" name="minimum1" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Max 1" name="maximum1" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Price 1" name="price1" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <label>Free 1</label>
                                 <br />
                                 {formik.values.free1 ? (
@@ -1111,16 +1112,16 @@ function Addvariantform() {
                                   />
                                 )}
                               </div>
-                              <div className="col-1  mt-2">
+                              <div className="col  mt-2">
                                 <TextField label="Min 2" name="minimum2" />
                               </div>
-                              <div className="col-1  mt-2">
+                              <div className="col  mt-2">
                                 <TextField label="Max 2" name="maximum2" />
                               </div>
-                              <div className="col-1  mt-2">
+                              <div className="col  mt-2">
                                 <TextField label="Price 2" name="price2" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <label>Free 2</label>
                                 <br />
                                 {formik.values.free2 ? (
@@ -1138,16 +1139,16 @@ function Addvariantform() {
                                   />
                                 )}
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Min 3" name="minimum3" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Max 3" name="maximum3" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Price 3" name="price3" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <label>Free 3</label>
                                 <br />
                                 {formik.values.free3 ? (
@@ -1166,18 +1167,18 @@ function Addvariantform() {
                                 )}
                               </div>
                             </div>
-                            <div className="row mt-2"></div>
+                            
                             <div className="row mt-2">
-                              <div className="col-1  mt-2">
-                                <TextField label="Min4" name="minimum4" />
+                              <div className="col  mt-2">
+                                <TextField label="Min 4" name="minimum4" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Max 4" name="maximum4" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Price 4" name="price4" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <label>Free 4</label>
                                 <br />
                                 {formik.values.free4 ? (
@@ -1196,16 +1197,16 @@ function Addvariantform() {
                                 )}
                               </div>
 
-                              <div className="col-1  mt-2">
+                              <div className="col  mt-2">
                                 <TextField label="Min 5" name="minimum5" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Max 5" name="maximum5" />
                               </div>
-                              <div className="col-1  mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Price 5" name="price5" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <label>Free 5</label>
                                 <br />
                                 {formik.values.free5 ? (
@@ -1223,16 +1224,16 @@ function Addvariantform() {
                                   />
                                 )}
                               </div>
-                              <div className="col-1  mt-2">
+                              <div className="col  mt-2">
                                 <TextField label="Min 6" name="minimum6" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <TextField label="Max 6" name="maximum6" />
                               </div>
-                              <div className="col-1  mt-2">
+                              <div className="col  mt-2">
                                 <TextField label="Price 6" name="price6" />
                               </div>
-                              <div className="col-1 mt-2">
+                              <div className="col mt-2">
                                 <label>Free 6</label>
                                 <br />
                                 {formik.values.free6 ? (

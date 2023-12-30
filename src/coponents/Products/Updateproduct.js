@@ -58,7 +58,7 @@ function Updateproduct() {
         /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/,
         "Only Digits"
       ),
-  
+
 
     discountprice2B: yup
       .string()
@@ -234,11 +234,14 @@ function Updateproduct() {
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
                           let arrayelement = [];
-                          tags23?.map((element) => {
-                            arrayelement.push(element);
-                          });
-                          values.vari = arrayelement;
+
                           let arr2 = [];
+                          if (tags23.length > 0) {
+                            tags23?.map((element) => {
+                              arrayelement.push(element);
+                            });
+                            values.vari = arrayelement;
+                          }
                           if (tags2.length > 0) {
                             tags2?.map((element, index) => {
                               let hs = element.name.split("=");
@@ -1078,11 +1081,11 @@ function Updateproduct() {
 
                             <div className="row mt-2">
                               <div className="col-3  mt-2">
-                              {formik.values.vari1 ? (
-                                <TextField
-                                  label={formik.values.vari1}
-                                  name="vari11"
-                                />):""}
+                                {formik.values.vari1 ? (
+                                  <TextField
+                                    label={formik.values.vari1}
+                                    name="vari11"
+                                  />):""}
                               </div>
                               {formik.values.vari2 ? (
                                 <div className="col-3  mt-2">

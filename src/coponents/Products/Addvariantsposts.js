@@ -1,7 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { mainProductdelete } from "../../services/api";
 
 function Addvariantsposts({ posts }) {
+  const remove = async (i) => {
+    let dat = await mainProductdelete(i);
+    if (dat.status) {
+      alert(" DELETED", dat.data);
+      window.location.reload();
+    } else {
+      alert("Something went wrong");
+      window.location.reload();
+    }
+  };
   return (
     <>
       {posts &&
@@ -34,13 +45,24 @@ function Addvariantsposts({ posts }) {
             <td>
               <span>{i.stock6}</span>
             </td>
+           
 
-            <th scope="col">
+            <th scope="col" colSpan="2">
               <Link to={`/update/addvariant/${i._id}`}>
                 <button className="btn btn-dark btn-lg">
                   <i className="fa-solid fa-pen-to-square"></i>
                 </button>
               </Link>
+            </th>
+            <th>
+            <button
+                  className="btn btn-danger btn-lg mx-2"
+                  onClick={(e) => {
+                    remove(i._id);
+                  }}
+                >
+                  Remove
+                </button>
             </th>
           </tr>
         ))}
