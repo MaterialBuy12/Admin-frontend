@@ -150,6 +150,9 @@ export const getAllCategory = async () => {
   try {
     let response = await fetch(`${host}/api/categories/`, {
       method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     });
     let json = await response.json();
     return json;
@@ -162,6 +165,9 @@ export const getAllSubCategory = async () => {
   try {
     let response = await fetch(`${host}/api/subcategories/`, {
       method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     });
     let json = await response.json();
     return json;
@@ -279,7 +285,9 @@ export const Productdelete = async (id, ids) => {
 
 export const mainProductdelete = async (id) => {
   try {
-    let response = await axios.delete(`${host}/api/products/productDelete/${id}`);
+    let response = await axios.delete(
+      `${host}/api/products/product/productDelete/${id}`
+    );
     return response;
   } catch (error) {
     alert(error);
@@ -1248,7 +1256,8 @@ export const downloadget = async () => {
   const response = await fetch(`${host1}/api/ratechart`, {
     method: "GET",
     headers: {
-      "Content-Type": "text/csv", // Set the content type to CSV
+      "Content-Type": "text/csv",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
   return response;

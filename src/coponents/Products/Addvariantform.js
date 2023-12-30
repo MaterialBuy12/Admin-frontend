@@ -350,20 +350,20 @@ function Addvariantform() {
                           } catch (error) {
                             alert(error);
                           }
-console.log("==>",values.vari)
-                          // try {
-                          //   let response = await Productvariants(id, values);
-                          //   if (response.status) {
-                          //     alert("SUCCESSFULLY");
-                          //     navigate("/manageproduct");
 
-                          //     window.location.reload();
-                          //   } else {
-                          //     alert("something went wrong");
-                          //   }
-                          // } catch (error) {
-                          //   alert(error);
-                          // }
+                          try {
+                            let response = await Productvariants(id, values);
+                            if (response.status) {
+                              alert("SUCCESSFULLY");
+                              navigate("/addvariant");
+
+                              window.location.reload();
+                            } else {
+                              alert("something went wrong");
+                            }
+                          } catch (error) {
+                            alert(error);
+                          }
 
                           actions.resetForm();
                         }}
