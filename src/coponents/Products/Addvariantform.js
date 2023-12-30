@@ -232,6 +232,7 @@ function Addvariantform() {
                           imgs2: "",
                           imgs3: "",
                           imgs4: "",
+                          mainProductId: id,
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
@@ -1042,12 +1043,13 @@ function Addvariantform() {
                               </div>
                             </div>
                             <div className="row mt-2">
+                            {formik.values.vari1 ? (
                               <div className="col-3  mt-2">
                                 <TextField
                                   label={formik.values.vari1}
                                   name="vari11"
                                 />
-                              </div>
+                              </div>):""}
                               {formik.values.vari2 ? (
                                 <div className="col-3  mt-2">
                                   <TextField

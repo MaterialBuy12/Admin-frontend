@@ -1048,8 +1048,9 @@ function Updateproduct() {
                               </div>
                             </div>
                             {/* variation Name */}
-                            <div className="row mt-2">
+                            {/* <div className="row mt-2">
                               <div className="col-3  mt-2">
+                                
                                 <TextField
                                   label="19A. Variation 1 Name"
                                   name="vari1"
@@ -1073,14 +1074,15 @@ function Updateproduct() {
                                   name="vari4"
                                 />
                               </div>
-                            </div>{" "}
+                            </div>{" "} */}
 
                             <div className="row mt-2">
                               <div className="col-3  mt-2">
+                              {formik.values.vari1 ? (
                                 <TextField
                                   label={formik.values.vari1}
                                   name="vari11"
-                                />
+                                />):""}
                               </div>
                               {formik.values.vari2 ? (
                                 <div className="col-3  mt-2">
