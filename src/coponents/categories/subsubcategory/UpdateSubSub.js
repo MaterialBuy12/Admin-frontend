@@ -95,8 +95,8 @@ function UpdateSubSub() {
 
                               if (response.status) {
                                 alert("UPDATED SUCCESSFULLY");
-                                navigate("/subcategory");
-
+                                navigate("/subsubcategories");
+                                actions.resetForm();
                                 window.location.reload();
                               } else {
                                 alert("something went wrong");
@@ -113,7 +113,7 @@ function UpdateSubSub() {
 
                               if (response.status) {
                                 alert("UPDATED SUCCESSFULLY");
-                                navigate("/subcategory");
+                                navigate("/subsubcategories");
 
                                 actions.resetForm();
                                 window.location.reload();

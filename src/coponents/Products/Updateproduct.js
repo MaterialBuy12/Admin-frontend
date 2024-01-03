@@ -304,15 +304,11 @@ function Updateproduct() {
                               data.append("name", values.file1.name);
                               data.append("file", values.file1);
                               let img = await UploadFile(data);
-                              console.log("img", img)
+
                               values.file1 = img.data;
                             }
                           } catch (error) {
                             alert(error);
-                            console.log(
-                              "console.log",
-                             error
-                            );
                           }
 
                           try {
@@ -352,7 +348,11 @@ function Updateproduct() {
                             alert(error);
                           }
                           try {
-                            let response = await ProductAUpdate(id,varianceid, values);
+                            let response = await ProductAUpdate(
+                              id,
+                              varianceid,
+                              values
+                            );
                             if (response.status) {
                               alert("SUCCESSFULLY");
                               navigate("/manageproduct");
