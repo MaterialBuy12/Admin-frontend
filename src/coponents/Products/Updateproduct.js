@@ -230,6 +230,7 @@ function Updateproduct() {
                           vari12: state.vari12,
                           vari13: state.vari13,
                           vari14: state.vari14,
+                          mainProductId: id,
                         }}
                         validationSchema={validate}
                         onSubmit={async (values, actions) => {
