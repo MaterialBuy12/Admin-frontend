@@ -83,7 +83,7 @@ function Home() {
                       <i className="mdi mdi-tag-text-outline bg-warning text-white"></i>
                     </div>
                     <div>
-                      <h5 className="font-16">Products</h5>
+                      <h5 className="font-16">Variant </h5>
                     </div>
                     <h3 className="mt-4">{productco}</h3>
                     <p className="text-muted mt-2 mb-0">Life time </p>
