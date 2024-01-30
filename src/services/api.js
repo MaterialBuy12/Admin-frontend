@@ -454,6 +454,12 @@ export const serceget = async () => {
     return resposnse.data;
   } catch (error) {}
 };
+export const porStatus = async () => {
+  try {
+    let resposnse = await axios.get(`${host}/api/pors`);
+    return resposnse.data;
+  } catch (error) {}
+};
 export const professget = async () => {
   try {
     let resposnse = await axios.get(`${host}/api/professionalcategories/`);

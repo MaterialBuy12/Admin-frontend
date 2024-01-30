@@ -15,6 +15,7 @@ import {
   Productget,
   SubSubgetCategory,
   UploadFile,
+  Varianceget,
 } from "../../services/api";
 import Footer from "../footer/Footer";
 import { useParams, useNavigate } from "react-router-dom";
@@ -38,7 +39,7 @@ function Updateproduct() {
       let datas = await ProductAget(id, varianceid);
       let filtername = await Filterget();
       let optionsvalue = [];
-      let data1 = await Productget();
+      let data1 = await Varianceget();
       setfilters1(data1.data);
       filtername.data.map((i) => {
         let valueds = i.name + "=" + i.att;

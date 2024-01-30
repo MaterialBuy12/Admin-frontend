@@ -15,6 +15,7 @@ import {
   Productvariants,
   SubSubgetCategory,
   UploadFile,
+  Varianceget,
 } from "../../services/api";
 import Footer from "../footer/Footer";
 import { useParams, useNavigate } from "react-router-dom";
@@ -44,7 +45,7 @@ function Addvariantform() {
         let valueds = i.name + "=" + i.att;
         optionsvalue.push({ name: valueds });
       });
-      let data1 = await Productget();
+      let data1 = await Varianceget();
       setfilters1(data1.data);
       setfilters(optionsvalue);
 

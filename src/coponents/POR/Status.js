@@ -1,7 +1,33 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Footer from "../footer/Footer";
+import Pagination from "../categories/categories/Pagination";
+import { StatusPosts } from "./StatusPosts";
+import { porStatus } from "../../services/api";
 
 function Status() {
+  const [posts, setposts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(25);
+
+  // total no of pages
+  const Totalpages = Math.ceil(posts?.length / postsPerPage);
+  const pages = [...Array(Totalpages + 1).keys()]?.slice(1);
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    async function data() {
+      let dat = await porStatus();
+      // setposts(dat);
+    }
+    data();
+  }, []);
+
   return (
     <>
       <div className="content-page">
@@ -42,9 +68,19 @@ function Status() {
                             <th scope="col">Request Status</th>
                           </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                        {/* <StatusPosts porData={currentPosts} /> */}
+
+                        </tbody>
                       </table>
                     </div>
+                    <Pagination
+                      postsPerPage={postsPerPage}
+                      totalPosts={Totalpages}
+                      paginate={paginate}
+                      currentPage={currentPage}
+                      pageNumbers={pages}
+                    />
                   </div>
                 </div>
               </div>

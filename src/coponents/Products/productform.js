@@ -15,6 +15,7 @@ import {
   Productname,
   SubSubgetCategory,
   UploadFile,
+  Varianceget,
 } from "../../services/api";
 /* eslint-disable */
 function ProductForm() {
@@ -33,7 +34,7 @@ function ProductForm() {
       let response = await getAllSubCategory();
       let resp = await SubSubgetCategory();
       let filtername = await Filterget();
-      let data1 = await Productget();
+      let data1 = await Varianceget();
       setfilters1(data1.data);
       let optionsvalue = [];
       filtername.data.map((i) => {
