@@ -23,7 +23,7 @@ function OrdersPosts({ posts }) {
       scategory: p.subcategory,
       sscategory: p.subsubcategory,
       skuid: p.skuid5,
-      dprice:i.order.products[0].finalPrice,
+      dprice: i.order.products[0].finalPrice,
       paymentid: i.order.paymentId,
       emailid: i.user[0].email,
       address: i.user[0].shippingaddress1,
@@ -32,6 +32,13 @@ function OrdersPosts({ posts }) {
       pan: i.user[0].pan,
       billingaddress: i.order.BillingAddress,
       shippingaddress: i.order.Shippingaddress,
+      DOD: i.products[0].DOD,
+      CssDeals: i.products[0].CssDeals,
+      gstpercentage: i.products[0].gstpercentage,
+      promoCOde: i.products[0].promoCode,
+      shippingCharge: i.products[0].shippingCharge,
+      methodOfShipping: i.products[0].methodOfShipping,
+      NoOfBoxes: i.products[0].NoOfBoxes,
     });
   };
 
@@ -189,6 +196,26 @@ function OrdersPosts({ posts }) {
                         <br />
                         <label>Final Price : {orderDetails.dprice}</label>
                         <br />
+                        <label> DOD: {orderDetails.DOD}</label>
+                        <br />
+                        <label> CssDeals: {orderDetails.CssDeals}</label>
+                        <br />
+                        <label>
+                          {" "}
+                          gstpercentage: {orderDetails.gstpercentage}
+                        </label>
+                        <br />
+                        <label>promoCOde :{orderDetails.promoCOde} </label>
+                        <br />
+                        <label>
+                          shippingCharge :{orderDetails.shippingCharge}{" "}
+                        </label>
+                        <br />
+                        <label>
+                          methodOfShipping :{orderDetails.methodOfShipping}{" "}
+                        </label>
+                        <br />
+                        <label>NoOfBoxes :{orderDetails.NoOfBoxes} </label>
                       </div>
 
                       <div className="modal-footer">

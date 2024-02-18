@@ -80,6 +80,7 @@ function Request() {
                           onSubmit={async (values, actions) => {
                             try {
                               let data = await frieghtrate(values);
+                              console.log("status", data.status)
 
                               if (data.status === "200") {
                                 window.location.reload();
