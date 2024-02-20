@@ -28,17 +28,16 @@ function OrdersPosts({ posts }) {
       emailid: i.user[0].email,
       address: i.user[0].shippingaddress1,
       mobileno: i.user[0].phoneno,
-      gst: i.user[0].gst,
+      GSTno: i.order.GSTno,
       pan: i.user[0].pan,
-      billingaddress: i.order.BillingAddress,
+      billingaddress: i.order.BillingName,
       shippingaddress: i.order.Shippingaddress,
-      DOD: i.products[0].DOD,
-      CssDeals: i.products[0].CssDeals,
-      gstpercentage: i.products[0].gstpercentage,
-      promoCOde: i.products[0].promoCode,
-      shippingCharge: i.products[0].shippingCharge,
-      methodOfShipping: i.products[0].methodOfShipping,
-      NoOfBoxes: i.products[0].NoOfBoxes,
+      DOD: i.order.shippingdetail[0].DOD,
+      CssDeals: i.order.shippingdetail[0].CSS,
+      promoCOde: i.order.shippingdetail[0].Promo,
+      shippingCharge: i.order.shippingdetail[0].shippingCost,
+      methodOfShipping: i.order.shippingdetail[0].shippingType ,
+      NoOfBoxes: i.order.shippingdetail[0].boxes[0].boxes,
     });
   };
 
@@ -180,12 +179,12 @@ function OrdersPosts({ posts }) {
                         <br />
                         <label>Email :{orderDetails.emailid}</label>
                         <br />
-                        <label> GST No :{orderDetails.gst} </label>
+                        <label> GST No :{orderDetails.GSTno} </label>
                         <br />
                         <label> Pan No :{orderDetails.pan} </label>
                         <br />
                         <label>
-                          Billing Address: {orderDetails.billingaddress}
+                          Billing Name : {orderDetails.billingaddress}
                         </label>
                         <br />
                         <label>
@@ -200,14 +199,10 @@ function OrdersPosts({ posts }) {
                         <br />
                         <label> CssDeals: {orderDetails.CssDeals}</label>
                         <br />
-                        <label>
-                          {" "}
-                          gstpercentage: {orderDetails.gstpercentage}
-                        </label>
-                        <br />
+
                         <label>promoCOde :{orderDetails.promoCOde} </label>
                         <br />
-                        <label>
+                       <label>
                           shippingCharge :{orderDetails.shippingCharge}{" "}
                         </label>
                         <br />
@@ -215,8 +210,8 @@ function OrdersPosts({ posts }) {
                           methodOfShipping :{orderDetails.methodOfShipping}{" "}
                         </label>
                         <br />
-                        <label>NoOfBoxes :{orderDetails.NoOfBoxes} </label>
-                      </div>
+                <label>NoOfBoxes :{orderDetails.NoOfBoxes} </label> 
+                      </div> 
 
                       <div className="modal-footer">
                         <button
