@@ -116,25 +116,25 @@ export const deletedsubsubcate = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/subsubcategories/${id}`);
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 export const cssdealsdelete = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/css/${id}`);
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 export const deletedsubcate = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/subcategories/${id}`);
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 export const deletedcate = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/categories/${id}`);
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const UploadFile = async (data) => {
@@ -419,7 +419,7 @@ export const deletecareeroptions = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/careers/${id}`);
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const profaddpost = async (values) => {
@@ -452,19 +452,30 @@ export const serceget = async () => {
   try {
     let resposnse = await axios.get(`${host}/api/services`);
     return resposnse.data;
-  } catch (error) {}
+  } catch (error) { }
+};
+export const updatevendor = async (porId, productId, vendorId) => {
+  try {
+    let response = await axios.post(`${host}/api/pors/updateVendor`, {
+      porId,
+      productId,
+      vendorId
+    });
+    return response.data
+    // Optionally, you can update the state or perform any other actions after successful update
+  } catch (error) { console.log(error); }
 };
 export const porStatus = async () => {
   try {
     let resposnse = await axios.get(`${host}/api/pors`);
     return resposnse.data;
-  } catch (error) {}
+  } catch (error) { console.log(error); }
 };
 export const professget = async () => {
   try {
     let resposnse = await axios.get(`${host}/api/professionalcategories/`);
     return resposnse.data;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const sellerfre = async (values) => {
@@ -781,7 +792,7 @@ export const vendordeleted = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/vendors/${id}`);
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 export const vendorget = async (id) => {
   try {
@@ -789,7 +800,7 @@ export const vendorget = async (id) => {
       `${host}/api/vendors/651e852ec38d000033c86b02`
     );
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const profecatedeleted = async (id) => {
@@ -798,21 +809,21 @@ export const profecatedeleted = async (id) => {
       `${host}/api/professionalcategories/${id}`
     );
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 // professionals deleted
 export const professionaldeleted = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/professionals/${id}`);
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 // services deleted
 export const servicesdeleted = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/services/${id}`);
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 //  career
@@ -983,7 +994,7 @@ export const Transporterdelete = async (values) => {
       data: values,
     });
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 // weight range
@@ -1192,7 +1203,7 @@ export const Prefabbform = async (data) => {
     let response = await axios.post(`${host}/api/prefabbform`, data);
 
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 export const Filterget = async (values) => {
@@ -1209,7 +1220,7 @@ export const deletedfilter = async (id) => {
   try {
     let response = await axios.delete(`${host}/api/filters/${id}`);
     return response;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 // POr
@@ -1268,3 +1279,13 @@ export const downloadget = async () => {
   });
   return response;
 };
+export const shippingprice = async (values) => {
+  try {
+    let response = await axios.post(`${host1}/api/shipping`, values);
+    return response;
+  } catch (error) {
+    alert(error);
+  }
+};
+
+

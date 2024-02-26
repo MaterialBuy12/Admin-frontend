@@ -17,13 +17,15 @@ function Status() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  console.log(currentPosts);
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     async function data() {
       let dat = await porStatus();
-      // setposts(dat);
+      console.log(dat);
+      setposts(dat);
     }
     data();
   }, []);
@@ -59,6 +61,8 @@ function Status() {
                         <thead>
                           <tr>
                             <th scope="col">Sr no</th>
+                            <th>OrderId</th>
+                            <th>UserName</th>
                             <th>Product Name</th>
                             <th scope="col">Vendor Name</th>
                             <th scope="col">Email</th>
@@ -69,7 +73,7 @@ function Status() {
                           </tr>
                         </thead>
                         <tbody>
-                        {/* <StatusPosts porData={currentPosts} /> */}
+                        <StatusPosts porData={currentPosts} />
 
                         </tbody>
                       </table>
