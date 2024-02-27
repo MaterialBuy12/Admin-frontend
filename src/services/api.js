@@ -454,12 +454,24 @@ export const serceget = async () => {
     return resposnse.data;
   } catch (error) { }
 };
-export const updatevendor = async (porId, productId, vendorId) => {
+export const updatevendor = async (porId, productId, vendorId, wareid) => {
   try {
     let response = await axios.post(`${host}/api/pors/updateVendor`, {
       porId,
       productId,
-      vendorId
+      vendorId,
+      wareid
+    });
+    return response.data
+    // Optionally, you can update the state or perform any other actions after successful update
+  } catch (error) { console.log(error); }
+};
+export const confirm_vendor = async (porId, productId) => {
+  try {
+    let response = await axios.post(`${host}/api/pors/confirmvendor`, {
+      porId,
+      productId,
+      
     });
     return response.data
     // Optionally, you can update the state or perform any other actions after successful update

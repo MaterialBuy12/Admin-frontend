@@ -33,12 +33,12 @@ function RequestProductPosts({ posts }) {
               </span>
             </td>
             <td>{i.price}</td>
-            <td>
-              <span>
+            <td>{i.productname}
+              {/* <span>
                 {i.product_docs.map((j) => (
                   <span key={j._id}>{j.productname1}</span>
                 ))}
-              </span>
+              </span> */}
             </td>
             <td>
               {i.status ? (

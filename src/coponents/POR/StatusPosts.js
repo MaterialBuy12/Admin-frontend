@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import { updatevendor, shippingprice } from "../../services/api";
+import { updatevendor, shippingprice, warehouseget, confirm_vendor } from "../../services/api";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
@@ -19,17 +19,78 @@ export const StatusPosts = ({ porData }) => {
   const [vendorprice, setVendorprice] = useState("");
   const [vendorshipprice, setVendorshipprice] = useState("");
   const [vendortotal, setVendortotal] = useState("");
+  const [dataofship, setDataofship] = useState([]);
+  const [warehouse, setwarehouse] = useState([]);
+  const [warehouseid, setwarehouseid] = useState("");
 
+  const handlewarehousechange = async (e) => {
+    console.log("getting data");
+    const selectedwaresouseid = e.target.value
+    setwarehouseid(selectedwaresouseid);
+    const warehouseIndex = dataofship.vendorWareHouse.findIndex(
+      (vendor) => vendor.warehouseid === warehouseid
+    );
+    console.log(warehouseIndex);
 
+    if (warehouseIndex !== -1) {
+      let shprice = parseFloat(dataofship.shipCost[warehouseIndex]);
+      let tprice = parseFloat(dataofship.pricesresult[warehouseIndex]);
+      setVendorshipprice(shprice);
+      setVendorprice(tprice);
+      console.log(vendorprice, vendorshipprice);
+      setVendortotal(shprice + tprice);
+      // Assuming total is price + shipping cost
+    } else {
+      // Handle case where vendor is not found
+      setVendorshipprice('');
+      setVendorprice('');
+      setVendortotal('');
+    }
+  }
 
   const handleVendorSelect = async () => {
     try {
       console.log("updating selected vendor")
-      let data = await updatevendor(selectedPorId, selectedProductId, selectedVendorId);
+      let data = await updatevendor(selectedPorId, selectedProductId, selectedVendorId, warehouseid);
       console.log(data);
+      alert(data);
       window.location.reload();
     } catch (error) {
       console.error("Error updating selected vendor:", error);
+    }
+  };
+
+  const handleVendorChange = async (e) => {
+    const selectedVendorId = e.target.value;
+    setSelectedVendorId(selectedVendorId);
+
+    let dat = await warehouseget(
+      selectedVendorId
+    );
+    console.log(dat);
+    setwarehouse(dat);
+    setwarehouseid(dat[0].value);
+
+    // Find the index of the selected vendor in vendordetail array
+    const vendorIndex = dataofship.vendorWareHouse.findIndex(
+      (vendor) => vendor.vendorid === selectedVendorId
+    );
+    console.log(vendorIndex);
+
+    // If the vendor is found, update prices using the index
+    if (vendorIndex !== -1) {
+      let shprice = parseFloat(dataofship.shipCost[vendorIndex]);
+      let tprice = parseFloat(dataofship.pricesresult[vendorIndex]);
+      setVendorshipprice(shprice);
+      setVendorprice(tprice);
+      console.log(vendorprice, vendorshipprice);
+      setVendortotal(shprice + tprice);
+      // Assuming total is price + shipping cost
+    } else {
+      // Handle case where vendor is not found
+      setVendorshipprice('');
+      setVendorprice('');
+      setVendortotal('');
     }
   };
 
@@ -42,7 +103,7 @@ export const StatusPosts = ({ porData }) => {
     setSelectedPorId(porId);
     setSelectedProductId(productId);
     setSelectedProductName(productname);
-    setSelectedproductprice(productprice);
+    setSelectedproductprice(parseFloat(productprice));
     setSelectedQuantity(productqunatity);
     setSelectedproductadmshipprice(parseFloat(admshipprice));
 
@@ -54,8 +115,8 @@ export const StatusPosts = ({ porData }) => {
     };
     console.log(apiFormData)
     let data = await shippingprice(apiFormData);
-    console.log(data);
-    console.log(data.data.shipCost, data.data.pricesresult);
+    console.log(data.data);
+    setDataofship(data.data)
 
     function addArrays(arr1, arr2) {
       // Check if both arrays have the same length
@@ -118,6 +179,20 @@ export const StatusPosts = ({ porData }) => {
     handleVendorSelect();
   };
 
+  const approve = async (porid, productid) => {
+    let dat = await confirm_vendor(porid, productid);
+    console.log(dat);
+    if (dat == "confirmed") {
+      alert(dat);
+
+    } else {
+      alert("Something went wrong");
+    }
+  };
+
+
+
+
   return (
     <>
       {porData &&
@@ -135,6 +210,9 @@ export const StatusPosts = ({ porData }) => {
                     {item.vendors.find(vendor => vendor.vendorid === item.selectedvendor)?.vendorName}
                   </th>
                   <th>
+                    {item.warehouseName}
+                  </th>
+                  <th>
                     {item.vendors.find(vendor => vendor.vendorid === item.selectedvendor)?.vendorEmail}
                   </th>
                   <th>
@@ -142,7 +220,22 @@ export const StatusPosts = ({ porData }) => {
                   </th>
                   <th>{item.quantity}</th>
                   <th>{item.totalPrice}</th>
-                  <th>{item.vendorStatus}</th>
+                  <th>{item.vendorStatus ? (
+                    <>
+                      <button className="btn btn-success mt-2">Approved</button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        className="btn btn-danger mt-2"
+                        onClick={(e) => {
+                          approve(innerArray._id, item.productid);
+                        }}
+                      >
+                        PENDING
+                      </button>
+                    </>
+                  )}</th>
                   <th>
                     <Button onClick={() => handleOpenModal(innerArray._id, item.productid, item.productName, item.totalPrice, item.quantity, item.adminshippingprice, item.varientid, item.pincode)}>Select Vendor</Button>
                   </th>
@@ -169,21 +262,38 @@ export const StatusPosts = ({ porData }) => {
 
 
 
-          {/* Your form to select vendor goes here */}
+
           {selectedPorId && selectedProductId && (
-            <select
-              value={selectedVendorId}
-              onChange={(e) => setSelectedVendorId(e.target.value)}
-            >
-              {porData.find(por => por._id === selectedPorId)
-                ?.products.find(product => product.productid === selectedProductId)
-                ?.vendors.map((vendor, vendorIndex) => (
-                  <option key={vendorIndex} value={vendor.vendorid}>
-                    {vendor.vendorName}
-                  </option>
-                ))}
-            </select>
+            <div>
+              <label>Select Vendor:</label>
+              <select
+                value={selectedVendorId}
+                onChange={handleVendorChange}
+              >
+                {porData.find(por => por._id === selectedPorId)
+                  ?.products.find(product => product.productid === selectedProductId)
+                  ?.vendors.map((vendor, vendorIndex) => (
+                    <option key={vendorIndex} value={vendor.vendorid}>
+                      {vendor.vendorName}
+                    </option>
+                  ))}
+              </select>
+            </div>
           )}
+          <div>
+            <label>Select Warehouse:</label>
+            <select
+              value={warehouseid}
+              onChange={handlewarehousechange}
+            >
+              {warehouse.map((warehouse, index) => (
+                <option key={index} value={warehouse.value}>
+                  {warehouse.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
