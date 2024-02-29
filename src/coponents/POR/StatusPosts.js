@@ -80,12 +80,14 @@ export const StatusPosts = ({ porData }) => {
     // If the vendor is found, update prices using the index
     if (vendorIndex !== -1) {
       let shprice = parseFloat(dataofship.shipCost[vendorIndex]);
-      let tprice = parseFloat(dataofship.pricesresult[vendorIndex]);
+      let tprice1 = parseFloat(dataofship.pricesresult[vendorIndex]);
+      let tprice = parseFloat(tprice1 * selectedQuantity);
+
+
       setVendorshipprice(shprice);
       setVendorprice(tprice);
       console.log(vendorprice, vendorshipprice);
       setVendortotal(shprice + tprice);
-      // Assuming total is price + shipping cost
     } else {
       // Handle case where vendor is not found
       setVendorshipprice('');
@@ -158,11 +160,12 @@ export const StatusPosts = ({ porData }) => {
     const minIndex = findIndexOfMinValue(sumArray);
 
     console.log("Index of minimum value:", minIndex);
-    let total = (sumArray[minIndex]);
-    let rounded_value = total.toFixed(2);
-    setVendortotal(rounded_value);
+    // let total = (sumArray[minIndex]);
+    // let rounded_value = total.toFixed(2);
     setVendorshipprice(data.data.shipCost[minIndex]);
-    setVendorprice(data.data.pricesresult[minIndex]);
+    setVendorprice(data.data.pricesresult[minIndex]*selectedQuantity);
+    setVendortotal(vendorprice+vendorshipprice);
+
 
 
 
