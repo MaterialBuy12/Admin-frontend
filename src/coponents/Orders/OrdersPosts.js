@@ -32,12 +32,12 @@ function OrdersPosts({ posts }) {
       pan: i.user[0].pan,
       billingaddress: i.order.BillingName,
       shippingaddress: i.order.Shippingaddress,
-      DOD: i.order.shippingdetail[i].DOD,
-      CssDeals: i.order.shippingdetail[i].CSS,
-      promoCOde: i.order.shippingdetail[i].Promo,
-      shippingCharge: i.order.shippingdetail[i].shippingCost,
-      methodOfShipping: i.order.shippingdetail[i].shippingType ,
-      NoOfBoxes: i.order.shippingdetail[i].boxes[i].boxes,
+      DOD: i.order.shippingdetail[0].DOD,
+      CssDeals: i.order.shippingdetail[0].CSS,
+      promoCOde: i.order.shippingdetail[0].Promo,
+      shippingCharge: i.order.shippingdetail[0].shippingCost,
+      methodOfShipping: i.order.shippingdetail[0].shippingType ,
+      NoOfBoxes: i.order.shippingdetail[0].boxes[i].boxes,
     });
   };
 
