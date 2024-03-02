@@ -6,17 +6,23 @@ function OrdersPosts({ posts }) {
   const [sta, setsta] = useState("PENDING");
   const [orderDetails, setOrderDetails] = useState({});
 
-  const handleSubmit = async (orders, productid) => {
-    let data = await orderput(orders.order.user, productid, orders.order._id, {
-      status: sta,
-    });
+  const handleSubmit = async (orders, productid, productindex) => {
+    console.log(orders.order.products[productindex].vairanceid);
+    let data = await orderput(
+      orders.order.user,
+      orders.order.products[productindex].vairanceid,
+      orders.order._id,
+      {
+        status: sta,
+      }
+    );
     if (data.status === 200) {
       alert("SUCCESSFULL");
       window.location.reload();
     }
   };
 
-  const detailsChangeHanlder = (p, i) => {
+  const detailsChangeHanlder = (p, i, productindex) => {
     setOrderDetails({
       productname: p.productname1,
       category: p.categoryid,
@@ -32,12 +38,12 @@ function OrdersPosts({ posts }) {
       pan: i.user[0].pan,
       billingaddress: i.order.BillingName,
       shippingaddress: i.order.Shippingaddress,
-      DOD: i.order.shippingdetail[0].DOD,
-      CssDeals: i.order.shippingdetail[0].CSS,
-      promoCOde: i.order.shippingdetail[0].Promo,
-      shippingCharge: i.order.shippingdetail[0].shippingCost,
-      methodOfShipping: i.order.shippingdetail[0].shippingType ,
-      NoOfBoxes: i.order.shippingdetail[0].boxes[i].boxes,
+      DOD: i.order.shippingdetail[productindex].DOD,
+      CssDeals: i.order.shippingdetail[productindex].CSS,
+      promoCOde: i.order.shippingdetail[productindex].Promo,
+      shippingCharge: i.order.shippingdetail[productindex].shippingCost,
+      methodOfShipping: i.order.shippingdetail[productindex].shippingType,
+      NoOfBoxes: i.order.shippingdetail[productindex].boxes[0]?.boxes,
     });
   };
 
@@ -66,20 +72,30 @@ function OrdersPosts({ posts }) {
                 })()}
               </th>
               <th>
-                {(() => {
-                  let quantity = i.order.products.map((q) => {
-                    return q.quantity;
-                  });
+                {i.order.shippingdetail[productindex].quantity}
+                {/* {(() => {
+
+               
+                  console.log("quantity",quantity)
+                  
+                  // .map((q) => {
+                  //   return q.quantity;
+                  // });
                   return quantity;
-                })()}
+                })()} */}
               </th>
               <th>
-                {(() => {
-                  let amount = i.order.products.map((q) => {
-                    return q.quantity * q.finalPrice;
-                  });
-                  return amount;
-                })()}
+                {i.order.shippingdetail[productindex].quantity *
+                  i.order.shippingdetail[productindex].Price}
+                {/* {(() => {
+              const amount = 
+              console.log(amount,"amount")
+                  // let amount = i.order.shippingdetail.map((q) => {
+                  //   return q.quantity * q.finalPrice;
+                  // });
+
+                  // return amount;
+                })()} */}
               </th>
 
               <th>
@@ -123,7 +139,7 @@ function OrdersPosts({ posts }) {
               <th>
                 <input
                   type="submit"
-                  onClick={() => handleSubmit(i, p._id)}
+                  onClick={() => handleSubmit(i, p, productindex)}
                   className="btn mt-2 rounded-3 w-20  btn-sm btn-outline-secondary btn-dark"
                   value="Submit"
                 />
@@ -135,7 +151,7 @@ function OrdersPosts({ posts }) {
                   className="btn btn-primary"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
-                  onClick={() => detailsChangeHanlder(p, i)}
+                  onClick={() => detailsChangeHanlder(p, i, productindex)}
                 >
                   Details
                 </button>
@@ -193,7 +209,10 @@ function OrdersPosts({ posts }) {
                         <br />
                         <label> Payment Id : {orderDetails.paymentid}</label>
                         <br />
-                        <label>Final Price : {orderDetails.dprice}</label>
+                        <label>
+                          Final Price :{" "}
+                          {i.order.shippingdetail[productindex].Price}
+                        </label>
                         <br />
                         <label> DOD: {orderDetails.DOD}</label>
                         <br />
@@ -202,7 +221,7 @@ function OrdersPosts({ posts }) {
 
                         <label>promoCOde :{orderDetails.promoCOde} </label>
                         <br />
-                       <label>
+                        <label>
                           shippingCharge :{orderDetails.shippingCharge}{" "}
                         </label>
                         <br />
@@ -210,8 +229,8 @@ function OrdersPosts({ posts }) {
                           methodOfShipping :{orderDetails.methodOfShipping}{" "}
                         </label>
                         <br />
-                <label>NoOfBoxes :{orderDetails.NoOfBoxes} </label> 
-                      </div> 
+                        <label>NoOfBoxes :{orderDetails.NoOfBoxes} </label>
+                      </div>
 
                       <div className="modal-footer">
                         <button

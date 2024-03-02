@@ -54,6 +54,9 @@ function Orders() {
                             if (i.target.value === "ALL") {
                               let dat = await Orderget();
                               setord(dat.data.data.orders);
+                            } else if (i.target.value === "") {
+                              let dat = await Orderget();
+                              setord(dat.data.data.orders);
                             } else {
                               let dat = await orderFilter(i.target.value);
                               setord(dat.data.data.orders);
