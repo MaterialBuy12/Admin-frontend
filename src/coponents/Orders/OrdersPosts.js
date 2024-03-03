@@ -35,11 +35,13 @@ function OrdersPosts({ posts }) {
       mobileno: i.user[0].phoneno,
       GSTno: i.order.GSTno,
       pan: i.user[0].pan,
-      billingaddress: i.order.BillingName,
+      billingName: i.order.BillingName,
+      billingAddress: i.order.BillingAddress,
       shippingaddress: i.order.Shippingaddress,
       DOD: i.order.shippingdetail[productindex].DOD,
       CssDeals: i.order.shippingdetail[productindex].CSS,
       promoCOde: i.order.shippingdetail[productindex].Promo,
+      gst: i.order.shippingdetail[productindex].gst,
       shippingCharge: i.order.shippingdetail[productindex].shippingCost,
       methodOfShipping: i.order.shippingdetail[productindex].shippingType,
       NoOfBoxes: i.order.shippingdetail[productindex].boxes[0]?.boxes,
@@ -198,10 +200,16 @@ function OrdersPosts({ posts }) {
                         <br />
                         <label> GST No :{orderDetails.GSTno} </label>
                         <br />
+                        <label> GST Percentage :{orderDetails.gst} </label>
+                        <br />
                         <label> Pan No :{orderDetails.pan} </label>
                         <br />
                         <label>
-                          Billing Name : {orderDetails.billingaddress}
+                          Billing Name : {orderDetails.billingName}
+                        </label>
+                        <br />
+                        <label>
+                          Billing Address : {orderDetails.billingAddress}
                         </label>
                         <br />
                         <label>

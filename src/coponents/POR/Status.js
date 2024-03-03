@@ -24,8 +24,11 @@ function Status() {
   useEffect(() => {
     async function data() {
       let dat = await porStatus();
-      console.log(dat);
-      setposts(dat);
+      if(dat){
+        console.log(dat);
+        setposts(dat);
+      }
+     
     }
     data();
   }, []);
