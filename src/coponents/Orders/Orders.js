@@ -59,7 +59,7 @@ function Orders() {
                               setord(dat.data.data.orders);
                             } else {
                               let dat = await orderFilter(i.target.value);
-                              setord(dat.data.data.orders);
+                                                            setord(dat.data.data.orders);
                             }
                           }}
                           className={`form-control  shadow-none mx-1`}
@@ -133,6 +133,7 @@ function Orders() {
                             <th>Products</th>
                             <th scope="col">User Name</th>
                             <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Status</th>
                             <th scope="col" colSpan="5">

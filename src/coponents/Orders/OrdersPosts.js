@@ -7,7 +7,6 @@ function OrdersPosts({ posts }) {
   const [orderDetails, setOrderDetails] = useState({});
 
   const handleSubmit = async (orders, productid, productindex) => {
-    console.log(orders.order.products[productindex].vairanceid);
     let data = await orderput(
       orders.order.user,
       orders.order.products[productindex].vairanceid,
@@ -44,6 +43,7 @@ function OrdersPosts({ posts }) {
       shippingCharge: i.order.shippingdetail[productindex].shippingCost,
       methodOfShipping: i.order.shippingdetail[productindex].shippingType,
       NoOfBoxes: i.order.shippingdetail[productindex].boxes[0]?.boxes,
+      finalPrice: i.order.amount,
     });
   };
 
@@ -84,6 +84,7 @@ function OrdersPosts({ posts }) {
                   return quantity;
                 })()} */}
               </th>
+              <th>{i.order.shippingdetail[productindex].Price}</th>
               <th>
                 {i.order.shippingdetail[productindex].quantity *
                   i.order.shippingdetail[productindex].Price}
@@ -209,10 +210,7 @@ function OrdersPosts({ posts }) {
                         <br />
                         <label> Payment Id : {orderDetails.paymentid}</label>
                         <br />
-                        <label>
-                          Final Price :{" "}
-                          {i.order.shippingdetail[productindex].Price}
-                        </label>
+                        <label>Final Price : {orderDetails.finalPrice}</label>
                         <br />
                         <label> DOD: {orderDetails.DOD}</label>
                         <br />
