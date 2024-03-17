@@ -24,7 +24,12 @@ function Orders() {
   useEffect(() => {
     async function data() {
       let dat = await Orderget();
-      setord(dat.data.data.orders);
+      if(dat){
+
+        setord(dat.data.data.orders);
+      }else{
+        alert("something went wrong in getting data ")
+      }
     }
     data();
   }, []);
