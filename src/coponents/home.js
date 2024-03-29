@@ -18,9 +18,10 @@ function Home() {
       setcustomercount(dat.customerCount);
       setvendorcount(dat.vendorCount);
       setproductco(dat.productCount);
-      setMonthlyRevenue(dat.currentMonthRevenue);
-      setYearlyRevenue(dat.currentYearRevenue);
-      setLifeRevenue(dat.totalRevenue);
+      console.log(Math.ceil(dat.currentMonthRevenue))
+      setMonthlyRevenue((Math.ceil(dat.currentMonthRevenue)));
+      setYearlyRevenue((Math.ceil(dat.currentYearRevenue)));
+      setLifeRevenue((Math.ceil(dat.totalRevenue)));
     }
     fetchData();
   }, []);
@@ -71,7 +72,7 @@ function Home() {
                     <div>
                       <h5 className="font-16">Vendors</h5>
                     </div>
-                    <h3 className="mt-4">{vendorcount}</h3>
+                    <h3 className="mt-4">roundoff({vendorcount}</h3>
                     <p className="text-muted mt-2 mb-0">Life time </p>
                   </div>
                 </div>

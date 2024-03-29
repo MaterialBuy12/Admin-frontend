@@ -24,11 +24,10 @@ function Orders() {
   useEffect(() => {
     async function data() {
       let dat = await Orderget();
-      if(dat){
-
+      if (dat) {
         setord(dat.data.data.orders);
-      }else{
-        alert("something went wrong in getting data ")
+      } else {
+        alert("something went wrong in getting data ");
       }
     }
     data();
@@ -64,7 +63,7 @@ function Orders() {
                               setord(dat.data.data.orders);
                             } else {
                               let dat = await orderFilter(i.target.value);
-                                                            setord(dat.data.data.orders);
+                              setord(dat.data.data.orders);
                             }
                           }}
                           className={`form-control  shadow-none mx-1`}
@@ -116,9 +115,6 @@ function Orders() {
                                 e.preventDefault();
                                 if (searchedvalue) {
                                   let dat = await orderfilter(searchedvalue);
-                                  setord(dat.data.data.orders);
-                                } else {
-                                  let dat = await Orderget();
                                   setord(dat.data.data.orders);
                                 }
                               }}

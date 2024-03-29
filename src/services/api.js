@@ -1112,6 +1112,17 @@ export const ProductRequest21 = async (id) => {
     alert(error);
   }
 };
+export const removeproductrequest = async (id) => {
+  try {
+    let reposnse = await axios.put(
+      `${host}/api/productrequests/remove/${id}`,
+      { status: true }
+    );
+    return reposnse;
+  } catch (error) {
+    alert(error);
+  }
+};
 // manage product /api/filters
 export const FilterPost = async (data) => {
   try {

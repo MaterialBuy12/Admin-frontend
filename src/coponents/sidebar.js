@@ -206,12 +206,12 @@ function Sidebar() {
                     </li>
                   </ul>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/porrequest" className="waves-effect">
                     <i className="fas fa-plus-square"></i>
                     <span> POR request</span>
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/porstatus" className="waves-effect">
                     <i className="fas fa-retweet"></i>

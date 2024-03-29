@@ -1,11 +1,19 @@
 import React from "react";
-import { ProductRequest21 } from "../../services/api";
+import { ProductRequest21, removeproductrequest } from "../../services/api";
 
 function RequestProductPosts({ posts }) {
-
- 
-  const remove = async (i) => {
+  const  Approved = async (i) => {
     let dat = await ProductRequest21(i._id);
+    if (dat.status) {
+      alert(dat.data);
+      window.location.reload();
+    } else {
+      alert("Something went wrong");
+      window.location.reload();
+    }
+  };
+  const  remove = async (i) => {
+    let dat = await removeproductrequest(i._id);
     if (dat.status) {
       alert(dat.data);
       window.location.reload();
@@ -21,9 +29,11 @@ function RequestProductPosts({ posts }) {
         posts.map((i) => (
           <tr key={i._id}>
             <td>
-              <span>{i.vendor_docs.map((l) => (
-                <span key={l._id}>{l.name}</span>
-              ))}</span>
+              <span>
+                {i.vendor_docs.map((l) => (
+                  <span key={l._id}>{l.name}</span>
+                ))}
+              </span>
             </td>
             <td>
               <span>
@@ -33,7 +43,8 @@ function RequestProductPosts({ posts }) {
               </span>
             </td>
             <td>{i.price}</td>
-            <td>{i.productname}
+            <td>
+              {i.productname}
               {/* <span>
                 {i.product_docs.map((j) => (
                   <span key={j._id}>{j.productname1}</span>
@@ -50,13 +61,21 @@ function RequestProductPosts({ posts }) {
                   <button
                     className="btn btn-danger mt-2"
                     onClick={(e) => {
-                      remove(i);
+                      Approved(i);
                     }}
                   >
                     PENDING
                   </button>
                 </>
               )}
+              <button
+                className="btn btn-lg btn-danger mx-2 rounded"
+                onClick={(e) => {
+                  remove(i);
+                }}
+              >
+                Delete
+              </button>
             </td>
           </tr>
         ))}
